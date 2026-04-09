@@ -109,7 +109,16 @@ def add_to_queue(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    if not detector_api_base():
+    if detector_provider() == "video_ai_filter":
+        if not video_ai_filter_client.api_base():
+            raise HTTPException(
+                status_code=503,
+                detail=(
+                    "Анализ через video-ai-filter не настроен: задайте VIDEO_AI_FILTER_BASE_URL "
+                    "на сервере board (в Docker обычно http://video-ai-filter:8000)."
+                ),
+            )
+    elif not detector_api_base():
         raise HTTPException(
             status_code=503,
             detail="Анализ через API детектора не настроен: задайте DETECTOR_API_BASE_URL на сервере board.",
