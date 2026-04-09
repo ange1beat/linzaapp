@@ -15,6 +15,7 @@ from app.config import Settings
 from app.effective_settings import get_effective_settings
 from app.inference import ResolvedInference, resolve_inference, validate_inference_settings
 from app.storage import JobStorage
+from app.video_normalize import ffmpeg_normalize_for_opencv, should_normalize_video
 
 logger = logging.getLogger(__name__)
 
@@ -171,9 +172,33 @@ def process_job_sync(job_id: str, base_settings: Settings, storage: JobStorage) 
         storage.set_status(job_id, "failed", error=f"Video file missing: {video_path}")
         return
 
-    cap = cv2.VideoCapture(str(video_path))
+    work_path = video_path
+    normalized_path: Path | None = None
+    if should_normalize_video(video_path, settings):
+        normalized_path = video_path.parent / f"{video_path.stem}_norm_{job_id[:8]}.mp4"
+        try:
+            lim: float | None = None
+            md = row.get("max_duration_sec")
+            if md is not None:
+                try:
+                    lim = float(md)
+                    if lim <= 0:
+                        lim = None
+                except (TypeError, ValueError):
+                    lim = None
+            ffmpeg_normalize_for_opencv(video_path, normalized_path, settings, lim)
+        except RuntimeError as e:
+            storage.set_status(job_id, "failed", error=str(e))
+            video_path.unlink(missing_ok=True)
+            normalized_path.unlink(missing_ok=True)
+            return
+        work_path = normalized_path
+
+    cap = cv2.VideoCapture(str(work_path))
     if not cap.isOpened():
         storage.set_status(job_id, "failed", error="Could not open video with OpenCV")
+        if normalized_path is not None:
+            normalized_path.unlink(missing_ok=True)
         video_path.unlink(missing_ok=True)
         return
 
@@ -315,6 +340,8 @@ def process_job_sync(job_id: str, base_settings: Settings, storage: JobStorage) 
         storage.set_status(job_id, "completed", frames_done=processed, frames_total=max(estimated, processed))
     finally:
         cap.release()
+        if normalized_path is not None:
+            normalized_path.unlink(missing_ok=True)
 
     try:
         video_path.unlink(missing_ok=True)
