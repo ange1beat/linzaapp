@@ -118,6 +118,7 @@ def ffmpeg_normalize_for_opencv(
     duration_limit_sec: float | None = None,
     *,
     on_progress: Callable[[float], None] | None = None,
+    should_abort: Callable[[], bool] | None = None,
 ) -> None:
     """Деинтерлейс (только помеченные interlaced кадры) → progressive yuv420p, без аудио.
 
@@ -187,6 +188,13 @@ def ffmpeg_normalize_for_opencv(
         if proc.stdout is None:
             raise RuntimeError("ffmpeg: stdout not available")
         while True:
+            if should_abort and should_abort():
+                proc.kill()
+                try:
+                    proc.wait(timeout=15)
+                except subprocess.TimeoutExpired:
+                    pass
+                raise RuntimeError("Cancelled")
             line = proc.stdout.readline()
             if not line:
                 break

@@ -9,6 +9,7 @@ import logging
 import os
 import tempfile
 import time
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote, urljoin
@@ -16,6 +17,10 @@ from urllib.parse import quote, urljoin
 import httpx
 
 logger = logging.getLogger("linza.video_ai_filter")
+
+
+class QueueCancelled(Exception):
+    """Задача снята с очереди board (до или во время анализа)."""
 
 
 def _env_int(name: str, default: int) -> int:
@@ -76,15 +81,28 @@ def _optional_form_float(name: str) -> float | None:
         return None
 
 
-def _download_storage_file_to_path(storage_key: str, dest: Path) -> None:
+def _download_storage_file_to_path(
+    storage_key: str,
+    dest: Path,
+    *,
+    cancel_check: Callable[[], bool] | None = None,
+) -> None:
     url = f"{_storage_base()}/api/files/download/{encode_download_path(storage_key)}"
     headers = _svc_headers()
+    pending = 0
+    check_every = 8 * 1024 * 1024
     with httpx.stream("GET", url, headers=headers, timeout=httpx.Timeout(600.0, connect=60.0)) as r:
         r.raise_for_status()
         with open(dest, "wb") as out:
             for chunk in r.iter_bytes():
                 if chunk:
                     out.write(chunk)
+                    if cancel_check:
+                        pending += len(chunk)
+                        if pending >= check_every:
+                            pending = 0
+                            if cancel_check():
+                                raise QueueCancelled()
 
 
 def _post_job(local_path: Path, original_name: str) -> str:
@@ -134,7 +152,10 @@ def _post_job(local_path: Path, original_name: str) -> str:
     return str(job_id)
 
 
-def _poll_and_fetch_export(job_id: str) -> dict[str, Any]:
+def _poll_and_fetch_export(
+    job_id: str,
+    cancel_check: Callable[[], bool] | None = None,
+) -> dict[str, Any]:
     base = api_base()
     interval = _env_int("DETECTOR_POLL_INTERVAL_SEC", 5)
     total_timeout = _env_int("DETECTOR_POLL_TIMEOUT_SEC", 4 * 3600)
@@ -142,6 +163,8 @@ def _poll_and_fetch_export(job_id: str) -> dict[str, Any]:
 
     status_url = f"{base}/jobs/{job_id}"
     while time.time() < deadline:
+        if cancel_check and cancel_check():
+            raise QueueCancelled()
         r = httpx.get(status_url, timeout=120.0)
         if r.status_code == 404:
             raise RuntimeError("Задача video-ai-filter не найдена")
@@ -194,17 +217,43 @@ def _normalize_export_to_job_payload(export_obj: dict[str, Any], job_id: str) ->
     }
 
 
-def submit_job_from_storage(storage_key: str) -> str:
+def request_cancel_remote_job(job_id: str) -> None:
+    """DELETE в video-ai-filter: флаг cancelled + остановка воркера (best-effort)."""
+    base = api_base()
+    if not base or not job_id or len(job_id) < 32:
+        return
+    try:
+        r = httpx.delete(f"{base}/jobs/{job_id}", timeout=30.0)
+        if r.status_code not in (200, 404):
+            logger.warning(
+                "video-ai-filter DELETE /jobs/%s: HTTP %s %s",
+                job_id[:8],
+                r.status_code,
+                (r.text or "")[:200],
+            )
+    except Exception as e:
+        logger.warning("video-ai-filter cancel job %s: %s", job_id[:8], e)
+
+
+def submit_job_from_storage(
+    storage_key: str,
+    *,
+    cancel_check: Callable[[], bool] | None = None,
+) -> str:
     """Скачать файл из storage и создать задачу в video-ai-filter. Возвращает UUID job_id (до опроса результата)."""
     key = validate_storage_key_for_fetch(storage_key)
     suffix = Path(key).suffix or ".mp4"
     tmp: Path | None = None
     try:
+        if cancel_check and cancel_check():
+            raise QueueCancelled()
         fd, tmp_name = tempfile.mkstemp(suffix=suffix)
         os.close(fd)
         tmp = Path(tmp_name)
         logger.info("video-ai-filter: downloading %s from storage", key)
-        _download_storage_file_to_path(key, tmp)
+        _download_storage_file_to_path(key, tmp, cancel_check=cancel_check)
+        if cancel_check and cancel_check():
+            raise QueueCancelled()
         display_name = Path(key).name or f"video{suffix}"
         vaf_job_id = _post_job(tmp, display_name)
         logger.info("video-ai-filter: job %s submitted", vaf_job_id)
@@ -217,16 +266,20 @@ def submit_job_from_storage(storage_key: str) -> str:
                 pass
 
 
-def wait_job_export(vaf_job_id: str) -> dict[str, Any]:
+def wait_job_export(
+    vaf_job_id: str,
+    *,
+    cancel_check: Callable[[], bool] | None = None,
+) -> dict[str, Any]:
     """Дождаться завершения задачи и вернуть payload для save_report_from_job."""
-    export_obj = _poll_and_fetch_export(vaf_job_id)
+    export_obj = _poll_and_fetch_export(vaf_job_id, cancel_check=cancel_check)
     return _normalize_export_to_job_payload(export_obj, vaf_job_id)
 
 
 def run_pipeline(storage_key: str) -> dict[str, Any]:
     """Скачать файл из storage → отправить в video-ai-filter → вернуть payload для save_report_from_job."""
     jid = submit_job_from_storage(storage_key)
-    return wait_job_export(jid)
+    return wait_job_export(jid, cancel_check=None)
 
 
 def fetch_job_pdf_bytes(job_id: str) -> bytes:

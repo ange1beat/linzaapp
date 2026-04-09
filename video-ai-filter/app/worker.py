@@ -201,10 +201,15 @@ def process_job_sync(job_id: str, base_settings: Settings, storage: JobStorage) 
                 settings,
                 lim,
                 on_progress=lambda p: storage.set_processing_phase(job_id, "normalize", p),
+                should_abort=lambda: storage.is_cancelled(job_id),
             )
             logger.info("Job %s: ffmpeg normalize finished", job_id)
         except RuntimeError as e:
-            storage.set_status(job_id, "failed", error=str(e))
+            msg = str(e)
+            if msg == "Cancelled":
+                storage.set_status(job_id, "failed", error="Cancelled")
+            else:
+                storage.set_status(job_id, "failed", error=msg)
             video_path.unlink(missing_ok=True)
             normalized_path.unlink(missing_ok=True)
             return

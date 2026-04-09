@@ -167,6 +167,9 @@ def remove_from_queue(
     row = db.query(VideoAnalysisQueueItem).filter(VideoAnalysisQueueItem.id == item_id).first()
     if not row:
         raise HTTPException(404, "Not found")
+    jid = (row.detector_job_id or "").strip()
     row.status = "cancelled"
     db.commit()
+    if detector_provider() == "video_ai_filter" and jid and _VAF_JOB_UUID.match(jid):
+        video_ai_filter_client.request_cancel_remote_job(jid)
     return {"status": "ok"}

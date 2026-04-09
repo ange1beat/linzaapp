@@ -509,15 +509,17 @@ def delete_job(job_id: str) -> dict[str, str]:
         raise HTTPException(404, "Job not found")
 
     storage.set_cancelled(job_id)
-    vp = row.get("video_path")
-    if vp:
-        try:
-            Path(vp).unlink(missing_ok=True)
-        except OSError as e:
-            logger.warning("Unlink %s: %s", vp, e)
+    st = row["status"]
 
-    if row["status"] in ("completed", "failed"):
+    if st in ("completed", "failed"):
+        vp = row.get("video_path")
+        if vp:
+            try:
+                Path(vp).unlink(missing_ok=True)
+            except OSError as e:
+                logger.warning("Unlink %s: %s", vp, e)
         storage.delete_job_record(job_id)
         return {"job_id": job_id, "status": "deleted"}
 
+    # Активная джоба: не трогаем файл — воркер сам снимет после выхода по cancelled
     return {"job_id": job_id, "status": "cancelling"}

@@ -293,6 +293,16 @@ def save_report_from_job(
     return report.id
 
 
+def is_queue_item_cancelled(item_id: int) -> bool:
+    """Отдельная сессия — видит commit из DELETE очереди в другом запросе."""
+    db = SessionLocal()
+    try:
+        row = db.query(VideoAnalysisQueueItem).filter(VideoAnalysisQueueItem.id == item_id).first()
+        return row is None or row.status == "cancelled"
+    finally:
+        db.close()
+
+
 def process_analysis_queue_item(item_id: int) -> None:
     """Фоновая обработка одной записи очереди (sync, для BackgroundTasks)."""
     from backend import video_ai_filter_client
@@ -322,8 +332,12 @@ def process_analysis_queue_item(item_id: int) -> None:
             row.error_message = None
             db.commit()
 
+            cancel_ck = lambda: is_queue_item_cancelled(item_id)
             try:
-                vaf_jid = video_ai_filter_client.submit_job_from_storage(row.storage_key)
+                vaf_jid = video_ai_filter_client.submit_job_from_storage(
+                    row.storage_key,
+                    cancel_check=cancel_ck,
+                )
                 row = db.query(VideoAnalysisQueueItem).filter(VideoAnalysisQueueItem.id == item_id).first()
                 if not row or row.status != "processing":
                     logger.info(
@@ -334,7 +348,7 @@ def process_analysis_queue_item(item_id: int) -> None:
                 row.detector_job_id = str(vaf_jid)[:500]
                 db.commit()
 
-                job_payload = video_ai_filter_client.wait_job_export(vaf_jid)
+                job_payload = video_ai_filter_client.wait_job_export(vaf_jid, cancel_check=cancel_ck)
                 row = db.query(VideoAnalysisQueueItem).filter(VideoAnalysisQueueItem.id == item_id).first()
                 if not row or row.status != "processing":
                     logger.info(
@@ -355,8 +369,13 @@ def process_analysis_queue_item(item_id: int) -> None:
                     row.report_id = rid
                     row.error_message = None
                     db.commit()
+            except video_ai_filter_client.QueueCancelled:
+                logger.info("Анализ очереди id=%s остановлен (снято с очереди)", item_id)
+                return
             except Exception as e:
                 logger.exception("Ошибка анализа очереди (video-ai-filter) id=%s", item_id)
+                if is_queue_item_cancelled(item_id):
+                    return
                 row = db.query(VideoAnalysisQueueItem).filter(VideoAnalysisQueueItem.id == item_id).first()
                 if row:
                     row.status = "error"
