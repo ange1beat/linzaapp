@@ -110,6 +110,8 @@ class JobStatusResponse(BaseModel):
     frames_total: int | None = None
     frames_done: int = 0
     progress: float | None = None
+    processing_phase: str | None = None
+    phase_progress: float | None = Field(default=None, ge=0, le=1)
     export_url: str | None = Field(
         default=None,
         description="Когда status=completed: GET {export_url}?format=time-based|raw",
@@ -158,6 +160,15 @@ class RuntimeConfigPatch(BaseModel):
 
 
 def _progress(row: dict[str, Any]) -> float | None:
+    phase = (row.get("processing_phase") or "").strip().lower()
+    pp = row.get("phase_progress")
+    if phase == "normalize" and pp is not None:
+        try:
+            v = float(pp)
+            if 0.0 <= v <= 1.0:
+                return min(100.0, 100.0 * v)
+        except (TypeError, ValueError):
+            pass
     total = row.get("frames_total")
     done = row.get("frames_done") or 0
     if total is None or total <= 0:
@@ -484,6 +495,8 @@ def get_job(job_id: str) -> JobStatusResponse:
         frames_total=row.get("frames_total"),
         frames_done=int(row.get("frames_done") or 0),
         progress=_progress(row),
+        processing_phase=row.get("processing_phase"),
+        phase_progress=row.get("phase_progress"),
         export_url=f"/jobs/{job_id}/export" if row["status"] == "completed" else None,
     )
 

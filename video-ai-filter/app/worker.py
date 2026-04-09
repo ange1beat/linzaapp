@@ -172,10 +172,18 @@ def process_job_sync(job_id: str, base_settings: Settings, storage: JobStorage) 
         storage.set_status(job_id, "failed", error=f"Video file missing: {video_path}")
         return
 
+    # До этого момента в БД было queued — иначе UI показывает «в очереди», пока идёт долгий ffmpeg/OpenCV.
+    logger.info("Job %s: processing started (prep: normalize / OpenCV / decode)", job_id)
+    storage.set_status(job_id, "processing", frames_done=0)
+
     work_path = video_path
     normalized_path: Path | None = None
     if should_normalize_video(video_path, settings):
         normalized_path = video_path.parent / f"{video_path.stem}_norm_{job_id[:8]}.mp4"
+        logger.info(
+            "Job %s: ffmpeg normalize for OpenCV (large files can take many minutes)",
+            job_id,
+        )
         try:
             lim: float | None = None
             md = row.get("max_duration_sec")
@@ -186,12 +194,22 @@ def process_job_sync(job_id: str, base_settings: Settings, storage: JobStorage) 
                         lim = None
                 except (TypeError, ValueError):
                     lim = None
-            ffmpeg_normalize_for_opencv(video_path, normalized_path, settings, lim)
+            storage.set_processing_phase(job_id, "normalize", 0.0)
+            ffmpeg_normalize_for_opencv(
+                video_path,
+                normalized_path,
+                settings,
+                lim,
+                on_progress=lambda p: storage.set_processing_phase(job_id, "normalize", p),
+            )
+            logger.info("Job %s: ffmpeg normalize finished", job_id)
         except RuntimeError as e:
             storage.set_status(job_id, "failed", error=str(e))
             video_path.unlink(missing_ok=True)
             normalized_path.unlink(missing_ok=True)
             return
+        finally:
+            storage.clear_processing_phase(job_id)
         work_path = normalized_path
 
     cap = cv2.VideoCapture(str(work_path))

@@ -280,7 +280,12 @@ def fetch_job_status_snapshot(job_id: str) -> dict[str, Any] | None:
     elif st == "failed":
         detail = (row.get("error") or "Ошибка обработки")[:300]
     elif st == "processing":
-        if ft is not None and ft > 0:
+        phase = (row.get("processing_phase") or "").strip().lower()
+        ph_pr = row.get("phase_progress")
+        if phase == "normalize":
+            # Процент берётся из row["progress"] — в подписи не дублируем
+            detail = "Нормализация видео"
+        elif ft is not None and ft > 0:
             if fd < ft:
                 detail = f"Кадры: {fd}/{ft}"
             else:
@@ -295,5 +300,7 @@ def fetch_job_status_snapshot(job_id: str) -> dict[str, Any] | None:
         "frames_done": fd,
         "frames_total": ft,
         "progress": row.get("progress"),
+        "processing_phase": row.get("processing_phase"),
+        "phase_progress": row.get("phase_progress"),
         "status_detail": detail,
     }

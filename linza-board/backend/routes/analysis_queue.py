@@ -85,6 +85,8 @@ def _enrich_queue_item_for_ui(d: dict) -> dict:
             "frames_total": snap.get("frames_total"),
             "progress": snap.get("progress"),
             "vaf_status": snap.get("vaf_status"),
+            "processing_phase": snap.get("processing_phase"),
+            "phase_progress": snap.get("phase_progress"),
         }
     else:
         d["status_detail"] = "Обработка…"
