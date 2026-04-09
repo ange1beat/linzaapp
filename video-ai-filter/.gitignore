@@ -1,0 +1,15 @@
+.venv
+venv
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.env.*
+!.env.example
+data/
+*.db
+.DS_Store
+.cursor/
+
+# локальные артефакты заданий (по желанию закоммить примеры)
+job_*_time_based.json

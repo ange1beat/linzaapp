@@ -1,0 +1,47 @@
+name: Task
+description: Задача на реализацию
+labels: ["stage: planning"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Task"
+  - type: textarea
+    id: description
+    attributes:
+      label: Описание задачи
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Тип задачи
+      options:
+        - enhancement
+        - refactor
+        - devops
+        - docs
+        - test
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Приоритет
+      options:
+        - critical
+        - high
+        - medium
+        - low
+    validations:
+      required: true
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Чеклист реализации
+      value: |
+        - [ ]
+        - [ ]
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Зависимости / Связанные задачи

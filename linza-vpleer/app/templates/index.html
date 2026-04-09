@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Linza VPleer — Файлы{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/api/vpleer/static/css/index.css">
+{% endblock %}
+
+{% block content %}
+<h1 style="max-width:960px;margin:0 auto 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:1rem;font-weight:600;color:var(--c-txt)">
+  Linza VPleer — Файлы
+  <button type="button" class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Тема" style="margin-left:auto">&#9790;</button>
+</h1>
+<table>
+  <thead><tr><th>Имя файла</th><th>Размер</th><th>Изменён</th></tr></thead>
+  <tbody>
+    {% for f in files %}
+    <tr>
+      <td><a href="/api/vpleer/player/{{ f.name|urlencode }}">{{ f.name|e }}</a></td>
+      <td>{{ "%.1f"|format(f.size / 1048576) }} МБ</td>
+      <td>{{ f.get("last_modified", "—")|e }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="3" style="text-align:center;color:var(--text-muted)">Нет файлов в хранилище</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

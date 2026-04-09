@@ -1,0 +1,65 @@
+# При каждом push в main создаётся новый git-тег vX.Y.Z (patch +1 к последнему тегу v*.*.*).
+# Дальше срабатывает deploy-production.yml (триггер: push тега v*).
+#
+# Требуется: Settings → Actions → General → Workflow permissions → Read and write.
+#
+# Опционально: в сообщении коммита добавьте [skip tag] или [no tag], чтобы не создавать тег
+# (удобно для правок только README в Linza-deploy — паттерн ниже).
+
+name: Auto tag on main
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: linza-auto-tag-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    # Пропуск, если в последнем коммите явно отключили автотег
+    if: ${{ !contains(github.event.head_commit.message, '[skip tag]') && !contains(github.event.head_commit.message, '[no tag]') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Следующая patch-версия и push тега
+        env:
+          SHA: ${{ github.sha }}
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          LAST=$(git tag -l 'v*.*.*' --sort=-v:refname | head -1 || true)
+          [ -n "${LAST:-}" ] || LAST="v0.0.0"
+          VER="${LAST#v}"
+          IFS=. read -r MA MI PA <<<"${VER}"
+          : "${MA:=0}"
+          : "${MI:=0}"
+          : "${PA:=0}"
+          PA=$((PA + 1))
+          NEW="v${MA}.${MI}.${PA}"
+
+          n=0
+          while git rev-parse "$NEW" >/dev/null 2>&1; do
+            PA=$((PA + 1))
+            NEW="v${MA}.${MI}.${PA}"
+            n=$((n + 1))
+            [ "$n" -lt 50 ] || exit 1
+          done
+
+          git tag -a "$NEW" -m "Auto $NEW from $SHA
+
+          $MSG"
+          git push origin "$NEW"
+          echo "Created and pushed $NEW"

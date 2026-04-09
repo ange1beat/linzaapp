@@ -1,0 +1,204 @@
+services:
+  # --- Infrastructure ---
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-linza}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-linza}
+      POSTGRES_DB: ${POSTGRES_DB:-linza_board}
+    # С хоста: по умолчанию 5433, чтобы не конфликтовать с локальным PostgreSQL на 5432
+    ports:
+      - "${POSTGRES_PUBLISH_PORT:-5433}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      # pg_isready без -d подключается к БД с именем пользователя (linza) — её не создаёт POSTGRES_DB
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    restart: unless-stopped
+
+  # --- Application Services ---
+  linza-board:
+    build:
+      context: ../linza-board
+      dockerfile: Dockerfile
+    # Иначе внутри контейнера часто падает DNS → Google/Yandex OAuth (Errno -3 name resolution)
+    dns:
+      - ${DOCKER_DNS_PRIMARY:-8.8.8.8}
+      - ${DOCKER_DNS_SECONDARY:-1.1.1.1}
+    ports:
+      - "8000:8000"
+    environment:
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000,http://localhost
+      - AUTH_SECRET_KEY=${AUTH_SECRET_KEY:-linza-secret-change-in-production}
+      - AUTH_ADMIN_LOGIN=${AUTH_ADMIN_LOGIN:-admin}
+      - AUTH_ADMIN_PASSWORD=${AUTH_ADMIN_PASSWORD:-admin}
+      - ERROR_TRACKER_URL=http://error-tracker:8004
+      - STORAGE_SERVICE_URL=http://storage-service:8001
+      # Прокси /api/classifier внутри board → иначе по умолчанию 127.0.0.1:8002 = сам контейнер board (502)
+      - ANALYTICS_SERVICE_URL=http://analytics-service:8002
+      - VPLEER_SERVICE_URL=http://vpleer-service:8003
+      - SERVICE_API_KEY=${SERVICE_API_KEY:-}
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-linza}:${POSTGRES_PASSWORD:-linza}@postgres:5432/${POSTGRES_DB:-linza_board}
+      - CREDENTIAL_ENCRYPTION_KEY=${CREDENTIAL_ENCRYPTION_KEY:-}
+      - YANDEX_OAUTH_CLIENT_ID=${YANDEX_OAUTH_CLIENT_ID:-}
+      - YANDEX_OAUTH_CLIENT_SECRET=${YANDEX_OAUTH_CLIENT_SECRET:-}
+      - YANDEX_OAUTH_REDIRECT_URI=${YANDEX_OAUTH_REDIRECT_URI:-}
+      - YANDEX_OAUTH_SCOPE=${YANDEX_OAUTH_SCOPE:-cloud_api:disk.read}
+      - GOOGLE_OAUTH_CLIENT_ID=${GOOGLE_OAUTH_CLIENT_ID:-}
+      - GOOGLE_OAUTH_CLIENT_SECRET=${GOOGLE_OAUTH_CLIENT_SECRET:-}
+      - GOOGLE_OAUTH_REDIRECT_URI=${GOOGLE_OAUTH_REDIRECT_URI:-}
+      - GOOGLE_OAUTH_SCOPE=${GOOGLE_OAUTH_SCOPE:-https://www.googleapis.com/auth/drive.readonly}
+      - FRONTEND_BASE_URL=${FRONTEND_BASE_URL:-http://localhost:5173}
+      # Линза.Детектор — иначе DETECTOR_* из .env не попадают в контейнер board
+      - DETECTOR_API_BASE_URL=${DETECTOR_API_BASE_URL:-}
+      - DETECTOR_PUBLIC_FETCH_BASE_URL=${DETECTOR_PUBLIC_FETCH_BASE_URL:-}
+      - LINZA_PUBLIC_URL=${LINZA_PUBLIC_URL:-}
+      - DETECTOR_FETCH_SECRET=${DETECTOR_FETCH_SECRET:-}
+      - DETECTOR_CUSTOMER_ID=${DETECTOR_CUSTOMER_ID:-}
+      - DETECTOR_PROFILE=${DETECTOR_PROFILE:-}
+      - DETECTOR_POLL_INTERVAL_SEC=${DETECTOR_POLL_INTERVAL_SEC:-}
+      - DETECTOR_POLL_TIMEOUT_SEC=${DETECTOR_POLL_TIMEOUT_SEC:-}
+      - DETECTOR_FETCH_TOKEN_TTL_SEC=${DETECTOR_FETCH_TOKEN_TTL_SEC:-}
+      - DETECTOR_DETECTION_CLASSES_JSON=${DETECTOR_DETECTION_CLASSES_JSON:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      analytics-service:
+        condition: service_started
+    restart: unless-stopped
+
+  storage-service:
+    build:
+      context: ../Linza-storage-service
+      dockerfile: Dockerfile
+    dns:
+      - ${DOCKER_DNS_PRIMARY:-8.8.8.8}
+      - ${DOCKER_DNS_SECONDARY:-1.1.1.1}
+    ports:
+      - "8001:8001"
+    environment:
+      - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
+      - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL:-https://s3.twcstorage.ru}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME:-5aca33a6-7dff-49cb-8069-3442ccb455c3}
+      - S3_REGION=${S3_REGION:-ru-1}
+      # Таймаут чтения при стриминге больших видео с S3 (секунды)
+      - S3_READ_TIMEOUT=${S3_READ_TIMEOUT:-600}
+      - S3_CONNECT_TIMEOUT=${S3_CONNECT_TIMEOUT:-60}
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000,http://localhost
+      - ERROR_TRACKER_URL=http://error-tracker:8004
+      - SERVICE_API_KEY=${SERVICE_API_KEY:-}
+      - TASK_DB_PATH=/app/data/tasks.db
+    volumes:
+      - storage-data:/app/data
+    restart: unless-stopped
+
+  analytics-service:
+    build:
+      context: ../linza-analytics
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      - DATABASE_PATH=/app/data/linza.db
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000,http://localhost
+      - ERROR_TRACKER_URL=http://error-tracker:8004
+      - SERVICE_API_KEY=${SERVICE_API_KEY:-}
+    volumes:
+      - analytics-data:/app/data
+    restart: unless-stopped
+
+  vpleer-service:
+    build:
+      context: ../linza-vpleer
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    environment:
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000,http://localhost
+      - STORAGE_SERVICE_URL=http://storage-service:8001
+      - ANALYTICS_SERVICE_URL=http://analytics-service:8002
+      - ERROR_TRACKER_URL=http://error-tracker:8004
+      - SERVICE_API_KEY=${SERVICE_API_KEY:-}
+    depends_on:
+      - storage-service
+      - analytics-service
+    restart: unless-stopped
+
+  # --- Error Tracker Service ---
+  error-tracker:
+    build:
+      context: ../Linza-debug/error-tracker
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8004"
+    environment:
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000,http://localhost
+      - SERVICE_API_KEY=${SERVICE_API_KEY:-}
+    volumes:
+      - error-tracker-data:/app/data
+    restart: unless-stopped
+
+  # --- Nginx API Gateway ---
+  # To enable HTTPS: replace nginx.conf with nginx-ssl.conf in the volume mount below,
+  # place SSL certificates in ./ssl/ directory, and restart.
+  # See docs/ssl-setup.md for detailed instructions.
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - linza-board
+      - storage-service
+      - analytics-service
+      - vpleer-service
+      - error-tracker
+    restart: unless-stopped
+
+  # --- Cloud Backup (optional) ---
+  # Uncomment to enable periodic backup to cloud PostgreSQL.
+  # Requires CLOUD_DATABASE_URL in .env
+  #
+  # pg-backup:
+  #   image: postgres:16-alpine
+  #   entrypoint: ["/scripts/pg-backup.sh", "--schedule", "${BACKUP_INTERVAL:-6h}"]
+  #   environment:
+  #     - POSTGRES_USER=${POSTGRES_USER:-linza}
+  #     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-linza}
+  #     - POSTGRES_DB=${POSTGRES_DB:-linza_board}
+  #     - POSTGRES_HOST=postgres
+  #     - CLOUD_DATABASE_URL=${CLOUD_DATABASE_URL:-}
+  #   volumes:
+  #     - ./scripts/pg-backup.sh:/scripts/pg-backup.sh:ro
+  #     - pg-backup-data:/tmp/pg-backups
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   restart: unless-stopped
+
+volumes:
+  postgres-data:
+  minio-data:
+  analytics-data:
+  storage-data:
+  error-tracker-data:

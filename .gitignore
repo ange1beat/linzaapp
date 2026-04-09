@@ -1,0 +1,35 @@
+# Старые .git вложенных репозиториев (только локально, можно удалить после проверки push).
+.monorepo_git_backups/
+
+# Секреты
+.env
+.env.*
+!.env.example
+**/.env
+!**/.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node / фронт
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# БД и загрузки
+*.db
+video-ai-filter/data/
+
+# macOS / IDE
+.DS_Store
+.cursor/
+
+# TLS (локальные ключи)
+**/ssl/*.pem
+**/ssl/*.key
+
+*.log

@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LINZA DETECTOR — Design Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Theme tokens ── */
+.t-dark {
+  --bg:         #000000;
+  --surface:    #0A0A0A;
+  --surface-2:  #111111;
+  --border:     #1C1C1E;
+  --blue:       #0A6FFF;
+  --blue-dim:   rgba(10,111,255,0.12);
+  --blue-hover: #0855CC;
+  --txt:        #F5F5F7;
+  --txt-2:      rgba(245,245,247,0.5);
+  --txt-3:      rgba(245,245,247,0.28);
+  --err:        #F87171;
+  --err-bg:     rgba(220,38,38,0.08);
+  --ok:         #34D399;
+  --ok-bg:      rgba(52,211,153,0.08);
+  --warn:       #FBBF24;
+  --warn-bg:    rgba(251,191,36,0.1);
+  color-scheme: dark;
+}
+
+.t-light {
+  --bg:         #F5F5F7;
+  --surface:    #FFFFFF;
+  --surface-2:  #F5F5F7;
+  --border:     #E0E0E4;
+  --blue:       #0A6FFF;
+  --blue-dim:   rgba(10,111,255,0.08);
+  --blue-hover: #0855CC;
+  --txt:        #000000;
+  --txt-2:      #6E6E73;
+  --txt-3:      #AEAEB2;
+  --err:        #B91C1C;
+  --err-bg:     #FFF0F0;
+  --ok:         #15803D;
+  --ok-bg:      #F0FDF4;
+  --warn:       #B45309;
+  --warn-bg:    #FFFBEB;
+  color-scheme: light;
+}
+
+/* ── Page chrome ── */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #1A1A1A;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.preview-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.preview-heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.preview-heading h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  color: #0A6FFF;
+  letter-spacing: 3px;
+}
+.preview-heading p {
+  font-size: 13px;
+  color: rgba(245,245,247,0.4);
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+
+.preview-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.toggle-btn {
+  padding: 6px 18px;
+  border: 1px solid #333;
+  border-radius: 3px;
+  background: transparent;
+  color: rgba(245,245,247,0.5);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.toggle-btn.active, .toggle-btn:hover {
+  background: #0A6FFF;
+  border-color: #0A6FFF;
+  color: #fff;
+}
+
+.section-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245,245,247,0.3);
+  margin-bottom: 16px;
+  margin-top: 40px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #222;
+}
+
+/* ── Screen wrapper ── */
+.screen {
+  background: var(--bg);
+  border: 1px solid #2C2C2E;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.screen-label {
+  font-size: 11px;
+  color: rgba(245,245,247,0.25);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+.ld-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 20px;
+  height: 48px;
+  background: #000000;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+}
+
+.ld-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.ld-logo-linza {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 19px;
+  color: #0A6FFF;
+  letter-spacing: 2px;
+}
+.ld-logo-det {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 8px;
+  color: rgba(10,111,255,0.65);
+  letter-spacing: 3.5px;
+}
+
+.ld-nav-links {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+}
+.ld-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--txt-2);
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+}
+.ld-nav-link:hover { color: var(--txt); background: rgba(245,245,247,0.05); }
+.ld-nav-link.active {
+  color: #0A6FFF;
+  background: var(--blue-dim);
+  border-color: rgba(10,111,255,0.2);
+}
+
+.ld-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+.ld-nav-user {
+  font-size: 12px;
+  color: var(--txt-3);
+}
+.ld-nav-logout {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--txt-2);
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.12s;
+}
+.ld-nav-logout:hover {
+  border-color: rgba(220,38,38,0.4);
+  color: #F87171;
+  background: rgba(220,38,38,0.06);
+}
+
+/* ═══════════════════════════════════════
+   LOGIN PAGE
+═══════════════════════════════════════ */
+.login-root {
+  background: var(--bg);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px 36px;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-card {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 44px 52px;
+  max-width: 680px;
+  width: 100%;
+}
+
+.col-logo {
+  flex: 1;
+  padding-right: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.logo-mark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.logo-linza {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 54px;
+  color: #0A6FFF;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+.logo-detector {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  color: #0A6FFF;
+  letter-spacing: 7px;
+  opacity: 0.8;
+}
+.logo-sub { font-size: 11px; color: var(--txt-2); text-align: right; }
+
+.sep {
+  width: 1px;
+  height: 188px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.col-form {
+  flex: 1;
+  padding-left: 52px;
+}
+.form-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--txt);
+  margin-bottom: 22px;
+}
+
+.field { margin-bottom: 2px; }
+.field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(10,111,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin-bottom: 5px;
+}
+.field-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.fi-icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(10,111,255,0.4);
+  display: flex;
+  align-items: center;
+  padding-right: 9px;
+  border-right: 1px solid var(--border);
+  height: 18px;
+}
+.inp {
+  width: 100%;
+  height: 38px;
+  padding: 0 36px 0 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  color: var(--txt);
+  outline: none;
+}
+.inp:focus {
+  border-color: #0A6FFF;
+  box-shadow: 0 0 0 2px rgba(10,111,255,0.14);
+}
+.inp::placeholder { color: var(--txt-3); }
+
+.btn-submit {
+  width: 100%;
+  height: 38px;
+  background: #0A6FFF;
+  color: #F5F5F7;
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.15s;
+}
+.btn-submit:hover { background: #0855CC; }
+
+.login-foot {
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--txt-3);
+}
+
+/* ═══════════════════════════════════════
+   DASHBOARD PAGE
+═══════════════════════════════════════ */
+.page-body {
+  background: var(--bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  min-height: 460px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 14px 20px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--txt);
+}
+
+/* Stat cards row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 16px 20px;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--txt-2);
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--txt);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat-value.blue  { color: #0A6FFF; }
+.stat-value.ok    { color: var(--ok); }
+.stat-value.err   { color: var(--err); }
+.stat-value.warn  { color: var(--warn); }
+.stat-sub {
+  font-size: 11px;
+  color: var(--txt-3);
+  margin-top: 4px;
+}
+
+/* Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.data-table th {
+  background: var(--surface-2);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--txt-2);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--txt);
+}
+.data-table tbody tr:hover { background: var(--blue-dim); }
+.data-table td.mono {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 12px;
+  color: var(--txt-2);
+}
+.data-table td.center { text-align: center; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.badge-ok   { background: var(--ok-bg);   color: var(--ok); }
+.badge-err  { background: var(--err-bg);  color: var(--err); }
+.badge-warn { background: var(--warn-bg); color: var(--warn); }
+.badge-blue { background: var(--blue-dim); color: #0A6FFF; }
+
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.filter-chips {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--txt-2);
+  cursor: pointer;
+  user-select: none;
+}
+.chip input[type=checkbox] { accent-color: #0A6FFF; }
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.btn-row { display: flex; gap: 6px; }
+.btn {
+  padding: 6px 14px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: all 0.12s;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--txt-2);
+}
+.btn-ghost:hover { background: var(--surface-2); color: var(--txt); }
+.btn-primary {
+  background: #0A6FFF;
+  color: #F5F5F7;
+  border-color: #0A6FFF;
+}
+.btn-primary:hover { background: #0855CC; }
+
+/* Progress bar */
+.prog-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.prog-bar {
+  width: 120px;
+  height: 5px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: #0A6FFF;
+  border-radius: 2px;
+}
+.prog-lbl { font-size: 11px; color: var(--txt-2); }
+
+/* ── Upload modal ── */
+.modal-overlay {
+  position: relative;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  width: 100%;
+  max-width: 420px;
+}
+.modal-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-hdr h3 { font-size: 13px; font-weight: 600; color: var(--txt); }
+.modal-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--txt-2); font-size: 18px; line-height: 1;
+}
+.modal-close:hover { color: var(--txt); }
+.modal-body-pad { padding: 16px 18px; }
+.modal-body-pad label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(10,111,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin-bottom: 6px;
+}
+.modal-inp {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  color: var(--txt);
+  outline: none;
+}
+.modal-inp:focus { border-color: #0A6FFF; }
+.modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+}
+
+/* ═══════════════════════════════════════
+   COLOR TOKENS PANEL
+═══════════════════════════════════════ */
+.tokens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+}
+.token-card {
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #2C2C2E;
+}
+.token-swatch {
+  height: 40px;
+}
+.token-info {
+  background: #0A0A0A;
+  padding: 8px 10px;
+}
+.token-name {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(245,245,247,0.5);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.token-hex {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 12px;
+  color: #F5F5F7;
+  margin-top: 2px;
+}
+</style>
+</head>
+<body>
+<div class="preview-page">
+
+  <!-- Heading -->
+  <div class="preview-heading">
+    <h1>LINZA DETECTOR</h1>
+    <p>Design System Preview — Dark &amp; Light Themes</p>
+  </div>
+
+  <!-- Toggle -->
+  <div class="preview-toggle">
+    <button class="toggle-btn active" onclick="setTheme('dark', this)">Тёмная тема</button>
+    <button class="toggle-btn" onclick="setTheme('light', this)">Светлая тема</button>
+  </div>
+
+  <!-- ── COLOR TOKENS ── -->
+  <div class="section-title">Фирменные цвета & Токены</div>
+  <div class="tokens-grid">
+    <div class="token-card">
+      <div class="token-swatch" style="background:#000000"></div>
+      <div class="token-info"><div class="token-name">Black</div><div class="token-hex">#000000</div></div>
+    </div>
+    <div class="token-card">
+      <div class="token-swatch" style="background:#0A6FFF"></div>
+      <div class="token-info"><div class="token-name">Blue</div><div class="token-hex">#0A6FFF</div></div>
+    </div>
+    <div class="token-card">
+      <div class="token-swatch" style="background:#F5F5F7;border-bottom:1px solid #2C2C2E"></div>
+      <div class="token-info"><div class="token-name">White</div><div class="token-hex">#F5F5F7</div></div>
+    </div>
+    <div class="token-card">
+      <div class="token-swatch" style="background:#0A0A0A"></div>
+      <div class="token-info"><div class="token-name">Surface Dark</div><div class="token-hex">#0A0A0A</div></div>
+    </div>
+    <div class="token-card">
+      <div class="token-swatch" style="background:#0855CC"></div>
+      <div class="token-info"><div class="token-name">Blue Hover</div><div class="token-hex">#0855CC</div></div>
+    </div>
+    <div class="token-card">
+      <div class="token-swatch" style="background:#1C1C1E"></div>
+      <div class="token-info"><div class="token-name">Border Dark</div><div class="token-hex">#1C1C1E</div></div>
+    </div>
+    <div class="token-card">
+      <div class="token-swatch" style="background:#34D399"></div>
+      <div class="token-info"><div class="token-name">Success</div><div class="token-hex">#34D399</div></div>
+    </div>
+    <div class="token-card">
+      <div class="token-swatch" style="background:#F87171"></div>
+      <div class="token-info"><div class="token-name">Error</div><div class="token-hex">#F87171</div></div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN: LOGIN ── -->
+  <div class="section-title" id="s-login">Экран входа / Login Page</div>
+  <div class="screen-label" id="label-login">Тёмная тема</div>
+  <div id="screen-login" class="screen t-dark">
+    <div class="login-root">
+      <div class="login-card">
+        <div class="col-logo">
+          <div class="logo-mark">
+            <span class="logo-linza">LINZA</span>
+            <span class="logo-detector">DETECTOR</span>
+          </div>
+          <p class="logo-sub">Система видеоаналитики</p>
+        </div>
+        <div class="sep"></div>
+        <div class="col-form">
+          <p class="form-title">Вход в систему</p>
+          <div class="field">
+            <label>Логин</label>
+            <div class="field-input">
+              <span class="fi-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z"/>
+                </svg>
+              </span>
+              <input class="inp" type="text" placeholder="Введите логин" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Пароль</label>
+            <div class="field-input">
+              <span class="fi-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                </svg>
+              </span>
+              <input class="inp" type="password" placeholder="Введите пароль" />
+            </div>
+          </div>
+          <button class="btn-submit">Войти</button>
+        </div>
+      </div>
+      <div class="login-foot">LINZA DETECTOR &copy; 2026</div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN: NAVBAR ── -->
+  <div class="section-title">Навигационная панель / Navbar</div>
+  <div class="screen-label" id="label-nav">Тёмная тема</div>
+  <div id="screen-nav" class="screen t-dark">
+    <nav class="ld-nav">
+      <div class="ld-logo">
+        <span class="ld-logo-linza">LINZA</span>
+        <span class="ld-logo-det">DETECTOR</span>
+      </div>
+      <div class="ld-nav-links">
+        <button class="ld-nav-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707z"/>
+          </svg>
+          Аналитика
+        </button>
+        <button class="ld-nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707L9.293 0z"/>
+          </svg>
+          Файлы
+        </button>
+      </div>
+      <div class="ld-nav-right">
+        <span class="ld-nav-user">admin</span>
+        <button class="ld-nav-logout">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg>
+          Выйти
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ── SCREEN: DASHBOARD ── -->
+  <div class="section-title">Страница аналитики / Analytics Dashboard</div>
+  <div class="screen-label" id="label-dash">Тёмная тема</div>
+  <div id="screen-dash" class="screen t-dark">
+    <nav class="ld-nav">
+      <div class="ld-logo">
+        <span class="ld-logo-linza">LINZA</span>
+        <span class="ld-logo-det">DETECTOR</span>
+      </div>
+      <div class="ld-nav-links">
+        <button class="ld-nav-link active">Аналитика</button>
+        <button class="ld-nav-link">Файлы</button>
+      </div>
+      <div class="ld-nav-right">
+        <span class="ld-nav-user">admin</span>
+        <button class="ld-nav-logout">Выйти</button>
+      </div>
+    </nav>
+    <div class="page-body">
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Всего нарушений</div>
+          <div class="stat-value blue">1 284</div>
+          <div class="stat-sub">за текущий период</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Подтверждено</div>
+          <div class="stat-value err">847</div>
+          <div class="stat-sub">66.0% от общего</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">На проверке</div>
+          <div class="stat-value warn">312</div>
+          <div class="stat-sub">24.3% от общего</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Ложные</div>
+          <div class="stat-value ok">125</div>
+          <div class="stat-sub">9.7% от общего</div>
+        </div>
+      </div>
+
+      <!-- Filter panel -->
+      <div class="panel">
+        <div class="filter-bar">
+          <div class="filter-chips">
+            <label class="chip"><input type="checkbox" checked /> <span class="dot" style="background:#F87171"></span> Критические (312)</label>
+            <label class="chip"><input type="checkbox" checked /> <span class="dot" style="background:#FBBF24"></span> Важные (541)</label>
+            <label class="chip"><input type="checkbox" checked /> <span class="dot" style="background:#0A6FFF"></span> Обычные (431)</label>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-ghost">Настроить категории</button>
+            <button class="btn btn-primary">Выгрузить в Excel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="panel" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>Тип нарушения</th>
+              <th>Временной интервал</th>
+              <th>Уверенность</th>
+              <th>Категория</th>
+              <th>Верификация</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center">1</td>
+              <td>Превышение скорости</td>
+              <td class="mono">00:01:23 — 00:01:28</td>
+              <td class="center">94%</td>
+              <td><span class="badge badge-err">Критическая</span></td>
+              <td class="center"><span class="badge badge-err">Подтверждено</span></td>
+            </tr>
+            <tr>
+              <td class="center">2</td>
+              <td>Проезд на красный</td>
+              <td class="mono">00:03:07 — 00:03:09</td>
+              <td class="center">88%</td>
+              <td><span class="badge badge-err">Критическая</span></td>
+              <td class="center"><span class="badge badge-warn">На проверке</span></td>
+            </tr>
+            <tr>
+              <td class="center">3</td>
+              <td>Нарушение разметки</td>
+              <td class="mono">00:05:42 — 00:05:51</td>
+              <td class="center">71%</td>
+              <td><span class="badge badge-warn">Важная</span></td>
+              <td class="center"><span class="badge badge-ok">Ложное</span></td>
+            </tr>
+            <tr>
+              <td class="center">4</td>
+              <td>Остановка в запрещённом месте</td>
+              <td class="mono">00:08:14 — 00:09:02</td>
+              <td class="center">82%</td>
+              <td><span class="badge badge-blue">Обычная</span></td>
+              <td class="center"><span class="badge badge-err">Подтверждено</span></td>
+            </tr>
+            <tr>
+              <td class="center">5</td>
+              <td>Превышение скорости</td>
+              <td class="mono">00:11:33 — 00:11:36</td>
+              <td class="center">91%</td>
+              <td><span class="badge badge-err">Критическая</span></td>
+              <td class="center"><span class="badge badge-err">Подтверждено</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN: FILES ── -->
+  <div class="section-title">Страница файлов / Files</div>
+  <div class="screen-label" id="label-files">Тёмная тема</div>
+  <div id="screen-files" class="screen t-dark">
+    <nav class="ld-nav">
+      <div class="ld-logo"><span class="ld-logo-linza">LINZA</span><span class="ld-logo-det">DETECTOR</span></div>
+      <div class="ld-nav-links">
+        <button class="ld-nav-link">Аналитика</button>
+        <button class="ld-nav-link active">Файлы</button>
+      </div>
+      <div class="ld-nav-right"><span class="ld-nav-user">admin</span><button class="ld-nav-logout">Выйти</button></div>
+    </nav>
+    <div class="page-body">
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Файлы в хранилище</span>
+          <button class="btn btn-primary">+ Загрузить по ссылке</button>
+        </div>
+      </div>
+      <div class="panel" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Имя файла</th>
+              <th>Размер</th>
+              <th>Прогресс</th>
+              <th>Дата создания</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>video_2026-03-20_cam01.mp4</td>
+              <td>1.2 ГБ</td>
+              <td><span class="badge badge-ok">✓ Готово</span></td>
+              <td class="mono">20.03.2026, 14:32</td>
+            </tr>
+            <tr>
+              <td>video_2026-03-21_cam03.mp4</td>
+              <td>843 МБ</td>
+              <td>
+                <div class="prog-wrap">
+                  <div class="prog-bar"><div class="prog-fill" style="width:64%"></div></div>
+                  <span class="prog-lbl">64% · Передача в S3...</span>
+                </div>
+              </td>
+              <td class="mono">—</td>
+            </tr>
+            <tr>
+              <td>video_2026-03-22_cam02.mp4</td>
+              <td>2.1 ГБ</td>
+              <td><span class="badge badge-ok">✓ Готово</span></td>
+              <td class="mono">22.03.2026, 09:15</td>
+            </tr>
+            <tr>
+              <td>video_corrupted.mp4</td>
+              <td>—</td>
+              <td><span class="badge badge-err">✗ Ошибка</span></td>
+              <td class="mono">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Upload modal -->
+      <div class="modal-overlay">
+        <div class="modal-box">
+          <div class="modal-hdr">
+            <h3>Загрузить файл по ссылке</h3>
+            <button class="modal-close">&times;</button>
+          </div>
+          <div class="modal-body-pad">
+            <label>URL видеофайла</label>
+            <input class="modal-inp" type="url" placeholder="https://example.com/video.mp4" />
+          </div>
+          <div class="modal-foot">
+            <button class="btn btn-ghost">Отмена</button>
+            <button class="btn btn-primary">Загрузить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /preview-page -->
+
+<script>
+const SCREENS = ['login','nav','dash','files'];
+
+function setTheme(t, btn) {
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  SCREENS.forEach(id => {
+    const el = document.getElementById('screen-' + id);
+    if (!el) return;
+    el.classList.remove('t-dark','t-light');
+    el.classList.add(t === 'dark' ? 't-dark' : 't-light');
+    const lbl = document.getElementById('label-' + id);
+    if (lbl) lbl.textContent = t === 'dark' ? 'Тёмная тема' : 'Светлая тема';
+  });
+}
+</script>
+</body>
+</html>

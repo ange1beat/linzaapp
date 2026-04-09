@@ -1,0 +1,11 @@
+services:
+  linza-board:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+      - AUTH_SECRET_KEY=linza-board-secret-key-change-in-production
+      - AUTH_ADMIN_LOGIN=admin
+      - AUTH_ADMIN_PASSWORD=admin
+    restart: unless-stopped

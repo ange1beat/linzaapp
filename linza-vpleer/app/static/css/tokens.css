@@ -1,0 +1,215 @@
+/* Linza Board–aligned tokens; data-theme = dark | light */
+:root,
+[data-theme="dark"] {
+  --c-sidebar: #141c28;
+  --c-bg: #0e131b;
+  --c-surface: #161d2a;
+  --c-surface-2: #1c2534;
+  --c-border: rgba(148, 163, 184, 0.14);
+  --c-blue: #3b82f6;
+  --c-blue-dim: rgba(59, 130, 246, 0.14);
+  --c-blue-hover: #2563eb;
+  --c-txt: #f1f5f9;
+  --c-txt-2: #94a3b8;
+  --c-txt-3: #64748b;
+  --c-err: #f87171;
+  --c-ok: #34d399;
+  --c-warn: #fbbf24;
+  --c-modal-overlay: rgba(2, 6, 15, 0.58);
+  --r-sm: 12px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 22px;
+  --r-pill: 9999px;
+  --text-xs: 0.7rem;
+  --text-sm: 0.78rem;
+  --text-base: 0.85rem;
+  --text-md: 0.95rem;
+  --text-lg: 1.05rem;
+  --text-xl: 1.2rem;
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.28);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.32);
+
+  /* Legacy aliases (player.css) */
+  --bg-primary: var(--c-bg);
+  --bg-surface: var(--c-surface);
+  --bg-elevated: var(--c-surface-2);
+  --bg-hover: rgba(255, 255, 255, 0.06);
+  --bg-active: var(--c-blue-dim);
+  --bg-input: var(--c-surface-2);
+  --bg-input-hover: #252f42;
+  --bg-card: var(--c-surface);
+  --bg-card-hover: var(--c-surface-2);
+  --bg-tooltip: #0a0f18;
+  --bg-video: #05070a;
+  --text-primary: var(--c-txt);
+  --text-secondary: var(--c-txt-2);
+  --text-muted: var(--c-txt-3);
+  --text-accent: var(--c-blue);
+  --text-on-accent: #fff;
+  --border: var(--c-border);
+  --border-focus: var(--c-blue);
+  --shadow-md: var(--shadow-card);
+  --shadow-sm: var(--shadow-soft);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --status-active: #e94560;
+  --cat-prohibited: #dc3545;
+  --cat-18: #fd7e14;
+  --cat-16: #ffc107;
+  --source-video: #53c0f0;
+  --source-audio: #a855f7;
+  --source-both: #ec4899;
+  --feedback-confirm: #22c55e;
+  --feedback-reject: #ef4444;
+  --feedback-reclass: #f59e0b;
+  --overlay-backdrop: rgba(0, 0, 0, 0.55);
+  --overlay-heavy: rgba(0, 0, 0, 0.82);
+}
+
+[data-theme="light"] {
+  --c-bg: #eef2f7;
+  --c-surface: #ffffff;
+  --c-surface-2: #f5f8fc;
+  --c-border: #e2e8f0;
+  --c-blue: #2563eb;
+  --c-blue-dim: rgba(37, 99, 235, 0.1);
+  --c-blue-hover: #1d4ed8;
+  --c-txt: #0f172a;
+  --c-txt-2: #64748b;
+  --c-txt-3: #94a3b8;
+  --c-err: #dc2626;
+  --c-ok: #059669;
+  --c-warn: #d97706;
+  --c-modal-overlay: rgba(15, 23, 42, 0.4);
+  --shadow-soft: 0 2px 12px rgba(15, 23, 42, 0.06);
+  --shadow-card: 0 8px 30px rgba(15, 23, 42, 0.08);
+  --cat-prohibited: #dc2626;
+  --cat-18: #ea580c;
+  --cat-16: #ca8a04;
+  --source-video: #0369a1;
+  --source-audio: #7c3aed;
+  --source-both: #db2777;
+  --feedback-confirm: #16a34a;
+  --feedback-reject: #dc2626;
+  --feedback-reclass: #d97706;
+  --overlay-backdrop: rgba(15, 23, 42, 0.45);
+  --overlay-heavy: rgba(15, 23, 42, 0.65);
+  --status-active: #e11d48;
+  --r-pill: 9999px;
+  --text-xs: 0.7rem;
+  --text-sm: 0.78rem;
+  --text-base: 0.85rem;
+  --text-md: 0.95rem;
+  --text-lg: 1.05rem;
+  --text-xl: 1.2rem;
+
+  --bg-primary: var(--c-bg);
+  --bg-surface: var(--c-surface);
+  --bg-elevated: var(--c-surface-2);
+  --bg-hover: rgba(15, 23, 42, 0.06);
+  --bg-active: var(--c-blue-dim);
+  --bg-input: #e8ecf0;
+  --bg-input-hover: #dde2e8;
+  --bg-card: #f5f7fa;
+  --bg-card-hover: #ebeef2;
+  --bg-tooltip: #0f172a;
+  --bg-video: #0a0c10;
+  --text-primary: var(--c-txt);
+  --text-secondary: var(--c-txt-2);
+  --text-muted: var(--c-txt-3);
+  --text-accent: var(--c-blue);
+  --border: var(--c-border);
+  --border-focus: var(--c-blue);
+  --shadow-md: var(--shadow-card);
+  --shadow-sm: var(--shadow-soft);
+  --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--c-bg);
+  color: var(--c-txt);
+  min-height: 100vh;
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.player-top-toolbar {
+  max-width: 1360px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.player-top-toolbar .back-link {
+  margin: 0;
+}
+.player-title-row {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.player-title-row h1 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-txt);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.player-title-row .filename {
+  color: var(--c-txt-2);
+  font-weight: 500;
+}
+.format-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  background: var(--c-blue-dim);
+  color: var(--c-blue);
+  border: 1px solid var(--c-border);
+}
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  color: var(--c-txt-2);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  box-shadow: var(--shadow-soft);
+}
+.theme-toggle-btn:hover {
+  color: var(--c-blue);
+  border-color: rgba(59, 130, 246, 0.35);
+  background: var(--c-blue-dim);
+}
+
+/* index.html и др.: общий back-link вне тулбара плеера */
+.back-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: var(--text-base);
+}
+.back-link:hover {
+  color: var(--text-accent);
+}
