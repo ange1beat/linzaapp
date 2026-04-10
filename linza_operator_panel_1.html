@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linza Detector</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap');
+[data-theme="dark"]{--bg:#07070d;--bg2:#0a0a12;--bg3:#0d0d16;--sf:rgba(255,255,255,.025);--sfh:rgba(255,255,255,.045);--sb:rgba(14,14,24,.94);--bd:rgba(255,255,255,.04);--bh:rgba(255,255,255,.08);--ba:rgba(100,140,240,.12);--t:#b8bcd4;--t2:#585e88;--t3:#343a58;--th:#d8dcf0;--bl:#6898e8;--gr:#2cd494;--rd:#e45878;--yl:#d4b838;--pp:#8c7cd0;--or:#d07848;--cy:#38c0d4;--ib:rgba(255,255,255,.012);--glow:rgba(104,152,232,.04);color-scheme:dark}
+[data-theme="light"]{--bg:#f2f3f8;--bg2:#eaecf2;--bg3:#e2e4ec;--sf:rgba(255,255,255,.7);--sfh:rgba(255,255,255,.9);--sb:rgba(255,255,255,.8);--bd:rgba(0,0,0,.05);--bh:rgba(0,0,0,.08);--ba:rgba(50,90,200,.1);--t:#282c44;--t2:#545880;--t3:#8c90ac;--th:#181c30;--bl:#3060c4;--gr:#0ca46c;--rd:#d43454;--yl:#c09008;--pp:#6c30e0;--or:#d45818;--cy:#0884a8;--ib:rgba(0,0,0,.015);--glow:rgba(48,96,196,.04);color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--t);font-size:13px;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
+.app{display:flex;height:100vh;overflow:hidden}
+.side{width:224px;background:var(--sb);backdrop-filter:blur(40px);border-right:1px solid var(--bd);display:flex;flex-direction:column;flex-shrink:0;z-index:10}
+.s-brand{padding:22px 18px 18px;border-bottom:1px solid var(--bd)}.s-brand svg{height:28px;width:auto;opacity:.85;display:block}.s-brand-sub{font-size:9px;color:var(--t3);margin-top:7px}
+.s-org{margin:12px 10px 8px;padding:12px 14px;border-radius:12px;background:var(--sf);border:1px solid var(--bd)}.s-org-n{font-size:11px;font-weight:600;color:var(--th)}.s-org-m{font-size:9.5px;color:var(--t3);margin-top:3px}.s-org-m a{color:var(--bl);text-decoration:none}
+.s-nav{flex:1;padding:6px 10px;overflow-y:auto}.s-g{margin-bottom:18px}.s-g-t{font-size:7px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:1.8px;padding:8px 12px 4px;opacity:.5}
+.s-lk{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer;transition:all .2s;font-size:11.5px;color:var(--t2);font-weight:450;border:1px solid transparent;margin-bottom:1px}.s-lk:hover{background:var(--sf);color:var(--t)}.s-lk.on{background:var(--glow);border-color:var(--ba);color:var(--bl);font-weight:600}.s-lk .dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;opacity:.35}.s-lk.on .dot{opacity:1}.s-lk .cnt{margin-left:auto;font-size:8px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(228,88,120,.08);border:1px solid rgba(228,88,120,.16);color:var(--rd)}
+.top{padding:0 28px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--bd);background:var(--bg2);height:52px;flex-shrink:0;z-index:5}.top-bc{font-size:11px;color:var(--t3);flex:1}.top-bc b{color:var(--th);font-weight:500}
+.top-right{display:flex;align-items:center;gap:10px}
+.role-sw{display:flex;gap:2px;padding:2px;background:var(--ib);border:1px solid var(--bd);border-radius:9px}.role-btn{padding:5px 12px;border-radius:7px;border:none;background:transparent;font-size:10px;font-weight:500;color:var(--t3);cursor:pointer;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:4px}.role-btn:hover{color:var(--t2)}.role-btn.on{font-weight:600;color:var(--th);background:var(--sfh);box-shadow:0 1px 4px rgba(0,0,0,.08)}.role-dot{width:5px;height:5px;border-radius:50%}
+.top-user{display:flex;align-items:center;gap:7px;padding:4px 12px 4px 5px;border-radius:9px;border:1px solid var(--bd);background:var(--sf)}.top-av{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff}.top-uname{font-size:10.5px;font-weight:500;color:var(--th)}.top-urole{font-size:8.5px;color:var(--t3)}
+.top-theme{width:28px;height:28px;border-radius:8px;border:1px solid var(--bd);background:var(--sf);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);transition:all .2s}.top-theme:hover{border-color:var(--bh);color:var(--t)}
+.mn{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}.pg{flex:1;overflow-y:auto;overflow-x:hidden;padding:24px 28px 40px}
+.pg-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.pg-title{font-size:16px;font-weight:700;color:var(--th);letter-spacing:-.03em}
+.btn{padding:7px 16px;border-radius:9px;border:1px solid var(--bd);background:var(--sf);color:var(--t2);font-size:10.5px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:inherit}.btn:hover{border-color:var(--bh);color:var(--t);background:var(--sfh)}.btn-p{background:var(--glow);border-color:var(--ba);color:var(--bl)}.btn-g{background:rgba(44,212,148,.05);border-color:rgba(44,212,148,.1);color:var(--gr)}.btn-r{background:rgba(228,88,120,.05);border-color:rgba(228,88,120,.1);color:var(--rd)}.btn-y{background:rgba(212,184,56,.05);border-color:rgba(212,184,56,.1);color:var(--yl)}
+.tw{border-radius:14px;background:var(--sf);border:1px solid var(--bd);overflow:hidden}
+table{width:100%;border-collapse:collapse}table th{padding:10px 12px;font-size:8.5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);text-align:left;border-bottom:1.5px solid var(--bd);background:var(--bg2)}table td{padding:10px 12px;font-size:11px;border-bottom:1px solid rgba(128,128,128,.03);vertical-align:middle}table tr:hover td{background:var(--sf)}
+.fn{font-weight:600;color:var(--th);display:flex;align-items:center;gap:7px}.fi{font-size:13px;opacity:.4}
+.badge{display:inline-flex;font-size:8.5px;font-weight:600;padding:3px 9px;border-radius:7px}.b-ok{background:rgba(44,212,148,.07);border:1px solid rgba(44,212,148,.14);color:var(--gr)}.b-w{background:rgba(104,152,232,.05);border:1px solid rgba(104,152,232,.1);color:var(--bl)}.b-e{background:rgba(228,88,120,.05);border:1px solid rgba(228,88,120,.1);color:var(--rd)}.b-q{background:var(--ib);border:1px solid var(--bd);color:var(--t3)}
+.ag{display:flex;gap:3px}.ab{width:26px;height:26px;border-radius:7px;border:1px solid var(--bd);background:var(--ib);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--t3);transition:all .15s}.ab:hover{border-color:var(--bh);color:var(--t);background:var(--sf)}
+.pv{display:grid;grid-template-columns:1fr 340px;gap:0;height:calc(100vh - 52px);overflow:hidden}.pm{display:flex;flex-direction:column;overflow-y:auto;border-right:1px solid var(--bd)}.pvid{background:var(--bg3);aspect-ratio:16/9;max-height:48vh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--bd)}.pvid-ph{text-align:center;color:var(--t3)}.pvid-ic{font-size:44px;margin-bottom:10px;opacity:.25}.pvid-tx{font-size:11px}
+.ptl{height:6px;background:var(--ib);border-radius:3px;margin:0 18px;cursor:pointer;position:relative}.ptl-f{height:100%;width:35%;background:var(--bl);border-radius:3px}.ptl-m{position:absolute;inset:0}.mk{position:absolute;top:-3px;width:4px;height:12px;border-radius:2px;cursor:pointer}.mk:hover{transform:scaleY(1.3)}
+.pc{padding:10px 18px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--bd);background:var(--bg2);flex-wrap:wrap}.pcb{padding:4px 9px;border-radius:6px;border:1px solid var(--bd);background:var(--ib);font-size:9.5px;color:var(--t2);cursor:pointer;font-family:inherit}.pcb:hover{border-color:var(--bh);color:var(--t)}.pcb.on{background:var(--glow);border-color:var(--ba);color:var(--bl);font-weight:600}
+.dp{display:flex;flex-direction:column;overflow:hidden;background:var(--bg2)}.dh{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px}.dt-t{font-size:12px;font-weight:700;color:var(--th);flex:1}.dc{font-size:9px;font-weight:700;padding:2px 7px;border-radius:6px;color:#fff;min-width:20px;text-align:center}
+.dn{padding:8px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bd);font-size:9.5px;color:var(--t3)}.dnb{padding:3px 7px;border-radius:5px;border:1px solid var(--bd);background:var(--ib);cursor:pointer;font-size:9px;color:var(--t2);font-family:inherit}.dnb:hover{border-color:var(--bh);color:var(--t)}
+.df{padding:6px 18px;display:flex;gap:3px;flex-wrap:wrap;border-bottom:1px solid var(--bd)}.dfb{font-size:8px;font-weight:600;padding:3px 7px;border-radius:5px;border:1px solid var(--bd);background:var(--ib);cursor:pointer;color:var(--t3)}.dfb:hover{border-color:var(--bh);color:var(--t2)}.dfb.on{background:var(--glow);border-color:var(--ba);color:var(--bl)}.dl{flex:1;overflow-y:auto;padding:6px 10px}
+.det{padding:10px 12px;border-radius:10px;background:var(--sf);border:1px solid var(--bd);margin-bottom:5px;cursor:pointer;transition:all .2s}.det:hover{border-color:var(--bh);background:var(--sfh)}.det.act{border-color:var(--ba);background:var(--glow)}.det-top{display:flex;align-items:center;gap:7px;margin-bottom:5px}.det-tc{font-size:10.5px;font-weight:700;color:var(--bl);font-variant-numeric:tabular-nums;min-width:50px}.det-cls{font-size:8px;font-weight:600;padding:2px 6px;border-radius:4px}.det-nm{font-size:10.5px;color:var(--th);font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tl{display:flex;gap:3px;margin-top:4px}.tlb{width:26px;height:26px;border-radius:7px;border:1.5px solid var(--bd);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s;background:var(--ib)}.tlb:hover{transform:scale(1.1)}.tlb.r{border-color:rgba(228,88,120,.35);background:rgba(228,88,120,.08)}.tlb.y{border-color:rgba(212,184,56,.35);background:rgba(212,184,56,.08)}.tlb.g{border-color:rgba(44,212,148,.35);background:rgba(44,212,148,.08)}
+.esc{padding:10px 18px;border-top:1px solid var(--bd);background:var(--bg3)}
+.npa-p{padding:10px 14px;border-radius:10px;background:var(--ib);border:1px solid var(--bd);margin:6px 10px;font-size:9.5px;color:var(--t2);line-height:1.5}.npa-p strong{color:var(--th);display:block;margin-bottom:3px}.npa-t{font-size:7.5px;font-weight:600;padding:2px 5px;border-radius:3px;background:rgba(104,152,232,.05);border:1px solid rgba(104,152,232,.08);color:var(--bl);display:inline-block;margin:1px}
+.dec{padding:14px 18px;border-top:1px solid var(--bd);background:var(--bg3)}.dec-ta{width:100%;padding:8px 12px;background:var(--ib);border:1px solid var(--bd);border-radius:8px;color:var(--t);font-size:10.5px;font-family:inherit;outline:none;resize:vertical;min-height:50px}.dec-ta:focus{border-color:var(--bl)}.dec-btns{display:flex;gap:5px;margin-top:8px}
+.empty{text-align:center;padding:50px 20px;color:var(--t3)}.empty-ic{font-size:36px;margin-bottom:12px;opacity:.2}.empty-t{font-size:14px;font-weight:600;color:var(--t2);margin-bottom:4px}.empty-d{font-size:10.5px;line-height:1.5}
+::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(128,128,128,.07);border-radius:2px}
+</style>
+</head>
+<body data-theme="dark">
+<div class="app" id="app"></div>
+<script>
+const R={operator:{n:'Оператор вещания',s:'ОВ',c:'#2cd494',g:'linear-gradient(135deg,#2cd494,#1cb080)'},lawyer:{n:'Юрист',s:'ЮР',c:'#6898e8',g:'linear-gradient(135deg,#6898e8,#4878c8)'}};
+const MODELS=[{id:'fed_tv',nm:'Федеральный ТВ',ico:'📺'},{id:'online',nm:'Онлайн-платформа',ico:'🖥'},{id:'cinema',nm:'Кинопрокат',ico:'🎬'},{id:'digital_tv',nm:'Цифровое ТВ',ico:'📱'}];
+const MI={'ok':{i:'✓',l:'Чисто',c:'b-ok'},'16+':{i:'⚠',l:'16+',c:'b-w'},'18+':{i:'⚠',l:'18+',c:'b-e'},'block':{i:'⛔',l:'Запрещено',c:'b-e'}};
+const F=[
+  {id:1,nm:'Калашников_1280_720.mp4',src:'uploads',sz:'723.8 МБ',fmt:'MP4 (H264)',dur:'1:44:27',w:1280,h:540,fps:24,dt:'07.04',st:'done',ty:'film',model:'fed_tv',prog:100,rev:false,aim:'18+',aid:'Курение, брань, нац. символика'},
+  {id:2,nm:'Хлебные_крошки.mp4',src:'sources',sz:'1.2 ГБ',fmt:'MP4 (H264)',dur:'0:52:14',w:1920,h:1080,fps:25,dt:'06.04',st:'done',ty:'film',model:'fed_tv',prog:100,rev:true,aim:'16+',aid:'Курение'},
+  {id:3,nm:'video222.mp4',src:'sources',sz:'340 МБ',fmt:'MP4 (H264)',dur:'0:24:18',w:1920,h:1080,fps:30,dt:'05.04',st:'done',ty:'news',model:'fed_tv',prog:100,rev:true,aim:'ok',aid:'Нарушений нет'},
+  {id:4,nm:'Реклама_вечер.ts',src:'uploads',sz:'420 МБ',fmt:'MPEG-TS',dur:'0:08:30',w:1920,h:1080,fps:25,dt:'07.04',st:'analyzing',ty:'ad',model:'fed_tv',prog:67,rev:false,aim:null,aid:null},
+  {id:5,nm:'deviant_drugs.mp4',src:'sources',sz:'180 МБ',fmt:'MP4',dur:'0:12:45',w:1280,h:720,fps:24,dt:'04.04',st:'queue',ty:'doc',model:null,prog:0,rev:false,aim:null,aid:null},
+  {id:6,nm:'Новости_утро.ts',src:'sources',sz:'1.8 ГБ',fmt:'MPEG-TS',dur:'0:45:00',w:1920,h:1080,fps:25,dt:'08.04',st:'analyzing',ty:'news',model:'fed_tv',prog:23,rev:false,aim:null,aid:null}
+];
+const DD=[
+  {id:1,fi:1,tc:'00:02:14',c:'К1',s:'1.1',n:'Курение',rk:'high',tl:null},
+  {id:2,fi:1,tc:'00:05:38',c:'К1',s:'1.1',n:'Курение',rk:'high',tl:null},
+  {id:3,fi:1,tc:'00:12:04',c:'К2',s:'2.2',n:'Брань',rk:'med',tl:null},
+  {id:4,fi:1,tc:'00:18:22',c:'К3',s:'3.1',n:'Нац. символика',rk:'abs',tl:null},
+  {id:5,fi:1,tc:'00:24:50',c:'К1',s:'1.2',n:'Алкоголь',rk:'high',tl:null},
+  {id:6,fi:1,tc:'00:31:15',c:'К2',s:'2.3',n:'Призывы к насилию',rk:'abs',tl:null},
+  {id:7,fi:1,tc:'00:45:02',c:'К1',s:'1.1',n:'Курение',rk:'high',tl:'g'},
+  {id:8,fi:1,tc:'01:02:30',c:'К4',s:'4.1',n:'Эротика',rk:'high',tl:'y'},
+  {id:9,fi:2,tc:'00:14:22',c:'К1',s:'1.1',n:'Курение',rk:'high',tl:null}
+];
+const CC={'К1':{b:'rgba(212,184,56,.07)',d:'rgba(212,184,56,.14)',c:'var(--yl)'},'К2':{b:'rgba(228,88,120,.06)',d:'rgba(228,88,120,.12)',c:'var(--rd)'},'К3':{b:'rgba(228,88,120,.07)',d:'rgba(228,88,120,.16)',c:'var(--rd)'},'К4':{b:'rgba(140,124,208,.06)',d:'rgba(140,124,208,.12)',c:'var(--pp)'}};
+const CN={'К1':'Вещества','К2':'Девиантное','К3':'Терроризм','К4':'Эротика'};
+const FOLDERS=[
+  {id:'f1',nm:'Сериал «Широкая река»',total:12,done:8,wait:4,files:[{nm:'С01_Э01',v:'16+'},{nm:'С01_Э02',v:'ok'},{nm:'С01_Э03',v:'18+'},{nm:'С01_Э04',v:'16+'},{nm:'С01_Э05',v:'ok'},{nm:'С01_Э06',v:'18+'},{nm:'С01_Э07',v:'16+'},{nm:'С01_Э08',v:'ok'},{nm:'С01_Э09',v:null},{nm:'С01_Э10',v:null},{nm:'С01_Э11',v:null},{nm:'С01_Э12',v:null}]},
+  {id:'f2',nm:'Сериал «Жуков»',total:8,done:5,wait:3,files:[{nm:'С01_Э01',v:'16+'},{nm:'С01_Э02',v:'16+'},{nm:'С01_Э03',v:'ok'},{nm:'С01_Э04',v:'18+'},{nm:'С01_Э05',v:'16+'},{nm:'С01_Э06',v:null},{nm:'С01_Э07',v:null},{nm:'С01_Э08',v:null}]},
+  {id:'f3',nm:'Кино',total:3,done:2,wait:1,files:[{nm:'Калашников',v:'18+'},{nm:'Хлебные крошки',v:'16+'},{nm:'Новый фильм',v:null}]}
+];
+
+let cr='operator',cp='results',cf=null,cd=0,th='dark',oF=null,dragId=null;
+
+function sidebar(){
+  const nav=cr==='operator'?[{s:'Рабочий процесс',i:[{id:'files',nm:'Загруженные файлы'},{id:'queue',nm:'Очередь анализа'},{id:'results',nm:'Результаты анализа'}]}]:[{s:'Compliance',i:[{id:'review',nm:'На рассмотрении',cnt:DD.filter(d=>d.tl==='y').length||null},{id:'reports',nm:'Отчёты'}]}];
+  return nav.map(s=>`<div class="s-g"><div class="s-g-t">${s.s}</div>${s.i.map(i=>`<div class="s-lk${i.id===cp?' on':''}" onclick="go('${i.id}')"><span class="dot" style="background:${i.id===cp?'var(--bl)':'var(--t3)'}"></span>${i.nm}${i.cnt?`<span class="cnt">${i.cnt}</span>`:''}</div>`).join('')}</div>`).join('');
+}
+
+function topbar(role,bc){
+  return `<div class="top"><div class="top-bc">${bc}</div><div class="top-right"><div class="role-sw">${Object.entries(R).map(([id,r])=>`<button class="role-btn${id===cr?' on':''}" onclick="switchRole('${id}')"><span class="role-dot" style="background:${r.c}"></span>${r.s}</button>`).join('')}</div><div class="top-user"><div class="top-av" style="background:${role.g}">${role.s}</div><div><div class="top-uname">Алистратова Н.</div><div class="top-urole">${role.n}</div></div></div><div class="top-theme" onclick="toggleTheme()">${th==='dark'?'◐':'◑'}</div></div></div>`;
+}
+
+function render(){
+  const role=R[cr];
+  if(cf!==null){ renderPlayer(); return; }
+  const names={files:'Загруженные файлы',queue:'Очередь анализа',results:'Результаты анализа',review:'На рассмотрении',reports:'Отчёты'};
+  document.getElementById('app').innerHTML=`<div class="side"><div class="s-brand"><svg viewBox="0 0 560 210"><defs><linearGradient id="lg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#4478FF"/><stop offset="100%" stop-color="#2256EE"/></linearGradient></defs><text x="16" y="128" font-family="'Barlow','Arial Black','Impact',sans-serif" font-weight="900" font-size="122" fill="url(#lg)" textLength="448" lengthAdjust="spacingAndGlyphs">LINZA</text><text x="16" y="180" font-family="'Barlow','Arial Black',sans-serif" font-weight="700" font-size="36" fill="url(#lg)" textLength="448" lengthAdjust="spacing">DETECTOR</text></svg><div class="s-brand-sub">Платформа проверки контента</div></div><div class="s-org"><div class="s-org-n">ООО «ЛАДА-МЕДИА»</div><div class="s-org-m"><a href="https://tvtogliatti24.ru/" target="_blank">Тольятти 24 ↗</a></div><div class="s-org-m">Тариф L · 1 000 ч / год</div></div><div class="s-nav">${sidebar()}</div></div><div class="mn">${topbar(role,'Главная <span style="opacity:.3;margin:0 3px">›</span> <b>'+(names[cp]||'')+'</b>')}<div class="pg" id="pg"></div></div>`;
+  const pg=document.getElementById('pg');
+  if(cp==='files') pg.innerHTML=pageFiles();
+  else if(cp==='queue') pg.innerHTML=pageQueue();
+  else if(cp==='results') pg.innerHTML=pageResults();
+  else if(cp==='review') pg.innerHTML=pageReview();
+  else if(cp==='reports') pg.innerHTML=pageReports();
+}
+
+function pageFiles(){
+  const ff=F.filter(f=>f.st==='queue');
+  return `<div class="pg-hdr"><div class="pg-title">Загруженные файлы</div><button class="btn btn-p">+ Добавить</button></div>`+
+    (ff.length?`<div class="tw"><table><thead><tr><th>Файл</th><th>Источник</th><th>Размер</th><th>Профиль проверки</th><th>Действия</th></tr></thead><tbody>${ff.map(f=>`<tr><td class="fn"><span class="fi">▶</span>${f.nm}</td><td style="color:var(--t3)">${f.src}</td><td>${f.sz}</td><td><select style="background:var(--ib);border:1px solid var(--bd);border-radius:7px;padding:4px 8px;font-size:9.5px;color:var(--t);font-family:inherit;cursor:pointer" onchange="F.find(x=>x.id===${f.id}).model=this.value">${MODELS.map(m=>`<option value="${m.id}"${f.model===m.id?' selected':''}>${m.ico} ${m.nm}</option>`).join('')}</select></td><td><div class="ag"><div class="ab" title="Запустить анализ" onclick="startAnalysis(${f.id})" style="background:var(--glow);border-color:var(--ba);color:var(--bl)">▶</div><div class="ab" title="Удалить">✕</div></div></td></tr>`).join('')}</tbody></table></div>`:'<div style="padding:40px;text-align:center;color:var(--t3)">Нет файлов</div>');
+}
+
+function pageQueue(){
+  const q=F.filter(f=>f.st==='analyzing').sort((a,b)=>b.prog-a.prog);
+  const w=F.filter(f=>f.st==='queue');
+  const d=F.filter(f=>f.st==='done');
+  let h=`<div class="pg-hdr"><div class="pg-title">Очередь анализа</div></div>`;
+  if(q.length||w.length){
+    h+=`<div style="font-size:11px;font-weight:600;color:var(--th);margin-bottom:8px">В обработке</div><div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px">`;
+    h+=q.map(f=>{
+      const m=MODELS.find(x=>x.id===f.model);
+      return `<div draggable="true" ondragstart="dragId=${f.id}" ondragover="event.preventDefault()" ondrop="event.preventDefault();reorder(${f.id})" style="padding:14px 18px;border-radius:12px;background:var(--sf);border:1px solid var(--bd);display:flex;align-items:center;gap:14px;cursor:grab"><div style="font-size:10px;color:var(--t3);cursor:grab" title="Перетащите">☰</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;color:var(--th);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${f.nm}</div><div style="font-size:9.5px;color:var(--t3);margin-top:3px">${m?m.ico+' '+m.nm:'—'} · ${f.ty}</div></div><div style="width:120px"><div style="height:4px;border-radius:2px;background:var(--ib);overflow:hidden"><div style="height:100%;width:${f.prog}%;background:var(--bl);border-radius:2px"></div></div><div style="display:flex;justify-content:space-between;margin-top:3px;font-size:9px"><span style="color:var(--bl);font-weight:600">${f.prog}%</span><span style="color:var(--t3)">~${Math.max(1,Math.round((100-f.prog)/10))}м</span></div></div><div class="ag"><div class="ab" title="Перезапустить">↻</div><div class="ab" title="Убрать">✕</div></div></div>`;
+    }).join('');
+    h+=w.map((f,i)=>`<div style="padding:14px 18px;border-radius:12px;background:var(--ib);border:1px solid var(--bd);display:flex;align-items:center;gap:14px;opacity:.6"><div style="font-size:10px;color:var(--t3)">${q.length+i+1}</div><div style="flex:1"><div style="font-size:12px;font-weight:500;color:var(--t)">${f.nm}</div><div style="font-size:9.5px;color:var(--t3);margin-top:2px">В очереди</div></div><div class="ag"><div class="ab" title="Убрать">✕</div></div></div>`).join('');
+    h+=`</div>`;
+  }
+  if(d.length){
+    h+=`<div style="font-size:11px;font-weight:600;color:var(--th);margin-bottom:8px">Готово</div><div class="tw"><table><thead><tr><th>Файл</th><th>Профиль</th><th>AI-заключение</th><th>Проверка</th><th>Действия</th></tr></thead><tbody>`;
+    h+=d.map(f=>{
+      const m=MODELS.find(x=>x.id===f.model);
+      const mk=MI[f.aim]||MI['ok'];
+      return `<tr><td class="fn"><span class="fi">▶</span>${f.nm}</td><td style="font-size:10px;color:var(--t2)">${m?m.ico+' '+m.nm:'—'}</td><td><span class="badge ${mk.c}" title="${f.aid||''}">${mk.i} ${mk.l}</span></td><td>${f.rev?'<span class="badge b-ok">Проверено ✓</span>':'<span class="badge" style="background:rgba(212,184,56,.05);border:1px solid rgba(212,184,56,.1);color:var(--yl)">На проверку</span>'}</td><td><div class="ag"><div class="ab" title="Просмотр отчёта" onclick="openPlayer(${f.id})">👁</div><div class="ab" title="Перезапустить">↻</div><div class="ab" title="Сохранить" onclick="showSave(event)">↓</div></div></td></tr>`;
+    }).join('');
+    h+=`</tbody></table></div>`;
+  }
+  h+=`<div id="smenu" style="display:none;position:fixed;z-index:200;background:var(--bg2);border:1px solid var(--bh);border-radius:10px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.2);min-width:150px"><div style="padding:6px 12px;font-size:10px;font-weight:600;color:var(--th);border-bottom:1px solid var(--bd);margin-bottom:4px">Сохранить отчёт</div><div onclick="hideSave()" style="padding:5px 12px;font-size:10px;color:var(--t);cursor:pointer;border-radius:6px" onmouseover="this.style.background='var(--sf)'" onmouseout="this.style.background=''">📄 PDF</div><div onclick="hideSave()" style="padding:5px 12px;font-size:10px;color:var(--t);cursor:pointer;border-radius:6px" onmouseover="this.style.background='var(--sf)'" onmouseout="this.style.background=''">📊 Excel</div><div onclick="hideSave()" style="padding:5px 12px;font-size:10px;color:var(--t);cursor:pointer;border-radius:6px" onmouseover="this.style.background='var(--sf)'" onmouseout="this.style.background=''">🔗 Ссылка</div></div>`;
+  return h;
+}
+
+function pageResults(){
+  const ff=F.filter(f=>f.st==='done');
+  let h=`<div class="pg-hdr"><div class="pg-title">Результаты анализа</div></div><div class="tw"><table><thead><tr><th>Файл</th><th>Профиль</th><th>Длительность</th><th>AI-заключение</th><th>Проверка</th><th>Действия</th></tr></thead><tbody>`;
+  h+=ff.map(f=>{
+    const ds=DD.filter(d=>d.fi===f.id);
+    const yl=ds.filter(d=>d.tl==='y').length;
+    const m=MODELS.find(x=>x.id===f.model);
+    const mk=MI[f.aim]||MI['ok'];
+    return `<tr><td class="fn"><span class="fi">▶</span>${f.nm}</td><td style="font-size:10px;color:var(--t2)">${m?m.ico+' '+m.nm:'—'}</td><td>${f.dur}</td><td><span class="badge ${mk.c}" style="cursor:help" title="${f.aid||''}">${mk.i} ${mk.l}</span>${yl?` <span style="font-size:8px;color:var(--yl)">🟡${yl}</span>`:''}</td><td>${f.rev?'<span class="badge b-ok">Проверено ✓</span>':'<span class="badge" style="background:rgba(212,184,56,.05);border:1px solid rgba(212,184,56,.1);color:var(--yl)">На проверку</span>'}</td><td><div class="ag"><div class="ab" title="Просмотр отчёта" onclick="openPlayer(${f.id})">👁</div><div class="ab" title="Перезапустить">↻</div><div class="ab" title="Сохранить отчёт" onclick="showSave(event)">↓</div></div></td></tr>`;
+  }).join('');
+  h+=`</tbody></table></div><div id="smenu" style="display:none;position:fixed;z-index:200;background:var(--bg2);border:1px solid var(--bh);border-radius:10px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.2);min-width:150px"><div style="padding:6px 12px;font-size:10px;font-weight:600;color:var(--th);border-bottom:1px solid var(--bd);margin-bottom:4px">Сохранить</div><div onclick="hideSave()" style="padding:5px 12px;font-size:10px;color:var(--t);cursor:pointer;border-radius:6px" onmouseover="this.style.background='var(--sf)'" onmouseout="this.style.background=''">📄 PDF</div><div onclick="hideSave()" style="padding:5px 12px;font-size:10px;color:var(--t);cursor:pointer;border-radius:6px" onmouseover="this.style.background='var(--sf)'" onmouseout="this.style.background=''">📊 Excel</div><div onclick="hideSave()" style="padding:5px 12px;font-size:10px;color:var(--t);cursor:pointer;border-radius:6px" onmouseover="this.style.background='var(--sf)'" onmouseout="this.style.background=''">🔗 Ссылка</div></div>`;
+  return h;
+}
+
+function pageReview(){
+  const yd=DD.filter(d=>d.tl==='y');
+  const fids=[...new Set(yd.map(d=>d.fi))];
+  const ff=F.filter(f=>fids.includes(f.id));
+  if(!ff.length) return `<div class="pg-hdr"><div class="pg-title">На рассмотрении</div></div><div class="empty"><div class="empty-ic">✓</div><div class="empty-t">Нет спорных файлов</div><div class="empty-d">Все обработано</div></div>`;
+  return `<div class="pg-hdr"><div class="pg-title">На рассмотрении</div></div><div class="tw"><table><thead><tr><th>Файл</th><th>Тип</th><th>Спорных</th><th>Действия</th></tr></thead><tbody>${ff.map(f=>`<tr><td class="fn"><span class="fi">▶</span>${f.nm}</td><td>${f.ty}</td><td style="font-weight:600;color:var(--yl)">${yd.filter(d=>d.fi===f.id).length}</td><td><div class="ag"><div class="ab" onclick="openPlayerLaw(${f.id})" style="background:var(--glow);border-color:var(--ba);color:var(--bl)">▶</div></div></td></tr>`).join('')}</tbody></table></div>`;
+}
+
+function pageReports(){
+  let h=`<div class="pg-hdr"><div class="pg-title">Отчёты и заключения</div></div><div style="display:flex;flex-direction:column;gap:8px">`;
+  h+=FOLDERS.map(fo=>{
+    const pct=Math.round(fo.done/fo.total*100);
+    const isOpen=oF===fo.id;
+    let inner='';
+    if(isOpen){
+      inner=`<div style="border-top:1px solid var(--bd)"><table><thead><tr><th>Файл</th><th>Решение</th><th>Действия</th></tr></thead><tbody>${fo.files.map(fl=>{const mk=fl.v?MI[fl.v]||MI['ok']:null;return`<tr><td class="fn" style="padding:8px 14px"><span class="fi">▶</span>${fl.nm}</td><td style="padding:8px 14px">${mk?`<span class="badge ${mk.c}">${mk.i} ${mk.l}</span>`:'<span style="color:var(--t3);font-size:10px">Ожидает</span>'}</td><td style="padding:8px 14px">${fl.v?`<div class="ag"><div class="ab" title="Просмотр">👁</div><div class="ab" title="Редактировать">✎</div><div class="ab" title="PDF">↓</div></div>`:'—'}</td></tr>`;}).join('')}</tbody></table></div>`;
+    }
+    return `<div style="border-radius:14px;background:var(--sf);border:1px solid var(--bd);overflow:hidden"><div style="padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px${isOpen?';background:var(--glow)':''}" onclick="oF=oF==='${fo.id}'?null:'${fo.id}';render()"><div style="font-size:20px;opacity:.5">${isOpen?'📂':'📁'}</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--th)">${fo.nm}</div><div style="font-size:10px;color:var(--t3);margin-top:2px">${fo.total} файлов</div></div><div style="display:flex;align-items:center;gap:12px"><div style="text-align:center"><div style="font-size:14px;font-weight:700;color:var(--gr)">${fo.done}</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px">Готово</div></div><div style="text-align:center"><div style="font-size:14px;font-weight:700;color:${fo.wait?'var(--yl)':'var(--t3)'}">${fo.wait}</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px">Ожид.</div></div><div style="width:50px;height:4px;border-radius:2px;background:var(--ib);overflow:hidden"><div style="height:100%;width:${pct}%;background:var(--gr);border-radius:2px"></div></div><div style="font-size:9px;color:var(--t3)">${pct}%</div></div><div style="font-size:10px;color:var(--t3);transition:transform .2s${isOpen?';transform:rotate(180deg)':''}">▼</div></div>${inner}</div>`;
+  }).join('');
+  h+=`</div>`;
+  return h;
+}
+
+function renderPlayer(){
+  const f=F.find(x=>x.id===cf);
+  if(!f) return;
+  const ds=DD.filter(d=>d.fi===f.id);
+  const isL=cp==='pl';
+  const role=R[cr];
+  function ptc(t){ const p=t.split(':').map(Number); return p[0]*3600+p[1]*60+(p[2]||0); }
+  const dur=ptc(f.dur);
+  const byCls={};
+  ds.forEach(d=>{ byCls[d.c]=(byCls[d.c]||0)+1; });
+  const clsE=Object.entries(byCls).sort((a,b)=>b[1]-a[1]);
+  const mx=clsE.length?clsE[0][1]:1;
+
+  document.getElementById('app').innerHTML=`<div style="display:flex;flex-direction:column;height:100vh">${topbar(role,'<span style="cursor:pointer" onclick="closePlayer()">← К списку</span> <span style="opacity:.3;margin:0 3px">›</span> <b>'+f.nm+'</b> <span class="badge b-w" style="margin-left:6px">'+f.dur+'</span>')}<div class="pv"><div class="pm">
+    <div class="pvid"><div class="pvid-ph"><div class="pvid-ic">▶</div><div class="pvid-tx">${f.nm}<br>${f.dur}</div></div></div>
+    <div class="ptl"><div class="ptl-f"></div><div class="ptl-m">${ds.map(d=>{const p=ptc(d.tc)/dur*100;const col=d.tl==='g'?'var(--gr)':d.tl==='y'?'var(--yl)':'var(--rd)';return`<div class="mk" style="left:${p}%;background:${col}" title="${d.tc} ${d.s} ${d.n}"></div>`;}).join('')}</div></div>
+    <div class="pc"><div class="pcb">-5s</div><div class="pcb">+5s</div><div style="width:1px;height:14px;background:var(--bd)"></div><div class="pcb">0.25x</div><div class="pcb">0.5x</div><div class="pcb on">1x</div><div class="pcb">1.5x</div><div class="pcb">2x</div><div style="width:1px;height:14px;background:var(--bd)"></div><div class="pcb">Скачать</div><div class="pcb">Превью</div></div>
+    <div style="padding:16px 18px;border-bottom:1px solid var(--bd)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <div style="padding:4px 10px;border-radius:7px;background:rgba(44,212,148,.06);border:1px solid rgba(44,212,148,.1);font-size:9px;font-weight:600;color:var(--gr)">📺 Федеральный ТВ</div>
+        <div style="padding:4px 10px;border-radius:7px;background:rgba(140,124,208,.06);border:1px solid rgba(140,124,208,.1);font-size:9px;font-weight:600;color:var(--pp)">◆ Худож. кино</div>
+        <div style="padding:4px 10px;border-radius:7px;background:var(--ib);border:1px solid var(--bd);font-size:9px;color:var(--t2)">Модель v2.4</div>
+        <div style="margin-left:auto;font-size:9px;color:var(--bl);cursor:pointer;text-decoration:underline" onclick="showHelp()">Требования профиля ⓘ</div>
+      </div>
+      <div style="font-size:10.5px;font-weight:600;color:var(--th);margin-bottom:10px">Статистика · ${ds.length} детекций</div>
+      <div style="display:flex;flex-direction:column;gap:5px">${clsE.map(([c,ct])=>{const cc=CC[c]||CC['К1'];return`<div style="display:flex;align-items:center;gap:8px"><div style="font-size:9.5px;color:var(--t2);min-width:80px">${c} ${CN[c]||''}</div><div style="flex:1;height:4px;border-radius:2px;background:var(--ib);overflow:hidden"><div style="height:100%;width:${ct/mx*100}%;background:${cc.c};border-radius:2px"></div></div><div style="font-size:10px;font-weight:600;color:var(--th);min-width:20px;text-align:right">${ct}</div></div>`;}).join('')}</div>
+      ${ds.length===0?'<div style="font-size:10.5px;color:var(--gr);margin-top:8px">Нарушений не обнаружено ✓</div>':''}
+    </div>
+  </div><div class="dp">
+    <div class="dh"><div class="dt-t">Детекции</div><div class="dc" style="background:${ds.length>0?'var(--rd)':'var(--gr)'}">${ds.length}</div></div>
+    <div class="dn"><div class="dnb">◄</div><div style="flex:1;text-align:center">${ds.length?cd+1+'/'+ds.length:'—'}</div><div class="dnb">►</div><select style="background:var(--ib);border:1px solid var(--bd);border-radius:5px;padding:2px 6px;font-size:8px;color:var(--t2);font-family:inherit"><option>По времени</option><option>По классу</option></select></div>
+    <div class="df"><div class="dfb on">Все</div><div class="dfb">К1</div><div class="dfb">К2</div><div class="dfb">К3</div><div class="dfb">К4</div></div>
+    <div class="dl">${ds.map((d,i)=>{const cc=CC[d.c]||CC['К1'];return`<div class="det${i===cd?' act':''}" onclick="cd=${i};render()"><div class="det-top"><div class="det-tc">${d.tc}</div><div class="det-cls" style="background:${cc.b};border:1px solid ${cc.d};color:${cc.c}">${d.s}</div><div class="det-nm">${d.n}</div></div><div class="tl"><div class="tlb${d.tl==='r'?' r':''}" onclick="event.stopPropagation();setTL(${d.id},'r')" title="Нарушение">🔴</div><div class="tlb${d.tl==='y'?' y':''}" onclick="event.stopPropagation();setTL(${d.id},'y')" title="На рассмотрение">🟡</div><div class="tlb${d.tl==='g'?' g':''}" onclick="event.stopPropagation();setTL(${d.id},'g')" title="Одобрено">🟢</div></div></div>`;}).join('')}</div>
+    ${isL?`<div class="npa-p"><strong>Применимые НПА:</strong><div style="margin-top:3px"><span class="npa-t">436-ФЗ</span><span class="npa-t">КоАП 14.3.1</span></div></div><div class="dec"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:10.5px;font-weight:600;color:var(--th)">Заключение</div><div style="font-size:8px;padding:2px 8px;border-radius:5px;background:rgba(104,152,232,.06);border:1px solid rgba(104,152,232,.1);color:var(--bl)">AI · можно редактировать</div></div><textarea class="dec-ta" style="min-height:80px">Выявлено ${ds.length} детекций.\n${clsE.map(([c,ct])=>CN[c]+': '+ct).join(', ')}.\n\nРекомендация: маркировка 18+ (436-ФЗ ст.5).\nДисклеймер Минздрава для сцен курения.</textarea><div class="dec-btns"><button class="btn btn-g">✓ Допустить</button><button class="btn btn-y">↻ Доработка</button><button class="btn btn-r">✕ Блокировать</button><button class="btn" style="margin-left:auto">📄 PDF</button></div></div>`:`<div class="esc"><button class="btn btn-y" style="width:100%;justify-content:center" onclick="escalate()">🟡 На правовую оценку (${ds.filter(d=>d.tl==='y').length})</button></div>`}
+  </div></div></div>`;
+}
+
+// Actions
+function setTL(id,v){ const d=DD.find(x=>x.id===id); if(d) d.tl=d.tl===v?null:v; render(); }
+function openPlayer(id){ cf=id; cp='player'; cd=0; render(); }
+function openPlayerLaw(id){ cf=id; cp='pl'; cd=0; render(); }
+function closePlayer(){ cf=null; cp=cr==='operator'?'results':'review'; render(); }
+function startAnalysis(id){ const f=F.find(x=>x.id===id); if(f){ f.st='analyzing'; if(!f.model) f.model='fed_tv'; } cp='queue'; render(); }
+function reorder(targetId){ if(dragId && dragId!==targetId){ const di=F.findIndex(x=>x.id===dragId); const ti=F.findIndex(x=>x.id===targetId); if(di>-1 && ti>-1){ const item=F.splice(di,1)[0]; F.splice(ti,0,item); } } dragId=null; render(); }
+function escalate(){ alert('Спорные детекции (🟡) отправлены юристу.\nПереключитесь на роль ЮР.'); }
+function switchRole(id){ cr=id; cp=id==='operator'?'results':'review'; cf=null; render(); }
+function go(id){ cp=id; cf=null; render(); }
+function toggleTheme(){ th=th==='dark'?'light':'dark'; document.body.setAttribute('data-theme',th); render(); }
+function showSave(e){ e.stopPropagation(); const m=document.getElementById('smenu'); if(m){ m.style.display='block'; m.style.top=(e.clientY+4)+'px'; m.style.left=(e.clientX-130)+'px'; document.addEventListener('click',hideSave,{once:true}); } }
+function hideSave(){ const m=document.getElementById('smenu'); if(m) m.style.display='none'; }
+function showHelp(){ alert('Профиль: Федеральный ТВ-эфир\nКонтент: Худож. кино и сериалы\n\nНПА:\n• 436-ФЗ «О защите детей»\n• 38-ФЗ «О рекламе»\n• Закон о СМИ\n\nТребования:\n• Абс. запрет мата в эфире\n• Маркировка 18+ для эротики\n• Дисклеймер Минздрава для курения\n• Нац. символика — только в ИХЦ'); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Linza VPleer — {{ safe_name|safe }}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/api/vpleer/static/css/player.css">
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+{% endblock %}
+
+{% block content %}
+<div class="player-top-toolbar">
+  <a href="/api/vpleer/player" class="back-link">&larr; К списку файлов</a>
+  <div class="player-title-row">
+    <h1>
+      <span style="color:var(--c-txt-3);font-weight:600">VPleer</span>
+      <span class="filename">{{ safe_name|safe }}</span>
+      <span class="format-badge" id="formatBadge"></span>
+    </h1>
+    <button type="button" class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Тема" aria-label="Переключить тему">&#9790;</button>
+  </div>
+</div>
+
+<div class="page-layout">
+  <div class="main-column">
+    <div class="player-container">
+      <div class="transcode-overlay" id="transcodeOverlay">
+        <div class="transcode-spinner"></div>
+        <div id="transcodeLabel">Подготовка видео...</div>
+        <div class="transcode-warnings" id="transcodeWarnings"></div>
+      </div>
+      <video id="video" controls preload="metadata">
+        Ваш браузер не поддерживает видео.
+      </video>
+      <div id="timeline">
+        <div class="timeline-track" id="trackVideo" data-source="video"><span class="track-label">&#127916;</span></div>
+        <div class="timeline-track" id="trackAudio" data-source="audio"><span class="track-label">&#128266;</span></div>
+      </div>
+      <div class="fragment-indicator" id="fragmentIndicator">
+        <span id="fragmentLabel"></span>
+        <button onclick="stopFragment()">Остановить</button>
+        <label style="margin-left:auto;font-size:var(--text-xs);color:var(--text-muted)">
+          <input type="checkbox" id="fragmentLoop"> Зациклить
+        </label>
+      </div>
+      <div class="controls">
+        <button onclick="document.getElementById('video').currentTime -= 5">-5s</button>
+        <button onclick="document.getElementById('video').currentTime += 5">+5s</button>
+        <div class="speed-controls">
+          <button onclick="setSpeed(0.25)">0.25x</button>
+          <button onclick="setSpeed(0.5)">0.5x</button>
+          <button class="active" onclick="setSpeed(1)">1x</button>
+          <button onclick="setSpeed(1.5)">1.5x</button>
+          <button onclick="setSpeed(2)">2x</button>
+        </div>
+        <a href="/api/vpleer/stream/{{ url_name }}" download="{{ safe_name|safe }}">Скачать</a>
+        <a href="/api/vpleer/thumbnail/{{ url_name }}" target="_blank">Превью</a>
+      </div>
+    </div>
+    <div class="meta" id="meta">Загрузка метаданных...</div>
+  </div>
+
+  <div class="detections-panel" id="detectionsPanel">
+    <div class="panel-header">
+      <h2>Детекции</h2>
+      <span class="detection-count" id="detectionCount">0</span>
+      <button id="btnConfirmAll" style="display:none" onclick="confirmAllVisible()">&#10003; Все</button>
+    </div>
+    <div class="stat-bar" id="statBar" style="display:none"></div>
+    <div class="panel-nav">
+      <button id="btnPrev" disabled>&#9664; Пред</button>
+      <span class="nav-position" id="navPosition">0 / 0</span>
+      <button id="btnNext" disabled>След &#9654;</button>
+      <select id="sortSelect" style="margin-left:auto;background:var(--bg-input);color:var(--text-primary);border:1px solid var(--border);border-radius:4px;padding:2px 4px;font-size:var(--text-xs)">
+        <option value="time">По времени</option>
+        <option value="severity">По severity</option>
+        <option value="confidence">По confidence</option>
+      </select>
+    </div>
+    <div class="detection-list" id="detectionList">
+      <div class="no-detections">
+        Нет загруженных детекций.<br>
+        <small>Данные приходят из Linza (postMessage или ?detections=)</small>
+      </div>
+    </div>
+    <div class="filter-panel" id="filterPanel">
+      <div class="filter-toggle" id="filterToggle">
+        <span>&#9881; Фильтры</span>
+        <span class="filter-active-tags" id="filterTags"></span>
+        <button class="filter-reset" id="filterReset" style="display:none" onclick="resetFilters()">Сбросить</button>
+      </div>
+      <div class="filter-body" id="filterBody" style="display:none">
+        <div class="filter-group">
+          <div class="filter-label">Категория</div>
+          <div class="filter-chips" id="filterCategory"></div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Источник</div>
+          <div class="filter-chips" id="filterSource"></div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Статус рецензии</div>
+          <div class="filter-chips" id="filterStatus"></div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Confidence &#8805; <span id="confValue">0</span>%</div>
+          <input type="range" id="confSlider" min="0" max="100" value="0" class="conf-slider">
+        </div>
+        <div class="filter-count" id="filterCount"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>const filename = {{ js_name|safe }};</script>
+<script src="/api/vpleer/static/js/player.js"></script>
+{% endblock %}

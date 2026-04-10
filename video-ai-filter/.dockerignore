@@ -1,0 +1,15 @@
+.venv
+venv
+__pycache__
+*.py[cod]
+*$py.class
+.git
+.gitignore
+.cursor
+.env
+.env.*
+!.env.example
+data
+*.db
+.DS_Store
+terminals

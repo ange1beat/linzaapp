@@ -1,0 +1,27 @@
+name: Validate
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Docker Compose
+        run: docker compose config -q
+      - name: Validate Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+          failure-threshold: error
+      - name: Check Linza-start sync
+        run: bash scripts/check-sync.sh
+
+  # smoke:
+  #   runs-on: ubuntu-latest
+  #   needs: validate
+  #   # Heavy test — run manually: bash scripts/smoke-test.sh
+  #   # Requires all 5 service repos cloned and Docker available

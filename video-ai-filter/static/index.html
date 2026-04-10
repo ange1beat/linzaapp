@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linza Detector — проверка видео</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-top: #f0f4fc;
+      --bg-bottom: #e8edf7;
+      --surface: #ffffff;
+      --surface-muted: #f5f7fc;
+      --border: #d5dce8;
+      --text: #141824;
+      --muted: #5a6478;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.1);
+      --accent-hover: #1d4ed8;
+      --accent-2: #3b82f6;
+      --danger: #dc2626;
+      --ok: #059669;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 1px 2px rgba(20, 24, 36, 0.05);
+      --shadow-md: 0 4px 16px rgba(20, 24, 36, 0.06);
+      --shadow-lg: 0 12px 40px rgba(20, 24, 36, 0.08);
+      --font: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      background: linear-gradient(165deg, var(--bg-top) 0%, var(--bg-bottom) 45%, #e2e8f4 100%);
+      background-attachment: fixed;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3.5rem;
+    }
+
+    /* —— Header —— */
+    .hero {
+      margin-bottom: 2rem;
+    }
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .logo-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #60a5fa 100%);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+      flex-shrink: 0;
+    }
+    .hero-text { min-width: 0; }
+    .kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.35rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.5rem, 4vw, 1.85rem);
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin: 0.75rem 0 0;
+      max-width: 36rem;
+      line-height: 1.55;
+    }
+    .badge-row { margin-top: 1rem; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8125rem;
+      padding: 0.45rem 0.85rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      box-shadow: var(--shadow-md);
+    }
+    .badge strong { color: var(--text); font-weight: 600; }
+
+    /* —— Quick steps —— */
+    .flow-intro {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    @media (max-width: 640px) {
+      .flow-intro { grid-template-columns: 1fr; }
+    }
+    .flow-step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .flow-step::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      opacity: 0.85;
+    }
+    .flow-step-num {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+    .flow-step h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .flow-step p {
+      margin: 0;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* —— Summary strip —— */
+    .summary-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 0.65rem;
+    }
+    .summary-bar-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0;
+    }
+    .summary-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .pill {
+      font-size: 0.8125rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .pill.warn {
+      background: #fffbeb;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+    .pill.ok {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+
+    /* —— Cards —— */
+    .card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.45rem;
+      margin-bottom: 1.35rem;
+      box-shadow: var(--shadow-lg);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    @media (hover: hover) {
+      .card:hover { box-shadow: 0 16px 48px rgba(20, 24, 36, 0.1); }
+    }
+    .card--accent::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6, #93c5fd);
+    }
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+    .step {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+    .step.step-alt {
+      background: var(--surface-muted);
+      color: var(--muted);
+      border: 2px solid var(--border);
+      box-shadow: none;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .card-title {
+      margin: 0;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .card-desc {
+      margin: 0.35rem 0 0;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .legend-chip {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .legend-chip b { color: var(--text); font-weight: 600; }
+
+    .row {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    label, .label-like {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .field-hint {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 0.35rem;
+      line-height: 1.45;
+    }
+
+    input[type="text"], textarea, input[type="number"], input[type="search"], select {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input:hover, textarea:hover, select:hover { border-color: #c5cddc; }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    textarea { min-height: 5.5rem; resize: vertical; }
+    textarea.tall { min-height: 8.5rem; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .file-zone {
+      display: block;
+      cursor: pointer;
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      background: var(--surface-muted);
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .file-zone:hover, .file-zone:focus-within {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .file-zone-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.85;
+    }
+    .file-zone-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin: 0 0 0.25rem;
+    }
+    .file-zone-hint {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin: 0;
+    }
+    .file-zone-name {
+      display: block;
+      margin-top: 0.65rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent);
+      word-break: break-all;
+    }
+    .file-zone.has-file {
+      border-style: solid;
+      border-color: #86efac;
+      background: #f0fdf4;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.1rem;
+    }
+    button {
+      font: inherit;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 1.15rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 500;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    }
+    button:active { transform: scale(0.98); }
+    button:hover { background: var(--surface-muted); }
+    button.primary {
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
+      border-color: transparent;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+    }
+    button.primary:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+    }
+    button.danger { color: var(--danger); border-color: #fecaca; background: #fff; }
+    button.danger:hover { background: #fef2f2; }
+    button.ghost { background: transparent; border-color: transparent; }
+    button.ghost:hover { background: var(--surface-muted); }
+
+    .preview-box {
+      margin-top: 0.85rem;
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-sm);
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      font-size: 0.8125rem;
+      white-space: pre-wrap;
+      max-height: 260px;
+      overflow: auto;
+      color: var(--text);
+      display: none;
+      font-family: ui-monospace, monospace;
+      line-height: 1.5;
+    }
+    .preview-box.visible { display: block; }
+
+    .status {
+      font-size: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--radius-sm);
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+    .status.error { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+    .status.ok { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
+
+    .config-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.25rem;
+      align-items: end;
+    }
+    @media (max-width: 640px) {
+      .config-grid { grid-template-columns: 1fr; }
+    }
+    .cfg-field { margin-bottom: 0; }
+
+    #linza-results {
+      max-height: 320px;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-top: 0.65rem;
+      background: var(--surface-muted);
+      scrollbar-width: thin;
+    }
+    .linza-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.7rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8125rem;
+      background: var(--surface);
+      transition: background 0.12s;
+    }
+    .linza-row:hover { background: #fafbfd; }
+    .linza-row:last-child { border-bottom: none; }
+    .linza-row .muted { color: var(--muted); }
+
+    .dl-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.85rem;
+    }
+    .btn-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .btn-dl:hover { filter: brightness(1.06); }
+    .btn-dl:active { transform: scale(0.98); }
+    .btn-dl.secondary {
+      background: var(--surface);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      box-shadow: none;
+    }
+    .btn-dl.secondary:hover { background: var(--accent-soft); }
+
+    .audio-panel {
+      margin: 1rem 0;
+      padding: 1.1rem;
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    .audio-panel .label-like { margin-bottom: 0.5rem; }
+    .audio-panel pre {
+      margin: 0;
+      font-size: 0.75rem;
+      white-space: pre-wrap;
+      max-height: 280px;
+      overflow: auto;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .results-block h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .results-sub { font-size: 0.8125rem; color: var(--muted); margin: 0 0 0.75rem; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      margin-top: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.55rem 0.7rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafbfd; }
+    tbody tr:last-child td { border-bottom: none; }
+    th {
+      background: linear-gradient(180deg, #f1f5f9, #e8edf4);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .verdict-none { color: var(--ok); font-weight: 600; }
+    .verdict-hit { color: var(--danger); font-weight: 600; }
+
+    progress {
+      width: 100%;
+      height: 8px;
+      margin-top: 0.85rem;
+      border-radius: 999px;
+      overflow: hidden;
+      border: none;
+      background: var(--border);
+    }
+    progress::-webkit-progress-bar { background: #e2e8f0; border-radius: 999px; }
+    progress::-webkit-progress-value {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+    }
+    progress::-moz-progress-bar {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+    }
+
+    code {
+      font-size: 0.88em;
+      background: var(--surface-muted);
+      padding: 0.15em 0.4em;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+    }
+
+    input[type="checkbox"] {
+      width: 1.1rem;
+      height: 1.1rem;
+      accent-color: var(--accent);
+      vertical-align: middle;
+      margin-right: 0.4rem;
+    }
+    .check-row label { font-weight: 500; display: inline; margin: 0; }
+
+    details.card {
+      padding-top: 1.15rem;
+      padding-bottom: 1.15rem;
+    }
+    details.card summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      user-select: none;
+    }
+    details.card summary::-webkit-details-marker { display: none; }
+    details.card summary .chev {
+      color: var(--accent);
+      font-size: 0.85rem;
+      transition: transform 0.2s;
+    }
+    details.card[open] summary .chev { transform: rotate(90deg); }
+    details.card .card-inner {
+      margin-top: 1.1rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+    }
+    .admin-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 8px;
+      background: var(--surface-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .site-footer {
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="logo-mark" aria-hidden="true"></div>
+        <div class="hero-text">
+          <p class="kicker">Проверка видеоконтента</p>
+          <h1>Linza Detector</h1>
+          <p class="lead">
+            Загрузите ролик: мы равномерно возьмём кадры, отправим их в нейросеть и при необходимости расшифруем речь.
+            В конце — таблица по времени и готовые отчёты JSON и PDF.
+          </p>
+        </div>
+      </div>
+      <div class="badge-row">
+        <span class="badge" id="meta-inference">Загрузка параметров модели…</span>
+      </div>
+    </header>
+
+    <div class="flow-intro" aria-label="Краткая инструкция">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <h3>Правила</h3>
+        <p>Отметьте пункты Linza и/или добавьте свои категории снизу.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">2</div>
+        <h3>По желанию</h3>
+        <p>Уточните инструкции для модели и посмотрите превью промпта.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <h3>Файл и старт</h3>
+        <p>Выберите видео и нажмите большую синюю кнопку.</p>
+      </div>
+    </div>
+
+    <aside class="summary-bar" aria-live="polite">
+      <p class="summary-bar-title">Сводка перед запуском</p>
+      <div class="summary-pills" id="summary-pills"></div>
+    </aside>
+
+    <section class="card card--accent">
+      <div class="card-head">
+        <span class="step">1</span>
+        <div>
+          <h2 class="card-title">Классификатор Linza</h2>
+          <p class="card-desc">
+            Укажите <strong>тип контента</strong> ролика — так выбирается колонка матрицы. Затем найдите и отметьте нужные подпункты.
+          </p>
+          <div class="legend-row" aria-label="Легенда символов">
+            <span class="legend-chip"><b>⛔</b> запрет</span>
+            <span class="legend-chip"><b>⚠️</b> маркировка</span>
+            <span class="legend-chip"><b>✓</b> проверка</span>
+            <span class="legend-chip"><b>◈</b> особое</span>
+            <span class="legend-chip"><b>🛡</b> ИХЦ</span>
+            <span class="legend-chip"><b>—</b> не применимо</span>
+          </div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div class="cfg-field">
+          <label for="linza-ctype">Тип контента</label>
+          <select id="linza-ctype" aria-describedby="linza-ctype-hint"></select>
+          <p class="field-hint" id="linza-ctype-hint">Тот же смысл, что колонки в вашей таблице (художка, документалка, реклама…).</p>
+        </div>
+        <div class="cfg-field">
+          <label for="linza-q">Поиск по списку</label>
+          <input type="search" id="linza-q" placeholder="Слово из названия, код 2.3, id k1_1…" autocomplete="off" />
+        </div>
+      </div>
+      <div id="linza-results" role="list"></div>
+      <p class="field-hint" id="linza-picked" style="margin-top:0.85rem"><strong>Отмечено правил Linza:</strong> 0</p>
+      <div class="actions">
+        <button type="button" id="btn-linza-clear" class="ghost">Снять все отметки Linza</button>
+      </div>
+    </section>
+
+    <section class="card card--accent">
+      <div class="card-head">
+        <span class="step step-alt" title="Дополнение к шагу 1">+</span>
+        <div>
+          <h2 class="card-title">Свои категории</h2>
+          <p class="card-desc">
+            Необязательно. <strong>Код</strong> — одно слово-ответ модели в поле <code>verdict</code>.
+            <strong>Описание</strong> — что именно искать в кадре. Можно комбинировать с Linza.
+          </p>
+        </div>
+      </div>
+      <div id="cat-list"></div>
+      <div class="actions">
+        <button type="button" id="btn-add" class="ghost">+ Добавить категорию</button>
+        <button type="button" id="btn-examples" class="ghost">Пример: nude / violence / smoking</button>
+      </div>
+    </section>
+
+    <section class="card card--accent">
+      <div class="card-head">
+        <span class="step">2</span>
+        <div>
+          <h2 class="card-title">Дополнительные инструкции</h2>
+          <p class="card-desc">Текст добавится в конец промпта. Полезно для исключений и уточнений смысла.</p>
+        </div>
+      </div>
+      <label for="extra">Текст для модели</label>
+      <textarea id="extra" placeholder="Например: не считать нарушением съёмку в больнице в учебных целях…"></textarea>
+      <div class="actions">
+        <button type="button" id="btn-preview" class="ghost">Показать полный текст промпта</button>
+      </div>
+      <div id="preview" class="preview-box" aria-live="polite"></div>
+    </section>
+
+    <section class="card card--accent">
+      <div class="card-head">
+        <span class="step">3</span>
+        <div>
+          <h2 class="card-title">Видео и запуск</h2>
+          <p class="card-desc">
+            Лимиты по длительности и числу кадров можно задать здесь или один раз в настройках сервера (блок внизу страницы).
+          </p>
+        </div>
+      </div>
+
+      <label class="sr-only" for="file">Выбор видеофайла</label>
+      <input type="file" id="file" class="sr-only" accept="video/*" />
+      <label for="file" class="file-zone" id="file-zone">
+        <div class="file-zone-icon" aria-hidden="true">📁</div>
+        <p class="file-zone-title">Нажмите или перетащите видео сюда</p>
+        <p class="file-zone-hint">MP4, WebM, MOV и другие форматы, которые поддерживает браузер</p>
+        <span class="file-zone-name" id="file-name" hidden></span>
+      </label>
+
+      <div class="config-grid" style="margin-top:1.15rem">
+        <div class="cfg-field">
+          <label for="maxf">Лимит кадров</label>
+          <input type="number" id="maxf" min="1" placeholder="Без лимита (или из настроек сервера)" />
+        </div>
+        <div class="cfg-field">
+          <label for="maxdur">Лимит секунд</label>
+          <input type="number" id="maxdur" min="0" step="0.1" placeholder="Всё видео целиком" />
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" id="btn-run" class="primary">Запустить проверку видео</button>
+      </div>
+      <div id="job-status" class="status" style="display:none"></div>
+      <progress id="prog" value="0" max="100" style="display:none"></progress>
+
+      <div id="results-wrap" class="results-block" style="display:none;margin-top:1.5rem">
+        <h3>Готово</h3>
+        <p class="results-sub">Скачайте отчёт или просмотрите таблицу ниже.</p>
+        <div class="dl-row">
+          <a id="download-report" class="btn-dl secondary" href="#" style="display:none" download>JSON-отчёт</a>
+          <a id="download-pdf" class="btn-dl" href="#" style="display:none" download>PDF-отчёт</a>
+        </div>
+        <div id="audio-panel" class="audio-panel" style="display:none">
+          <span class="label-like">Аудиодорожка: расшифровка и проверка текста</span>
+          <pre id="audio-pre"></pre>
+        </div>
+        <div style="overflow:auto;margin-top:0.85rem">
+          <table>
+            <thead>
+              <tr><th>Сек</th><th>Вердикт</th><th>Пояснение</th><th>Ответ модели</th></tr>
+            </thead>
+            <tbody id="results-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <details class="card">
+      <summary>
+        <span class="admin-icon" aria-hidden="true">⚙</span>
+        <span class="chev" aria-hidden="true">▸</span>
+        <span>Настройки сервера (для администратора)</span>
+      </summary>
+      <div class="card-inner">
+        <p class="card-desc" style="margin-bottom:1.1rem">
+          Параметры сохраняются в базе на сервере и автоматически подставляются во все новые проверки (в том числе через API).
+          Секретные ключи по-прежнему задаются только в переменных окружения на сервере.
+        </p>
+        <div id="runtime-status" class="status" style="display:none;margin-bottom:1rem"></div>
+        <div class="config-grid">
+          <div class="cfg-field">
+            <label for="rc-inference_backend">Подключение к модели</label>
+            <select id="rc-inference_backend" data-rc="inference_backend">
+              <option value="openrouter">OpenRouter (облако)</option>
+              <option value="vllm">Свой сервер (vLLM)</option>
+            </select>
+          </div>
+          <div class="cfg-field">
+            <label for="rc-openrouter_model">Модель OpenRouter</label>
+            <input type="text" id="rc-openrouter_model" data-rc="openrouter_model" placeholder="организация/имя-модели" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-openrouter_base_url">URL OpenRouter</label>
+            <input type="text" id="rc-openrouter_base_url" data-rc="openrouter_base_url" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-vllm_base_url">URL vLLM</label>
+            <input type="text" id="rc-vllm_base_url" data-rc="vllm_base_url" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-vllm_model">Имя модели в vLLM</label>
+            <input type="text" id="rc-vllm_model" data-rc="vllm_model" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-sample_interval_sec">Интервал между кадрами (сек)</label>
+            <input type="number" id="rc-sample_interval_sec" data-rc="sample_interval_sec" step="0.1" min="0.1" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-openai_timeout_sec">Таймаут запроса (сек)</label>
+            <input type="number" id="rc-openai_timeout_sec" data-rc="openai_timeout_sec" step="1" min="5" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-max_retries">Повторы при ошибке сети</label>
+            <input type="number" id="rc-max_retries" data-rc="max_retries" min="1" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-jpeg_quality">Качество JPEG (1–100)</label>
+            <input type="number" id="rc-jpeg_quality" data-rc="jpeg_quality" min="1" max="100" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-vision_parallel_workers">Параллельных запросов к LLM (кадры)</label>
+            <input type="number" id="rc-vision_parallel_workers" data-rc="vision_parallel_workers" min="1" max="32" />
+          </div>
+          <div class="cfg-field check-row" style="align-self:end;padding-bottom:0.35rem">
+            <label><input type="checkbox" id="rc-audio_transcription_enabled" data-rc-bool="audio_transcription_enabled" /> Обрабатывать звук в видео</label>
+          </div>
+          <div class="cfg-field">
+            <label for="rc-whisper_model_size">Размер Whisper</label>
+            <input type="text" id="rc-whisper_model_size" data-rc="whisper_model_size" placeholder="tiny" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-whisper_device">Whisper: устройство</label>
+            <input type="text" id="rc-whisper_device" data-rc="whisper_device" placeholder="auto" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-whisper_compute_type">Whisper: тип вычислений</label>
+            <input type="text" id="rc-whisper_compute_type" data-rc="whisper_compute_type" placeholder="auto" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-max_transcript_chars_for_llm">Лимит символов речи для LLM</label>
+            <input type="number" id="rc-max_transcript_chars_for_llm" data-rc="max_transcript_chars_for_llm" min="500" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-default_max_frames">По умолчанию: лимит кадров</label>
+            <input type="number" id="rc-default_max_frames" data-rc="default_max_frames" min="1" placeholder="нет" />
+          </div>
+          <div class="cfg-field">
+            <label for="rc-default_max_duration_sec">По умолчанию: лимит секунд</label>
+            <input type="number" id="rc-default_max_duration_sec" data-rc="default_max_duration_sec" min="0" step="0.1" placeholder="нет" />
+          </div>
+        </div>
+        <label for="rc-default_prompt" style="margin-top:1rem">Промпт по умолчанию для кадров (вшита полная Linza; свои категории задаются в задании)</label>
+        <textarea id="rc-default_prompt" class="tall" data-rc="default_prompt" placeholder="Редко нужно…"></textarea>
+        <label for="rc-default_transcript_moderation_prompt" style="margin-top:0.75rem">Промпт проверки расшифровки речи (по умолчанию та же Linza + JSON со spans)</label>
+        <textarea id="rc-default_transcript_moderation_prompt" class="tall" data-rc="default_transcript_moderation_prompt"></textarea>
+        <div class="actions">
+          <button type="button" id="btn-runtime-load" class="ghost">Загрузить с сервера</button>
+          <button type="button" id="btn-runtime-save" class="primary">Сохранить</button>
+          <button type="button" id="btn-runtime-reset" class="danger">Сбросить сохранённое</button>
+        </div>
+      </div>
+    </details>
+
+    <footer class="site-footer">Linza Detector · модерация видео по кадрам и по речи</footer>
+  </div>
+
+  <script>
+    const catList = document.getElementById("cat-list");
+    const previewEl = document.getElementById("preview");
+    const jobStatus = document.getElementById("job-status");
+    const prog = document.getElementById("prog");
+    const resultsWrap = document.getElementById("results-wrap");
+    const resultsBody = document.getElementById("results-body");
+    const downloadReport = document.getElementById("download-report");
+    const downloadPdf = document.getElementById("download-pdf");
+    const audioPanel = document.getElementById("audio-panel");
+    const audioPre = document.getElementById("audio-pre");
+    const linzaCtype = document.getElementById("linza-ctype");
+    const linzaQ = document.getElementById("linza-q");
+    const linzaResults = document.getElementById("linza-results");
+    const linzaPicked = document.getElementById("linza-picked");
+    const runtimeStatus = document.getElementById("runtime-status");
+    const summaryPills = document.getElementById("summary-pills");
+    const fileInput = document.getElementById("file");
+    const fileZone = document.getElementById("file-zone");
+    const fileNameEl = document.getElementById("file-name");
+
+    let runtimeBaseline = {};
+    const linzaRuleIds = new Set();
+    let linzaSearchTimer = null;
+    let linzaChangeBound = false;
+
+    function refreshMetaInference() {
+      fetch("/meta/inference")
+        .then((r) => r.json())
+        .then((d) => {
+          const el = document.getElementById("meta-inference");
+          if (el)
+            el.innerHTML =
+              "Модель: <strong>" +
+              escapeHtml(d.model) +
+              "</strong> · канал <strong>" +
+              escapeHtml(d.inference_backend) +
+              "</strong>" +
+              (d.audio_transcription ? " · звук <strong>вкл</strong>" : " · звук <strong>выкл</strong>");
+        })
+        .catch(() => {
+          const el = document.getElementById("meta-inference");
+          if (el) el.textContent = "Не удалось получить настройки модели.";
+        });
+    }
+
+    function showRuntimeMsg(text, cls) {
+      if (!runtimeStatus) return;
+      runtimeStatus.style.display = "block";
+      runtimeStatus.className = "status " + (cls || "");
+      runtimeStatus.textContent = text;
+    }
+
+    function readRuntimeFromForm() {
+      const o = {};
+      document.querySelectorAll("[data-rc]").forEach((el) => {
+        const k = el.dataset.rc;
+        if (el.type === "number") {
+          const v = el.value.trim();
+          if (v === "") return;
+          const n = Number(v);
+          if (!Number.isNaN(n)) o[k] = n;
+        } else {
+          const v = el.value.trim();
+          if (v !== "") o[k] = v;
+        }
+      });
+      document.querySelectorAll("[data-rc-bool]").forEach((el) => {
+        o[el.dataset.rcBool] = el.checked;
+      });
+      return o;
+    }
+
+    function applyRuntimeToForm(cfg) {
+      document.querySelectorAll("[data-rc]").forEach((el) => {
+        const k = el.dataset.rc;
+        const v = cfg[k];
+        if (v === undefined || v === null) {
+          el.value = "";
+          return;
+        }
+        el.value = String(v);
+      });
+      document.querySelectorAll("[data-rc-bool]").forEach((el) => {
+        const k = el.dataset.rcBool;
+        if (cfg[k] !== undefined) el.checked = !!cfg[k];
+      });
+    }
+
+    function updateSummary() {
+      if (!summaryPills) return;
+      const cats = collectCategories();
+      const nLinza = linzaRuleIds.size;
+      const file = fileInput.files && fileInput.files[0];
+      const extra = document.getElementById("extra").value.trim();
+
+      const pills = [];
+      if (nLinza)
+        pills.push(`<span class="pill ok">Linza: ${nLinza} ${plural(nLinza, "правило", "правила", "правил")}</span>`);
+      else pills.push(`<span class="pill">Linza: не выбрано</span>`);
+
+      if (cats.length)
+        pills.push(`<span class="pill ok">Свои категории: ${cats.length}</span>`);
+      else pills.push(`<span class="pill">Свои категории: нет</span>`);
+
+      if (file) pills.push(`<span class="pill ok">Файл: ${escapeHtml(file.name)}</span>`);
+      else pills.push(`<span class="pill">Файл: не выбран</span>`);
+
+      if (extra) pills.push(`<span class="pill ok">Есть доп. инструкции</span>`);
+
+      const needRules = nLinza === 0 && cats.length === 0;
+      if (needRules)
+        pills.push(
+          `<span class="pill warn">Без Linza и своих категорий сработает только промпт «по умолчанию» с сервера</span>`
+        );
+
+      summaryPills.innerHTML = pills.join("");
+    }
+
+    function plural(n, a, b, c) {
+      const x = n % 10;
+      const y = n % 100;
+      if (y >= 11 && y <= 14) return c;
+      if (x === 1) return a;
+      if (x >= 2 && x <= 4) return b;
+      return c;
+    }
+
+    async function loadRuntimeConfig() {
+      const r = await fetch("/meta/runtime-config");
+      const cfg = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        showRuntimeMsg(JSON.stringify(cfg), "error");
+        return;
+      }
+      applyRuntimeToForm(cfg);
+      runtimeBaseline = { ...cfg };
+      const dm = cfg.default_max_frames;
+      const dd = cfg.default_max_duration_sec;
+      const mf = document.getElementById("maxf");
+      const md = document.getElementById("maxdur");
+      if (mf && (mf.value === "" || mf.value == null) && dm != null) mf.placeholder = String(dm);
+      if (md && (md.value === "" || md.value == null) && dd != null) md.placeholder = String(dd);
+      showRuntimeMsg("Настройки загружены.", "ok");
+      refreshMetaInference();
+      updateSummary();
+    }
+
+    async function saveRuntimeConfig() {
+      const cur = readRuntimeFromForm();
+      const patch = {};
+      for (const k of Object.keys(cur)) {
+        const b = runtimeBaseline[k];
+        const c = cur[k];
+        if (b !== c) patch[k] = c;
+      }
+      for (const k of Object.keys(runtimeBaseline)) {
+        if (!(k in cur) && runtimeBaseline[k] != null && runtimeBaseline[k] !== "")
+          patch[k] = null;
+      }
+      if (!Object.keys(patch).length) {
+        showRuntimeMsg("Изменений нет.", "");
+        return;
+      }
+      const r = await fetch("/meta/runtime-config", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(patch),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        showRuntimeMsg(data.detail || JSON.stringify(data), "error");
+        return;
+      }
+      runtimeBaseline = { ...data };
+      applyRuntimeToForm(data);
+      showRuntimeMsg("Сохранено.", "ok");
+      refreshMetaInference();
+      updateSummary();
+    }
+
+    async function resetRuntimeConfig() {
+      if (!confirm("Удалить сохранённые на сервере настройки? Останутся только переменные окружения.")) return;
+      const r = await fetch("/meta/runtime-config", { method: "DELETE" });
+      if (!r.ok) {
+        showRuntimeMsg("Сброс не удался.", "error");
+        return;
+      }
+      runtimeBaseline = {};
+      await loadRuntimeConfig();
+      showRuntimeMsg("Сброшено.", "ok");
+    }
+
+    function updateLinzaPickedLabel() {
+      if (linzaPicked) linzaPicked.innerHTML = "<strong>Отмечено правил Linza:</strong> " + linzaRuleIds.size;
+      updateSummary();
+    }
+
+    function symForRule(rule, ct) {
+      const m = rule.matrix || {};
+      return m[ct] != null ? m[ct] : "—";
+    }
+
+    function renderLinzaRules(rules) {
+      if (!linzaResults) return;
+      const ct = linzaCtype.value || "doc";
+      linzaResults.innerHTML = "";
+      rules.forEach((rule) => {
+        const sym = symForRule(rule, ct);
+        const row = document.createElement("div");
+        row.className = "linza-row";
+        row.setAttribute("role", "listitem");
+        const id = rule.id;
+        const checked = linzaRuleIds.has(id);
+        row.innerHTML = `
+          <input type="checkbox" data-id="${escapeAttr(id)}" ${checked ? "checked" : ""} ${sym === "—" ? "disabled title=\"Для этого типа контента не используется\"" : ""} aria-label="Пункт ${escapeAttr(id)}" />
+          <div style="flex:1">
+            <strong>${escapeHtml(id)}</strong> — ${escapeHtml(rule.code)} ${escapeHtml(rule.title)}<br/>
+            <span class="muted">${escapeHtml(rule.chapter)} · ячейка для типа: <strong>${escapeHtml(sym)}</strong></span>
+          </div>`;
+        const cb = row.querySelector("input[type=checkbox]");
+        cb.addEventListener("change", () => {
+          if (cb.checked) linzaRuleIds.add(id);
+          else linzaRuleIds.delete(id);
+          updateLinzaPickedLabel();
+        });
+        linzaResults.appendChild(row);
+      });
+      if (!rules.length) {
+        const empty = document.createElement("div");
+        empty.className = "linza-row";
+        empty.textContent = "Ничего не найдено — измените поиск.";
+        linzaResults.appendChild(empty);
+      }
+    }
+
+    async function loadTaxonomyUi() {
+      const r = await fetch("/meta/taxonomy");
+      const d = await r.json();
+      if (!r.ok || !d.content_types) return;
+      linzaCtype.innerHTML = "";
+      d.content_types.forEach((ct) => {
+        const o = document.createElement("option");
+        o.value = ct.id;
+        o.textContent = ct.label;
+        linzaCtype.appendChild(o);
+      });
+      if (!linzaChangeBound) {
+        linzaCtype.addEventListener("change", () => {
+          searchLinza();
+          updateSummary();
+        });
+        linzaChangeBound = true;
+      }
+      await searchLinza();
+    }
+
+    async function searchLinza() {
+      const q = (linzaQ && linzaQ.value) || "";
+      const r = await fetch("/meta/taxonomy/search?q=" + encodeURIComponent(q) + "&limit=120");
+      const d = await r.json();
+      if (r.ok && d.rules) renderLinzaRules(d.rules);
+    }
+
+    linzaQ.addEventListener("input", () => {
+      clearTimeout(linzaSearchTimer);
+      linzaSearchTimer = setTimeout(searchLinza, 220);
+    });
+
+    document.getElementById("btn-linza-clear").addEventListener("click", () => {
+      linzaRuleIds.clear();
+      updateLinzaPickedLabel();
+      searchLinza();
+    });
+
+    document.getElementById("btn-runtime-load").addEventListener("click", loadRuntimeConfig);
+    document.getElementById("btn-runtime-save").addEventListener("click", saveRuntimeConfig);
+    document.getElementById("btn-runtime-reset").addEventListener("click", resetRuntimeConfig);
+
+    function linzaPayload() {
+      if (!linzaRuleIds.size) return null;
+      return {
+        content_type_id: linzaCtype.value || "doc",
+        rule_ids: Array.from(linzaRuleIds),
+      };
+    }
+
+    function syncFileDisplay() {
+      const f = fileInput.files && fileInput.files[0];
+      if (f) {
+        fileNameEl.textContent = f.name;
+        fileNameEl.hidden = false;
+        fileZone.classList.add("has-file");
+      } else {
+        fileNameEl.textContent = "";
+        fileNameEl.hidden = true;
+        fileZone.classList.remove("has-file");
+      }
+      updateSummary();
+    }
+
+    fileInput.addEventListener("change", syncFileDisplay);
+
+    ["dragenter", "dragover"].forEach((ev) => {
+      fileZone.addEventListener(ev, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        fileZone.style.borderColor = "var(--accent)";
+      });
+    });
+    ["dragleave", "drop"].forEach((ev) => {
+      fileZone.addEventListener(ev, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        fileZone.style.borderColor = "";
+      });
+    });
+    fileZone.addEventListener("drop", (e) => {
+      const fl = e.dataTransfer && e.dataTransfer.files;
+      if (fl && fl.length) {
+        const dt = new DataTransfer();
+        dt.items.add(fl[0]);
+        fileInput.files = dt.files;
+        syncFileDisplay();
+      }
+    });
+
+    document.getElementById("extra").addEventListener("input", updateSummary);
+
+    function addCategoryRow(name = "", description = "") {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML = `
+        <div>
+          <label>Код вердикта</label>
+          <input type="text" class="cat-name" placeholder="одно слово, латиница" value="${escapeAttr(name)}" />
+        </div>
+        <div>
+          <label>Что искать в кадре</label>
+          <textarea class="cat-desc" placeholder="Кратко: при каком содержании кадра возвращать этот код…">${escapeHtml(description)}</textarea>
+        </div>
+        <div class="actions" style="margin:0">
+          <button type="button" class="danger ghost btn-remove">Удалить</button>
+        </div>`;
+      row.querySelector(".btn-remove").addEventListener("click", () => {
+        row.remove();
+        updateSummary();
+      });
+      row.querySelector(".cat-name").addEventListener("input", updateSummary);
+      row.querySelector(".cat-desc").addEventListener("input", updateSummary);
+      catList.appendChild(row);
+      updateSummary();
+    }
+
+    function escapeAttr(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function collectCategories() {
+      const out = [];
+      catList.querySelectorAll(".row").forEach((row) => {
+        const name = row.querySelector(".cat-name").value.trim();
+        const description = row.querySelector(".cat-desc").value.trim();
+        if (name && description) out.push({ name, description });
+      });
+      return out;
+    }
+
+    document.getElementById("btn-add").addEventListener("click", () => addCategoryRow());
+    document.getElementById("btn-examples").addEventListener("click", () => {
+      if (!catList.children.length) {
+        addCategoryRow("nude", "Откровенная нагота, гениталии, сексуализированные позы без одежды.");
+        addCategoryRow("violence", "Кровь, избиение, оружие в агрессивном контексте, жестокость.");
+        addCategoryRow("smoking", "Курение сигарет/вейпа с видимым дымом у персонажа.");
+      } else {
+        addCategoryRow("nude", "…");
+      }
+    });
+
+    document.getElementById("btn-preview").addEventListener("click", async () => {
+      const categories = collectCategories();
+      const extra = document.getElementById("extra").value.trim();
+      const lz = linzaPayload();
+      previewEl.classList.remove("visible");
+      if (!categories.length && !lz) {
+        previewEl.textContent = "Отметьте Linza и/или заполните хотя бы одну свою категорию (код + описание).";
+        previewEl.classList.add("visible");
+        return;
+      }
+      const r = await fetch("/prompt/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          categories: categories.length ? categories : null,
+          linza: lz,
+          extra_instructions: extra || null,
+        }),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        previewEl.textContent = data.detail || JSON.stringify(data);
+        previewEl.classList.add("visible");
+        return;
+      }
+      previewEl.textContent = data.prompt || "";
+      previewEl.classList.add("visible");
+    });
+
+    function showStatus(msg, cls) {
+      jobStatus.style.display = "block";
+      jobStatus.className = "status " + (cls || "");
+      jobStatus.textContent = msg;
+    }
+
+    function parseVerdict(raw) {
+      try {
+        const j = JSON.parse(raw);
+        const v = j.verdict != null ? String(j.verdict) : j.allowed === false ? "flagged" : "none";
+        const reason = j.reason != null ? String(j.reason) : "";
+        return { v: v.toLowerCase(), reason, j };
+      } catch {
+        return { v: "?", reason: "", j: null };
+      }
+    }
+
+    document.getElementById("btn-run").addEventListener("click", async () => {
+      if (!fileInput.files?.length) {
+        showStatus("Сначала выберите видеофайл (нажмите на область загрузки выше).", "error");
+        return;
+      }
+      const categories = collectCategories();
+      const extra = document.getElementById("extra").value.trim();
+      const maxf = document.getElementById("maxf").value.trim();
+      const maxdur = document.getElementById("maxdur").value.trim();
+      const lz = linzaPayload();
+
+      const fd = new FormData();
+      fd.append("file", fileInput.files[0]);
+      if (categories.length) fd.append("categories_json", JSON.stringify(categories));
+      if (lz) fd.append("linza_json", JSON.stringify(lz));
+      if (extra) fd.append("prompt", extra);
+      if (maxf) fd.append("max_frames", maxf);
+      if (maxdur) fd.append("max_duration_sec", maxdur);
+
+      resultsWrap.style.display = "none";
+      resultsBody.innerHTML = "";
+      if (audioPanel) audioPanel.style.display = "none";
+      downloadReport.style.display = "none";
+      downloadPdf.style.display = "none";
+      downloadReport.removeAttribute("href");
+      downloadPdf.removeAttribute("href");
+      prog.style.display = "none";
+
+      showStatus("Загружаем файл на сервер…", "");
+      const r = await fetch("/jobs", { method: "POST", body: fd });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        showStatus(data.detail || JSON.stringify(data), "error");
+        return;
+      }
+      const jobId = data.job_id;
+      showStatus("Проверка идёт. Номер: " + jobId, "ok");
+      prog.style.display = "block";
+      prog.removeAttribute("value");
+
+      const poll = async () => {
+        const sr = await fetch("/jobs/" + jobId);
+        const st = await sr.json();
+        if (!sr.ok) {
+          showStatus(JSON.stringify(st), "error");
+          return;
+        }
+        if (st.progress != null) {
+          prog.value = st.progress;
+        }
+        showStatus(
+          (st.status === "completed" ? "Готово. " : st.status === "failed" ? "Ошибка. " : "Обработка… ") +
+            "Кадров: " +
+            st.frames_done +
+            (st.frames_total != null ? " из " + st.frames_total : "") +
+            (st.error ? ". " + st.error : ""),
+          st.status === "failed" ? "error" : st.status === "completed" ? "ok" : ""
+        );
+        if (st.status === "completed") {
+          const rr = await fetch("/jobs/" + jobId + "/results");
+          const res = await rr.json();
+          if (!rr.ok) {
+            showStatus(JSON.stringify(res), "error");
+            return;
+          }
+          resultsBody.innerHTML = "";
+          (res.results || []).forEach((row) => {
+            const raw = row.verdict_raw || "";
+            const p = parseVerdict(raw);
+            const tr = document.createElement("tr");
+            const cls = p.v === "none" ? "verdict-none" : "verdict-hit";
+            tr.innerHTML = `<td>${row.time_sec}</td><td class="${cls}">${escapeHtml(p.v)}</td><td>${escapeHtml(p.reason)}</td><td><code style="font-size:0.72rem;word-break:break-all">${escapeHtml(raw.slice(0, 200))}${raw.length > 200 ? "…" : ""}</code></td>`;
+            resultsBody.appendChild(tr);
+          });
+          resultsWrap.style.display = "block";
+          if (res.audio && audioPanel && audioPre) {
+            audioPanel.style.display = "block";
+            const s = JSON.stringify(res.audio, null, 2);
+            audioPre.textContent = s.length > 14000 ? s.slice(0, 14000) + "\n…" : s;
+          } else if (audioPanel) {
+            audioPanel.style.display = "none";
+          }
+          downloadReport.href = "/jobs/" + jobId + "/export?format=time-based&attachment=true";
+          downloadReport.download = "job_" + jobId + "_time_based.json";
+          downloadReport.style.display = "inline-flex";
+          downloadPdf.href = "/jobs/" + jobId + "/export?format=pdf&attachment=true";
+          downloadPdf.download = "job_" + jobId + "_report.pdf";
+          downloadPdf.style.display = "inline-flex";
+          return;
+        }
+        if (st.status === "failed") return;
+        setTimeout(poll, 700);
+      };
+      poll();
+    });
+
+    addCategoryRow();
+    updateLinzaPickedLabel();
+    loadTaxonomyUi();
+    loadRuntimeConfig().catch(() => {});
+    refreshMetaInference();
+    updateSummary();
+  </script>
+</body>
+</html>

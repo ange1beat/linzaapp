@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Linza Detector · Главный редактор</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap');
+
+:root{--bg:#07070d;--bg2:#0a0a12;--sf:rgba(255,255,255,.025);--sfh:rgba(255,255,255,.045);--sb:rgba(14,14,24,.94);--bd:rgba(255,255,255,.04);--bh:rgba(255,255,255,.08);--ba:rgba(100,140,240,.12);--t:#b8bcd4;--t2:#585e88;--t3:#343a58;--th:#d8dcf0;--bl:#6898e8;--gr:#2cd494;--rd:#e45878;--yl:#d4b838;--pp:#8c7cd0;--or:#d07848;--cy:#38c0d4;--ib:rgba(255,255,255,.012);--glow:rgba(104,152,232,.04)}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--t);font-size:13px;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
+
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* sidebar */
+.side{width:220px;background:var(--sb);border-right:1px solid var(--bd);display:flex;flex-direction:column;flex-shrink:0}
+.s-brand{padding:20px 16px 16px;border-bottom:1px solid var(--bd)}
+.s-brand svg{height:26px;width:auto;opacity:.85;display:block}
+.s-sub{font-size:8.5px;color:var(--t3);margin-top:6px}
+.s-org{margin:10px 10px 6px;padding:10px 12px;border-radius:10px;background:var(--sf);border:1px solid var(--bd)}
+.s-org b{font-size:10.5px;color:var(--th);display:block}
+.s-org small{font-size:9px;color:var(--t3);display:block;margin-top:2px}
+.s-org a{color:var(--bl);text-decoration:none}
+.nav{flex:1;padding:6px 10px;overflow-y:auto}
+.nav-g{font-size:7px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:1.6px;padding:8px 10px 4px;opacity:.5}
+.nav-i{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:9px;cursor:pointer;font-size:11px;color:var(--t2);font-weight:450;border:1px solid transparent;margin-bottom:1px;transition:all .15s}
+.nav-i:hover{background:var(--sf);color:var(--t)}
+.nav-i.on{background:var(--glow);border-color:var(--ba);color:var(--bl);font-weight:600}
+.nav-i .d{width:4px;height:4px;border-radius:50%;opacity:.35}
+.nav-i.on .d{opacity:1}
+
+/* top */
+.top{padding:0 24px;display:flex;align-items:center;border-bottom:1px solid var(--bd);background:var(--bg2);height:48px;flex-shrink:0}
+.top-bc{font-size:10.5px;color:var(--t3);flex:1}
+.top-bc b{color:var(--th);font-weight:500}
+.top-u{display:flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:8px;border:1px solid var(--bd);background:var(--sf)}
+.top-av{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#fff;background:linear-gradient(135deg,#8c7cd0,#6c5cb0)}
+.top-nm{font-size:10px;font-weight:500;color:var(--th)}
+.top-rl{font-size:8px;color:var(--t3)}
+
+/* main */
+.mn{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.pg{flex:1;overflow-y:auto;overflow-x:hidden;padding:20px 24px 36px}
+.pg-t{font-size:15px;font-weight:700;color:var(--th);letter-spacing:-.03em;margin-bottom:3px}
+.pg-d{font-size:10.5px;color:var(--t3);margin-bottom:20px}
+.sec{font-size:12px;font-weight:700;color:var(--th);margin:20px 0 12px}
+
+/* grid & cards */
+.g{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.c{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:16px;flex:1;min-width:170px;transition:border-color .15s}
+.c:hover{border-color:var(--bh)}
+.c-t{font-size:9px;font-weight:600;color:var(--t2);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.c-v{font-size:24px;font-weight:700;color:var(--th);letter-spacing:-.04em;line-height:1}
+.c-s{font-size:9px;color:var(--t3);margin-top:4px}
+
+/* donut */
+.dw{display:flex;align-items:center;gap:14px}
+.dn{position:relative;flex-shrink:0}
+.dn svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dn-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.dn-v{font-size:20px;font-weight:700;color:var(--th);line-height:1}
+.dn-l{font-size:7.5px;color:var(--t3);margin-top:2px}
+.lg{display:flex;flex-direction:column;gap:5px;flex:1}
+.lg-i{display:flex;align-items:center;gap:7px;font-size:10px;color:var(--t)}
+.lg-d{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.lg-v{margin-left:auto;font-weight:600;color:var(--th)}
+
+/* table */
+.tw{border-radius:12px;background:var(--sf);border:1px solid var(--bd);overflow:hidden;margin-bottom:20px}
+table{width:100%;border-collapse:collapse}
+th{padding:8px 10px;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);text-align:left;border-bottom:1px solid var(--bd);background:var(--bg2)}
+td{padding:8px 10px;font-size:10.5px;border-bottom:1px solid rgba(128,128,128,.03)}
+tr:hover td{background:var(--sf)}
+.badge{display:inline-flex;font-size:8px;font-weight:600;padding:2px 8px;border-radius:6px}
+.bg{background:rgba(44,212,148,.07);border:1px solid rgba(44,212,148,.14);color:var(--gr)}
+.bw{background:rgba(104,152,232,.05);border:1px solid rgba(104,152,232,.1);color:var(--bl)}
+.br{background:rgba(228,88,120,.05);border:1px solid rgba(228,88,120,.1);color:var(--rd)}
+.by{background:rgba(212,184,56,.05);border:1px solid rgba(212,184,56,.1);color:var(--yl)}
+.bq{background:var(--ib);border:1px solid var(--bd);color:var(--t3)}
+
+/* bar */
+.bar{height:4px;border-radius:2px;background:var(--ib);overflow:hidden;margin-top:3px}
+.bar-f{height:100%;border-radius:2px}
+
+/* filter buttons */
+.fb{display:flex;gap:2px;padding:2px;background:var(--ib);border:1px solid var(--bd);border-radius:9px;width:fit-content;margin-bottom:16px}
+.fb button{padding:5px 14px;border-radius:7px;border:none;font-size:10px;font-weight:450;color:var(--t3);background:transparent;cursor:pointer;font-family:inherit;transition:all .15s}
+.fb button:hover{color:var(--t2)}
+.fb button.on{font-weight:600;color:var(--th);background:var(--sfh);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(128,128,128,.06);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+<script>
+var cp = 'dash';
+var tp = 'month';
+
+var TD = {
+  week:{l:'01.04 – 08.04.2026',t:[
+    {n:'Алистратова Наталья',r:'Оператор + Юрист',c:'#2cd494',f:8,v:6,e:2,p:1},
+    {n:'Павленко Дмитрий',r:'Администратор',c:'#38c0d4',f:0,v:0,e:0,p:0},
+    {n:'Пучков Владимир',r:'Главный редактор',c:'#8c7cd0',f:0,v:3,e:0,p:0}
+  ]},
+  month:{l:'Апрель 2026',t:[
+    {n:'Алистратова Наталья',r:'Оператор + Юрист',c:'#2cd494',f:34,v:28,e:6,p:2},
+    {n:'Павленко Дмитрий',r:'Администратор',c:'#38c0d4',f:0,v:0,e:0,p:0},
+    {n:'Пучков Владимир',r:'Главный редактор',c:'#8c7cd0',f:0,v:13,e:0,p:0}
+  ]},
+  quarter:{l:'Q1 2026',t:[
+    {n:'Алистратова Наталья',r:'Оператор + Юрист',c:'#2cd494',f:112,v:98,e:14,p:4},
+    {n:'Павленко Дмитрий',r:'Администратор',c:'#38c0d4',f:0,v:0,e:0,p:0},
+    {n:'Пучков Владимир',r:'Главный редактор',c:'#8c7cd0',f:0,v:42,e:0,p:0}
+  ]},
+  year:{l:'2025–2026',t:[
+    {n:'Алистратова Наталья',r:'Оператор + Юрист',c:'#2cd494',f:387,v:352,e:35,p:8},
+    {n:'Павленко Дмитрий',r:'Администратор',c:'#38c0d4',f:0,v:0,e:0,p:0},
+    {n:'Пучков Владимир',r:'Главный редактор',c:'#8c7cd0',f:0,v:148,e:0,p:0}
+  ]}
+};
+
+var PL = {week:'Неделя',month:'Месяц',quarter:'Квартал',year:'Год'};
+
+function donut(data, sz, cv, cl) {
+  var r = sz / 2 - 7;
+  var circ = 2 * Math.PI * r;
+  var total = 0;
+  for (var i = 0; i < data.length; i++) total += data[i].v;
+  var off = 0;
+  var segs = '';
+  for (var i = 0; i < data.length; i++) {
+    var len = (data[i].v / total) * circ;
+    segs += '<circle cx="' + sz/2 + '" cy="' + sz/2 + '" r="' + r + '" fill="none" stroke="' + data[i].c + '" stroke-width="9" stroke-dasharray="' + len + ' ' + (circ - len) + '" stroke-dashoffset="' + (-off) + '" stroke-linecap="round" opacity=".85"/>';
+    off += len;
+  }
+  return '<div class="dn" style="width:' + sz + 'px;height:' + sz + 'px"><svg viewBox="0 0 ' + sz + ' ' + sz + '">' + segs + '</svg><div class="dn-c"><div class="dn-v">' + cv + '</div><div class="dn-l">' + cl + '</div></div></div>';
+}
+
+function render() {
+  var names = {dash:'Дашборд',mark:'Маркировка',team:'Команда'};
+  var navItems = ['dash', 'mark', 'team'];
+  
+  var sidebar = '<div class="side">' +
+    '<div class="s-brand"><svg viewBox="0 0 560 210"><defs><linearGradient id="lg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#4478FF"/><stop offset="100%" stop-color="#2256EE"/></linearGradient></defs><text x="16" y="128" font-family="Barlow,Arial Black,Impact,sans-serif" font-weight="900" font-size="122" fill="url(#lg)" textLength="448" lengthAdjust="spacingAndGlyphs">LINZA</text><text x="16" y="180" font-family="Barlow,Arial Black,sans-serif" font-weight="700" font-size="36" fill="url(#lg)" textLength="448" lengthAdjust="spacing">DETECTOR</text></svg><div class="s-sub">Платформа проверки контента</div></div>' +
+    '<div class="s-org"><b>ООО «ЛАДА-МЕДИА»</b><small><a href="https://tvtogliatti24.ru/" target="_blank">Тольятти 24</a> · Тариф L</small></div>' +
+    '<div class="nav"><div class="nav-g">Аналитика</div>';
+  
+  for (var i = 0; i < navItems.length; i++) {
+    var k = navItems[i];
+    sidebar += '<div class="nav-i' + (k === cp ? ' on' : '') + '" onclick="cp=\'' + k + '\';render()"><span class="d" style="background:' + (k === cp ? 'var(--bl)' : 'var(--t3)') + '"></span>' + names[k] + '</div>';
+  }
+  sidebar += '</div></div>';
+
+  var top = '<div class="top"><div class="top-bc">Главная <span style="opacity:.3;margin:0 3px">›</span> <b>' + names[cp] + '</b></div><div class="top-right" style="display:flex;align-items:center;gap:8px"><div class="top-u"><div class="top-av">ПВ</div><div><div class="top-nm">Пучков В.</div><div class="top-rl">Главный редактор</div></div></div></div></div>';
+
+  var page = '';
+  if (cp === 'dash') page = pageDash();
+  else if (cp === 'mark') page = pageMark();
+  else page = pageTeam();
+
+  document.getElementById('app').innerHTML = sidebar + '<div class="mn">' + top + '<div class="pg">' + page + '</div></div>';
+}
+
+function pageDash() {
+  var h = '<div class="pg-t">Дашборд</div><div class="pg-d">Сводная аналитика · Апрель 2026</div>';
+  h += '<div class="g">';
+  h += '<div class="c"><div class="c-t">Всего файлов</div><div class="c-v">47</div><div class="c-s">За месяц</div></div>';
+  h += '<div class="c"><div class="c-t">В очереди</div><div class="c-v" style="color:var(--bl)">5</div><div class="c-s">Ожидают</div></div>';
+  h += '<div class="c"><div class="c-t">Проверено</div><div class="c-v" style="color:var(--gr)">38</div><div class="c-s">Ревизия ОК</div></div>';
+  h += '<div class="c"><div class="c-t">Критические</div><div class="c-v" style="color:var(--rd)">3</div><div class="c-s">Внимание</div></div>';
+  h += '</div>';
+
+  h += '<div class="g">';
+  h += '<div class="c" style="min-width:260px"><div class="c-t">Маркировка контента</div><div class="dw">';
+  h += donut([{v:18,c:'#2cd494'},{v:8,c:'#38c0d4'},{v:12,c:'#6898e8'},{v:6,c:'#d4b838'},{v:3,c:'#e45878'}], 100, '47', 'файлов');
+  h += '<div class="lg"><div class="lg-i"><div class="lg-d" style="background:#2cd494"></div>Чисто<div class="lg-v">18</div></div><div class="lg-i"><div class="lg-d" style="background:#38c0d4"></div>12+<div class="lg-v">8</div></div><div class="lg-i"><div class="lg-d" style="background:#6898e8"></div>16+<div class="lg-v">12</div></div><div class="lg-i"><div class="lg-d" style="background:#d4b838"></div>18+<div class="lg-v">6</div></div><div class="lg-i"><div class="lg-d" style="background:#e45878"></div>Запрещено<div class="lg-v">3</div></div></div>';
+  h += '</div></div>';
+
+  h += '<div class="c" style="min-width:260px"><div class="c-t">Статус обработки</div><div class="dw">';
+  h += donut([{v:38,c:'#2cd494'},{v:4,c:'#d4b838'},{v:5,c:'#6898e8'}], 100, '81%', 'готово');
+  h += '<div class="lg"><div class="lg-i"><div class="lg-d" style="background:#2cd494"></div>Проверено<div class="lg-v">38</div></div><div class="lg-i"><div class="lg-d" style="background:#d4b838"></div>На проверку<div class="lg-v">4</div></div><div class="lg-i"><div class="lg-d" style="background:#6898e8"></div>В очереди<div class="lg-v">5</div></div></div>';
+  h += '</div></div>';
+  h += '</div>';
+
+  h += '<div class="sec">Критические файлы</div>';
+  h += '<div class="tw"><table><thead><tr><th>Файл</th><th>Нарушение</th><th>Класс</th><th>Статус</th></tr></thead><tbody>';
+  h += '<tr><td style="font-weight:600;color:var(--th)">deviant_drugs.mp4</td><td style="color:var(--rd)">Наркотики</td><td><span class="badge br">К1.3</span></td><td><span class="badge br">Заблокировано</span></td></tr>';
+  h += '<tr><td style="font-weight:600;color:var(--th)">Калашников_С01.mp4</td><td style="color:var(--rd)">Насилие</td><td><span class="badge br">К2.3</span></td><td><span class="badge by">На рассмотрении</span></td></tr>';
+  h += '<tr><td style="font-weight:600;color:var(--th)">Реклама_казино.ts</td><td style="color:var(--rd)">Казино</td><td><span class="badge br">К7.1</span></td><td><span class="badge br">Заблокировано</span></td></tr>';
+  h += '</tbody></table></div>';
+  return h;
+}
+
+function pageMark() {
+  var data = [{l:'Чисто (0+)',v:18,c:'#2cd494',p:38},{l:'12+',v:8,c:'#38c0d4',p:17},{l:'16+',v:12,c:'#6898e8',p:26},{l:'18+',v:6,c:'#d4b838',p:13},{l:'Запрещено',v:3,c:'#e45878',p:6}];
+  var h = '<div class="pg-t">Маркировка</div><div class="pg-d">Распределение по возрастным ограничениям</div>';
+
+  h += '<div class="g"><div class="c" style="min-width:300px"><div class="c-t">Диаграмма</div><div class="dw">';
+  h += donut(data, 120, '47', 'файлов');
+  h += '<div class="lg">';
+  for (var i = 0; i < data.length; i++) {
+    h += '<div class="lg-i"><div class="lg-d" style="background:' + data[i].c + '"></div>' + data[i].l + '<div class="lg-v">' + data[i].v + ' <span style="font-weight:400;color:var(--t3)">(' + data[i].p + '%)</span></div></div>';
+  }
+  h += '</div></div></div>';
+
+  h += '<div class="c" style="min-width:240px"><div class="c-t">Гистограмма</div>';
+  for (var i = 0; i < data.length; i++) {
+    h += '<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:2px"><span>' + data[i].l + '</span><span style="font-weight:600;color:var(--th)">' + data[i].v + '</span></div><div class="bar"><div class="bar-f" style="width:' + (data[i].v / 18 * 100) + '%;background:' + data[i].c + '"></div></div></div>';
+  }
+  h += '</div></div>';
+
+  h += '<div class="sec">На редактуре</div>';
+  h += '<div class="tw"><table><thead><tr><th>Файл</th><th>Маркировка</th><th>Задание</th><th>Статус</th></tr></thead><tbody>';
+  h += '<tr><td style="font-weight:600;color:var(--th)">Калашников_С01.mp4</td><td><span class="badge br">18+</span></td><td style="color:var(--t2)">Убрать курение</td><td><span class="badge bw">В работе</span></td></tr>';
+  h += '<tr><td style="font-weight:600;color:var(--th)">Широкая_река_Э06.mp4</td><td><span class="badge br">18+</span></td><td style="color:var(--t2)">Дисклеймер</td><td><span class="badge bg">Готово</span></td></tr>';
+  h += '<tr><td style="font-weight:600;color:var(--th)">Реклама_вечер.ts</td><td><span class="badge br">Запрет</span></td><td style="color:var(--t2)">Удалить казино</td><td><span class="badge bq">Ожидает</span></td></tr>';
+  h += '</tbody></table></div>';
+  return h;
+}
+
+function pageTeam() {
+  var team = TD[tp].t;
+  var tf = 0, tv = 0, te = 0;
+  for (var i = 0; i < team.length; i++) { tf += team[i].f; tv += team[i].v; te += team[i].e; }
+  var pct = tf > 0 ? Math.round(tv / tf * 100) : 0;
+
+  var h = '<div class="pg-t">Команда</div><div class="pg-d">Статистика · ' + TD[tp].l + '</div>';
+
+  // Filter
+  h += '<div class="fb">';
+  var keys = ['week','month','quarter','year'];
+  for (var i = 0; i < keys.length; i++) {
+    h += '<button class="' + (tp === keys[i] ? 'on' : '') + '" onclick="tp=\'' + keys[i] + '\';render()">' + PL[keys[i]] + '</button>';
+  }
+  h += '</div>';
+
+  // Summary
+  h += '<div class="g">';
+  h += '<div class="c"><div class="c-t">Загружено</div><div class="c-v">' + tf + '</div><div class="c-s">за ' + PL[tp].toLowerCase() + '</div></div>';
+  h += '<div class="c"><div class="c-t">Проверено</div><div class="c-v" style="color:var(--gr)">' + tv + '</div><div class="c-s">ревизий</div></div>';
+  h += '<div class="c"><div class="c-t">Эскалировано</div><div class="c-v" style="color:var(--yl)">' + te + '</div><div class="c-s">юристу</div></div>';
+  h += '<div class="c"><div class="c-t">Продуктивность</div><div class="c-v" style="color:var(--bl)">' + pct + '%</div><div class="c-s">от загруженных</div></div>';
+  h += '</div>';
+
+  // Donut
+  var wd = [];
+  for (var i = 0; i < team.length; i++) {
+    if (team[i].f > 0 || team[i].v > 0) wd.push(team[i]);
+  }
+  if (wd.length > 0) {
+    h += '<div class="g"><div class="c" style="min-width:260px"><div class="c-t">Нагрузка</div><div class="dw">';
+    var dd = [];
+    for (var i = 0; i < wd.length; i++) dd.push({v: Math.max(wd[i].f, wd[i].v), c: wd[i].c});
+    h += donut(dd, 90, '' + tf, 'файлов');
+    h += '<div class="lg">';
+    for (var i = 0; i < wd.length; i++) {
+      h += '<div class="lg-i"><div class="lg-d" style="background:' + wd[i].c + '"></div>' + wd[i].n.split(' ')[0] + '<div class="lg-v">' + Math.max(wd[i].f, wd[i].v) + '</div></div>';
+    }
+    h += '</div></div></div></div>';
+  }
+
+  // Members
+  h += '<div class="sec">Сотрудники</div>';
+  for (var i = 0; i < team.length; i++) {
+    var t = team[i];
+    var ini = t.n.split(' ').map(function(w){return w[0];}).join('');
+    var pp = t.f > 0 ? Math.round(t.v / t.f * 100) : 0;
+    h += '<div class="c" style="margin-bottom:8px">';
+    h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">';
+    h += '<div style="width:32px;height:32px;border-radius:8px;background:' + t.c + ';display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff">' + ini + '</div>';
+    h += '<div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--th)">' + t.n + '</div><div style="font-size:9px;color:var(--t3);margin-top:1px">' + t.r + '</div></div>';
+    if (t.f > 0) h += '<div style="font-size:9px;color:var(--gr);font-weight:600">' + pp + '%</div>';
+    h += '</div>';
+    h += '<div class="g" style="margin-bottom:0">';
+    h += '<div style="text-align:center"><div style="font-size:16px;font-weight:700;color:var(--th)">' + t.f + '</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-top:2px">Загружено</div></div>';
+    h += '<div style="text-align:center"><div style="font-size:16px;font-weight:700;color:var(--gr)">' + t.v + '</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-top:2px">Проверено</div></div>';
+    h += '<div style="text-align:center"><div style="font-size:16px;font-weight:700;color:var(--yl)">' + t.e + '</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-top:2px">Эскалировано</div></div>';
+    h += '<div style="text-align:center"><div style="font-size:16px;font-weight:700;color:' + (t.p > 0 ? 'var(--rd)' : 'var(--t3)') + '">' + t.p + '</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-top:2px">В ожидании</div></div>';
+    h += '</div>';
+    if (t.f > 0) {
+      h += '<div class="bar" style="margin-top:8px"><div class="bar-f" style="width:' + pp + '%;background:var(--gr)"></div></div>';
+    }
+    h += '</div>';
+  }
+  return h;
+}
+
+render();
+</script>
+</body>
+</html>

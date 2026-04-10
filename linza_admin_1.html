@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linza Detector · Администратор</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap');
+
+[data-theme="dark"]{
+  --bg:#08080e;--bg2:#0b0b14;--sf:rgba(255,255,255,0.028);--sfh:rgba(255,255,255,0.05);
+  --sb:rgba(12,12,20,0.92);--hd:rgba(12,12,20,0.5);
+  --bd:rgba(255,255,255,0.045);--bh:rgba(255,255,255,0.09);
+  --t:#c0c4dc;--t2:#5c6490;--t3:#383e5c;--th:#dce0f4;
+  --bl:#7ca6ee;--gr:#30d89c;--rd:#ec6080;--yl:#dcc040;--pp:#9888d8;--or:#d88050;--cy:#40c8dc;
+  --ib:rgba(255,255,255,0.015);--glow:rgba(124,166,238,0.05);
+  --card-s:0 1px 8px rgba(0,0,0,0.1);
+  color-scheme:dark;
+}
+[data-theme="light"]{
+  --bg:#f0f1f6;--bg2:#e6e8f0;--sf:rgba(255,255,255,0.65);--sfh:rgba(255,255,255,0.85);
+  --sb:rgba(255,255,255,0.75);--hd:rgba(255,255,255,0.55);
+  --bd:rgba(0,0,0,0.055);--bh:rgba(0,0,0,0.09);
+  --t:#2a2e48;--t2:#585e84;--t3:#8890b0;--th:#1a1e34;
+  --bl:#3464c8;--gr:#0cac70;--rd:#dc3858;--yl:#c89808;--pp:#7434e4;--or:#d85c1c;--cy:#0888ac;
+  --ib:rgba(0,0,0,0.018);--glow:rgba(52,100,200,0.05);
+  --card-s:0 1px 4px rgba(0,0,0,0.03);
+  color-scheme:light;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--t);font-size:13px;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;}
+.app{display:flex;height:100vh;opacity:0;animation:fi .4s .05s both;overflow:hidden;}
+@keyframes fi{to{opacity:1}}
+
+/* ═══ SIDEBAR ═══ */
+.side{width:228px;background:var(--bg2);border-right:1px solid var(--bd);display:flex;flex-direction:column;flex-shrink:0;z-index:10;}
+.s-brand{padding:28px 20px 24px;border-bottom:1px solid var(--bd);}
+.s-brand svg{height:36px;width:auto;opacity:.9;display:block;}
+.s-brand-sub{font-size:9.5px;font-weight:500;color:var(--t3);letter-spacing:1.8px;text-transform:uppercase;margin-top:10px;}
+.s-org{margin:16px 12px 10px;padding:16px 18px;border-radius:14px;background:var(--sf);border:1px solid var(--bd);}
+.s-org-n{font-size:13px;font-weight:700;color:var(--th);letter-spacing:-.01em;}
+.s-org-m{font-size:11px;color:var(--t3);margin-top:5px;line-height:1.5;}
+
+.s-nav{flex:1;padding:6px 12px;overflow-y:auto;}
+.s-g{margin-bottom:24px;}
+.s-g-t{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:1.8px;padding:8px 12px 6px;opacity:.5;}
+.s-lk{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;cursor:pointer;transition:all .22s;font-size:13px;color:var(--t2);font-weight:450;border:1px solid transparent;margin-bottom:2px;}
+.s-lk:hover{background:var(--sf);color:var(--t);}
+.s-lk.on{background:rgba(124,166,238,0.04);border-color:rgba(124,166,238,0.08);color:var(--bl);font-weight:600;}
+.s-lk .dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;opacity:.35;}
+.s-lk.on .dot{opacity:1;}
+
+/* ═══ TOPBAR ═══ */
+.top{padding:0 36px;display:flex;align-items:center;gap:20px;border-bottom:1px solid var(--bd);background:var(--bg2);height:60px;flex-shrink:0;z-index:5;}
+.top-left{flex:1;}
+.top-right{display:flex;align-items:center;gap:12px;}
+.top-user{display:flex;align-items:center;gap:8px;padding:5px 14px 5px 6px;border-radius:10px;border:1px solid var(--bd);background:var(--sf);}
+.top-av{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;background:linear-gradient(135deg,#44cce0,#30a8c0);}
+.top-uname{font-size:12px;font-weight:500;color:var(--th);}
+.top-urole{font-size:10px;color:var(--t3);margin-top:1px;}
+.top-theme{width:32px;height:32px;border-radius:10px;border:1px solid var(--bd);background:var(--sf);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--t3);transition:all .2s;}
+.top-theme:hover{border-color:var(--bh);color:var(--t);}
+
+/* ═══ MAIN ═══ */
+.mn{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
+.pg{flex:1;overflow-y:auto;overflow-x:hidden;padding:36px clamp(24px,4vw,44px) 64px;}
+
+/* ═══ PIPELINE ZONE ═══ */
+.steps{display:flex;align-items:center;gap:0;margin:-36px calc(-1 * clamp(24px,4vw,44px)) 36px;padding:28px clamp(24px,4vw,44px) 24px;flex-wrap:wrap;overflow:hidden;background:rgba(124,166,238,0.012);border-bottom:1px solid rgba(124,166,238,0.06);position:relative;}
+.steps::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bl),transparent);opacity:.12;}
+.step{display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .22s;padding:11px 16px;border-radius:12px;flex:1;min-width:120px;border:1px solid transparent;}
+.step:hover{background:rgba(124,166,238,0.06);border-color:rgba(124,166,238,0.1);}
+.step:hover .step-num{border-color:var(--bl);color:var(--bl);}
+.step:hover .step-name{color:var(--th);}
+.step.on{background:rgba(124,166,238,0.08);border-color:rgba(124,166,238,0.12);}
+.step-num{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:1.5px solid var(--bd);color:var(--t3);transition:all .22s;flex-shrink:0;}
+.step.on .step-num{background:var(--bl);border-color:var(--bl);color:#fff;box-shadow:0 2px 12px rgba(124,166,238,0.2);}
+.step.done .step-num{background:var(--gr);border-color:var(--gr);color:#fff;}
+.step-info{flex:1;min-width:0;}
+.step-name{font-size:12.5px;font-weight:600;color:var(--t2);transition:color .2s;}
+.step.on .step-name{color:var(--th);}
+.step.done .step-name{color:var(--gr);}
+.step-desc{font-size:10px;color:var(--t3);margin-top:2px;}
+.step-line{width:20px;height:1px;background:var(--bd);flex-shrink:0;}
+
+/* ═══ SECTION ═══ */
+.section{margin-bottom:36px;animation:su .4s cubic-bezier(.22,1,.36,1) both;}
+@keyframes su{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.sec-title{font-size:20px;font-weight:700;color:var(--th);letter-spacing:-.03em;margin-bottom:8px;}
+.sec-desc{font-size:12.5px;color:var(--t2);margin-bottom:28px;line-height:1.7;max-width:680px;font-weight:400;}
+
+/* ═══ CARDS ═══ */
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:24px 26px;margin-bottom:14px;box-shadow:var(--card-s);transition:all .25s;}
+.card:hover{border-color:var(--bh);}
+
+/* ═══ PROFILE SELECTOR ═══ */
+.profiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:24px;}
+.profile{padding:20px 16px;border-radius:14px;background:var(--ib);border:2px solid var(--bd);cursor:pointer;transition:all .28s;text-align:center;position:relative;overflow:hidden;}
+.profile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .2s;}
+.profile:hover{border-color:var(--bh);background:var(--sf);transform:translateY(-1px);}
+.profile.on{background:var(--glow);transform:translateY(-2px);}
+.profile.on::before{opacity:1;}
+.profile-check{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:6px;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;transition:all .2s;}
+.profile.on .profile-check{background:var(--gr);border-color:var(--gr);color:#fff;}
+.profile-icon{font-size:28px;margin-bottom:10px;display:block;line-height:1;}
+.profile-name{font-size:12px;font-weight:600;color:var(--th);margin-bottom:4px;}
+.profile-desc{font-size:9.5px;color:var(--t3);line-height:1.45;}
+
+/* ═══ CONTENT TYPES ═══ */
+.ct-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.ct-item{padding:12px 14px;border-radius:12px;border:1.5px solid var(--bd);background:var(--ib);cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:10px;flex:1 1 130px;min-width:120px;}
+.ct-item:hover{border-color:var(--bh);background:var(--sf);}
+.ct-item.on{background:var(--glow);}
+.ct-mark{width:20px;height:20px;border-radius:7px;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;transition:all .2s;flex-shrink:0;}
+.ct-item.on .ct-mark{border-color:var(--gr);background:var(--gr);color:#fff;}
+.ct-symbol{font-size:11px;font-weight:700;width:18px;text-align:center;flex-shrink:0;}
+.ct-label{font-size:11px;font-weight:500;color:var(--th);overflow-wrap:break-word;word-break:break-word;min-width:0;}
+
+/* ═══ COMPLIANCE PLATFORM SELECTOR ═══ */
+.platforms{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:24px;}
+.platform{padding:16px;border-radius:14px;background:var(--ib);border:1.5px solid var(--bd);cursor:pointer;transition:all .25s;position:relative;}
+.platform:hover{border-color:var(--bh);background:var(--sf);}
+.platform.on{background:var(--glow);}
+.platform.on .plat-check{background:var(--bl);border-color:var(--bl);color:#fff;}
+.plat-check{position:absolute;top:10px;right:10px;width:16px;height:16px;border-radius:5px;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:9px;color:transparent;transition:all .2s;}
+.plat-name{font-size:12px;font-weight:600;color:var(--th);margin-bottom:4px;}
+.plat-npa{display:flex;gap:3px;flex-wrap:wrap;margin-top:8px;}
+.npa-tag{font-size:7.5px;font-weight:600;padding:2px 6px;border-radius:4px;background:rgba(124,166,238,.06);border:1px solid rgba(124,166,238,.12);color:var(--bl);}
+.plat-desc{font-size:9px;color:var(--t3);line-height:1.45;margin-top:4px;}
+
+/* ═══ AUTO MATRIX ═══ */
+.matrix-wrap{overflow-x:auto;margin-top:16px;}
+.matrix{width:100%;border-collapse:separate;border-spacing:0;font-size:10px;}
+.matrix th{padding:8px 6px;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);text-align:center;border-bottom:1.5px solid var(--bd);position:sticky;top:0;background:var(--bg);z-index:2;}
+.matrix th:first-child{text-align:left;min-width:160px;}
+.matrix td{padding:7px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.02);transition:background .12s;}
+.matrix td:first-child{text-align:left;font-weight:500;color:var(--t);}
+.matrix tr:hover td{background:var(--sf);}
+.matrix .cls-header td{font-weight:600;color:var(--th);font-size:11px;border-top:1.5px solid var(--bd);padding-top:10px;background:var(--ib);}
+.mx-icon{font-size:12px;}
+.mx-diff td{background:rgba(124,166,238,0.015);}
+
+/* ═══ SOURCES ═══ */
+.source-list{display:flex;flex-direction:column;gap:6px;}
+.source{padding:14px 16px;border-radius:14px;background:var(--ib);border:1px solid var(--bd);display:flex;align-items:center;gap:14px;transition:all .2s;}
+.source:hover{border-color:var(--bh);background:var(--sf);}
+.source-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--sf);border:1px solid var(--bd);color:var(--t2);}
+.source-n{font-size:11.5px;font-weight:600;color:var(--th);}
+.source-d{font-size:9.5px;color:var(--t3);margin-top:2px;}
+.source-toggle{width:36px;height:20px;border-radius:10px;border:1.5px solid var(--bd);cursor:pointer;position:relative;transition:all .25s;flex-shrink:0;}
+.source-toggle::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:7px;background:var(--t3);transition:all .25s;}
+.source-toggle.on{background:rgba(48,216,156,.15);border-color:rgba(48,216,156,.3);}
+.source-toggle.on::after{left:18px;background:var(--gr);}
+
+/* ═══ SUMMARY ═══ */
+.summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:20px;}
+.sum-card{padding:18px;border-radius:14px;background:var(--sf);border:1px solid var(--bd);text-align:center;}
+.sum-val{font-size:24px;font-weight:700;color:var(--th);letter-spacing:-.04em;font-variant-numeric:tabular-nums;line-height:1;}
+.sum-label{font-size:9px;color:var(--t3);margin-top:6px;text-transform:uppercase;letter-spacing:.8px;}
+
+/* ═══ BUTTONS ═══ */
+.btn{padding:9px 18px;border-radius:10px;border:1px solid var(--bd);background:var(--sf);color:var(--t2);font-size:11px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s;font-family:inherit;}
+.btn:hover{border-color:var(--bh);color:var(--t);background:var(--sfh);}
+.btn-p{background:var(--glow);border-color:rgba(124,166,238,0.12);color:var(--bl);}
+.btn-p:hover{background:rgba(124,166,238,0.1);}
+.btn-g{background:rgba(48,216,156,0.06);border-color:rgba(48,216,156,0.14);color:var(--gr);}
+.btn-lg{padding:12px 28px;font-size:12px;font-weight:600;}
+
+.row{display:flex;gap:14px;}.row>*{flex:1;}
+
+/* ═══ ARCHIVE NOTE ═══ */
+.archive-note{padding:14px 18px;border-radius:12px;background:rgba(64,200,220,.04);border:1px solid rgba(64,200,220,.1);font-size:10.5px;color:var(--t2);line-height:1.6;margin-top:10px;display:none;}
+.archive-note.visible{display:block;}
+.archive-note strong{color:var(--cy);}
+
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(128,128,128,0.1);border-radius:2px;}
+</style>
+</head>
+<body data-theme="dark">
+<div class="app">
+
+<div class="side">
+  <div class="s-brand"><svg viewBox="0 0 560 210"><defs><linearGradient id="lg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#4478FF"/><stop offset="100%" stop-color="#2256EE"/></linearGradient></defs><text x="16" y="128" font-family="'Barlow','Arial Black','Impact',sans-serif" font-weight="900" font-size="122" fill="url(#lg)" textLength="448" lengthAdjust="spacingAndGlyphs">LINZA</text><text x="16" y="180" font-family="'Barlow','Arial Black',sans-serif" font-weight="700" font-size="36" fill="url(#lg)" textLength="448" lengthAdjust="spacing">DETECTOR</text></svg><div class="s-brand-sub">Платформа проверки контента</div></div>
+  <div class="s-org">
+    <div class="s-org-n">ООО «ЛАДА-МЕДИА»</div>
+    <div class="s-org-m" style="margin-top:6px;">
+      <a href="https://tvtogliatti24.ru/" target="_blank" rel="noopener" style="color:var(--bl);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:4px;">Тольятти 24 <span style="font-size:8px;opacity:.5;">↗</span></a>
+    </div>
+    <div class="s-org-m">Тариф L · 1 000 ч / год</div>
+  </div>
+  <div class="s-nav" id="sNav"></div>
+</div>
+
+<div class="mn">
+  <div class="top">
+    <div class="top-left"></div>
+    <div class="top-right">
+      <div class="top-user"><div class="top-av">ПД</div><div><div class="top-uname">Павленко Д.</div><div class="top-urole">Администратор</div></div></div>
+      <div class="top-theme" onclick="toggleTheme()" id="themeBtn">◐</div>
+    </div>
+  </div>
+  <div class="pg" id="page"></div>
+</div>
+
+</div>
+
+<script>
+// ═══ STATE ═══
+let curStep = 0;
+let theme = 'dark';
+
+let state = {
+  segment: 'tv',
+  contentTypes: ['film','news','ad','archive'],
+  platforms: ['fed_tv','online'],
+  sources: [
+    {id:'local',n:'Локальное хранилище',d:'/media/archive · NAS',ico:'◧',on:true},
+    {id:'s3',n:'S3-хранилище',d:'Amazon S3 / MinIO · Bucket sync',ico:'◆',on:false},
+    {id:'yadisk',n:'Яндекс.Диск',d:'Облако Яндекса · OAuth',ico:'▣',on:false},
+    {id:'gdrive',n:'Google Drive',d:'Google Workspace · OAuth',ico:'▲',on:false},
+    {id:'ftp',n:'FTP сервер',d:'ftp://media.tv24.ru',ico:'◇',on:false},
+    {id:'api',n:'API загрузка',d:'REST API · Webhook',ico:'○',on:false}
+  ]
+};
+
+const SEGMENTS = [
+  {id:'tv',ico:'📺',n:'Телеканал',d:'Эфирное вещание, архивы, предэфирная и постэфирная проверка'},
+  {id:'production',ico:'🎬',n:'Продакшн-студия',d:'Фильмы, сериалы, форматы. Прокатное удостоверение'},
+  {id:'ott',ico:'🖥',n:'Онлайн-кинотеатр',d:'Каталог, batch-проверка, API-интеграция'},
+  {id:'ugc',ico:'👥',n:'UGC-платформа',d:'Загрузки пользователей, модерация потока'}
+];
+
+const CT = [
+  {id:'film',sym:'◆',n:'Худож. кино и сериалы',c:'#9888d8'},
+  {id:'doc',sym:'▣',n:'Документальное кино',c:'#7ca6ee'},
+  {id:'news',sym:'▲',n:'Новостной контент',c:'#30d89c'},
+  {id:'ad',sym:'●',n:'Реклама (вкл. трейлеры)',c:'#ec6080'},
+  {id:'live',sym:'◈',n:'Live-эфир',c:'#d88050'},
+  {id:'ugc',sym:'◇',n:'UGC (пользовательский)',c:'#dcc040'},
+  {id:'archive',sym:'◇',n:'Архивный (до 1991)',c:'#40c8dc'}
+];
+
+const PLATFORMS = [
+  {id:'fed_tv',n:'Федеральный ТВ-эфир',d:'Все 7 классов. Абс. запрет мата в эфире.',npa:['436-ФЗ','38-ФЗ','Закон о СМИ','КоАП 13.21'],c:'#30d89c'},
+  {id:'online',n:'Онлайн-платформа',d:'Усиленный контроль. Оборотные штрафы.',npa:['149-ФЗ','436-ФЗ','КоАП 13.41','Указ №809'],c:'#7ca6ee'},
+  {id:'cinema',n:'Кинопрокат',d:'Прокатное удостоверение. ФЗ №324 с 01.03.2026.',npa:['126-ФЗ','ФЗ №324','Указ №809','436-ФЗ'],c:'#9888d8'},
+  {id:'digital_tv',n:'Цифровое ТВ / IPTV',d:'Онлайн-версии каналов.',npa:['149-ФЗ','436-ФЗ','Указ №809'],c:'#40c8dc'}
+];
+
+// Recommended content types per segment
+const SEGMENT_CT = {
+  tv: ['film','news','ad','archive','live','doc'],
+  production: ['film','doc','ad'],
+  ott: ['film','doc','ad','archive'],
+  ugc: ['ugc','live','ad']
+};
+
+// Recommended platforms per segment
+const SEGMENT_PL = {
+  tv: ['fed_tv','online','digital_tv'],
+  production: ['cinema','online'],
+  ott: ['online'],
+  ugc: ['online']
+};
+
+const STEPS = [
+  {n:'Профиль',d:'Сегмент рынка'},
+  {n:'Контент',d:'Типы контента'},
+  {n:'Платформы',d:'Под что проверяем'},
+  {n:'Источники',d:'Откуда файлы'},
+  {n:'Команда',d:'Пользователи и роли'},
+  {n:'Обзор',d:'Итоговая конфигурация'}
+];
+
+// Roles per segment
+const ROLES_DATA = {
+  tv:[
+    {id:'editor',n:'Главный редактор',d:'Контроль всех направлений',c:'#9888d8'},
+    {id:'operator',n:'Оператор вещания',d:'Загрузка, ревизия результатов',c:'#30d89c'},
+    {id:'lawyer',n:'Юрист',d:'Правовая оценка, заключения',c:'#7ca6ee'},
+    {id:'admin',n:'Администратор',d:'Настройки, пользователи, тариф',c:'#40c8dc'}
+  ],
+  production:[
+    {id:'editor',n:'Продюсер',d:'Инициирует проверку, утверждает',c:'#9888d8'},
+    {id:'operator',n:'Выпускающий редактор',d:'Работает с результатами AI',c:'#30d89c'},
+    {id:'lawyer',n:'Юрист',d:'Правовая оценка, прокатное удост.',c:'#7ca6ee'},
+    {id:'admin',n:'Администратор',d:'Настройки, интеграции',c:'#40c8dc'}
+  ],
+  ott:[
+    {id:'operator',n:'Контент-менеджер',d:'Управление каталогом, batch',c:'#30d89c'},
+    {id:'lawyer',n:'Юрист',d:'Compliance-решения, отчётность',c:'#7ca6ee'},
+    {id:'admin',n:'CTO / Интеграции',d:'API, Webhook, CMS',c:'#40c8dc'},
+    {id:'editor',n:'Руководитель',d:'Аналитика, тренды',c:'#9888d8'}
+  ],
+  ugc:[
+    {id:'editor',n:'Head of Trust & Safety',d:'Политики, массовые инциденты',c:'#ec6080'},
+    {id:'operator',n:'Тимлид модерации',d:'Управление командой',c:'#dcc040'},
+    {id:'admin',n:'Администратор',d:'Настройки, интеграции',c:'#40c8dc'}
+  ]
+};
+
+const TEAM_DATA = [
+  {n:'Павленко Дмитрий',email:'pavlenko.dmitry@ladamedia.ru',roles:['admin']},
+  {n:'Алистратова Наталья',email:'alistratova.nv@ladamedia.ru',roles:['operator','lawyer']},
+  {n:'Пучков Владимир',email:'vv.puchkov@ladamedia.ru',roles:['editor']}
+];
+
+// ═══ RUSSIAN PLURALIZATION ═══
+function plural(n, one, two, five) {
+  const abs = Math.abs(n) % 100;
+  const last = abs % 10;
+  if (abs >= 11 && abs <= 19) return five;
+  if (last === 1) return one;
+  if (last >= 2 && last <= 4) return two;
+  return five;
+}
+
+function pTypes(n) { return n + ' ' + plural(n, 'тип контента', 'типа контента', 'типов контента'); }
+function pPlatforms(n) { return n + ' ' + plural(n, 'платформа', 'платформы', 'платформ'); }
+function pUsers(n) { return n + ' ' + plural(n, 'пользователь', 'пользователя', 'пользователей'); }
+function pSources(n) { return n + ' ' + plural(n, 'источник', 'источника', 'источников'); }
+
+// ═══ MATRIX DATA ═══
+const CLASSES = [
+  {id:'К1',n:'Наркотические вещества, курение, инъекции, алкоголь',subs:[
+    {id:'1.1',n:'Демонстрация табачных / курительных изделий',m:{film:'mark',doc:'mark',news:'check',ad:'block',live:'mark',ugc:'check',archive:'exempt'}},
+    {id:'1.2',n:'Демонстрация алкоголя в рекламном контексте',m:{film:'mark',doc:'mark',news:'check',ad:'special',live:'mark',ugc:'check',archive:'exempt'}},
+    {id:'1.3',n:'Демонстрация / пропаганда веществ, изменяющих сознание',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'special'}},
+    {id:'1.4',n:'Вовлечение н/л в употребление запрещённых веществ',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}}
+  ]},
+  {id:'К2',n:'Девиантное и асоциальное поведение',subs:[
+    {id:'2.1',n:'Воровство, разбой, вандализм — романтизация',m:{film:'check',doc:'check',news:'check',ad:'check',live:'check',ugc:'block',archive:'exempt'}},
+    {id:'2.2',n:'Нецензурная брань / ненормативная лексика',m:{film:'mark',doc:'mark',news:'block',ad:'block',live:'block',ugc:'mark',archive:'exempt'}},
+    {id:'2.3',n:'Призывы к насилию / разжигание ненависти',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}},
+    {id:'2.4',n:'Психологическое давление: травля, буллинг, запугивание',m:{film:'check',doc:'check',news:'check',ad:'check',live:'check',ugc:'block',archive:'check'}},
+    {id:'2.5',n:'Насилие в отношении детей',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}},
+    {id:'2.6',n:'Побуждение детей к суициду / причинению вреда здоровью',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}}
+  ]},
+  {id:'К3',n:'Терроризм, экстремизм, нацизм — КоАП ст.20.3',subs:[
+    {id:'3.1',n:'Нацистская символика и атрибутика',m:{film:'special',doc:'special',news:'special',ad:'block',live:'block',ugc:'block',archive:'exempt'}},
+    {id:'3.2',n:'Реабилитация нацизма / фальсификация истории ВОВ',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}},
+    {id:'3.3',n:'Пропаганда терроризма и запрещённых организаций',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}},
+    {id:'3.4',n:'Дискредитация ВС РФ / фейки о деятельности армии',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'check'}},
+    {id:'3.5',n:'Призывы к массовым беспорядкам / экстремизму',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}}
+  ]},
+  {id:'К4',n:'Эротика / порнография',subs:[
+    {id:'4.1',n:'Информация эротического характера',m:{film:'mark',doc:'mark',news:'block',ad:'block',live:'block',ugc:'mark',archive:'mark'}},
+    {id:'4.2',n:'Информация порнографического характера (незаконный оборот)',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}},
+    {id:'4.3',n:'Детская порнография / педофилия',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}}
+  ]},
+  {id:'К5',n:'Уничижение традиций и семейных ценностей',subs:[
+    {id:'5.1',n:'Пропаганда ЛГБТ+ отношений и идентичности',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'exempt'}},
+    {id:'5.2',n:'Пропаганда смены пола / трансгендерности',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'exempt'}},
+    {id:'5.3',n:'Пропаганда отказа от деторождения (чайлдфри)',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'check'}},
+    {id:'5.4',n:'Пропаганда педофилии',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}},
+    {id:'5.5',n:'Дискредитация института семьи и традиционных ценностей',m:{film:'block',doc:'special',news:'check',ad:'check',live:'check',ugc:'check',archive:'exempt'}}
+  ]},
+  {id:'К6',n:'Антипатриотический контент: иноагенты, реклама, религия',subs:[
+    {id:'6.1',n:'Нарушение требований к материалам иностранных агентов',m:{film:'check',doc:'check',news:'block',ad:'block',live:'block',ugc:'block',archive:'na'}},
+    {id:'6.2',n:'Нарушения в рекламе: ЕРИР, запрещённые ресурсы',m:{film:'na',doc:'na',news:'check',ad:'block',live:'check',ugc:'special',archive:'na'}},
+    {id:'6.3',n:'Оскорбление религиозных чувств / дискредитация традиций',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'special'}}
+  ]},
+  {id:'К7',n:'Тотализаторы, букмекеры, казино — лудомания',subs:[
+    {id:'7.1',n:'Реклама и продвижение нелегальных онлайн-казино',m:{film:'na',doc:'na',news:'check',ad:'block',live:'check',ugc:'block',archive:'na'}},
+    {id:'7.2',n:'Реклама букмекеров и тотализаторов с нарушениями',m:{film:'na',doc:'na',news:'special',ad:'block',live:'special',ugc:'check',archive:'na'}},
+    {id:'7.3',n:'Вовлечение несовершеннолетних в азартные игры',m:{film:'block',doc:'block',news:'block',ad:'block',live:'block',ugc:'block',archive:'block'}},
+    {id:'7.4',n:'Пропаганда лудомании / симуляторы казино без лицензии',m:{film:'na',doc:'check',news:'check',ad:'check',live:'special',ugc:'block',archive:'na'}}
+  ]}
+];
+
+const ST_ICONS = {block:'⛔',mark:'⚠️',check:'✓',na:'—',special:'◈',exempt:'🛡'};
+const ST_COLORS = {block:'var(--rd)',mark:'var(--yl)',check:'var(--gr)',na:'var(--t3)',special:'var(--pp)',exempt:'var(--cy)'};
+
+// ═══ NAV ═══
+const NAV = [
+  {s:'Настройка',items:[{id:0,nm:'Профиль'},{id:1,nm:'Контент'},{id:2,nm:'Платформы'},{id:3,nm:'Источники'},{id:4,nm:'Команда'},{id:5,nm:'Обзор'}]},
+];
+
+function renderNav(){
+  document.getElementById('sNav').innerHTML = NAV.map(s =>
+    `<div class="s-g"><div class="s-g-t">${s.s}</div>${s.items.map(i =>
+      `<div class="s-lk${i.id===curStep?' on':''}" onclick="goStep(${i.id})"><span class="dot" style="background:${i.id===curStep?'var(--bl)':'var(--t3)'}"></span>${i.nm}</div>`
+    ).join('')}</div>`
+  ).join('');
+}
+
+// ═══ RENDER ═══
+function render(){
+  renderNav();
+  renderSteps();
+  renderPage();
+}
+
+function renderSteps(){
+  // included in page render
+}
+
+function renderPage(){
+  const pg = document.getElementById('page');
+  
+  // Steps indicator
+  let stepsHtml = '<div class="steps">';
+  STEPS.forEach((s,i) => {
+    if(i > 0) stepsHtml += '<div class="step-line"></div>';
+    const cls = i === curStep ? 'on' : i < curStep ? 'done' : '';
+    stepsHtml += `<div class="step ${cls}" onclick="goStep(${i})"><div class="step-num">${i < curStep ? '✓' : i+1}</div><div class="step-info"><div class="step-name">${s.n}</div><div class="step-desc">${s.d}</div></div></div>`;
+  });
+  stepsHtml += '</div>';
+
+  let content = '';
+  
+  if(curStep === 0) content = renderSegment();
+  else if(curStep === 1) content = renderContent();
+  else if(curStep === 2) content = renderPlatforms();
+  else if(curStep === 3) content = renderSources();
+  else if(curStep === 4) content = renderTeam();
+  else if(curStep === 5) content = renderOverview();
+
+  pg.innerHTML = stepsHtml + content + renderNavButtons();
+}
+
+function renderSegment(){
+  return `<div class="section">
+    <div class="sec-title">Сегмент рынка</div>
+    <div class="sec-desc">Определяет набор ролей, рекомендуемые типы контента и доступные compliance-профили. Выберите основной сегмент вашей организации.</div>
+    <div class="profiles">
+      ${SEGMENTS.map(s => `
+        <div class="profile${state.segment===s.id?' on':''}" onclick="setSeg('${s.id}')" style="${state.segment===s.id?`border-color:${PLATFORMS.find(p=>SEGMENT_PL[s.id]?.includes(p.id))?.c||'var(--bl)'}30`:''}" >
+          <div class="profile-check">${state.segment===s.id?'✓':''}</div>
+          <div class="profile-icon">${s.ico}</div>
+          <div class="profile-name">${s.n}</div>
+          <div class="profile-desc">${s.d}</div>
+          <div class="profile::before" style="${state.segment===s.id?`background:${PLATFORMS.find(p=>SEGMENT_PL[s.id]?.includes(p.id))?.c||'var(--bl)'}`:''}" ></div>
+        </div>
+      `).join('')}
+    </div>
+  </div>`;
+}
+
+function renderContent(){
+  const recommended = SEGMENT_CT[state.segment] || [];
+  return `<div class="section">
+    <div class="sec-title">Типы контента</div>
+    <div class="sec-desc">Какой контент будет проверяться. Определяет compliance-матрицу — какие классы нарушений и НПА применяются. Рекомендованные для вашего сегмента отмечены автоматически.</div>
+    <div class="ct-grid">
+      ${CT.map(t => {
+        const isOn = state.contentTypes.includes(t.id);
+        const isRec = recommended.includes(t.id);
+        return `<div class="ct-item${isOn?' on':''}" onclick="toggleCT('${t.id}')" style="${isOn?`border-color:${t.c}20`:''}">
+          <div class="ct-mark">${isOn?'✓':''}</div>
+          <div class="ct-symbol" style="color:${t.c}">${t.sym}</div>
+          <div><div class="ct-label">${t.n}</div>${isRec?'<div style="font-size:8px;color:var(--gr);margin-top:2px">Рекомендован</div>':''}</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="archive-note${state.contentTypes.includes('archive')?' visible':''}" id="archiveNote">
+      <strong>🛡 Архивный контент (до 1991):</strong> Система учитывает исключение «историко-художественная ценность» по 436-ФЗ ч.2 ст.1. Курение, алкоголь, нацистская символика в советских военных фильмах оцениваются в контексте эпохи.
+    </div>
+  </div>`;
+}
+
+function renderPlatforms(){
+  const recommended = SEGMENT_PL[state.segment] || [];
+  return `<div class="section">
+    <div class="sec-title">Целевые платформы</div>
+    <div class="sec-desc">Под какие требования проверяется контент. Один файл может проверяться под несколько платформ одновременно — система покажет различия в требованиях.</div>
+    <div class="platforms">
+      ${PLATFORMS.map(p => {
+        const isOn = state.platforms.includes(p.id);
+        const isRec = recommended.includes(p.id);
+        return `<div class="platform${isOn?' on':''}" onclick="togglePlatform('${p.id}')" style="${isOn?`border-color:${p.c}25`:''}">
+          <div class="plat-check">${isOn?'✓':''}</div>
+          <div class="plat-name">${p.n}${isRec?' <span style="font-size:8px;color:var(--gr)">рек.</span>':''}</div>
+          <div class="plat-desc">${p.d}</div>
+          <div class="plat-npa">${p.npa.map(n=>`<span class="npa-tag">${n}</span>`).join('')}</div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div class="sec-title" style="font-size:12px;margin-top:8px">Автоматическая compliance-матрица</div>
+    <div class="sec-desc">Сформирована на основе выбранных типов контента и платформ. Показаны только активные типы.</div>
+    ${renderMatrix()}
+    <div style="display:flex;gap:16px;margin-top:10px;font-size:9px;color:var(--t3);flex-wrap:wrap">
+      <span>⛔ Запрет</span><span>⚠️ Маркировка</span><span style="color:var(--gr)">✓ Проверка</span><span style="color:var(--pp)">◈ Особое</span><span style="color:var(--cy)">🛡 Исключение ИХЦ</span><span>— Не применимо</span>
+    </div>
+  </div>`;
+}
+
+function renderMatrix(){
+  const types = CT.filter(t => state.contentTypes.includes(t.id));
+  if(!types.length) return '<div style="padding:20px;text-align:center;color:var(--t3)">Выберите типы контента</div>';
+
+  let html = '<div class="matrix-wrap"><table class="matrix"><thead><tr><th>Подкласс</th>';
+  types.forEach(t => html += `<th style="color:${t.c}">${t.sym} ${t.n}</th>`);
+  html += '</tr></thead><tbody>';
+
+  CLASSES.forEach(cls => {
+    html += `<tr class="cls-header"><td colspan="${types.length+1}">${cls.id} · ${cls.n}</td></tr>`;
+    cls.subs.forEach(sub => {
+      const vals = types.map(t => sub.m[t.id] || 'na');
+      const hasDiff = new Set(vals).size > 1;
+      html += `<tr class="${hasDiff?'mx-diff':''}"><td style="padding-left:16px;font-size:10px"><span style="color:var(--bl);font-family:monospace;font-weight:600;margin-right:4px">${sub.id}</span>${sub.n}</td>`;
+      vals.forEach(v => {
+        html += `<td><span class="mx-icon" style="color:${ST_COLORS[v]};opacity:${v==='na'?.3:1}">${ST_ICONS[v]}</span></td>`;
+      });
+      html += '</tr>';
+    });
+  });
+
+  html += '</tbody></table></div>';
+  return html;
+}
+
+function renderSources(){
+  return `<div class="section">
+    <div class="sec-title">Источники файлов</div>
+    <div class="sec-desc">Откуда система будет получать файлы для проверки. Включите нужные источники. Можно добавить позже.</div>
+    <div class="source-list">
+      ${state.sources.map(s => `
+        <div class="source">
+          <div class="source-ico">${s.ico}</div>
+          <div style="flex:1"><div class="source-n">${s.n}</div><div class="source-d">${s.d}</div></div>
+          <div class="source-toggle${s.on?' on':''}" onclick="toggleSource('${s.id}')"></div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="margin-top:14px"><button class="btn btn-p">+ Добавить источник</button></div>
+  </div>`;
+}
+
+function renderOverview(){
+  const seg = SEGMENTS.find(s=>s.id===state.segment);
+  const cts = CT.filter(t=>state.contentTypes.includes(t.id));
+  const plats = PLATFORMS.filter(p=>state.platforms.includes(p.id));
+  const srcs = state.sources.filter(s=>s.on);
+
+  return `<div class="section">
+    <div class="sec-title">Обзор конфигурации</div>
+    <div class="sec-desc">Проверьте настройки перед сохранением. Всё можно изменить позже.</div>
+
+    <div class="summary">
+      <div class="sum-card"><div class="sum-val">${seg.ico}</div><div class="sum-label">${seg.n}</div></div>
+      <div class="sum-card"><div class="sum-val">${cts.length}</div><div class="sum-label">${pTypes(cts.length)}</div></div>
+      <div class="sum-card"><div class="sum-val">${plats.length}</div><div class="sum-label">${pPlatforms(plats.length)}</div></div>
+      <div class="sum-card"><div class="sum-val">${srcs.length}</div><div class="sum-label">${pSources(srcs.length)}</div></div>
+      <div class="sum-card"><div class="sum-val">${TEAM_DATA.length}</div><div class="sum-label">${pUsers(TEAM_DATA.length)}</div></div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div style="font-size:11px;font-weight:600;color:var(--th);margin-bottom:12px">Типы контента</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        ${cts.map(t => `<div style="padding:6px 12px;border-radius:8px;background:${t.c}08;border:1px solid ${t.c}18;font-size:10px;font-weight:500;color:${t.c};display:flex;align-items:center;gap:5px"><span style="font-size:9px">${t.sym}</span>${t.n}</div>`).join('')}
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:11px;font-weight:600;color:var(--th);margin-bottom:12px">Целевые платформы</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        ${plats.map(p => `<div style="padding:6px 12px;border-radius:8px;background:${p.c}08;border:1px solid ${p.c}18;font-size:10px;font-weight:500;color:${p.c}">${p.n}</div>`).join('')}
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:11px;font-weight:600;color:var(--th);margin-bottom:12px">Источники (${srcs.length} активных)</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        ${srcs.map(s => `<div style="padding:6px 12px;border-radius:8px;background:var(--ib);border:1px solid var(--bd);font-size:10px;color:var(--t)">${s.ico} ${s.n}</div>`).join('')}
+      </div>
+    </div>
+
+    ${renderMatrix()}
+    <div style="display:flex;gap:16px;margin-top:8px;font-size:9px;color:var(--t3)">
+      <span>⛔ Запрет</span><span>⚠️ Маркировка</span><span style="color:var(--gr)">✓ Проверка</span><span style="color:var(--pp)">◈ Особое</span><span style="color:var(--cy)">🛡 ИХЦ</span><span>— Н/П</span>
+    </div>
+  </div>`;
+}
+
+function renderNavButtons(){
+  return `<div style="display:flex;justify-content:space-between;margin-top:28px;padding-top:20px;border-top:1px solid var(--bd)">
+    <div>${curStep>0?`<button class="btn" onclick="goStep(${curStep-1})">← Назад</button>`:''}</div>
+    <div>${curStep<5?`<button class="btn btn-p btn-lg" onclick="goStep(${curStep+1})">Далее →</button>`:`<button class="btn btn-g btn-lg" onclick="alert('Конфигурация сохранена')">Сохранить конфигурацию</button>`}</div>
+  </div>`;
+}
+
+function renderTeam(){
+  const roles = ROLES_DATA[state.segment] || ROLES_DATA.tv;
+  return `<div class="section">
+    <div class="sec-title">Команда и роли</div>
+    <div class="sec-desc">Добавьте сотрудников и назначьте роли. Роли определяют доступные экраны и действия. Один пользователь может иметь несколько ролей — переключение в интерфейсе.</div>
+
+    <div style="font-size:11px;font-weight:600;color:var(--th);margin-bottom:10px">Доступные роли для сегмента «${SEGMENTS.find(s=>s.id===state.segment)?.n}»</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:24px">
+      ${roles.map(r => `
+        <div style="padding:14px;border-radius:12px;background:var(--ib);border:1px solid var(--bd);border-top:2px solid ${r.c}">
+          <div style="font-size:12px;font-weight:600;color:var(--th);margin-bottom:3px">${r.n}</div>
+          <div style="font-size:9.5px;color:var(--t3);line-height:1.4">${r.d}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div style="font-size:11px;font-weight:600;color:var(--th);margin-bottom:10px">${pUsers(TEAM_DATA.length)}</div>
+    <div class="source-list">
+      ${TEAM_DATA.map(u => {
+        const userRoles = u.roles.map(rid => {
+          const r = roles.find(x=>x.id===rid);
+          return r ? `<span style="font-size:8px;font-weight:600;padding:2px 7px;border-radius:6px;background:${r.c}10;border:1px solid ${r.c}22;color:${r.c}">${r.n}</span>` : '';
+        }).join(' ');
+        return `<div class="source">
+          <div class="source-ico" style="background:linear-gradient(135deg,var(--bl),var(--pp));border:none;color:#fff;font-size:9px;font-weight:700">${u.n.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+          <div style="flex:1">
+            <div class="source-n">${u.n}</div>
+            <div class="source-d">${u.email}</div>
+            <div style="display:flex;gap:4px;margin-top:5px">${userRoles}</div>
+          </div>
+          <button class="btn" style="font-size:10px;padding:5px 10px" onclick="alert('Редактирование ролей: ${u.n}')">Роли</button>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div style="margin-top:16px;padding:18px;border-radius:14px;border:2px dashed var(--bd);text-align:center;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--bl)';this.style.background='var(--glow)'" onmouseout="this.style.borderColor='var(--bd)';this.style.background='transparent'">
+      <div style="font-size:12px;font-weight:600;color:var(--th);margin-bottom:3px">+ Добавить сотрудника</div>
+      <div style="font-size:10px;color:var(--t3)">Укажите email, ФИО и назначьте одну или несколько ролей</div>
+    </div>
+  </div>`;
+}
+
+// ═══ ACTIONS ═══
+function setSeg(id){
+  state.segment=id;
+  state.contentTypes=[...(SEGMENT_CT[id]||[])];
+  state.platforms=[...(SEGMENT_PL[id]||[])];
+  render();
+}
+function toggleCT(id){
+  const i=state.contentTypes.indexOf(id);
+  if(i>-1)state.contentTypes.splice(i,1);else state.contentTypes.push(id);
+  render();
+}
+function togglePlatform(id){
+  const i=state.platforms.indexOf(id);
+  if(i>-1&&state.platforms.length>1)state.platforms.splice(i,1);else if(i===-1)state.platforms.push(id);
+  render();
+}
+function toggleSource(id){
+  const s=state.sources.find(x=>x.id===id);
+  if(s)s.on=!s.on;
+  render();
+}
+function goStep(n){curStep=n;render();}
+function toggleTheme(){
+  theme=theme==='dark'?'light':'dark';
+  document.body.setAttribute('data-theme',theme);
+  document.getElementById('themeBtn').textContent=theme==='dark'?'◐':'◑';
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+name: Feature Request
+description: Предложить новую функциональность
+labels: ["type: feature", "stage: planning"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Feature Request"
+  - type: textarea
+    id: problem
+    attributes:
+      label: Проблема / Мотивация
+      description: Какую проблему это решает?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Предлагаемое решение
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Рассмотренные альтернативы
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Область
+      multiple: true
+      options:
+        - frontend
+        - backend
+        - infra
+    validations:
+      required: true
+  - type: dropdown
+    id: service
+    attributes:
+      label: Затронутые сервисы
+      multiple: true
+      options:
+        - board (port 8000)
+        - storage (port 8001)
+        - analytics (port 8002)
+        - vpleer (port 8003)
+        - debug (port 8004)
+        - deploy (nginx/docker)
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерии приёмки
+      value: |
+        - [ ]
+        - [ ]

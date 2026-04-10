@@ -1,0 +1,137 @@
+# Деплой на сервер при каждом push в main/victor этого репозитория, либо вручную (workflow_dispatch).
+# Автотеги (auto-tag-on-main) по-прежнему создают версии, но отдельный запуск деплоя по тегу отключён,
+# чтобы не гонять два деплоя подряд после одного push в main.
+#
+# Секреты репозитория (Settings → Secrets → Actions):
+#   DEPLOY_HOST      — пример: 72.56.242.139
+#   DEPLOY_USER      — пример: root (лучше отдельный пользователь + sudo)
+#   DEPLOY_SSH_KEY   — один из вариантов:
+#                      • целиком файл ключа: cat gh-deploy (с -----BEGIN OPENSSH PRIVATE KEY-----)
+#                      • base64 от всего этого файла: base64 -w0 gh-deploy
+#                      • только внутренний блок base64 (начинается с b3BlbnNzaC1rZXktdjE) — тоже поддерживается
+#                      Не кладите .pub.
+#   DEPLOY_SSH_PASSPHRASE — если у ключа есть passphrase (иначе не задавать)
+#
+# Переменные (Settings → Secrets and variables → Actions → Variables):
+#   DEPLOY_ROOT      — каталог с клонами (по умолчанию /opt/linza)
+#
+# На сервере один раз: клоны рядом с Linza-deploy, docker compose из Linza-deploy, файл .env.
+
+name: Deploy production
+
+on:
+  push:
+    branches:
+      - main
+      - victor
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Ветка или тег (main, v1.2.3)'
+        required: true
+        default: 'main'
+        type: string
+
+concurrency:
+  group: linza-deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Определить ref
+        id: ref
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "REF=${{ github.event.inputs.ref }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "REF=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Собрать DEPLOY_SSH_KEY в файл (PEM или base64 от PEM)
+        id: sshkey
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${DEPLOY_SSH_KEY:-}" ]; then
+            echo "::error::DEPLOY_SSH_KEY пустой или не задан (Settings → Secrets and variables → Actions → Repository secrets)."
+            exit 1
+          fi
+          RAW=$(printf '%s' "$DEPLOY_SSH_KEY" | tr -d '\r')
+          if printf '%s' "$RAW" | grep -qF '\\n' && ! printf '%s' "$RAW" | grep -q 'BEGIN.*PRIVATE KEY'; then
+            RAW="${RAW//\\n/$'\n'}"
+          fi
+          KEY_FILE="${RUNNER_TEMP}/deploy_ssh_key"
+          TMP_BIN="${RUNNER_TEMP}/deploy_ssh_key.bin"
+          rm -f "$TMP_BIN"
+          if printf '%s' "$RAW" | grep -q 'BEGIN.*PRIVATE KEY'; then
+            printf '%s\n' "$RAW" > "$KEY_FILE"
+          else
+            STRIPPED=$(printf '%s' "$RAW" | tr -d ' \n\t\r')
+            if ! printf '%s' "$STRIPPED" | base64 -d > "$TMP_BIN" 2>/dev/null || [ ! -s "$TMP_BIN" ]; then
+              echo "::error::DEPLOY_SSH_KEY: не PEM и не валидный base64. Нужен приватный ключ или его base64-тело (openssh-key-v1)."
+              echo "На сервере: cat /path/to/gh-deploy — вставьте весь вывод, включая строки BEGIN/END."
+              exit 1
+            fi
+            if grep -a -q 'BEGIN.*PRIVATE KEY' "$TMP_BIN" 2>/dev/null; then
+              mv "$TMP_BIN" "$KEY_FILE"
+            elif [ "$(head -c 14 "$TMP_BIN")" = "openssh-key-v1" ]; then
+              rm -f "$TMP_BIN"
+              {
+                echo "-----BEGIN OPENSSH PRIVATE KEY-----"
+                printf '%s\n' "$STRIPPED" | fold -w 70
+                echo "-----END OPENSSH PRIVATE KEY-----"
+              } > "$KEY_FILE"
+            else
+              rm -f "$TMP_BIN"
+              echo "::error::После base64 -d нет ни текстового PEM, ни openssh-key-v1. Проверьте, что это приватный ключ, не .pub."
+              exit 1
+            fi
+          fi
+          rm -f "$TMP_BIN"
+          chmod 600 "$KEY_FILE"
+          echo "path=$KEY_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Деплой по SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key_path: ${{ steps.sshkey.outputs.path }}
+          passphrase: ${{ secrets.DEPLOY_SSH_PASSPHRASE }}
+          script_stop: true
+          command_timeout: 30m
+          script: |
+            set -euo pipefail
+            REF='${{ steps.ref.outputs.REF }}'
+            ROOT='${{ vars.DEPLOY_ROOT }}'
+            [ -n "$ROOT" ] || ROOT="/opt/linza"
+
+            sync_repo() {
+              local name="$1"
+              [ -d "$ROOT/$name/.git" ] || { echo "Пропуск: нет $ROOT/$name"; return 0; }
+              git -C "$ROOT/$name" fetch origin --tags --prune
+              if git -C "$ROOT/$name" rev-parse "$REF" >/dev/null 2>&1; then
+                git -C "$ROOT/$name" checkout -f "$REF"
+                echo "OK $name @ $REF"
+              elif git -C "$ROOT/$name" rev-parse "origin/$REF" >/dev/null 2>&1; then
+                git -C "$ROOT/$name" checkout -B "$REF" "origin/$REF"
+                echo "OK $name @ origin/$REF"
+              else
+                git -C "$ROOT/$name" checkout main
+                git -C "$ROOT/$name" pull --ff-only origin main || true
+                echo "OK $name @ main (в удалённом нет ref $REF)"
+              fi
+            }
+
+            for r in linza-board Linza-storage-service linza-analytics linza-vpleer Linza-debug Linza-deploy; do
+              sync_repo "$r"
+            done
+
+            cd "$ROOT/Linza-deploy"
+            docker compose build
+            docker compose up -d --remove-orphans
+            docker compose ps
