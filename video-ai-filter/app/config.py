@@ -47,10 +47,10 @@ class Settings(BaseSettings):
 
     max_upload_bytes: int = 0
     sample_interval_sec: float = 0.5
-    openai_timeout_sec: float = 120.0
+    openai_timeout_sec: float = 300.0
     max_retries: int = 5
     jpeg_quality: int = 85
-    vision_parallel_workers: int = Field(default=8, ge=1, le=32)
+    vision_parallel_workers: int = Field(default=30, ge=1, le=64)
 
     audio_transcription_enabled: bool = True
     ffmpeg_path: str = "ffmpeg"

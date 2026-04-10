@@ -147,7 +147,7 @@ class RuntimeConfigPatch(BaseModel):
     openai_timeout_sec: float | None = Field(default=None, gt=0)
     max_retries: int | None = Field(default=None, ge=1)
     jpeg_quality: int | None = Field(default=None, ge=1, le=100)
-    vision_parallel_workers: int | None = Field(default=None, ge=1, le=32)
+    vision_parallel_workers: int | None = Field(default=None, ge=1, le=64)
     audio_transcription_enabled: bool | None = None
     whisper_model_size: str | None = None
     whisper_device: str | None = None

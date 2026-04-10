@@ -165,7 +165,7 @@ def _poll_and_fetch_export(
     while time.time() < deadline:
         if cancel_check and cancel_check():
             raise QueueCancelled()
-        r = httpx.get(status_url, timeout=120.0)
+        r = httpx.get(status_url, timeout=httpx.Timeout(300.0, connect=60.0))
         if r.status_code == 404:
             raise RuntimeError("Задача video-ai-filter не найдена")
         if r.status_code != 200:
@@ -178,7 +178,7 @@ def _poll_and_fetch_export(
             er = httpx.get(
                 export_url,
                 params={"format": "time-based", "attachment": "false"},
-                timeout=httpx.Timeout(300.0, connect=60.0),
+                timeout=httpx.Timeout(900.0, connect=120.0),
             )
             if er.status_code != 200:
                 raise RuntimeError(f"video-ai-filter export: HTTP {er.status_code} {er.text[:500]}")
