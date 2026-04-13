@@ -54,8 +54,8 @@ async function handleSubmit() {
             src="../assets/linza-detector-logo.svg"
             alt="Linza Detector"
             class="login-logo"
-            width="200"
-            height="48"
+            width="240"
+            height="58"
             decoding="async"
           />
           <p class="login-tagline">Портал проверки контента</p>
@@ -180,7 +180,7 @@ async function handleSubmit() {
 }
 
 .login-logo {
-  width: min(200px, 72vw);
+  width: min(240px, 78vw);
   height: auto;
   display: block;
   margin: 0 auto 10px;
