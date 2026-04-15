@@ -1,0 +1,17 @@
+{
+  "title": "Персональная информация",
+  "cancel": "Отменить",
+  "apply": "Применить",
+  "change": "Изменить",
+  "add": "Добавить",
+  "name": "Имя",
+  "email": "Почта",
+  "phone": "Телефон",
+  "telegram": "Телеграм",
+  "password": "Пароль",
+  "none": "Не указан",
+  "successUpdateAvaTitle": "Успешно",
+  "successUpdateAvaMessage": "Аватар успешно изменен",
+  "errorUpdateAvaTitle": "Ошибка",
+  "errorUpdateAvaMessage": "Кажется что-то пошло не так, данные не обновились"
+}

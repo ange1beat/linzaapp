@@ -1,0 +1,133 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LoginField > View default 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round _input_3058db"
+    >
+      <span
+        class="yc-text-input__content"
+      >
+        <input
+          class="yc-text-input__control yc-text-input__control_type_input"
+          name="login"
+          value=""
+        />
+      </span>
+    </span>
+  </div>
+</body>
+`;
+
+exports[`LoginField > View disabled 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round _input_3058db"
+    >
+      <span
+        class="yc-text-input__content"
+      >
+        <input
+          class="yc-text-input__control yc-text-input__control_type_input"
+          name="login"
+          value=""
+        />
+      </span>
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_state_error yc-text-input_pin_round-round _input_3058db"
+    >
+      <span
+        class="yc-text-input__content"
+      >
+        <input
+          aria-describedby="g-:r4:"
+          aria-invalid="true"
+          class="yc-text-input__control yc-text-input__control_type_input"
+          name="login"
+          value=""
+        />
+      </span>
+      <div
+        class="yc-outer-additional-content"
+      >
+        <div
+          class="yc-outer-additional-content__error"
+          data-qa="control-error-message-qa"
+          id="g-:r4:"
+        >
+          Some error
+        </div>
+      </div>
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_disabled yc-text-input_pin_round-round _input_3058db"
+    >
+      <span
+        class="yc-text-input__content"
+      >
+        <input
+          class="yc-text-input__control yc-text-input__control_type_input"
+          disabled=""
+          name="login"
+          value=""
+        />
+      </span>
+    </span>
+  </div>
+</body>
+`;
+
+exports[`LoginField > View error 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round _input_3058db"
+    >
+      <span
+        class="yc-text-input__content"
+      >
+        <input
+          class="yc-text-input__control yc-text-input__control_type_input"
+          name="login"
+          value=""
+        />
+      </span>
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_state_error yc-text-input_pin_round-round _input_3058db"
+    >
+      <span
+        class="yc-text-input__content"
+      >
+        <input
+          aria-describedby="g-:r4:"
+          aria-invalid="true"
+          class="yc-text-input__control yc-text-input__control_type_input"
+          name="login"
+          value=""
+        />
+      </span>
+      <div
+        class="yc-outer-additional-content"
+      >
+        <div
+          class="yc-outer-additional-content__error"
+          data-qa="control-error-message-qa"
+          id="g-:r4:"
+        >
+          Some error
+        </div>
+      </div>
+    </span>
+  </div>
+</body>
+`;

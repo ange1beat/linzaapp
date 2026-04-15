@@ -1,0 +1,46 @@
+@import 'src/shared/vars';
+.edit-member {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.main-info__form {
+  width: 416px;
+}
+
+.edit-member__main-info {
+  display: flex;
+  margin-top: 10px;
+  gap: 20px;
+}
+.main-info__avatar {
+  height: 150px;
+  width: 150px;
+  border-radius: 200px;
+}
+
+.main-info__field {
+  display: flex;
+  flex-direction: column;
+  width: 246px;
+  gap: 10px;
+}
+
+.edit-member__auth-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.edit-member__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap:10px;
+  margin-top: 15px;
+}
+
+
+
+

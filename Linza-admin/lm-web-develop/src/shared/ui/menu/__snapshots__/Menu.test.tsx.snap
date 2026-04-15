@@ -1,0 +1,366 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Menu > View default 1`] = `
+<body>
+  <div>
+    <nav
+      class="_menu_345ff7"
+    >
+      <ul
+        class="_menu__main-items_345ff7"
+      >
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11ZM8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </button>
+        </li>
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                >
+                  <path
+                    d="M8 2.5a2.77 2.77 0 0 0-2.716 2.226l-.619 3.096a4.774 4.774 0 0 1-1.305 2.44l-.194.193a.566.566 0 0 0 .273.953l.821.19a16.63 16.63 0 0 0 7.48 0l.82-.19a.567.567 0 0 0 .274-.953l-.194-.193a4.774 4.774 0 0 1-1.305-2.44l-.068-.337a.75.75 0 0 1 1.471-.295l.068.338c.126.634.438 1.216.895 1.673l.194.194a2.066 2.066 0 0 1-.997 3.475l-.821.19c-.701.16-1.41.28-2.12.358a2 2 0 0 1-3.913 0 18.134 18.134 0 0 1-2.12-.359l-.822-.19a2.067 2.067 0 0 1-.997-3.474L2.3 9.2c.457-.457.769-1.04.895-1.673l.62-3.096a4.27 4.27 0 0 1 5.4-3.256.75.75 0 1 1-.427 1.438A2.766 2.766 0 0 0 8 2.5Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M12.5 5.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
+                    fill="#F33"
+                  />
+                </g>
+              </svg>
+            </span>
+          </button>
+        </li>
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M14.98 1.826a.75.75 0 0 0-.96-1.152L10.376 3.71a1.25 1.25 0 0 1-1.196.225l-2.155-.718a2.75 2.75 0 0 0-2.973.837L.926 7.767a.75.75 0 1 0 1.148.966l3.125-3.712a1.25 1.25 0 0 1 1.352-.38l2.155.718a2.75 2.75 0 0 0 2.63-.496l3.644-3.037ZM13.5 8h-2a.5.5 0 0 0-.5.5V13a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V8.5a.5.5 0 0 0-.5-.5Zm-4 5a.5.5 0 0 1-.5.5H7a.5.5 0 0 1-.5-.5v-2.5A.5.5 0 0 1 7 10h2a.5.5 0 0 1 .5.5V13ZM5 13a.5.5 0 0 1-.5.5h-2A.5.5 0 0 1 2 13v-.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v.5Zm-2.5 2h11a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v.063A2.004 2.004 0 0 0 9 8.5H7a2 2 0 0 0-2 2v.063a2.005 2.005 0 0 0-.5-.063h-2a2 2 0 0 0-2 2v.5a2 2 0 0 0 2 2Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </button>
+        </li>
+        <li
+          class="_menu-item_345ff7 _menu-item--selected_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  clip-path="url(#a)"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm0 1.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-3.029 2.886c-.777.54-.971 1.063-.971 1.306 0 .446.362.808.808.808h6.384a.808.808 0 0 0 .808-.808c0-.244-.194-.767-.971-1.306C7.792 9.875 6.719 9.5 5.5 9.5c-1.218 0-2.292.375-3.029.886ZM0 11.692C0 9.846 2.475 8 5.5 8c1.18 0 2.278.281 3.177.734A5.671 5.671 0 0 1 11.5 8c2.475 0 4.5 1.538 4.5 3.077A1.923 1.923 0 0 1 14.077 13h-3.483c-.416.604-1.113 1-1.902 1H2.308A2.308 2.308 0 0 1 0 11.692Zm10.991-.192h3.086c.234 0 .423-.19.423-.423 0-.103-.096-.472-.688-.89-.554-.393-1.375-.687-2.312-.687-.517 0-.999.09-1.42.236.526.534.854 1.146.911 1.764ZM12.5 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM14 5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </g>
+                <defs>
+                  <clippath
+                    id="a"
+                  >
+                    <path
+                      d="M0 0h16v16H0z"
+                      fill="currentColor"
+                    />
+                  </clippath>
+                </defs>
+              </svg>
+            </span>
+          </button>
+        </li>
+      </ul>
+      <ul
+        class="_menu__second-items_345ff7"
+      >
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M8 1.75a.75.75 0 0 1 .75.75v4.75h4.75a.75.75 0 0 1 0 1.5H8.75v4.75a.75.75 0 0 1-1.5 0V8.75H2.5a.75.75 0 0 1 0-1.5h4.75V2.5A.75.75 0 0 1 8 1.75Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </button>
+        </li>
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <a
+            class="_menu-item__link_345ff7"
+            href="/project/1"
+          >
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+              type="button"
+            >
+              <span
+                class="yc-button__text"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M13.5 10.421V5.475l-2 .714V8.25a.75.75 0 0 1-1.5 0V6.725l-2.25.804v6.088l4.777-1.792a1.5 1.5 0 0 0 .973-1.404Zm-2.254-5.734 1.6-.571a1.5 1.5 0 0 0-.175-.104L9.499 2.427a1.5 1.5 0 0 0-1.197-.063l-.941.353 3.724 1.862c.06.03.113.066.16.108ZM5.444 3.435l3.878 1.94-2.273.811-3.805-1.903c.072-.042.149-.078.23-.109l1.97-.739Zm.806 4.029L2.5 5.589v5.057a1.5 1.5 0 0 0 .83 1.341l2.92 1.46V7.465ZM1 5.579c0-.436.094-.856.266-1.236a.752.752 0 0 1 .2-.37c.342-.54.855-.968 1.48-1.203L7.777.96a3 3 0 0 1 2.394.125l3.172 1.586A3 3 0 0 1 15 5.354v5.067a3 3 0 0 1-1.947 2.809l-4.828 1.81a3 3 0 0 1-2.395-.125l-3.172-1.586A3 3 0 0 1 1 10.646V5.579Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
+          </a>
+        </li>
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <a
+            class="_menu-item__link_345ff7"
+            href="/porject/2"
+          >
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+              type="button"
+            >
+              <span
+                class="yc-button__text"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M13.5 10.421V5.475l-2 .714V8.25a.75.75 0 0 1-1.5 0V6.725l-2.25.804v6.088l4.777-1.792a1.5 1.5 0 0 0 .973-1.404Zm-2.254-5.734 1.6-.571a1.5 1.5 0 0 0-.175-.104L9.499 2.427a1.5 1.5 0 0 0-1.197-.063l-.941.353 3.724 1.862c.06.03.113.066.16.108ZM5.444 3.435l3.878 1.94-2.273.811-3.805-1.903c.072-.042.149-.078.23-.109l1.97-.739Zm.806 4.029L2.5 5.589v5.057a1.5 1.5 0 0 0 .83 1.341l2.92 1.46V7.465ZM1 5.579c0-.436.094-.856.266-1.236a.752.752 0 0 1 .2-.37c.342-.54.855-.968 1.48-1.203L7.777.96a3 3 0 0 1 2.394.125l3.172 1.586A3 3 0 0 1 15 5.354v5.067a3 3 0 0 1-1.947 2.809l-4.828 1.81a3 3 0 0 1-2.395-.125l-3.172-1.586A3 3 0 0 1 1 10.646V5.579Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
+          </a>
+        </li>
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <a
+            class="_menu-item__link_345ff7"
+            href="/porject/3"
+          >
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+              type="button"
+            >
+              <span
+                class="yc-button__text"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M13.5 10.421V5.475l-2 .714V8.25a.75.75 0 0 1-1.5 0V6.725l-2.25.804v6.088l4.777-1.792a1.5 1.5 0 0 0 .973-1.404Zm-2.254-5.734 1.6-.571a1.5 1.5 0 0 0-.175-.104L9.499 2.427a1.5 1.5 0 0 0-1.197-.063l-.941.353 3.724 1.862c.06.03.113.066.16.108ZM5.444 3.435l3.878 1.94-2.273.811-3.805-1.903c.072-.042.149-.078.23-.109l1.97-.739Zm.806 4.029L2.5 5.589v5.057a1.5 1.5 0 0 0 .83 1.341l2.92 1.46V7.465ZM1 5.579c0-.436.094-.856.266-1.236a.752.752 0 0 1 .2-.37c.342-.54.855-.968 1.48-1.203L7.777.96a3 3 0 0 1 2.394.125l3.172 1.586A3 3 0 0 1 15 5.354v5.067a3 3 0 0 1-1.947 2.809l-4.828 1.81a3 3 0 0 1-2.395-.125l-3.172-1.586A3 3 0 0 1 1 10.646V5.579Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
+          </a>
+        </li>
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <a
+            class="_menu-item__link_345ff7"
+            href="/porject/4"
+          >
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+              type="button"
+            >
+              <span
+                class="yc-button__text"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M13.5 10.421V5.475l-2 .714V8.25a.75.75 0 0 1-1.5 0V6.725l-2.25.804v6.088l4.777-1.792a1.5 1.5 0 0 0 .973-1.404Zm-2.254-5.734 1.6-.571a1.5 1.5 0 0 0-.175-.104L9.499 2.427a1.5 1.5 0 0 0-1.197-.063l-.941.353 3.724 1.862c.06.03.113.066.16.108ZM5.444 3.435l3.878 1.94-2.273.811-3.805-1.903c.072-.042.149-.078.23-.109l1.97-.739Zm.806 4.029L2.5 5.589v5.057a1.5 1.5 0 0 0 .83 1.341l2.92 1.46V7.465ZM1 5.579c0-.436.094-.856.266-1.236a.752.752 0 0 1 .2-.37c.342-.54.855-.968 1.48-1.203L7.777.96a3 3 0 0 1 2.394.125l3.172 1.586A3 3 0 0 1 15 5.354v5.067a3 3 0 0 1-1.947 2.809l-4.828 1.81a3 3 0 0 1-2.395-.125l-3.172-1.586A3 3 0 0 1 1 10.646V5.579Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
+          </a>
+        </li>
+        <li
+          class="_menu-item_345ff7"
+        >
+          <div
+            class="_menu-item__marker_345ff7"
+          />
+          <a
+            class="_menu-item__link_345ff7"
+            href="/porject/5"
+          >
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _menu-item__button_345ff7"
+              type="button"
+            >
+              <span
+                class="yc-button__text"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M13.5 10.421V5.475l-2 .714V8.25a.75.75 0 0 1-1.5 0V6.725l-2.25.804v6.088l4.777-1.792a1.5 1.5 0 0 0 .973-1.404Zm-2.254-5.734 1.6-.571a1.5 1.5 0 0 0-.175-.104L9.499 2.427a1.5 1.5 0 0 0-1.197-.063l-.941.353 3.724 1.862c.06.03.113.066.16.108ZM5.444 3.435l3.878 1.94-2.273.811-3.805-1.903c.072-.042.149-.078.23-.109l1.97-.739Zm.806 4.029L2.5 5.589v5.057a1.5 1.5 0 0 0 .83 1.341l2.92 1.46V7.465ZM1 5.579c0-.436.094-.856.266-1.236a.752.752 0 0 1 .2-.37c.342-.54.855-.968 1.48-1.203L7.777.96a3 3 0 0 1 2.394.125l3.172 1.586A3 3 0 0 1 15 5.354v5.067a3 3 0 0 1-1.947 2.809l-4.828 1.81a3 3 0 0 1-2.395-.125l-3.172-1.586A3 3 0 0 1 1 10.646V5.579Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</body>
+`;

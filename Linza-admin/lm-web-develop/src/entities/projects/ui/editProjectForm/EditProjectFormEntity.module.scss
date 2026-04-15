@@ -1,0 +1,19 @@
+@import 'src/shared/vars';
+
+.edit-project-form__project-name {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 24px;
+}
+.edit-project-form__buttons {
+  display: flex;
+  padding-top: 17px;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.edit-project-form__avatar-error {
+  color: $danger;
+  padding-top: 5px;
+  display: inline-block;
+}

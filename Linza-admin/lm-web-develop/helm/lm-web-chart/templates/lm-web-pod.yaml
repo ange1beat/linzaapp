@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lm-web
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 120
+  selector:
+    matchLabels:
+        app: lm-web
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: lm-web
+    spec:
+      containers:
+        - name: lm-web
+          image: '{{ .Values.registryAddress }}/{{ .Values.imageName | default "linza-monitoring/deployment/lm-web" }}:{{ .Values.buildNumber }}'
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: '{{ .Values.pullSecretName | default "cr-secret" }}'

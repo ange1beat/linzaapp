@@ -1,0 +1,13 @@
+{
+  "modal-title": "Edit password",
+  "form-title": "New password for user",
+  "new-password-placeholder": "New password",
+  "confirm-password-placeholder": "Confirm password",
+  "image-alt": "Organization member avatar",
+  "buttons": {
+    "cancel": "Cancel",
+    "apply": "Apply"
+  },
+  "error-title": "Error!",
+  "error-message": "Something went wrong while loading data! Please try again later"
+}

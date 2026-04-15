@@ -1,0 +1,31 @@
+@import 'src/shared/vars';
+
+.project-list__list {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.project-list__row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  &.--active {
+    background: $branding-base-selection;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.project-list__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

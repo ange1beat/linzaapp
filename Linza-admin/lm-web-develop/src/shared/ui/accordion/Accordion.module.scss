@@ -1,0 +1,29 @@
+.accordion {
+  margin-bottom: 10px;
+}
+
+.accordion__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion__body {
+  overflow: hidden;
+  max-height: 0;
+  transition: all 0.35s ease-in-out;
+  font-size: 18pt;
+  box-sizing: border-box;
+
+  &.--visible {
+    max-height: 2000px;
+  }
+}
+
+.accordion__icon {
+  transition: .35s;
+
+  &.--active {
+    transform: rotate(-180deg);
+  }
+}

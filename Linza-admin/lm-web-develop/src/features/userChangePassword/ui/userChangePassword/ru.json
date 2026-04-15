@@ -1,0 +1,8 @@
+{
+  "title": "Смена пароля",
+  "current-password-placeholder": "Текущий пароль",
+  "new-password-placeholder": "Новый пароль",
+  "confirm-password-placeholder": "Подтверждение пароля",
+  "success-title": "Успешно",
+  "message": "Вам пароль был изменён."
+}

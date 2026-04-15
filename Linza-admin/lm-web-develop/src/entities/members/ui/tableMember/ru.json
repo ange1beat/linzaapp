@@ -1,0 +1,11 @@
+{
+  "searchPlaceholder": "Поиск по участникам",
+  "columns": {
+    "person": "Персона",
+    "email": "Почта",
+    "phone": "Телефон",
+    "telegram": "Телеграм",
+    "role": "Роль",
+    "last-login": "Последний вход"
+  }
+}

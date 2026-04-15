@@ -1,0 +1,13 @@
+@import "src/shared/vars";
+
+.otp-re-request {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.otp-re-request__error {
+  margin-top: 5px;
+  color: $danger;
+}

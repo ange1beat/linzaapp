@@ -1,0 +1,9 @@
+{
+  "edit": "Edit info",
+  "editPassword": "Edit password",
+  "delete": "Delete",
+  "invite": "Invite new member",
+  "filter": {
+    "title": "Role"
+  }
+}

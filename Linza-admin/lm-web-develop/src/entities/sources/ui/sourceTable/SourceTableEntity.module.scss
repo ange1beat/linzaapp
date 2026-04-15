@@ -1,0 +1,30 @@
+@import 'src/shared/vars';
+
+.source-table__table {
+  width: 100%;
+  height: 100%;
+
+  table {
+    width: 100%;
+  }
+}
+
+td {
+  overflow: visible !important;
+}
+
+.source-table__header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.source-table__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.source-table__icon {
+  color: $placeholder;
+}

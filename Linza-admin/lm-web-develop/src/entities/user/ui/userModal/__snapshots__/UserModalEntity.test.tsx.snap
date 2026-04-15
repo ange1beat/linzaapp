@@ -1,0 +1,772 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UserModalEntity > Overflow 1`] = `
+<body>
+  <div>
+    <div
+      class="_user-modal_6418de"
+    >
+      <div
+        class="_user-modal__modal-header_6418de"
+      />
+      <div
+        class="_user-modal__user-info_6418de"
+      >
+        <img
+          alt="avatar"
+          class="_user-modal__avatar_6418de"
+          src="https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+        />
+      </div>
+      <div
+        class="_user-modal__text-info_6418de"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-name_f0ca78 _user-modal__name_6418de"
+        >
+          Test
+           
+          User
+        </span>
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-email_f0ca78 _user-modal__email_6418de"
+        >
+          test@mail.ru
+        </span>
+      </div>
+      <div
+        class="_user-modal__buttons_6418de"
+      >
+        <a
+          class="_link_c3e603 _user-modal__link_6418de"
+          href="/profile"
+          target="_self"
+        >
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <div
+                class="_btn__wrapper_212512"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="yc-icon"
+                  fill="currentColor"
+                  height="18"
+                  stroke="none"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 4.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm1.5 0a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-9 8c0-.204.22-.809 1.32-1.459C4.838 10.44 6.32 10 8 10c1.68 0 3.162.44 4.18 1.041 1.1.65 1.32 1.255 1.32 1.459a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1Zm5.5-4c-3.85 0-7 2-7 4A2.5 2.5 0 0 0 3.5 15h9a2.5 2.5 0 0 0 2.5-2.5c0-2-3.15-4-7-4Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </svg>
+                <span
+                  class="_user-modal__button-text_6418de"
+                >
+                  profile
+                </span>
+              </div>
+            </span>
+          </button>
+        </a>
+        <button
+          class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+          type="button"
+        >
+          <span
+            class="yc-button__text"
+          >
+            <div
+              class="_btn__wrapper_212512"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="18"
+                stroke="none"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M14.78 7.47a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H4.75a.75.75 0 0 1 0-1.5h7.69l-1.22-1.22a.75.75 0 0 1 1.06-1.06l2.5 2.5ZM9.5 4.25a.75.75 0 0 1-1.5 0V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v8A1.5 1.5 0 0 0 4 13.5h2.5A1.5 1.5 0 0 0 8 12v-.25a.75.75 0 0 1 1.5 0V12a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3h2.5a3 3 0 0 1 3 3v.25Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+              <span
+                class="_user-modal__button-text_6418de"
+              >
+                logOut
+              </span>
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_user-modal_6418de"
+    >
+      <div
+        class="_user-modal__modal-header_6418de"
+      />
+      <div
+        class="_user-modal__user-info_6418de"
+      >
+        <img
+          alt="avatar"
+          class="_user-modal__avatar_6418de"
+          src="/src/entities/members/media/defaultMemberAvatar.svg"
+        />
+      </div>
+      <div
+        class="_user-modal__text-info_6418de"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-name_f0ca78 _user-modal__name_6418de"
+        >
+          Test
+           
+          User
+        </span>
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-email_f0ca78 _user-modal__email_6418de"
+        >
+          test@mail.ru
+        </span>
+      </div>
+      <div
+        class="_user-modal__buttons_6418de"
+      >
+        <a
+          class="_link_c3e603 _user-modal__link_6418de"
+          href="/profile"
+          target="_self"
+        >
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <div
+                class="_btn__wrapper_212512"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="yc-icon"
+                  fill="currentColor"
+                  height="18"
+                  stroke="none"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 4.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm1.5 0a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-9 8c0-.204.22-.809 1.32-1.459C4.838 10.44 6.32 10 8 10c1.68 0 3.162.44 4.18 1.041 1.1.65 1.32 1.255 1.32 1.459a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1Zm5.5-4c-3.85 0-7 2-7 4A2.5 2.5 0 0 0 3.5 15h9a2.5 2.5 0 0 0 2.5-2.5c0-2-3.15-4-7-4Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </svg>
+                <span
+                  class="_user-modal__button-text_6418de"
+                >
+                  profile
+                </span>
+              </div>
+            </span>
+          </button>
+        </a>
+        <button
+          class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+          type="button"
+        >
+          <span
+            class="yc-button__text"
+          >
+            <div
+              class="_btn__wrapper_212512"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="18"
+                stroke="none"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M14.78 7.47a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H4.75a.75.75 0 0 1 0-1.5h7.69l-1.22-1.22a.75.75 0 0 1 1.06-1.06l2.5 2.5ZM9.5 4.25a.75.75 0 0 1-1.5 0V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v8A1.5 1.5 0 0 0 4 13.5h2.5A1.5 1.5 0 0 0 8 12v-.25a.75.75 0 0 1 1.5 0V12a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3h2.5a3 3 0 0 1 3 3v.25Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+              <span
+                class="_user-modal__button-text_6418de"
+              >
+                logOut
+              </span>
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_user-modal_6418de"
+    >
+      <div
+        class="_user-modal__modal-header_6418de"
+      />
+      <div
+        class="_user-modal__user-info_6418de"
+      >
+        <img
+          alt="avatar"
+          class="_user-modal__avatar_6418de"
+          src="https://fastly.picsum.photos/id/790/200/300.jpg?hmac=FVbUQYv_h5C4v5_RAIja_q1c5UShyHhRu6C7DvjZM8U"
+        />
+      </div>
+      <div
+        class="_user-modal__text-info_6418de"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-name_f0ca78 _user-modal__name_6418de"
+        >
+          ohmygodwhythisfirstnameissobig
+           
+          mylastnamesobigiwasprettyanswered
+        </span>
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-email_f0ca78 _user-modal__email_6418de"
+        >
+          wjdajwdhawhdawjhduawhduawhduawhduawhud@nauk.ru
+        </span>
+      </div>
+      <div
+        class="_user-modal__buttons_6418de"
+      >
+        <a
+          class="_link_c3e603 _user-modal__link_6418de"
+          href="/profile"
+          target="_self"
+        >
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <div
+                class="_btn__wrapper_212512"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="yc-icon"
+                  fill="currentColor"
+                  height="18"
+                  stroke="none"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 4.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm1.5 0a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-9 8c0-.204.22-.809 1.32-1.459C4.838 10.44 6.32 10 8 10c1.68 0 3.162.44 4.18 1.041 1.1.65 1.32 1.255 1.32 1.459a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1Zm5.5-4c-3.85 0-7 2-7 4A2.5 2.5 0 0 0 3.5 15h9a2.5 2.5 0 0 0 2.5-2.5c0-2-3.15-4-7-4Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </svg>
+                <span
+                  class="_user-modal__button-text_6418de"
+                >
+                  profile
+                </span>
+              </div>
+            </span>
+          </button>
+        </a>
+        <button
+          class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+          type="button"
+        >
+          <span
+            class="yc-button__text"
+          >
+            <div
+              class="_btn__wrapper_212512"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="18"
+                stroke="none"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M14.78 7.47a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H4.75a.75.75 0 0 1 0-1.5h7.69l-1.22-1.22a.75.75 0 0 1 1.06-1.06l2.5 2.5ZM9.5 4.25a.75.75 0 0 1-1.5 0V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v8A1.5 1.5 0 0 0 4 13.5h2.5A1.5 1.5 0 0 0 8 12v-.25a.75.75 0 0 1 1.5 0V12a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3h2.5a3 3 0 0 1 3 3v.25Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+              <span
+                class="_user-modal__button-text_6418de"
+              >
+                logOut
+              </span>
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UserModalEntity > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="_user-modal_6418de"
+    >
+      <div
+        class="_user-modal__modal-header_6418de"
+      />
+      <div
+        class="_user-modal__user-info_6418de"
+      >
+        <img
+          alt="avatar"
+          class="_user-modal__avatar_6418de"
+          src="https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+        />
+      </div>
+      <div
+        class="_user-modal__text-info_6418de"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-name_f0ca78 _user-modal__name_6418de"
+        >
+          Test
+           
+          User
+        </span>
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-email_f0ca78 _user-modal__email_6418de"
+        >
+          test@mail.ru
+        </span>
+      </div>
+      <div
+        class="_user-modal__buttons_6418de"
+      >
+        <a
+          class="_link_c3e603 _user-modal__link_6418de"
+          href="/profile"
+          target="_self"
+        >
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <div
+                class="_btn__wrapper_212512"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="yc-icon"
+                  fill="currentColor"
+                  height="18"
+                  stroke="none"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 4.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm1.5 0a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-9 8c0-.204.22-.809 1.32-1.459C4.838 10.44 6.32 10 8 10c1.68 0 3.162.44 4.18 1.041 1.1.65 1.32 1.255 1.32 1.459a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1Zm5.5-4c-3.85 0-7 2-7 4A2.5 2.5 0 0 0 3.5 15h9a2.5 2.5 0 0 0 2.5-2.5c0-2-3.15-4-7-4Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </svg>
+                <span
+                  class="_user-modal__button-text_6418de"
+                >
+                  profile
+                </span>
+              </div>
+            </span>
+          </button>
+        </a>
+        <button
+          class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+          type="button"
+        >
+          <span
+            class="yc-button__text"
+          >
+            <div
+              class="_btn__wrapper_212512"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="18"
+                stroke="none"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M14.78 7.47a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H4.75a.75.75 0 0 1 0-1.5h7.69l-1.22-1.22a.75.75 0 0 1 1.06-1.06l2.5 2.5ZM9.5 4.25a.75.75 0 0 1-1.5 0V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v8A1.5 1.5 0 0 0 4 13.5h2.5A1.5 1.5 0 0 0 8 12v-.25a.75.75 0 0 1 1.5 0V12a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3h2.5a3 3 0 0 1 3 3v.25Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+              <span
+                class="_user-modal__button-text_6418de"
+              >
+                logOut
+              </span>
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UserModalEntity > Without avatar 1`] = `
+<body>
+  <div>
+    <div
+      class="_user-modal_6418de"
+    >
+      <div
+        class="_user-modal__modal-header_6418de"
+      />
+      <div
+        class="_user-modal__user-info_6418de"
+      >
+        <img
+          alt="avatar"
+          class="_user-modal__avatar_6418de"
+          src="https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+        />
+      </div>
+      <div
+        class="_user-modal__text-info_6418de"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-name_f0ca78 _user-modal__name_6418de"
+        >
+          Test
+           
+          User
+        </span>
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-email_f0ca78 _user-modal__email_6418de"
+        >
+          test@mail.ru
+        </span>
+      </div>
+      <div
+        class="_user-modal__buttons_6418de"
+      >
+        <a
+          class="_link_c3e603 _user-modal__link_6418de"
+          href="/profile"
+          target="_self"
+        >
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <div
+                class="_btn__wrapper_212512"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="yc-icon"
+                  fill="currentColor"
+                  height="18"
+                  stroke="none"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 4.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm1.5 0a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-9 8c0-.204.22-.809 1.32-1.459C4.838 10.44 6.32 10 8 10c1.68 0 3.162.44 4.18 1.041 1.1.65 1.32 1.255 1.32 1.459a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1Zm5.5-4c-3.85 0-7 2-7 4A2.5 2.5 0 0 0 3.5 15h9a2.5 2.5 0 0 0 2.5-2.5c0-2-3.15-4-7-4Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </svg>
+                <span
+                  class="_user-modal__button-text_6418de"
+                >
+                  profile
+                </span>
+              </div>
+            </span>
+          </button>
+        </a>
+        <button
+          class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+          type="button"
+        >
+          <span
+            class="yc-button__text"
+          >
+            <div
+              class="_btn__wrapper_212512"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="18"
+                stroke="none"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M14.78 7.47a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H4.75a.75.75 0 0 1 0-1.5h7.69l-1.22-1.22a.75.75 0 0 1 1.06-1.06l2.5 2.5ZM9.5 4.25a.75.75 0 0 1-1.5 0V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v8A1.5 1.5 0 0 0 4 13.5h2.5A1.5 1.5 0 0 0 8 12v-.25a.75.75 0 0 1 1.5 0V12a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3h2.5a3 3 0 0 1 3 3v.25Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+              <span
+                class="_user-modal__button-text_6418de"
+              >
+                logOut
+              </span>
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_user-modal_6418de"
+    >
+      <div
+        class="_user-modal__modal-header_6418de"
+      />
+      <div
+        class="_user-modal__user-info_6418de"
+      >
+        <img
+          alt="avatar"
+          class="_user-modal__avatar_6418de"
+          src="/src/entities/members/media/defaultMemberAvatar.svg"
+        />
+      </div>
+      <div
+        class="_user-modal__text-info_6418de"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-name_f0ca78 _user-modal__name_6418de"
+        >
+          Test
+           
+          User
+        </span>
+        <span
+          class="yc-text yc-text_variant_body-1 yc-text_ellipsis _modal-email_f0ca78 _user-modal__email_6418de"
+        >
+          test@mail.ru
+        </span>
+      </div>
+      <div
+        class="_user-modal__buttons_6418de"
+      >
+        <a
+          class="_link_c3e603 _user-modal__link_6418de"
+          href="/profile"
+          target="_self"
+        >
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              <div
+                class="_btn__wrapper_212512"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="yc-icon"
+                  fill="currentColor"
+                  height="18"
+                  stroke="none"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 4.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm1.5 0a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-9 8c0-.204.22-.809 1.32-1.459C4.838 10.44 6.32 10 8 10c1.68 0 3.162.44 4.18 1.041 1.1.65 1.32 1.255 1.32 1.459a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1Zm5.5-4c-3.85 0-7 2-7 4A2.5 2.5 0 0 0 3.5 15h9a2.5 2.5 0 0 0 2.5-2.5c0-2-3.15-4-7-4Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </svg>
+                <span
+                  class="_user-modal__button-text_6418de"
+                >
+                  profile
+                </span>
+              </div>
+            </span>
+          </button>
+        </a>
+        <button
+          class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round yc-button_width_max _btn__with-icon_212512 _user-modal__button_6418de"
+          type="button"
+        >
+          <span
+            class="yc-button__text"
+          >
+            <div
+              class="_btn__wrapper_212512"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="18"
+                stroke="none"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M14.78 7.47a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H4.75a.75.75 0 0 1 0-1.5h7.69l-1.22-1.22a.75.75 0 0 1 1.06-1.06l2.5 2.5ZM9.5 4.25a.75.75 0 0 1-1.5 0V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v8A1.5 1.5 0 0 0 4 13.5h2.5A1.5 1.5 0 0 0 8 12v-.25a.75.75 0 0 1 1.5 0V12a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3h2.5a3 3 0 0 1 3 3v.25Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+              <span
+                class="_user-modal__button-text_6418de"
+              >
+                logOut
+              </span>
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;

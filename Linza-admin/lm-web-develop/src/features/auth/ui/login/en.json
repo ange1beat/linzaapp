@@ -1,0 +1,11 @@
+{
+  "title": "Login to <strong>Linza</strong>",
+  "forgot-password": "Forgot password?",
+  "login-placeholder": "Email or phone",
+  "password-placeholder": "Password",
+  "error-title": "Error",
+  "wrong-data": "Invalid login or password",
+  "server-error": "Oops! Something goes wrong! Please, try again later",
+  "log-in-btn": "Log in",
+  "locked-user": "Your account is locked due to maximum failed login attempts exceeded. Please wait for {{minutes}} min and try to log in again."
+}

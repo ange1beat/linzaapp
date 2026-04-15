@@ -85,8 +85,6 @@ def _enrich_queue_item_for_ui(d: dict) -> dict:
             "frames_total": snap.get("frames_total"),
             "progress": snap.get("progress"),
             "vaf_status": snap.get("vaf_status"),
-            "processing_phase": snap.get("processing_phase"),
-            "phase_progress": snap.get("phase_progress"),
         }
     else:
         d["status_detail"] = "Обработка…"
@@ -167,9 +165,6 @@ def remove_from_queue(
     row = db.query(VideoAnalysisQueueItem).filter(VideoAnalysisQueueItem.id == item_id).first()
     if not row:
         raise HTTPException(404, "Not found")
-    jid = (row.detector_job_id or "").strip()
     row.status = "cancelled"
     db.commit()
-    if detector_provider() == "video_ai_filter" and jid and _VAF_JOB_UUID.match(jid):
-        video_ai_filter_client.request_cancel_remote_job(jid)
     return {"status": "ok"}

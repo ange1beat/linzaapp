@@ -1,0 +1,168 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PhoneOTPForm > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="_window_2d008c"
+    >
+      <span
+        class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _window__title_2d008c"
+      >
+        title
+      </span>
+      <div
+        class="_window__form_2d008c"
+      >
+         
+        <div
+          class="_phone-otp-form_33746b"
+        >
+          <span
+            class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_disabled yc-text-input_pin_round-round _input_3058db"
+          >
+            <span
+              class="yc-text-input__content"
+            >
+              <input
+                class="yc-text-input__control yc-text-input__control_type_input"
+                disabled=""
+                value="+7 800 555 35 35"
+              />
+            </span>
+          </span>
+          <div
+            class="_phone-otp-form__otp_33746b"
+          >
+            <span
+              class="yc-text yc-text_variant_body-1 _body-1_f0ca78 _phone-otp-form__subtitle_33746b"
+            >
+              sub-title
+            </span>
+            <form
+              class="_otp-form_86068b"
+            >
+              <div>
+                <div
+                  class="_key-field-container_1e169f _otp-form__code_86068b"
+                >
+                  <div
+                    class="_key-field-container__inputs_1e169f"
+                  >
+                    <input
+                      aria-label="Character 1."
+                      autocomplete="one-time-code"
+                      class="_key-field-container__input_1e169f"
+                      inputmode="numeric"
+                      max="9"
+                      maxlength="1"
+                      min="0"
+                      pattern="[0-9]{1}"
+                      type="tel"
+                    />
+                    <input
+                      aria-label="Character 2."
+                      autocomplete="off"
+                      class="_key-field-container__input_1e169f"
+                      inputmode="numeric"
+                      max="9"
+                      maxlength="1"
+                      min="0"
+                      pattern="[0-9]{1}"
+                      type="tel"
+                    />
+                    <input
+                      aria-label="Character 3."
+                      autocomplete="off"
+                      class="_key-field-container__input_1e169f"
+                      inputmode="numeric"
+                      max="9"
+                      maxlength="1"
+                      min="0"
+                      pattern="[0-9]{1}"
+                      type="tel"
+                    />
+                    <input
+                      aria-label="Character 4."
+                      autocomplete="off"
+                      class="_key-field-container__input_1e169f"
+                      inputmode="numeric"
+                      max="9"
+                      maxlength="1"
+                      min="0"
+                      pattern="[0-9]{1}"
+                      type="tel"
+                    />
+                    <input
+                      aria-label="Character 5."
+                      autocomplete="off"
+                      class="_key-field-container__input_1e169f"
+                      inputmode="numeric"
+                      max="9"
+                      maxlength="1"
+                      min="0"
+                      pattern="[0-9]{1}"
+                      type="tel"
+                    />
+                    <input
+                      aria-label="Character 6."
+                      autocomplete="off"
+                      class="_key-field-container__input_1e169f"
+                      inputmode="numeric"
+                      max="9"
+                      maxlength="1"
+                      min="0"
+                      pattern="[0-9]{1}"
+                      type="tel"
+                    />
+                  </div>
+                </div>
+                <button
+                  class="yc-button yc-button_view_outlined yc-button_size_xl yc-button_pin_round-round yc-button_disabled yc-button_width_max _main-timer_7d8d84"
+                  disabled=""
+                  tabindex="-1"
+                  type="button"
+                >
+                  <span
+                    class="yc-button__text"
+                  >
+                    <span
+                      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+                    >
+                      request-wait
+                    </span>
+                  </span>
+                </button>
+              </div>
+              <div
+                class="_otp-form__buttons_86068b"
+              >
+                <button
+                  class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512"
+                  type="submit"
+                >
+                  <span
+                    class="yc-button__text"
+                  >
+                    confirm
+                  </span>
+                </button>
+                <button
+                  class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round"
+                  type="button"
+                >
+                  <span
+                    class="yc-button__text"
+                  >
+                    back
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

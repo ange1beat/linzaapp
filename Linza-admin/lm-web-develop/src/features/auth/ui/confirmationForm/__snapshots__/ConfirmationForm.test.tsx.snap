@@ -1,0 +1,308 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ConfirmationForm > Form with default value 1`] = `
+<body>
+  <div>
+    <form>
+      <div
+        class="_confirmation-form_74daae"
+      >
+        <div
+          class="_key-field-container_1e169f"
+        >
+          <div
+            class="_key-field-container__inputs_1e169f"
+          >
+            <input
+              aria-label="Character 1."
+              autocomplete="one-time-code"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 2."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 3."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 4."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 5."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 6."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+          </div>
+        </div>
+        <div
+          class="_request-button-wrapper_74daae"
+        >
+          <p>
+            child!
+          </p>
+        </div>
+        <button
+          class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512 _confirmation-form_74daae"
+          type="submit"
+        >
+          <span
+            class="yc-button__text"
+          >
+            confirm
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <form>
+      <div
+        class="_confirmation-form_74daae"
+      >
+        <div
+          class="_key-field-container_1e169f"
+        >
+          <div
+            class="_key-field-container__inputs_1e169f"
+          >
+            <input
+              aria-label="Character 1."
+              autocomplete="one-time-code"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 2."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 3."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 4."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 5."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 6."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+          </div>
+        </div>
+        <div
+          class="_request-button-wrapper_74daae"
+        >
+          <p>
+            child!
+          </p>
+        </div>
+        <button
+          class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512 _confirmation-form_74daae"
+          type="submit"
+        >
+          <span
+            class="yc-button__text"
+          >
+            confirm
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+`;
+
+exports[`ConfirmationForm > Form without default value 1`] = `
+<body>
+  <div>
+    <form>
+      <div
+        class="_confirmation-form_74daae"
+      >
+        <div
+          class="_key-field-container_1e169f"
+        >
+          <div
+            class="_key-field-container__inputs_1e169f"
+          >
+            <input
+              aria-label="Character 1."
+              autocomplete="one-time-code"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 2."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 3."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 4."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 5."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 6."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+          </div>
+        </div>
+        <div
+          class="_request-button-wrapper_74daae"
+        >
+          <p>
+            child!
+          </p>
+        </div>
+        <button
+          class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512 _confirmation-form_74daae"
+          type="submit"
+        >
+          <span
+            class="yc-button__text"
+          >
+            confirm
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+`;

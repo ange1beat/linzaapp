@@ -1,0 +1,17 @@
+{
+  "title": "Personal information",
+  "cancel": "Cancel",
+  "apply": "Apply",
+  "change": "Change",
+  "add": "Add",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "telegram": "Telegram",
+  "password": "Password",
+  "none": "None",
+  "successUpdateAvaTitle": "Success",
+  "successUpdateAvaMessage": "Avatar changed",
+  "errorUpdateAvaTitle": "Error",
+  "errorUpdateAvaMessage": "It seems something went wrong, the data has not been updated"
+}

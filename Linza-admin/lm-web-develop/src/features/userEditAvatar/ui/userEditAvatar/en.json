@@ -1,0 +1,6 @@
+{
+  "successAvatarTitle": "Success",
+  "successAvatarMessage": "Avatar changed",
+  "errorAvatarTitle": "Error",
+  "errorAvatarMessage": "It seems something went wrong, the data has not been updated"
+}

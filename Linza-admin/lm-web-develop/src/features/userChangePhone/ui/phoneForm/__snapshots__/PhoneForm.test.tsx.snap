@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PhoneForm > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="_window_2d008c"
+    >
+      <span
+        class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _window__title_2d008c"
+      >
+        title
+      </span>
+      <div
+        class="_window__form_2d008c"
+      >
+         
+        <form
+          class="_phone-form_d69167"
+        >
+          <span
+            class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round _input_3058db"
+          >
+            <span
+              class="yc-text-input__content"
+            >
+              <input
+                class="yc-text-input__control yc-text-input__control_type_input"
+                placeholder="placeholder"
+                value=""
+              />
+            </span>
+          </span>
+          <div
+            class="_phone-form__buttons_d69167"
+          >
+            <button
+              class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round yc-button_width_max _btn--primary_212512"
+              type="submit"
+            >
+              <span
+                class="yc-button__text"
+              >
+                send-code
+              </span>
+            </button>
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round yc-button_width_max"
+              type="button"
+            >
+              <span
+                class="yc-button__text"
+              >
+                cancel
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+`;

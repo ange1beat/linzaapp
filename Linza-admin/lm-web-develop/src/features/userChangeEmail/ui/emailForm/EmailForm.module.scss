@@ -1,0 +1,18 @@
+@import 'src/shared/vars';
+
+.email-form {
+  display: flex;
+  width: $profile-width;
+  box-sizing: border-box;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.email-form__buttons {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+
+  gap: 10px;
+}

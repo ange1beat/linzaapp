@@ -1,0 +1,12 @@
+.input {
+  :global(.yc-text-input__content) {
+    overflow: hidden;
+  }
+}
+
+.input__right-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}

@@ -1,0 +1,171 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SourceStatusEntity > In progress status 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-label yc-label_theme_unknown yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          planned
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-label yc-label_theme_info yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          in-progress
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`SourceStatusEntity > Not configure status 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-label yc-label_theme_unknown yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          planned
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-label yc-label_theme_info yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          in-progress
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-label yc-label_theme_normal yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          stopped
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-label yc-label_theme_normal yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          not-configure
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`SourceStatusEntity > Planned status 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-label yc-label_theme_unknown yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          planned
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`SourceStatusEntity > Stopped status 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-label yc-label_theme_unknown yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          planned
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-label yc-label_theme_info yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          in-progress
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-label yc-label_theme_normal yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          stopped
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

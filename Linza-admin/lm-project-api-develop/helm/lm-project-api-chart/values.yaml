@@ -1,0 +1,13 @@
+# Default values for lm-project-api-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into templates.
+
+buildNumber: latest
+imageName: linza-monitoring/deployment/lm-project-api
+pullSecretName: cr-secret
+registryAddress: registry.gitlab.rifoxa.ru
+postgresHost: postgresHost
+postgresPort: postgresPort
+postgresUser: postgresUser
+postgresPassword: postgresPassword
+jwtPublicKey: jwtPublicKey

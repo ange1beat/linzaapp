@@ -1,0 +1,12 @@
+{
+  "title": "Members",
+  "searchPlaceholder": "Search",
+  "columns": {
+    "person": "Person",
+    "email": "Email",
+    "phone": "Phone",
+    "telegram": "Telegram",
+    "role": "Role",
+    "action": "Actions"
+  }
+}

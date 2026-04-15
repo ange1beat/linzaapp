@@ -1,0 +1,97 @@
+version: "3.4"
+
+configs:
+  conf.json:
+    file: ./conf.json 
+
+volumes:
+  datastore:  
+
+networks:
+  private-services:
+    external: true
+
+services:
+  #postgres for keeping configs
+  importer-datastore:
+    image: postgres:10.7
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=PLoAj1DB
+      - POSTGRES_DB=importer-datastore
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - POSTGRES_PORT=5432
+    ports:
+      - "5433:5432"
+    volumes:
+      - datastore:/var/lib/postgresql/data
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - private-services
+      - default
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  #datastore migrations
+  importer-migrations-datastore:
+    build:
+      context: .
+      dockerfile: src/importer-migrations-datastore/Dockerfile
+    environment:
+      - PYTHONUNBUFFERED=0
+      - IMPORTER_RABBITMQ_USER=rabbitadmin
+      - IMPORTER_RABBITMQ_PASS=rabbitadmin
+    depends_on:
+      - importer-datastore
+    container_name: importer.migrations.datastore
+    networks:
+      - private-services
+      - default
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  # Web API service to get configs & stuff
+  importer-api:
+    build:
+      context: .
+      dockerfile: src/importer_api/Dockerfile
+    ports:
+      - "8000:80"
+    environment:
+      - PYTHONUNBUFFERED=0
+      - IMPORTER_JOBQUEUE_USER=rabbitadmin
+      - IMPORTER_JOBQUEUE_PASS=rabbitadmin
+      - IMPORTER_RABBITMQ_HOST=importer-jobqueue
+      - IMPORTER_RABBITMQ_PORT=5672
+      - IMPORTER_RABBITMQ_USER=rabbitadmin
+      - IMPORTER_RABBITMQ_PASS=rabbitadmin
+      - DATASTORE_HOST=importer-datastore
+      - DATASTORE_PORT=5432
+      - DATASTORE_USER=pguser
+      - DATASTORE_PASS=PLoAj1DB
+      - DATASTORE_DBNAME=importer-datastore
+    depends_on:
+      - importer-datastore      
+      - importer-migrations-datastore
+    networks:
+      - private-services
+      - default
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    healthcheck:
+      test: curl -f http://localhost:80/api/v1/healthCheck
+      interval: 30s
+      timeout: 5s
+      retries: 3

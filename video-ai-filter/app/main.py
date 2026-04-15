@@ -110,8 +110,6 @@ class JobStatusResponse(BaseModel):
     frames_total: int | None = None
     frames_done: int = 0
     progress: float | None = None
-    processing_phase: str | None = None
-    phase_progress: float | None = Field(default=None, ge=0, le=1)
     export_url: str | None = Field(
         default=None,
         description="Когда status=completed: GET {export_url}?format=time-based|raw",
@@ -147,7 +145,7 @@ class RuntimeConfigPatch(BaseModel):
     openai_timeout_sec: float | None = Field(default=None, gt=0)
     max_retries: int | None = Field(default=None, ge=1)
     jpeg_quality: int | None = Field(default=None, ge=1, le=100)
-    vision_parallel_workers: int | None = Field(default=None, ge=1, le=64)
+    vision_parallel_workers: int | None = Field(default=None, ge=1, le=32)
     audio_transcription_enabled: bool | None = None
     whisper_model_size: str | None = None
     whisper_device: str | None = None
@@ -160,15 +158,6 @@ class RuntimeConfigPatch(BaseModel):
 
 
 def _progress(row: dict[str, Any]) -> float | None:
-    phase = (row.get("processing_phase") or "").strip().lower()
-    pp = row.get("phase_progress")
-    if phase == "normalize" and pp is not None:
-        try:
-            v = float(pp)
-            if 0.0 <= v <= 1.0:
-                return min(100.0, 100.0 * v)
-        except (TypeError, ValueError):
-            pass
     total = row.get("frames_total")
     done = row.get("frames_done") or 0
     if total is None or total <= 0:
@@ -495,8 +484,6 @@ def get_job(job_id: str) -> JobStatusResponse:
         frames_total=row.get("frames_total"),
         frames_done=int(row.get("frames_done") or 0),
         progress=_progress(row),
-        processing_phase=row.get("processing_phase"),
-        phase_progress=row.get("phase_progress"),
         export_url=f"/jobs/{job_id}/export" if row["status"] == "completed" else None,
     )
 
@@ -509,17 +496,15 @@ def delete_job(job_id: str) -> dict[str, str]:
         raise HTTPException(404, "Job not found")
 
     storage.set_cancelled(job_id)
-    st = row["status"]
+    vp = row.get("video_path")
+    if vp:
+        try:
+            Path(vp).unlink(missing_ok=True)
+        except OSError as e:
+            logger.warning("Unlink %s: %s", vp, e)
 
-    if st in ("completed", "failed"):
-        vp = row.get("video_path")
-        if vp:
-            try:
-                Path(vp).unlink(missing_ok=True)
-            except OSError as e:
-                logger.warning("Unlink %s: %s", vp, e)
+    if row["status"] in ("completed", "failed"):
         storage.delete_job_record(job_id)
         return {"job_id": job_id, "status": "deleted"}
 
-    # Активная джоба: не трогаем файл — воркер сам снимет после выхода по cancelled
     return {"job_id": job_id, "status": "cancelling"}

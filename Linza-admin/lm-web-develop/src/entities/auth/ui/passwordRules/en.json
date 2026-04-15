@@ -1,0 +1,9 @@
+{
+  "rules": {
+  "title": "Your password must be at least 8 characters long\nand include a mix of four of the following character types:",
+  "uppercase": "Uppercase Letters (A-Z)",
+  "numbers": "Numbers (0-9)",
+  "lowercase": "Lowercase Letters (a-z)",
+  "non-alphanumeric": "Non-alphanumeric Symbols (!, @, #, $, %, ^, &, *, <, >, -)"
+  }
+}

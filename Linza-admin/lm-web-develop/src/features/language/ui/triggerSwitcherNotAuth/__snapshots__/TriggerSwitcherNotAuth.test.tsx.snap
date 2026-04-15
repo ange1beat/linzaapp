@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TriggerSwitcherNotAuth > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="_trigger-switcher_a15eb1"
+    >
+      <div
+        class="_dropdown_0a6a7d"
+      >
+        <div>
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round _trigger-switcher__button_a15eb1"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

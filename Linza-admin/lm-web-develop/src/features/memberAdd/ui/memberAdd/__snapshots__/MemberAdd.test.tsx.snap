@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Add Member > default 1`] = `
+<body>
+  <div>
+    <div>
+      <button />
+    </div>
+  </div>
+</body>
+`;

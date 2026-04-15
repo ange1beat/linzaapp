@@ -1,0 +1,8 @@
+{
+  "title": "Telegram change",
+  "placeholder": "New telegram ID",
+  "success-update": {
+    "title": "Success",
+    "message": "Your Telegram ID has been changed."
+  }
+}

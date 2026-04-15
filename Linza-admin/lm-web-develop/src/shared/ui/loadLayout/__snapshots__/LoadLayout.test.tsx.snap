@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LoadLayout > view default 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-loader yc-loader_size_l _load-layout_37e76e _loader_42dcc1"
+    >
+      <div
+        class="yc-loader__left"
+      />
+      <div
+        class="yc-loader__center"
+      />
+      <div
+        class="yc-loader__right"
+      />
+    </div>
+  </div>
+</body>
+`;

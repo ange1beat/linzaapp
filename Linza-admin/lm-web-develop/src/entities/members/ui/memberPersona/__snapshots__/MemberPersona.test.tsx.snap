@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MemberPersona > default 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-persona yc-persona_size_s yc-persona_theme_clear _persona_961b14 _persona--xxs_961b14"
+    >
+      <div
+        class="yc-persona__main"
+      >
+        <div
+          class="yc-persona__avatar"
+        >
+          <img
+            alt=""
+            src="/src/entities/members/media/defaultMemberAvatar.svg"
+          />
+        </div>
+        <div
+          class="yc-persona__text"
+        >
+          user.nameless
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

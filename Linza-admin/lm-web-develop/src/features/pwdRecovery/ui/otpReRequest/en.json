@@ -1,0 +1,7 @@
+{
+  "request-wait": "Request again in {{timer}}",
+  "request-again": "Request again",
+  "email": "Email",
+  "phone": "Phone",
+  "error": "Something went wrong, try again later"
+}

@@ -1,0 +1,30 @@
+.login-input {
+  margin: auto;
+  width: 420px;
+}
+
+.login-input__window {
+  width: 100%;
+}
+
+.login-input__form {
+  width: 100%;
+  text-align: center;
+  gap: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input__fields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.login-input__buttons {
+  @extend .login-input__fields;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}

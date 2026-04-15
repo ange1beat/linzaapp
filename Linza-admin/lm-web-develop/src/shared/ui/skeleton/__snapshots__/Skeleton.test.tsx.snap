@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Skeleton > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-skeleton _skeleton_bd3941"
+      style="height: 20px;"
+    />
+  </div>
+</body>
+`;

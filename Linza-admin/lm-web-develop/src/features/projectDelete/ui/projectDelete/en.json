@@ -1,0 +1,14 @@
+{
+  "success-alert": {
+    "title": "Success",
+    "content": "Project {{projectName}} has been deleted"
+  },
+  "error-alert": {
+    "title": "Error",
+    "content": "Project wasn't delete, try later"
+  },
+  "title": "Delete project",
+  "content": "Are you sure you want to permanently delete this project?",
+  "button-action": "Delete permanently",
+  "button-cancel": "Cancel"
+}

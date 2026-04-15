@@ -1,0 +1,73 @@
+{
+    "importer-api": {
+        "host": "importer-api",
+        "port": 80
+    },
+    "importer-datastore": {
+        "dbhost": "importer-datastore",
+        "dbport": 5432,
+        "dbname": "importer-datastore",
+        "dbuser": "pguser",
+        "dbpass": "12345678"
+    },
+    "importer-filestore": {
+        "dbhost": "importer-filestore",
+        "dbport": 5432,
+        "dbname": "importer-filestore",
+        "dbuser": "pguser",
+        "dbpass": "12345678"
+    },
+    "importer-jobqueue":{
+        "RABBITMQ_HOST": "importer-jobqueue",
+        "RABBITMQ_PORT": 5672,
+        "RABBITMQ_USER": "guest",
+        "RABBITMQ_PASS": "guest",
+        "EXCHANGE": ""
+    },
+    "rss-api": {
+        "host": "importer-rss-api",
+        "port": 5000
+    },
+    "atom-api": {
+        "host": "importer-atom-api",
+        "port": 5001
+    },
+    "content-service": {
+        "host": "",
+        "port": 80
+    },
+    "gateway-api": {
+        "host" : "",
+        "port": 80
+    },
+    "types": [
+        "rss",
+        "atom",
+        "web",
+        "socialnetworks/vk",
+        "socialnetworks/odnoklassniki",
+        "socialnetworks/twitter",
+        "socialnetworks/instagram",
+        "socialnetworks/youtube",
+        "socialnetworks/facebook",
+        "messengers/telegram",
+        "importer-test"
+    ],
+    "known-social-networks": [
+      "vk.com",
+      "facebook.com",
+      "instagram.com",
+      "youtube.com",
+      "ok.ru",
+      "twitter.com"
+    ],
+    "rabbitmq": {
+        "RABBITMQ_HOST": "rabbitmq",
+        "RABBITMQ_PORT": 5672,
+        "RABBITMQ_USER": "guest",
+        "RABBITMQ_PASS": "guest",
+        "QUEUE_NAME": "parsing_queue",
+        "EXCHANGE": ""
+
+    }
+}

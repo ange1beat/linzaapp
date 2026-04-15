@@ -38,9 +38,6 @@ services:
       - DB_PATH=/data/jobs.db
       - AUDIO_TRANSCRIPTION_ENABLED=${VIDEO_AI_AUDIO_TRANSCRIPTION:-true}
       - MAX_UPLOAD_BYTES=${VIDEO_AI_MAX_UPLOAD_BYTES:-0}
-      - VISION_PARALLEL_WORKERS=${VISION_PARALLEL_WORKERS:-30}
-      - OPENAI_TIMEOUT_SEC=${VIDEO_AI_OPENAI_TIMEOUT_SEC:-300}
-      - VIDEO_FFMPEG_NORMALIZE=${VIDEO_FFMPEG_NORMALIZE:-auto}
     volumes:
       - video-ai-filter-data:/data
     restart: unless-stopped

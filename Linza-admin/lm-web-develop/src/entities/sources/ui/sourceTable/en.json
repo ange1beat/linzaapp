@@ -1,0 +1,30 @@
+{
+  "columns": {
+    "type": "Type",
+    "url": "URL",
+    "next-launch": "Next launch",
+    "execution-status": "Execution status",
+    "last-result": "Last result"
+  },
+  "search-placeholder": "Search by URL",
+  "time": "{{hours}}h {{minutes}}m",
+  "execution-status": "Execution status",
+  "statuses": {
+    "planned": "Planned",
+    "stopped": "Stopped",
+    "not-configure": "Not configure",
+    "in-progress": "In progress"
+  },
+  "last-result": "Last result",
+  "results": {
+    "success": "Success",
+    "error": "Error"
+  },
+  "type-source": "Type source",
+  "sources": {
+    "telegram": "Telegram",
+    "vk": "VK",
+    "ok": "OK",
+    "web": "Web"
+  }
+}

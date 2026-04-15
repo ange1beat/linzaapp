@@ -1,6 +1,6 @@
 from enum import Enum
 from pathlib import Path
-from typing import Annotated, Literal
+from typing import Annotated
 
 from pydantic import BeforeValidator, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -47,18 +47,14 @@ class Settings(BaseSettings):
 
     max_upload_bytes: int = 0
     sample_interval_sec: float = 0.5
-    openai_timeout_sec: float = 300.0
+    openai_timeout_sec: float = 120.0
     max_retries: int = 5
     jpeg_quality: int = 85
-    vision_parallel_workers: int = Field(default=30, ge=1, le=64)
+    vision_parallel_workers: int = Field(default=5, ge=1, le=32)
 
     audio_transcription_enabled: bool = True
     ffmpeg_path: str = "ffmpeg"
-    ffprobe_path: str = "ffprobe"
     ffmpeg_extract_timeout_sec: int = 7200
-    # auto: ffprobe field_order tt/tb/bt/bb → перекод перед OpenCV; always/never — принудительно
-    video_ffmpeg_normalize: Literal["auto", "always", "never"] = "auto"
-    video_normalize_crf: int = Field(default=23, ge=18, le=35)
     whisper_model_size: str = "tiny"
     whisper_device: str = "auto"
     whisper_compute_type: str = "auto"

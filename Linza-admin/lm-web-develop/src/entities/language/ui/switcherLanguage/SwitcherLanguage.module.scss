@@ -1,0 +1,27 @@
+@import 'src/shared/vars';
+
+.languages {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+  height: fit-content;
+  padding: 10px;
+  gap: 5px;
+  border: 1px solid $divider;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.languages__element {
+  background-color: $default-button;
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+  gap: 10px;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: $button;
+    cursor: pointer;
+  }
+}

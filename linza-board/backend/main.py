@@ -101,6 +101,7 @@ from backend.database import Base, engine, SessionLocal, run_migrations, run_sql
 from backend.auth import seed_superadmin
 from backend.routes import auth, storage, users, reports, access, sources, errors, analysis_queue, detector_fetch, portal
 from backend.routes import storage_import, yandex_oauth, google_oauth
+from backend.routes import tenants, teams, storage_quotas, projects
 
 SERVICE_API_KEY = os.getenv("SERVICE_API_KEY", "")
 
@@ -431,6 +432,10 @@ app.include_router(reports.router, prefix="/api/reports")    # analysis reports
 app.include_router(access.router, prefix="/api/settings/access")    # access credentials
 app.include_router(sources.router, prefix="/api/settings/sources")  # data sources
 app.include_router(errors.router, prefix="/api/errors")      # error tracking
+app.include_router(tenants.router, prefix="/api/tenants")    # multi-tenancy
+app.include_router(teams.router, prefix="/api/teams")        # team management
+app.include_router(storage_quotas.router, prefix="/api/storage")  # storage quotas
+app.include_router(projects.router, prefix="/api/projects")  # projects & sharing
 app.include_router(detector_fetch.router, prefix="/api")
 app.include_router(analysis_queue.router, prefix="/api/analysis-queue")
 app.include_router(yandex_oauth.router, prefix="/api/integrations/yandex")
@@ -646,9 +651,56 @@ async def _proxy_to_vpleer_service(request: Request) -> Response:
     )
 
 
+def _check_storage_quota(request: Request) -> None:
+    """Check if the user has sufficient storage quota before upload.
+
+    Only applies to POST requests (file uploads). Raises HTTPException
+    if quota is exceeded at any level (user, team, tenant).
+    """
+    if request.method != "POST":
+        return
+
+    token = request.headers.get("authorization", "").replace("Bearer ", "")
+    if not token:
+        return
+
+    try:
+        from backend.auth import decode_access_token
+        payload = decode_access_token(token)
+    except Exception:
+        return
+
+    from backend.models import StorageQuota, User
+    db = SessionLocal()
+    try:
+        user = db.query(User).filter(User.login == payload.get("sub")).first()
+        if not user:
+            return
+
+        for scope_type, scope_id in [
+            ("user", user.id),
+            ("team", user.team_id),
+            ("tenant", user.tenant_id),
+        ]:
+            if not scope_id:
+                continue
+            quota = db.query(StorageQuota).filter(
+                StorageQuota.scope_type == scope_type,
+                StorageQuota.scope_id == scope_id,
+            ).first()
+            if quota and quota.quota_bytes > 0 and (quota.used_bytes or 0) >= quota.quota_bytes:
+                raise HTTPException(
+                    status_code=413,
+                    detail=f"Квота хранилища исчерпана ({scope_type})",
+                )
+    finally:
+        db.close()
+
+
 @app.api_route("/api/files", methods=_PROXY_METHODS, include_in_schema=False)
 @app.api_route("/api/files/{rest_path:path}", methods=_PROXY_METHODS, include_in_schema=False)
 async def proxy_storage_files(request: Request):
+    _check_storage_quota(request)
     return await _proxy_to_storage_service(request)
 
 

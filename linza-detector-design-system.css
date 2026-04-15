@@ -1,0 +1,521 @@
+/* ═══════════════════════════════════════════════════════════
+   LINZA DETECTOR — Design System CSS
+   Exported from landing page · April 2026
+   
+   Usage:
+   1. Include this CSS in your project
+   2. Add data-theme="dark" or data-theme="light" to <html>
+   3. Use the component classes as documented below
+   ═══════════════════════════════════════════════════════════ */
+
+
+/* ═══════ 1. DESIGN TOKENS (Theme Variables) ═══════
+   
+   Apply to <html> or <body> via data-theme attribute.
+   All components below reference these variables.
+*/
+
+[data-theme="dark"] {
+  --bg: #050510;
+  --glass: rgba(255,255,255,0.045);
+  --glass-h: rgba(255,255,255,0.08);
+  --glass-bd: rgba(255,255,255,0.08);
+  --glass-bd-h: rgba(255,255,255,0.16);
+  --glass-shine: linear-gradient(135deg,rgba(255,255,255,0.1) 0%,rgba(255,255,255,0.01) 50%,rgba(255,255,255,0.05) 100%);
+  --glass-shadow: 0 8px 40px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);
+  --t: #dce0f4;
+  --t2: #9da3c8;
+  --t3: #6e76a0;
+  --tw: #f4f6ff;
+  --bl: #5a9cf5;
+  --logo-blue: #4D8AFF;
+  --logo-green: #34C77B;
+  --gr: #3ee8b0;
+  --rd: #ff6b8a;
+  --yl: #f0d060;
+  --pp: #a898e0;
+  --cy: #50d8e8;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f0f2f8;
+  --glass: rgba(255,255,255,0.45);
+  --glass-h: rgba(255,255,255,0.65);
+  --glass-bd: rgba(0,0,0,0.08);
+  --glass-bd-h: rgba(0,0,0,0.15);
+  --glass-shine: linear-gradient(135deg,rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.1) 30%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.3) 80%,rgba(255,255,255,0.6) 100%);
+  --glass-shadow: 0 8px 40px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,0.9),inset 0 -1px 0 rgba(0,0,0,0.03);
+  --t: #2a2e48;
+  --t2: #4a5070;
+  --t3: #7880a0;
+  --tw: #0a0e20;
+  --bl: #2a6ed8;
+  --logo-blue: #0D4CD3;
+  --logo-green: #1D8B53;
+  --gr: #0ca870;
+  --rd: #dc3858;
+  --yl: #b89008;
+  --pp: #6838d0;
+  --cy: #0888ac;
+  color-scheme: light;
+}
+
+
+/* ═══════ 2. TOKEN REFERENCE ═══════
+
+   BACKGROUNDS & GLASS
+   --bg              Main page background
+   --glass           Glass panel background (semi-transparent)
+   --glass-h         Glass panel hover background
+   --glass-bd        Glass panel border
+   --glass-bd-h      Glass panel border on hover
+   --glass-shine     Diagonal shine gradient overlay
+   --glass-shadow    Combined box-shadow (outer + inner glow)
+
+   TYPOGRAPHY
+   --t               Primary text color
+   --t2              Secondary text (dimmed)
+   --t3              Muted text (labels, hints)
+   --tw              Bright/white text (headings)
+
+   BRAND COLORS
+   --bl              Blue (primary accent)
+   --gr              Green (success, positive)
+   --rd              Red (danger, block)
+   --yl              Yellow (warning, caution)
+   --pp              Purple (special, info)
+   --cy              Cyan (exempt, historical)
+
+   LOGO
+   --logo-blue       Logo icon blue square
+   --logo-green      Logo icon green square + dot
+*/
+
+
+/* ═══════ 3. BASE RESET ═══════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--t);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background .5s, color .5s;
+}
+
+
+/* ═══════ 4. LIQUID GLASS COMPONENTS ═══════ */
+
+/* Base glass panel — apply to any container */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid var(--glass-bd);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: all .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Shine overlay — add as ::before pseudo-element */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glass-shine);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Glass hover state */
+.glass:hover {
+  border-color: var(--glass-bd-h);
+  background: var(--glass-h);
+  box-shadow: var(--glass-shadow), 0 0 80px rgba(90, 156, 245, 0.06);
+}
+
+/* Glass card — for content cards */
+.glass-card {
+  border-radius: 20px;
+  padding: 30px 26px;
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid var(--glass-bd);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: all .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glass-shine);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--glass-bd-h);
+  box-shadow: var(--glass-shadow), 0 0 80px rgba(90, 156, 245, 0.06);
+}
+
+
+/* ═══════ 5. HEADER (Frosted Pill) ═══════ */
+
+.header-pill {
+  padding: 9px 22px;
+  border-radius: 100px;
+  background: rgba(10, 10, 22, 0.25);
+  backdrop-filter: blur(50px) saturate(2);
+  -webkit-backdrop-filter: blur(50px) saturate(2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all .5s cubic-bezier(.4, 0, .2, 1);
+}
+
+[data-theme="light"] .header-pill {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.header-pill:hover {
+  background: rgba(10, 10, 22, 0.5);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2),
+              0 0 100px rgba(90, 156, 245, 0.1),
+              0 0 200px rgba(62, 232, 176, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+
+/* ═══════ 6. BUTTONS ═══════ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .35s;
+  font-family: inherit;
+}
+
+/* Primary button — blue glass */
+.btn-primary {
+  background: rgba(90, 156, 245, 0.18);
+  border: 1px solid rgba(90, 156, 245, 0.28);
+  color: #fff;
+  backdrop-filter: blur(12px);
+}
+
+.btn-primary:hover {
+  background: rgba(90, 156, 245, 0.35);
+  border-color: rgba(90, 156, 245, 0.5);
+  box-shadow: 0 0 40px rgba(90, 156, 245, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Secondary/Ghost button */
+.btn-secondary {
+  background: var(--glass);
+  border: 1px solid var(--glass-bd);
+  color: var(--tw);
+  backdrop-filter: blur(12px);
+}
+
+.btn-secondary:hover {
+  background: var(--glass-h);
+  border-color: var(--glass-bd-h);
+  transform: translateY(-2px);
+}
+
+
+/* ═══════ 7. SECTION TYPOGRAPHY ═══════ */
+
+/* Section label — small pill with dot indicator */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bl);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 32px;
+}
+
+.section-label::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: var(--bl);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* Section title — large with hover glow */
+.section-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  color: var(--tw);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  transition: all .5s cubic-bezier(.4, 0, .2, 1);
+  position: relative;
+  display: block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--bl), var(--cy));
+  border-radius: 1px;
+  transition: width .5s cubic-bezier(.4, 0, .2, 1);
+  opacity: .4;
+  max-width: 200px;
+}
+
+.section-title:hover {
+  text-shadow: 0 0 80px rgba(90, 156, 245, 0.25),
+               0 0 160px rgba(90, 156, 245, 0.08);
+}
+
+.section-title:hover::after {
+  width: 100%;
+}
+
+/* Section description */
+.section-desc {
+  font-size: 18px;
+  color: var(--t2);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+
+/* ═══════ 8. ANIMATED MESH BACKGROUND ═══════ */
+
+.mesh-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+/* Example blobs — customize colors and positions */
+.mesh-blob-blue {
+  width: 70vmax; height: 70vmax;
+  background: radial-gradient(circle at 30% 40%,
+    rgba(78, 139, 245, 0.5) 0%,
+    rgba(78, 139, 245, 0.1) 40%,
+    transparent 70%);
+  filter: blur(60px);
+  animation: mesh-drift-1 22s ease-in-out infinite alternate;
+}
+
+.mesh-blob-green {
+  width: 60vmax; height: 60vmax;
+  background: radial-gradient(circle at 60% 50%,
+    rgba(62, 232, 176, 0.4) 0%,
+    rgba(62, 232, 176, 0.08) 40%,
+    transparent 70%);
+  filter: blur(70px);
+  animation: mesh-drift-2 28s ease-in-out infinite alternate;
+}
+
+.mesh-blob-purple {
+  width: 50vmax; height: 50vmax;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(168, 152, 224, 0.35) 0%,
+    rgba(168, 152, 224, 0.06) 40%,
+    transparent 70%);
+  filter: blur(80px);
+  animation: mesh-drift-3 25s ease-in-out infinite alternate;
+}
+
+@keyframes mesh-drift-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(80px, -60px) scale(1.15); }
+  100% { transform: translate(-40px, 70px) scale(0.9); }
+}
+
+@keyframes mesh-drift-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-70px, 50px) scale(1.1); }
+  100% { transform: translate(50px, -80px) scale(0.85); }
+}
+
+@keyframes mesh-drift-3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(60px, 60px) scale(1.2); }
+  100% { transform: translate(-80px, -30px) scale(0.9); }
+}
+
+/* Light theme blob adjustments */
+[data-theme="light"] .mesh-blob { opacity: .5; filter: blur(100px); }
+
+
+/* ═══════ 9. CURSOR GLOW ═══════ */
+
+.cursor-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+  opacity: 0;
+  transition: opacity .5s;
+  background: radial-gradient(circle,
+    rgba(90, 156, 245, 0.18),
+    rgba(62, 232, 176, 0.06) 50%,
+    transparent 70%);
+  mix-blend-mode: screen;
+}
+
+[data-theme="light"] .cursor-glow {
+  background: radial-gradient(circle,
+    rgba(42, 110, 216, 0.12),
+    rgba(12, 168, 112, 0.04) 50%,
+    transparent 70%);
+}
+
+
+/* ═══════ 10. SCROLL REVEAL ═══════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ═══════ 11. RISK BADGES ═══════ */
+
+.risk-badge {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.risk-block   { background: rgba(255, 70, 70, .15);  color: #ff5555; }
+.risk-critical { background: rgba(240, 160, 60, .12); color: #f0a040; }
+.risk-high    { background: rgba(240, 200, 60, .12);  color: #f0c840; }
+.risk-moderate { background: rgba(62, 220, 140, .1);  color: #3edc8c; }
+
+
+/* ═══════ 12. THEME TOGGLE BUTTON ═══════ */
+
+.theme-toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-bd);
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all .3s;
+  color: var(--t2);
+}
+
+.theme-toggle:hover {
+  border-color: var(--glass-bd-h);
+  color: var(--tw);
+  transform: rotate(30deg) scale(1.1);
+  box-shadow: 0 0 20px rgba(90, 156, 245, 0.1);
+}
+
+
+/* ═══════ 13. UTILITY: RESPONSIVE ═══════ */
+
+@media (max-width: 900px) {
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr; }
+}
+
+
+/* ═══════ 14. JAVASCRIPT HELPERS ═══════
+   
+   // Theme toggle
+   function toggleTheme() {
+     const el = document.documentElement;
+     const next = el.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+     el.setAttribute('data-theme', next);
+   }
+   
+   // Cursor glow
+   const glow = document.querySelector('.cursor-glow');
+   document.addEventListener('mousemove', e => {
+     glow.style.left = (e.clientX - 200) + 'px';
+     glow.style.top = (e.clientY - 200) + 'px';
+     glow.style.opacity = '1';
+   });
+   
+   // Scroll reveal
+   const observer = new IntersectionObserver(entries => {
+     entries.forEach((e, i) => {
+       if (e.isIntersecting) {
+         setTimeout(() => e.target.classList.add('visible'), i * 50);
+         observer.unobserve(e.target);
+       }
+     });
+   }, { threshold: .06, rootMargin: '0px 0px -40px 0px' });
+   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+═══════════════════════════════════════════════════════════ */

@@ -1,0 +1,6 @@
+pytz==2019.1
+psycopg2-binary==2.8.2
+peewee-db-evolve==3.7.0
+pika==0.12.0
+dateparser==0.7.1
+requests==2.21.0

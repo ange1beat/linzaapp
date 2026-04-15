@@ -1,0 +1,23 @@
+@import 'src/shared/vars';
+
+.phone-otp-form {
+  display: flex;
+  width: $profile-width;
+  box-sizing: border-box;
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+.phone-otp-form__subtitle {
+  text-align: center;
+}
+
+
+
+.phone-otp-form__otp {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}

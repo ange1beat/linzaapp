@@ -1,0 +1,8 @@
+{
+  "title": "Add new project",
+  "placeholder": "Project name",
+  "success-alert": {
+    "title": "Success",
+    "content": "Project {{projectName}} has been added"
+  }
+}

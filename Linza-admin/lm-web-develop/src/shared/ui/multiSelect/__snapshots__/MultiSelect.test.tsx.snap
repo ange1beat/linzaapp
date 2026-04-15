@@ -1,0 +1,1143 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MultiSelect > Default view 1`] = `
+<body>
+  <div>
+    <div
+      class="_multi-select_8e9c94 css-b62m3t-container"
+    >
+      <span
+        class="css-1f43avz-a11yText-A11yText"
+        id="react-select-2-live-region"
+      />
+      <span
+        aria-atomic="false"
+        aria-live="polite"
+        aria-relevant="additions text"
+        class="css-1f43avz-a11yText-A11yText"
+        role="log"
+      />
+      <div
+        class="_multi-select__control_8e9c94 css-13cymwt-control"
+      >
+        <div
+          class="_multi-select__value-container_8e9c94 css-1fdsijx-ValueContainer"
+        >
+          <div
+            class="_multi-select__placeholder_8e9c94 css-1jqq78o-placeholder"
+            id="react-select-2-placeholder"
+          >
+            Select...
+          </div>
+          <div
+            class=" css-qbdosj-Input"
+            data-value=""
+          >
+            <input
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-describedby="react-select-2-placeholder"
+              aria-expanded="false"
+              aria-haspopup="true"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class=""
+              id="react-select-2-input"
+              role="combobox"
+              spellcheck="false"
+              style="color: inherit; opacity: 1; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline-color: initial; outline-style: initial; outline-width: 0px; padding: 0px;"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="_multi-select__indicators-container_8e9c94 css-1hb7zxy-IndicatorsContainer"
+        >
+          <div
+            class="_multi-select__loading_8e9c94"
+          >
+            <div
+              class="yc-spin yc-spin_size_xs _spin_39e70e"
+            >
+              <div
+                class="yc-spin__inner"
+              />
+            </div>
+          </div>
+          <div
+            class="_multi-select__chevron_8e9c94"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MultiSelect > Default view 2`] = `
+<body>
+  <div>
+    <div
+      class="_multi-select_8e9c94 css-b62m3t-container"
+    >
+      <span
+        class="css-1f43avz-a11yText-A11yText"
+        id="react-select-2-live-region"
+      />
+      <span
+        aria-atomic="false"
+        aria-live="polite"
+        aria-relevant="additions text"
+        class="css-1f43avz-a11yText-A11yText"
+        role="log"
+      />
+      <div
+        class="_multi-select__control_8e9c94 css-13cymwt-control"
+      >
+        <div
+          class="_multi-select__value-container_8e9c94 css-1fdsijx-ValueContainer"
+        >
+          <div
+            class="_multi-select__placeholder_8e9c94 css-1jqq78o-placeholder"
+            id="react-select-2-placeholder"
+          >
+            Select...
+          </div>
+          <div
+            class=" css-qbdosj-Input"
+            data-value=""
+          >
+            <input
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-describedby="react-select-2-placeholder"
+              aria-expanded="false"
+              aria-haspopup="true"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class=""
+              id="react-select-2-input"
+              role="combobox"
+              spellcheck="false"
+              style="color: inherit; opacity: 1; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline-color: initial; outline-style: initial; outline-width: 0px; padding: 0px;"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="_multi-select__indicators-container_8e9c94 css-1hb7zxy-IndicatorsContainer"
+        >
+          <div
+            class="_multi-select__loading_8e9c94"
+          >
+            <div
+              class="yc-spin yc-spin_size_xs _spin_39e70e"
+            >
+              <div
+                class="yc-spin__inner"
+              />
+            </div>
+          </div>
+          <div
+            class="_multi-select__chevron_8e9c94"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_multi-select_8e9c94 css-b62m3t-container"
+    >
+      <span
+        class="css-1f43avz-a11yText-A11yText"
+        id="react-select-3-live-region"
+      />
+      <span
+        aria-atomic="false"
+        aria-live="polite"
+        aria-relevant="additions text"
+        class="css-1f43avz-a11yText-A11yText"
+        role="log"
+      />
+      <div
+        class="_multi-select__control_8e9c94 css-13cymwt-control"
+      >
+        <div
+          class="_multi-select__value-container_8e9c94 css-3w2yfm-ValueContainer"
+        >
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Bananas
+            </div>
+            <div
+              aria-label="Remove Bananas"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Oranges
+            </div>
+            <div
+              aria-label="Remove Oranges"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Grapes
+            </div>
+            <div
+              aria-label="Remove Grapes"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Strawberries
+            </div>
+            <div
+              aria-label="Remove Strawberries"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Pears
+            </div>
+            <div
+              aria-label="Remove Pears"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class=" css-qbdosj-Input"
+            data-value=""
+          >
+            <input
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-haspopup="true"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class=""
+              id="react-select-3-input"
+              role="combobox"
+              spellcheck="false"
+              style="color: inherit; opacity: 1; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline-color: initial; outline-style: initial; outline-width: 0px; padding: 0px;"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="_multi-select__indicators-container_8e9c94 css-1hb7zxy-IndicatorsContainer"
+        >
+          <div
+            class="_multi-select__loading_8e9c94"
+          >
+            <div
+              class="yc-spin yc-spin_size_xs _spin_39e70e"
+            >
+              <div
+                class="yc-spin__inner"
+              />
+            </div>
+          </div>
+          <div
+            class="_multi-select__chevron_8e9c94"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MultiSelect > Disabled 1`] = `
+<body>
+  <div>
+    <div
+      class="_multi-select_8e9c94 css-b62m3t-container"
+    >
+      <span
+        class="css-1f43avz-a11yText-A11yText"
+        id="react-select-2-live-region"
+      />
+      <span
+        aria-atomic="false"
+        aria-live="polite"
+        aria-relevant="additions text"
+        class="css-1f43avz-a11yText-A11yText"
+        role="log"
+      />
+      <div
+        class="_multi-select__control_8e9c94 css-13cymwt-control"
+      >
+        <div
+          class="_multi-select__value-container_8e9c94 css-1fdsijx-ValueContainer"
+        >
+          <div
+            class="_multi-select__placeholder_8e9c94 css-1jqq78o-placeholder"
+            id="react-select-2-placeholder"
+          >
+            Select...
+          </div>
+          <div
+            class=" css-qbdosj-Input"
+            data-value=""
+          >
+            <input
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-describedby="react-select-2-placeholder"
+              aria-expanded="false"
+              aria-haspopup="true"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class=""
+              id="react-select-2-input"
+              role="combobox"
+              spellcheck="false"
+              style="color: inherit; opacity: 1; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline-color: initial; outline-style: initial; outline-width: 0px; padding: 0px;"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="_multi-select__indicators-container_8e9c94 css-1hb7zxy-IndicatorsContainer"
+        >
+          <div
+            class="_multi-select__loading_8e9c94"
+          >
+            <div
+              class="yc-spin yc-spin_size_xs _spin_39e70e"
+            >
+              <div
+                class="yc-spin__inner"
+              />
+            </div>
+          </div>
+          <div
+            class="_multi-select__chevron_8e9c94"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_multi-select_8e9c94 css-b62m3t-container"
+    >
+      <span
+        class="css-1f43avz-a11yText-A11yText"
+        id="react-select-3-live-region"
+      />
+      <span
+        aria-atomic="false"
+        aria-live="polite"
+        aria-relevant="additions text"
+        class="css-1f43avz-a11yText-A11yText"
+        role="log"
+      />
+      <div
+        class="_multi-select__control_8e9c94 css-13cymwt-control"
+      >
+        <div
+          class="_multi-select__value-container_8e9c94 css-3w2yfm-ValueContainer"
+        >
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Bananas
+            </div>
+            <div
+              aria-label="Remove Bananas"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Oranges
+            </div>
+            <div
+              aria-label="Remove Oranges"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Grapes
+            </div>
+            <div
+              aria-label="Remove Grapes"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Strawberries
+            </div>
+            <div
+              aria-label="Remove Strawberries"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Pears
+            </div>
+            <div
+              aria-label="Remove Pears"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class=" css-qbdosj-Input"
+            data-value=""
+          >
+            <input
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-haspopup="true"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class=""
+              id="react-select-3-input"
+              role="combobox"
+              spellcheck="false"
+              style="color: inherit; opacity: 1; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline-color: initial; outline-style: initial; outline-width: 0px; padding: 0px;"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="_multi-select__indicators-container_8e9c94 css-1hb7zxy-IndicatorsContainer"
+        >
+          <div
+            class="_multi-select__loading_8e9c94"
+          >
+            <div
+              class="yc-spin yc-spin_size_xs _spin_39e70e"
+            >
+              <div
+                class="yc-spin__inner"
+              />
+            </div>
+          </div>
+          <div
+            class="_multi-select__chevron_8e9c94"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_multi-select_8e9c94 css-3iigni-container"
+    >
+      <span
+        class="css-1f43avz-a11yText-A11yText"
+        id="react-select-4-live-region"
+      />
+      <span
+        aria-atomic="false"
+        aria-live="polite"
+        aria-relevant="additions text"
+        class="css-1f43avz-a11yText-A11yText"
+        role="log"
+      />
+      <div
+        aria-disabled="true"
+        class="_multi-select__control_8e9c94 css-16xfy0z-control"
+      >
+        <div
+          class="_multi-select__value-container_8e9c94 css-3w2yfm-ValueContainer"
+        >
+          <div
+            class="_multi-select__multi-value_8e9c94 _multi-select__multi-value--disabled_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Bananas
+            </div>
+            <div
+              aria-label="Remove Bananas"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 _multi-select__multi-value--disabled_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Oranges
+            </div>
+            <div
+              aria-label="Remove Oranges"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 _multi-select__multi-value--disabled_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Grapes
+            </div>
+            <div
+              aria-label="Remove Grapes"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 _multi-select__multi-value--disabled_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Strawberries
+            </div>
+            <div
+              aria-label="Remove Strawberries"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="_multi-select__multi-value_8e9c94 _multi-select__multi-value--disabled_8e9c94 css-1p3m7a8-multiValue"
+          >
+            <div
+              class="_multi-select__multi-value-label_8e9c94 css-wsp0cs-MultiValueGeneric"
+            >
+              Pears
+            </div>
+            <div
+              aria-label="Remove Pears"
+              class="_multi-select__multi-value-remove_8e9c94 css-12a83d4-MultiValueRemove"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="yc-icon"
+                fill="currentColor"
+                height="12"
+                stroke="none"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M3.47 3.47a.75.75 0 0 1 1.06 0L8 6.94l3.47-3.47a.75.75 0 1 1 1.06 1.06L9.06 8l3.47 3.47a.75.75 0 1 1-1.06 1.06L8 9.06l-3.47 3.47a.75.75 0 0 1-1.06-1.06L6.94 8 3.47 4.53a.75.75 0 0 1 0-1.06Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </svg>
+            </div>
+          </div>
+          <div
+            class=" css-1h01tm3-Input"
+            data-value=""
+          >
+            <input
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-haspopup="true"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class=""
+              disabled=""
+              id="react-select-4-input"
+              role="combobox"
+              spellcheck="false"
+              style="color: inherit; opacity: 1; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline-color: initial; outline-style: initial; outline-width: 0px; padding: 0px;"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="_multi-select__indicators-container_8e9c94 css-1hb7zxy-IndicatorsContainer"
+        >
+          <div
+            class="_multi-select__loading_8e9c94"
+          >
+            <div
+              class="yc-spin yc-spin_size_xs _spin_39e70e"
+            >
+              <div
+                class="yc-spin__inner"
+              />
+            </div>
+          </div>
+          <div
+            class="_multi-select__chevron_8e9c94"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

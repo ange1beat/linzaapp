@@ -1,0 +1,8 @@
+{
+  "title": "Password change",
+  "current-password-placeholder": "Current password",
+  "new-password-placeholder": "New password",
+  "confirm-password-placeholder": "Confirm password",
+  "success-title": "Success",
+  "message": "Your password has been changed."
+}

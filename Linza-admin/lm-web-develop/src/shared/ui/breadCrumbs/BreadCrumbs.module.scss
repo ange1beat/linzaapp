@@ -1,0 +1,21 @@
+@import 'src/shared/vars';
+
+.breadcrumbs__link {
+  &::before {
+    display: none;
+  }
+}
+.breadcrumbs__text {
+  color: $placeholder;
+
+  &.--active {
+    color: $text;
+  }
+  &:hover {
+    color: $primary;
+  }
+}
+
+.breadcrumbs__divider {
+  color: $placeholder;
+}

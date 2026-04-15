@@ -63,6 +63,27 @@ const routes = [
     meta: { requiresAuth: true, managerOnly: true, title: 'Отслеживание ошибок' },
   },
 
+  {
+    path: '/teams',
+    component: () => import('../views/TeamsPage.vue'),
+    meta: { requiresAuth: true, portalRoles: ['administrator'], title: 'Команды' },
+  },
+  {
+    path: '/teams/:id',
+    component: () => import('../views/TeamDetailPage.vue'),
+    meta: { requiresAuth: true, portalRoles: ['administrator'], title: 'Команда' },
+  },
+  {
+    path: '/projects',
+    component: () => import('../views/ProjectsPage.vue'),
+    meta: { requiresAuth: true, title: 'Проекты' },
+  },
+  {
+    path: '/storage-quotas',
+    component: () => import('../views/StorageQuotasPage.vue'),
+    meta: { requiresAuth: true, portalRoles: ['administrator'], title: 'Квоты хранилища' },
+  },
+
   { path: '/instructions', component: () => import('../views/InstructionPage.vue'), meta: { requiresAuth: true, title: 'Инструкция' } },
   { path: '/about', component: () => import('../views/AboutPage.vue'), meta: { requiresAuth: true, title: 'О программе' } },
 ]

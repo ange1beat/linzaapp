@@ -21,10 +21,6 @@ def _migrate_jobs_columns(conn: sqlite3.Connection) -> None:
         conn.execute("ALTER TABLE jobs ADD COLUMN audio_results_json TEXT")
     if "linza_selection_json" not in existing:
         conn.execute("ALTER TABLE jobs ADD COLUMN linza_selection_json TEXT")
-    if "processing_phase" not in existing:
-        conn.execute("ALTER TABLE jobs ADD COLUMN processing_phase TEXT")
-    if "phase_progress" not in existing:
-        conn.execute("ALTER TABLE jobs ADD COLUMN phase_progress REAL")
 
 
 def _connect(db_path: Path) -> sqlite3.Connection:
@@ -180,40 +176,6 @@ class JobStorage:
                 conn.execute(
                     "UPDATE jobs SET frames_done = ?, updated_at = ? WHERE id = ?",
                     (done, now, job_id),
-                )
-                conn.commit()
-            finally:
-                conn.close()
-
-    def set_processing_phase(self, job_id: str, phase: str, progress: float) -> None:
-        """Этап подготовки (например normalize): progress 0..1 для UI."""
-        now = time.time()
-        p = min(1.0, max(0.0, float(progress)))
-        with _conn_lock:
-            conn = self._conn()
-            try:
-                conn.execute(
-                    """
-                    UPDATE jobs SET processing_phase = ?, phase_progress = ?, updated_at = ?
-                    WHERE id = ?
-                    """,
-                    (phase, p, now, job_id),
-                )
-                conn.commit()
-            finally:
-                conn.close()
-
-    def clear_processing_phase(self, job_id: str) -> None:
-        now = time.time()
-        with _conn_lock:
-            conn = self._conn()
-            try:
-                conn.execute(
-                    """
-                    UPDATE jobs SET processing_phase = NULL, phase_progress = NULL, updated_at = ?
-                    WHERE id = ?
-                    """,
-                    (now, job_id),
                 )
                 conn.commit()
             finally:

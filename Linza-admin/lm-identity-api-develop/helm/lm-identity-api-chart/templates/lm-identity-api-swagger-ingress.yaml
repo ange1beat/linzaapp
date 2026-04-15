@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /swagger$1
+  name: identity-api-ingress-swagger
+spec:
+  rules:
+  - host: k8s-node2
+    http:
+      paths:
+      - path: /swagger(.*)
+        pathType: Prefix
+        pathType: ImplementationSpecific
+        backend:
+          service:
+              name: lm-identity-api-service
+              port:
+                number: 80

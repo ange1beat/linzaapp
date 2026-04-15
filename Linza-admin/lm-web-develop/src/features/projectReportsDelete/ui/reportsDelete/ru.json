@@ -1,0 +1,10 @@
+{
+  "title": "Удаление отчётов",
+  "success-alert": {
+    "title": "Успешно",
+    "content": "Отчёты были удалены"
+  },
+  "button-action": "Delete permanently",
+  "button-cancel": "Cancel",
+  "content": "Вы уверены, что хотите навсегда удалить эти {{count}} отчёты?"
+}

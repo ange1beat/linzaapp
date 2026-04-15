@@ -1,0 +1,8 @@
+{
+  "title": "Сменить пароль для <strong>Linza</strong>",
+  "current-password-placeholder": "Текущий пароль",
+  "new-password-placeholder": "Новый пароль",
+  "confirm-password-placeholder": "Подтверждение пароля",
+  "update-password": "Обновить пароль",
+  "return-to-dashboard": "Вернуться к панели управления"
+}

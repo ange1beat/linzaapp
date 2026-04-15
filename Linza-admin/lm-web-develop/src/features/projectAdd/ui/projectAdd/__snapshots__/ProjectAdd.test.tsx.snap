@@ -1,0 +1,76 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProjectAdd > Default view 1`] = `
+<body
+  style="overflow: hidden;"
+>
+  <div />
+  <div
+    class="yc-modal yc-modal_open yc-modal_appear yc-modal_appear_active"
+  >
+    <div
+      class="yc-modal__table"
+    >
+      <div
+        class="yc-modal__cell"
+      >
+        <div
+          aria-modal="true"
+          class="yc-modal__content _modal-window_7c8f2c"
+          role="dialog"
+          tabindex="-1"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78 _modal-window__title_7c8f2c"
+          >
+            title
+          </span>
+          <form>
+            <div
+              class="_project-add__input_067dee"
+            >
+              <span
+                class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round _input_3058db"
+              >
+                <span
+                  class="yc-text-input__content"
+                >
+                  <input
+                    class="yc-text-input__control yc-text-input__control_type_input"
+                    placeholder="placeholder"
+                    value=""
+                  />
+                </span>
+              </span>
+            </div>
+            <div
+              class="_project-add__button_067dee"
+            >
+              <button
+                class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round"
+                type="button"
+              >
+                <span
+                  class="yc-button__text"
+                >
+                  cancel
+                </span>
+              </button>
+              <button
+                class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512"
+                type="submit"
+              >
+                <span
+                  class="yc-button__text"
+                >
+                  apply
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

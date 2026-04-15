@@ -1,0 +1,7 @@
+{
+  "title": "Изменить имя",
+  "placeholder-firstname": "Введите ваше имя",
+  "placeholder-lastname": "Введите вашу фамилию",
+  "name-was-changed": "Ваше имя было изменено.",
+  "success-title": "Успешно"
+}

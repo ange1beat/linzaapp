@@ -1,0 +1,455 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AuthTwoFA work > View default email 1`] = `
+<body>
+  <div>
+    <div
+      class="_window_2d008c _auth-two-fa_bd314d"
+    >
+      <span
+        class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _window__title_2d008c"
+      >
+        title
+      </span>
+      <div
+        class="_window__form_2d008c"
+      >
+         
+        <div
+          class="_auth-two-fa__container_bd314d"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+          >
+            info-message-email
+          </span>
+          <form>
+            <div
+              class="_confirmation-form_74daae _auth-two-fa__input_bd314d"
+            >
+              <div
+                class="_key-field-container_1e169f"
+              >
+                <div
+                  class="_key-field-container__inputs_1e169f"
+                >
+                  <input
+                    aria-label="Character 1."
+                    autocomplete="one-time-code"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 2."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 3."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 4."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 5."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 6."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                </div>
+              </div>
+              <div
+                class="_request-button-wrapper_74daae"
+              >
+                <div
+                  class="_code-re-request_d7d483"
+                >
+                  <button
+                    class="yc-button yc-button_view_outlined yc-button_size_xl yc-button_pin_round-round yc-button_disabled yc-button_width_max _main-timer_7d8d84"
+                    disabled=""
+                    type="button"
+                  >
+                    <span
+                      class="yc-button__text"
+                    >
+                      <span
+                        class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+                      >
+                        request-wait
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <button
+                class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512 _confirmation-form_74daae"
+                type="submit"
+              >
+                <span
+                  class="yc-button__text"
+                >
+                  confirm
+                </span>
+              </button>
+            </div>
+          </form>
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              button-back
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`AuthTwoFA work > View default phone 1`] = `
+<body>
+  <div>
+    <div
+      class="_window_2d008c _auth-two-fa_bd314d"
+    >
+      <span
+        class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _window__title_2d008c"
+      >
+        title
+      </span>
+      <div
+        class="_window__form_2d008c"
+      >
+         
+        <div
+          class="_auth-two-fa__container_bd314d"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+          >
+            info-message-email
+          </span>
+          <form>
+            <div
+              class="_confirmation-form_74daae _auth-two-fa__input_bd314d"
+            >
+              <div
+                class="_key-field-container_1e169f"
+              >
+                <div
+                  class="_key-field-container__inputs_1e169f"
+                >
+                  <input
+                    aria-label="Character 1."
+                    autocomplete="one-time-code"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 2."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 3."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 4."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 5."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 6."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                </div>
+              </div>
+              <div
+                class="_request-button-wrapper_74daae"
+              >
+                <div
+                  class="_code-re-request_d7d483"
+                >
+                  <button
+                    class="yc-button yc-button_view_outlined yc-button_size_xl yc-button_pin_round-round yc-button_disabled yc-button_width_max _main-timer_7d8d84"
+                    disabled=""
+                    type="button"
+                  >
+                    <span
+                      class="yc-button__text"
+                    >
+                      <span
+                        class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+                      >
+                        request-wait
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <button
+                class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512 _confirmation-form_74daae"
+                type="submit"
+              >
+                <span
+                  class="yc-button__text"
+                >
+                  confirm
+                </span>
+              </button>
+            </div>
+          </form>
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              button-back
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_window_2d008c _auth-two-fa_bd314d"
+    >
+      <span
+        class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _window__title_2d008c"
+      >
+        title
+      </span>
+      <div
+        class="_window__form_2d008c"
+      >
+         
+        <div
+          class="_auth-two-fa__container_bd314d"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+          >
+            info-message-phone
+          </span>
+          <form>
+            <div
+              class="_confirmation-form_74daae _auth-two-fa__input_bd314d"
+            >
+              <div
+                class="_key-field-container_1e169f"
+              >
+                <div
+                  class="_key-field-container__inputs_1e169f"
+                >
+                  <input
+                    aria-label="Character 1."
+                    autocomplete="one-time-code"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 2."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 3."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 4."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 5."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 6."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                </div>
+              </div>
+              <div
+                class="_request-button-wrapper_74daae"
+              >
+                <div
+                  class="_code-re-request_d7d483"
+                >
+                  <button
+                    class="yc-button yc-button_view_outlined yc-button_size_xl yc-button_pin_round-round yc-button_disabled yc-button_width_max _main-timer_7d8d84"
+                    disabled=""
+                    type="button"
+                  >
+                    <span
+                      class="yc-button__text"
+                    >
+                      <span
+                        class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+                      >
+                        request-wait
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <button
+                class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512 _confirmation-form_74daae"
+                type="submit"
+              >
+                <span
+                  class="yc-button__text"
+                >
+                  confirm
+                </span>
+              </button>
+            </div>
+          </form>
+          <button
+            class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round"
+            type="button"
+          >
+            <span
+              class="yc-button__text"
+            >
+              button-back
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -1,0 +1,115 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OTPFormWithResend > Default view 1`] = `
+<body>
+  <div>
+    <form
+      class="_otp-form_86068b"
+    >
+      <div>
+        <div
+          class="_key-field-container_1e169f _otp-form__code_86068b"
+        >
+          <div
+            class="_key-field-container__inputs_1e169f"
+          >
+            <input
+              aria-label="Character 1."
+              autocomplete="one-time-code"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 2."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 3."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 4."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 5."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+            <input
+              aria-label="Character 6."
+              autocomplete="off"
+              class="_key-field-container__input_1e169f"
+              inputmode="numeric"
+              max="9"
+              maxlength="1"
+              min="0"
+              pattern="[0-9]{1}"
+              type="tel"
+            />
+          </div>
+        </div>
+        <button>
+          Request again
+        </button>
+      </div>
+      <div
+        class="_otp-form__buttons_86068b"
+      >
+        <button
+          class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512"
+          type="submit"
+        >
+          <span
+            class="yc-button__text"
+          >
+            confirm
+          </span>
+        </button>
+        <button
+          class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round"
+          type="button"
+        >
+          <span
+            class="yc-button__text"
+          >
+            back
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+`;

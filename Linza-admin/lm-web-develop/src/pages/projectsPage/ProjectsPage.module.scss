@@ -1,0 +1,12 @@
+@import 'src/shared/vars';
+
+.project-page__creator {
+  pointer-events: none;
+  cursor: default;
+}
+.project-page__link {
+  color: $text;
+  &:before {
+    display: none;
+  }
+}

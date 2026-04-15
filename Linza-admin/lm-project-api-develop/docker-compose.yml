@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - db
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:PsqlDb=Host=db; Database=projects; Username=dev; Password=!SecretLinza2024"
+    ports:
+      - 80:8080
+      - 443:443
+    networks:
+      - local
+  db:
+    image: postgres:16.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=projects
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=!SecretLinza2024
+    ports:
+      - '5432:5432'
+    volumes:
+      - psqldb:/var/lib/postgresql/data
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
+
+volumes:
+  psqldb:
+    driver: local

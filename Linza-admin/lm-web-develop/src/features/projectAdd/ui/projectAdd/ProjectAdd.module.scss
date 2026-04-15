@@ -1,0 +1,14 @@
+@import "/src/shared/vars";
+
+.project-add__input {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.project-add__button {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}

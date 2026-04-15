@@ -1,0 +1,8 @@
+{
+  "title": "Добавить новый проект",
+  "placeholder": "Имя проекта",
+  "success-alert": {
+    "title": "Успешно",
+    "content": "Проект {{projectName}} был добавлен"
+  }
+}

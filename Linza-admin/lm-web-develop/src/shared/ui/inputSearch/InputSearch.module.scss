@@ -1,0 +1,21 @@
+@import 'src/shared/vars';
+
+.input-search__button {
+  --yc-button-background-color: transparent;
+  --yc-button-background-color-hover: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-search__icon {
+  color: $placeholder;
+
+  &:hover, &:active {
+    color: inherit;
+  }
+}
+
+.input-search__form {
+  display: block;
+  width: 100%;
+}

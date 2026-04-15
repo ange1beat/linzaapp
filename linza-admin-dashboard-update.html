@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linza Platform — Admin Dashboard Update</title>
+<style>
+  :root {
+    --bg: #0A0F1A;
+    --surface: #111827;
+    --surface2: #1A2332;
+    --border: #1E293B;
+    --blue: #0A6FFF;
+    --blue-dim: rgba(10,111,255,0.12);
+    --teal: #14B8A6;
+    --teal-bg: rgba(20,184,166,0.12);
+    --txt: #F1F5F9;
+    --txt2: #94A3B8;
+    --txt3: #475569;
+    --ok: #34D399;
+    --ok-bg: rgba(52,211,153,0.08);
+    --err: #F87171;
+    --err-bg: rgba(220,38,38,0.08);
+    --warn: #FBBF24;
+    --warn-bg: rgba(251,191,36,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--txt); line-height: 1.6; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+  .header { text-align: center; padding: 48px 0 32px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+  .header h1 { font-size: 32px; margin-bottom: 8px; }
+  .header .subtitle { color: var(--txt2); font-size: 16px; }
+  .header .badge { display: inline-block; background: var(--teal-bg); color: var(--teal); padding: 4px 12px; border-radius: 4px; font-size: 13px; margin-top: 12px; }
+
+  .pr-link { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 32px; }
+  .pr-link .pr-num { background: var(--blue-dim); color: var(--blue); padding: 4px 10px; border-radius: 4px; font-weight: 600; font-size: 14px; }
+  .pr-link .pr-title { font-size: 16px; font-weight: 500; }
+  .pr-link .pr-meta { color: var(--txt2); font-size: 13px; margin-left: auto; }
+
+  section { margin-bottom: 40px; }
+  section h2 { font-size: 22px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  section h3 { font-size: 16px; color: var(--txt2); margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .stat-card .num { font-size: 28px; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; }
+  .stat-card .label { color: var(--txt2); font-size: 13px; margin-top: 4px; }
+  .stat-card.blue .num { color: var(--blue); }
+  .stat-card.teal .num { color: var(--teal); }
+  .stat-card.ok .num { color: var(--ok); }
+  .stat-card.warn .num { color: var(--warn); }
+
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  th { background: var(--surface2); text-align: left; padding: 10px 14px; font-size: 12px; color: var(--txt2); text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 14px; border-top: 1px solid var(--border); font-size: 13px; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .badge-ok { background: var(--ok-bg); color: var(--ok); padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 500; }
+  .badge-err { background: var(--err-bg); color: var(--err); padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 500; }
+  .badge-warn { background: var(--warn-bg); color: var(--warn); padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 500; }
+  .badge-blue { background: var(--blue-dim); color: var(--blue); padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 500; }
+
+  .commit-list { list-style: none; }
+  .commit-list li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .commit-list .sha { font-family: monospace; font-size: 12px; color: var(--blue); background: var(--blue-dim); padding: 2px 6px; border-radius: 3px; white-space: nowrap; }
+  .commit-list .msg { font-size: 13px; flex: 1; }
+  .commit-list .author { color: var(--txt3); font-size: 12px; white-space: nowrap; }
+
+  .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .arch-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .arch-card h4 { font-size: 15px; margin-bottom: 8px; }
+  .arch-card .tech { color: var(--txt2); font-size: 12px; margin-bottom: 12px; }
+  .arch-card ul { list-style: none; padding: 0; }
+  .arch-card li { font-size: 13px; padding: 3px 0; color: var(--txt2); }
+  .arch-card li::before { content: "→ "; color: var(--teal); }
+
+  .api-section { margin-bottom: 24px; }
+  .api-method { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 3px; margin-right: 6px; font-family: monospace; }
+  .api-method.get { background: var(--ok-bg); color: var(--ok); }
+  .api-method.post { background: var(--blue-dim); color: var(--blue); }
+  .api-method.put, .api-method.patch { background: var(--warn-bg); color: var(--warn); }
+  .api-method.delete { background: var(--err-bg); color: var(--err); }
+  .api-path { font-family: monospace; font-size: 13px; }
+  .api-desc { color: var(--txt2); font-size: 12px; margin-left: 8px; }
+  .api-row { padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+
+  .flow-diagram { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; font-family: monospace; font-size: 13px; line-height: 2; color: var(--txt2); overflow-x: auto; }
+  .flow-diagram .step { color: var(--teal); }
+  .flow-diagram .arrow { color: var(--txt3); }
+
+  .todo-section { margin-top: 32px; }
+  .todo-item { display: flex; align-items: center; gap: 8px; padding: 8px 0; font-size: 13px; }
+  .todo-done::before { content: "✓"; color: var(--ok); font-weight: 700; width: 20px; text-align: center; }
+  .todo-pending::before { content: "○"; color: var(--txt3); width: 20px; text-align: center; }
+
+  @media (max-width: 768px) {
+    .arch-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Linza Platform — Admin Dashboard</h1>
+  <div class="subtitle">Обновление авторизации, мульти-тенантность, управление командами и хранилищем</div>
+  <div class="badge">PR #3 · natalia → main · В работе</div>
+</div>
+
+<!-- PR LINK -->
+<a href="https://github.com/BigDataQueen/-linza-app/pull/3" class="pr-link" target="_blank">
+  <span class="pr-num">#3</span>
+  <span class="pr-title">admin and projects backend</span>
+  <span class="pr-meta">natalia → main · OPEN</span>
+</a>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-card blue">
+    <div class="num">21</div>
+    <div class="label">Файлов изменено (linza-board)</div>
+  </div>
+  <div class="stat-card teal">
+    <div class="num">2 785</div>
+    <div class="label">Строк добавлено (backend+Vue)</div>
+  </div>
+  <div class="stat-card ok">
+    <div class="num">932</div>
+    <div class="label">Файлов (Linza-admin в монорепо)</div>
+  </div>
+  <div class="stat-card warn">
+    <div class="num">8</div>
+    <div class="label">Коммитов в ветке natalia</div>
+  </div>
+</div>
+
+<!-- ARCHITECTURE -->
+<section>
+  <h2>Архитектура изменений</h2>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h4>linza-board / backend (FastAPI)</h4>
+      <div class="tech">Python · SQLAlchemy · Alembic · JWT · bcrypt</div>
+      <ul>
+        <li>9 новых моделей БД (Tenant, Team, Project, StorageQuota...)</li>
+        <li>Расширение User (tenant_id, team_id, storage, profile)</li>
+        <li>Alembic миграция + seed default tenant</li>
+        <li>OTP-авторизация (совместимость с linza-admin)</li>
+        <li>CRUD API: tenants, teams, projects, storage quotas</li>
+        <li>Шеринг проектов/отчётов (user/team/tenant)</li>
+        <li>Access control (ownership, membership, sharing)</li>
+        <li>Compat auth endpoints (camelCase stateToken flow)</li>
+        <li>User profile APIs (search, name, password, avatar)</li>
+        <li>Storage quota middleware при upload файлов</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <h4>linza-board / frontend (Vue.js)</h4>
+      <div class="tech">Vue 3 · Naive UI · Composition API</div>
+      <ul>
+        <li>useTeams.js — CRUD команд + участники</li>
+        <li>useProjects.js — CRUD проектов + избранное</li>
+        <li>useStorageQuotas.js — квоты + использование</li>
+        <li>useAuth.js — расширен (canManageTeams, storageInfo)</li>
+        <li>TeamsPage.vue — список команд + создание</li>
+        <li>TeamDetailPage.vue — участники команды</li>
+        <li>ProjectsPage.vue — список проектов + поиск</li>
+        <li>StorageQuotasPage.vue — квоты + прогресс</li>
+        <li>Router — portal role guards на новых маршрутах</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <h4>Linza-admin / frontend (React)</h4>
+      <div class="tech">React 18 · TypeScript · Gravity UI · Zustand · React Query</div>
+      <ul>
+        <li>Добавлен в монорепо -linza-app</li>
+        <li>Session store: portalRoles + activeRole</li>
+        <li>Portal role switcher (Select component)</li>
+        <li>Team entity (models, API, React Query hooks)</li>
+        <li>StorageQuota entity (models, API, StorageBar UI)</li>
+        <li>3 новых страницы: Teams, TeamDetail, Storage</li>
+        <li>snake_case ↔ camelCase transform utility</li>
+        <li>Dual-format Zod schemas (принимают оба формата)</li>
+        <li>Sidebar: "Команды" + "Хранилище" (administrator only)</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <h4>База данных</h4>
+      <div class="tech">PostgreSQL (prod) · SQLite (dev) · Alembic</div>
+      <ul>
+        <li>tenants — организации/компании</li>
+        <li>teams — команды внутри организации</li>
+        <li>projects — проекты с tenant scope</li>
+        <li>project_members — участники проекта (owner/editor/viewer)</li>
+        <li>project_shares — полиморфный шеринг</li>
+        <li>report_shares — шеринг отчётов</li>
+        <li>storage_quotas — иерархические квоты</li>
+        <li>user_favorite_projects — избранные проекты</li>
+        <li>otp_challenges — OTP для 2FA</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH FLOW -->
+<section>
+  <h2>Auth Flow (OTP-совместимый)</h2>
+  <div class="flow-diagram">
+    <span class="step">1. Login</span> <span class="arrow">→</span> POST /api/auth { login, password }<br>
+    <span class="arrow">&nbsp;&nbsp;&nbsp;↓</span> Проверка credentials (bcrypt) → Генерация 6-значного OTP → Сохранение в БД<br>
+    <span class="arrow">&nbsp;&nbsp;&nbsp;↓</span> Response: { user: { id, email, phoneNumber }, <strong>stateToken</strong> }<br><br>
+    <span class="step">2. OTP Challenge</span> <span class="arrow">→</span> POST /api/auth/factors/otp/challenge/email { stateToken }<br>
+    <span class="arrow">&nbsp;&nbsp;&nbsp;↓</span> Перегенерация OTP, отправка по email/sms<br><br>
+    <span class="step">3. OTP Verify</span> <span class="arrow">→</span> POST /api/auth/factors/otp/verify { stateToken, passcode }<br>
+    <span class="arrow">&nbsp;&nbsp;&nbsp;↓</span> Проверка OTP (bcrypt verify) → Отметка verified=true<br>
+    <span class="arrow">&nbsp;&nbsp;&nbsp;↓</span> Response: { user, stateToken }<br><br>
+    <span class="step">4. Sign In</span> <span class="arrow">→</span> POST /api/auth/sign-in { stateToken }<br>
+    <span class="arrow">&nbsp;&nbsp;&nbsp;↓</span> Генерация JWT: { sub, role, pr, ar, tid, gid, exp }<br>
+    <span class="arrow">&nbsp;&nbsp;&nbsp;↓</span> Response: { <strong>accessToken</strong> } → localStorage<br><br>
+    <span class="step">5. Portal Role Switch</span> <span class="arrow">→</span> POST /api/auth/switch-role { active_role }<br>
+    <span class="arrow">&nbsp;&nbsp;&nbsp;↓</span> Новый JWT с обновлённым ar (active_role) полем
+  </div>
+</section>
+
+<!-- API ENDPOINTS -->
+<section>
+  <h2>Новые API Endpoints</h2>
+
+  <h3>Авторизация (/api/auth)</h3>
+  <div class="api-section">
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/auth</span><span class="api-desc">— Login → stateToken (compat)</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/auth/login</span><span class="api-desc">— Direct JWT login</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/auth/factors/otp/challenge/email</span><span class="api-desc">— Resend OTP (email)</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/auth/factors/otp/challenge/sms</span><span class="api-desc">— Resend OTP (SMS)</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/auth/factors/otp/verify</span><span class="api-desc">— Verify OTP code</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/auth/sign-in</span><span class="api-desc">— stateToken → accessToken</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/auth/token</span><span class="api-desc">— Refresh token</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/auth/switch-role</span><span class="api-desc">— Switch portal role</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/auth/me</span><span class="api-desc">— Current user (extended)</span></div>
+  </div>
+
+  <h3>Пользователи (/api/users)</h3>
+  <div class="api-section">
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/users/search</span><span class="api-desc">— Поиск с пагинацией</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/users/me</span><span class="api-desc">— Полный профиль</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/users/{id}</span><span class="api-desc">— Профиль по ID</span></div>
+    <div class="api-row"><span class="api-method put">PUT</span><span class="api-path">/api/users/me/name</span><span class="api-desc">— Изменить имя</span></div>
+    <div class="api-row"><span class="api-method put">PUT</span><span class="api-path">/api/users/me/password</span><span class="api-desc">— Изменить пароль</span></div>
+    <div class="api-row"><span class="api-method put">PUT</span><span class="api-path">/api/users/me/telegram</span><span class="api-desc">— Изменить Telegram</span></div>
+    <div class="api-row"><span class="api-method put">PUT</span><span class="api-path">/api/users/me/avatar</span><span class="api-desc">— Загрузить аватар</span></div>
+    <div class="api-row"><span class="api-method patch">PATCH</span><span class="api-path">/api/users/{id}/roles</span><span class="api-desc">— Смена роли (User/Supervisor)</span></div>
+  </div>
+
+  <h3>Тенанты (/api/tenants)</h3>
+  <div class="api-section">
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/tenants/my</span><span class="api-desc">— Мой тенант</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/tenants/</span><span class="api-desc">— Список (admin)</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/tenants/</span><span class="api-desc">— Создать тенант</span></div>
+    <div class="api-row"><span class="api-method patch">PATCH</span><span class="api-path">/api/tenants/{id}</span><span class="api-desc">— Обновить</span></div>
+    <div class="api-row"><span class="api-method delete">DELETE</span><span class="api-path">/api/tenants/{id}</span><span class="api-desc">— Удалить (superadmin)</span></div>
+  </div>
+
+  <h3>Команды (/api/teams)</h3>
+  <div class="api-section">
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/teams/</span><span class="api-desc">— Список команд в тенанте</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/teams/</span><span class="api-desc">— Создать</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/teams/{id}</span><span class="api-desc">— Детали команды</span></div>
+    <div class="api-row"><span class="api-method patch">PATCH</span><span class="api-path">/api/teams/{id}</span><span class="api-desc">— Обновить</span></div>
+    <div class="api-row"><span class="api-method delete">DELETE</span><span class="api-path">/api/teams/{id}</span><span class="api-desc">— Удалить</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/teams/{id}/members</span><span class="api-desc">— Участники</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/teams/{id}/members</span><span class="api-desc">— Добавить</span></div>
+    <div class="api-row"><span class="api-method delete">DELETE</span><span class="api-path">/api/teams/{id}/members/{uid}</span><span class="api-desc">— Удалить</span></div>
+  </div>
+
+  <h3>Проекты (/api/projects)</h3>
+  <div class="api-section">
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/projects/</span><span class="api-desc">— Список (owned+shared+tenant)</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/projects/</span><span class="api-desc">— Создать</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/projects/{id}</span><span class="api-desc">— Детали</span></div>
+    <div class="api-row"><span class="api-method patch">PATCH</span><span class="api-path">/api/projects/{id}</span><span class="api-desc">— Обновить</span></div>
+    <div class="api-row"><span class="api-method delete">DELETE</span><span class="api-path">/api/projects/{id}</span><span class="api-desc">— Удалить (владелец)</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/projects/{id}/favorite</span><span class="api-desc">— Toggle избранное</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/projects/{id}/share</span><span class="api-desc">— Поделиться</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/projects/{id}/members</span><span class="api-desc">— Участники проекта</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/projects/{id}/members</span><span class="api-desc">— Добавить участников</span></div>
+  </div>
+
+  <h3>Хранилище (/api/storage)</h3>
+  <div class="api-section">
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/storage/quotas</span><span class="api-desc">— Список квот</span></div>
+    <div class="api-row"><span class="api-method post">POST</span><span class="api-path">/api/storage/quotas</span><span class="api-desc">— Установить квоту</span></div>
+    <div class="api-row"><span class="api-method get">GET</span><span class="api-path">/api/storage/usage</span><span class="api-desc">— Использование (user/team/tenant)</span></div>
+    <div class="api-row"><span class="api-method put">PUT</span><span class="api-path">/api/storage/quotas/{type}/{id}</span><span class="api-desc">— Обновить квоту</span></div>
+    <div class="api-row"><span class="api-method delete">DELETE</span><span class="api-path">/api/storage/quotas/{type}/{id}</span><span class="api-desc">— Удалить квоту</span></div>
+  </div>
+</section>
+
+<!-- DB MODELS -->
+<section>
+  <h2>Модели базы данных</h2>
+  <table>
+    <thead>
+      <tr><th>Таблица</th><th>Назначение</th><th>Ключевые поля</th><th>Связи</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>tenants</strong></td><td>Организации / компании</td><td>id, name, slug</td><td>→ teams, users, projects</td></tr>
+      <tr><td><strong>teams</strong></td><td>Команды внутри организации</td><td>id, name, tenant_id</td><td>→ users</td></tr>
+      <tr><td><strong>users</strong> (ext)</td><td>+7 новых полей</td><td>tenant_id, team_id, phone, telegram, avatar, storage_*</td><td>→ tenants, teams</td></tr>
+      <tr><td><strong>projects</strong></td><td>Проекты с tenant scope</td><td>id, name, tenant_id, created_by, avatar_url</td><td>→ tenants, users</td></tr>
+      <tr><td><strong>project_members</strong></td><td>Участники проекта</td><td>project_id, user_id, role</td><td>→ projects, users</td></tr>
+      <tr><td><strong>project_shares</strong></td><td>Шеринг (user/team/tenant)</td><td>project_id, share_type, share_target_id, permission</td><td>→ projects</td></tr>
+      <tr><td><strong>report_shares</strong></td><td>Шеринг отчётов</td><td>report_id, user_id, permission</td><td>→ analysis_reports, users</td></tr>
+      <tr><td><strong>storage_quotas</strong></td><td>Иерархические квоты</td><td>scope_type, scope_id, quota_bytes, used_bytes</td><td>Polymorphic</td></tr>
+      <tr><td><strong>user_favorite_projects</strong></td><td>Избранные проекты</td><td>user_id, project_id</td><td>→ users, projects</td></tr>
+      <tr><td><strong>otp_challenges</strong></td><td>OTP для 2FA</td><td>state_token, user_id, otp_code, channel, expires_at</td><td>→ users</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- COMMITS -->
+<section>
+  <h2>История коммитов (natalia)</h2>
+  <ul class="commit-list">
+    <li>
+      <a class="sha" href="https://github.com/BigDataQueen/-linza-app/commit/ab4f455">ab4f455</a>
+      <span class="msg">refactor: linza-admin schemas and requests for linza-board compat</span>
+      <span class="author">Claude</span>
+    </li>
+    <li>
+      <a class="sha" href="https://github.com/BigDataQueen/-linza-app/commit/f5de5c8">f5de5c8</a>
+      <span class="msg">feat: compat auth endpoints + user profile APIs + API transform utils</span>
+      <span class="author">Claude</span>
+    </li>
+    <li>
+      <a class="sha" href="https://github.com/BigDataQueen/-linza-app/commit/326de05">326de05</a>
+      <span class="msg">feat: add Linza-admin to monorepo with admin dashboard features</span>
+      <span class="author">Claude</span>
+    </li>
+    <li>
+      <a class="sha" href="https://github.com/BigDataQueen/-linza-app/commit/a61c102">a61c102</a>
+      <span class="msg">Merge pull request #2 (claude → natalia)</span>
+      <span class="author">BigDataQueen</span>
+    </li>
+    <li>
+      <a class="sha" href="https://github.com/BigDataQueen/-linza-app/commit/b46340b">b46340b</a>
+      <span class="msg">feat: Vue.js frontend pages + storage quota middleware</span>
+      <span class="author">Claude</span>
+    </li>
+    <li>
+      <a class="sha" href="https://github.com/BigDataQueen/-linza-app/commit/b91e134">b91e134</a>
+      <span class="msg">feat: multi-tenancy, unified auth, projects/sharing, storage quotas</span>
+      <span class="author">Claude</span>
+    </li>
+    <li>
+      <a class="sha" href="https://github.com/BigDataQueen/-linza-app/commit/5b0be5d">5b0be5d</a>
+      <span class="msg">v1</span>
+      <span class="author">Наталия</span>
+    </li>
+  </ul>
+</section>
+
+<!-- PORTAL ROLES -->
+<section>
+  <h2>Система портальных ролей</h2>
+  <table>
+    <thead>
+      <tr><th>Роль</th><th>Код</th><th>Доступ</th><th>Маппинг legacy</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="badge-blue">Администратор</span></td><td>administrator</td><td>Org config, пользователи, команды, хранилище</td><td>admin → administrator + operator</td></tr>
+      <tr><td><span class="badge-ok">Оператор</span></td><td>operator</td><td>Файлы, анализ, очередь</td><td>user → operator (default)</td></tr>
+      <tr><td><span class="badge-warn">Юрист</span></td><td>lawyer</td><td>Рассмотрение эскалированного контента</td><td>—</td></tr>
+      <tr><td><span class="badge-err">Главный редактор</span></td><td>chief_editor</td><td>Метрики, маркировка, команда</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 12px; font-size: 13px; color: var(--txt2);">superadmin автоматически получает все 4 роли. Переключение через POST /api/auth/switch-role.</p>
+</section>
+
+<!-- TODO -->
+<section class="todo-section">
+  <h2>Статус реализации</h2>
+
+  <h3>Выполнено</h3>
+  <div class="todo-item todo-done">Модели БД (9 таблиц + расширение User)</div>
+  <div class="todo-item todo-done">Alembic миграция + seed tenant</div>
+  <div class="todo-item todo-done">Auth API (OTP compat + direct login + refresh + switch-role)</div>
+  <div class="todo-item todo-done">Tenants CRUD API</div>
+  <div class="todo-item todo-done">Teams CRUD API + membership</div>
+  <div class="todo-item todo-done">Projects CRUD API + members + sharing + favorites</div>
+  <div class="todo-item todo-done">Storage quotas API + usage + middleware</div>
+  <div class="todo-item todo-done">Access control (ownership, membership, sharing)</div>
+  <div class="todo-item todo-done">User profile APIs (search, name, password, telegram, avatar)</div>
+  <div class="todo-item todo-done">Vue.js pages (Teams, Projects, StorageQuotas)</div>
+  <div class="todo-item todo-done">React entities (Team, StorageQuota) + pages</div>
+  <div class="todo-item todo-done">snake_case ↔ camelCase transform layer</div>
+  <div class="todo-item todo-done">Dual-format Zod schemas (user, member, project)</div>
+  <div class="todo-item todo-done">Sidebar (Команды + Хранилище для administrator)</div>
+  <div class="todo-item todo-done">Linza-admin перенесён в монорепо -linza-app</div>
+
+  <h3>В очереди (следующая итерация)</h3>
+  <div class="todo-item todo-pending">Backend тесты (pytest)</div>
+  <div class="todo-item todo-pending">E2E: login → dashboard → projects → members</div>
+  <div class="todo-item todo-pending">Folders, Sources, Reports API (нет в linza-board)</div>
+  <div class="todo-item todo-pending">Registration + Password Recovery endpoints</div>
+  <div class="todo-item todo-pending">Email/SMS/Phone profile change (с OTP)</div>
+  <div class="todo-item todo-pending">Интеграция с Figma макетами (верстка)</div>
+  <div class="todo-item todo-pending">OTP cleanup job (expired challenges)</div>
+  <div class="todo-item todo-pending">Storage tracking (update used_bytes after upload/delete)</div>
+</section>
+
+<div style="text-align: center; padding: 40px 0; color: var(--txt3); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px;">
+  Linza Platform · Admin Dashboard Update · PR <a href="https://github.com/BigDataQueen/-linza-app/pull/3">#3</a> · Branch: natalia · 2026-04-15
+</div>
+
+</div>
+</body>
+</html>

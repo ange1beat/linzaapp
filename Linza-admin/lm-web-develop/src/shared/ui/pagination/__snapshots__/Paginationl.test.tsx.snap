@@ -1,0 +1,233 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Pagination > default 1`] = `
+<body>
+  <div>
+    <div
+      class="g-pagination _pagination_875abf"
+    >
+      <button
+        class="yc-button yc-button_view_outlined yc-button_size_m yc-button_pin_round-round yc-button_disabled g-pagination__pagination-item"
+        disabled=""
+        title="First"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M12.53 5.03a.75.75 0 0 0-1.06-1.06l-3.5 3.5a.75.75 0 0 0 0 1.06l3.5 3.5a.75.75 0 1 0 1.06-1.06L9.56 8l2.97-2.97Zm-5 0a.75.75 0 0 0-1.06-1.06l-3.5 3.5a.75.75 0 0 0 0 1.06l3.5 3.5a.75.75 0 0 0 1.06-1.06L4.56 8l2.97-2.97Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+      <button
+        class="yc-button yc-button_view_outlined yc-button_size_m yc-button_pin_round-round yc-button_disabled g-pagination__pagination-item"
+        disabled=""
+        title="Previous"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M10.53 2.97a.75.75 0 0 1 0 1.06L6.56 8l3.97 3.97a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+      <button
+        aria-pressed="true"
+        class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round yc-button_selected g-pagination__pagination-item"
+        type="button"
+      >
+        <span
+          class="yc-button__text"
+        >
+          1
+        </span>
+      </button>
+      <button
+        aria-pressed="false"
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round g-pagination__pagination-item"
+        type="button"
+      >
+        <span
+          class="yc-button__text"
+        >
+          2
+        </span>
+      </button>
+      <button
+        aria-pressed="false"
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round g-pagination__pagination-item"
+        type="button"
+      >
+        <span
+          class="yc-button__text"
+        >
+          3
+        </span>
+      </button>
+      <div
+        class="g-pagination-ellipsis g-pagination-ellipsis_size_m g-pagination__pagination-item"
+      >
+        ...
+      </div>
+      <button
+        aria-pressed="false"
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round g-pagination__pagination-item"
+        type="button"
+      >
+        <span
+          class="yc-button__text"
+        >
+          8
+        </span>
+      </button>
+      <button
+        class="yc-button yc-button_view_outlined yc-button_size_m yc-button_pin_round-round g-pagination__pagination-item"
+        title="Next"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.47 13.03a.75.75 0 0 1 0-1.06L9.44 8 5.47 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+      <span
+        class="yc-text-input yc-text-input_view_normal yc-text-input_size_m yc-text-input_pin_round-round g-pagination-input g-pagination-input_size_m g-pagination__input"
+      >
+        <span
+          class="yc-text-input__content"
+        >
+          <input
+            class="yc-text-input__control yc-text-input__control_type_input"
+            placeholder="Page #"
+            value=""
+          />
+        </span>
+      </span>
+      <div
+        class="g-select g-pagination__page-sizer"
+      >
+        <div
+          class="g-select-control g-select-control_size_m g-select-control_pin_round-round g-select-control_has-value"
+          role="group"
+        >
+          <button
+            aria-controls="select-popup-g-:r3:"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class="g-select-control__button g-select-control__button_size_m g-select-control__button_view_normal g-select-control__button_pin_round-round"
+            role="combobox"
+            type="button"
+          >
+            <span
+              class="g-select-control__option-text"
+            >
+              5
+            </span>
+          </button>
+          <svg
+            aria-hidden="true"
+            class="yc-icon g-select-control__chevron-icon"
+            fill="currentColor"
+            height="16"
+            stroke="none"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

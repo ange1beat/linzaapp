@@ -1,0 +1,15 @@
+@import 'src/shared/vars';
+
+.favorite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: $text;
+  cursor: pointer;
+}
+
+.favorite--selected {
+  color: $primary;
+}

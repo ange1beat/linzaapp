@@ -1,0 +1,15 @@
+.registration-form {
+  gap: 25px;
+}
+.registration-form__main {
+  display: flex;
+  width: 340px;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.registration-form__button {
+  width: 100%;
+  margin-top: 15px;
+}

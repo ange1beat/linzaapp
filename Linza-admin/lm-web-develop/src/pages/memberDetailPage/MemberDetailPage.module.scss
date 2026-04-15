@@ -1,0 +1,75 @@
+@import "src/shared/vars";
+
+.member-detail-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.member-detail-page__header {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid $divider;
+  padding: 20px;
+}
+
+.member-detail-page__info {
+  display: flex;
+  gap:20px;
+}
+
+.member-detail-page__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:10px;
+}
+
+.member-detail-page__table {
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.member-detail-page__details_row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.member-detail-page__avatar {
+  height: 120px;
+  width: 120px;
+  border-radius: 120px;
+}
+
+.member-detail-page__details_telegram-link > span {
+  color:$links;
+}
+
+.member-detail-page__avatar_loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $divider;
+  height: 120px;
+  width: 120px;
+  border-radius: 120px;
+}
+
+.member-detail-page__avatar_loader > div{
+  background: $primary;
+}
+
+.member-detail-page__details_name-skeleton {
+  width: 200px;
+}
+
+.member-detail-page__details_row-skeleton {
+  width: 200px;
+}
+
+

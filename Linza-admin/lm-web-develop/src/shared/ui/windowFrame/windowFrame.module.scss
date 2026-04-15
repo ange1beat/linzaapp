@@ -1,0 +1,30 @@
+.window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 52px 0 rgba(0, 0, 0, .14);
+  box-sizing: border-box;
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+.window__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 24px;
+  white-space: break-spaces;
+}
+
+.window__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

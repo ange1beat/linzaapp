@@ -1,0 +1,30 @@
+{
+  "columns": {
+    "type": "Тип",
+    "url": "URL",
+    "next-launch": "След. запуск",
+    "execution-status": "Статус выполнения",
+    "last-result": "Последний результат"
+  },
+  "search-placeholder": "Поиск по URL",
+  "time": "{{hours}}ч {{minutes}}м",
+  "execution-status": "Статус выполнения",
+  "statuses": {
+    "planned": "Запланировано",
+    "stopped": "Остановлено",
+    "not-configure": "Не настроено",
+    "in-progress": "В процессе"
+  },
+  "last-result": "Последний результат",
+  "results": {
+    "success": "Успешно",
+    "error": "Ошибка"
+  },
+  "type-source": "Тип ресурса",
+  "sources": {
+    "telegram": "Телеграм",
+    "vk": "ВК",
+    "ok": "ОК",
+    "web": "Веб"
+  }
+}

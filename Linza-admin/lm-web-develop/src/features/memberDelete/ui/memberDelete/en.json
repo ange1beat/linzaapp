@@ -1,0 +1,10 @@
+{
+  "success-alert": {
+    "title": "Success",
+    "content": "{{username}} has been deleted"
+  },
+  "title": "Delete member",
+  "content": "Are you sure you want to permanently delete this user?",
+  "button-action": "Delete permanently",
+  "button-cancel": "Cancel"
+}

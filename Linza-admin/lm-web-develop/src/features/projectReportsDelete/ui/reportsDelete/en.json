@@ -1,0 +1,10 @@
+{
+  "title": "Delete reports",
+  "success-alert": {
+    "title": "Success",
+    "content": "Reports has been deleted"
+  },
+  "button-action": "Delete permanently",
+  "button-cancel": "Cancel",
+  "content": "Are you sure you want to permanently delete this <strong>{{count}}</strong> reports?"
+}

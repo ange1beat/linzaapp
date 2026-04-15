@@ -1,0 +1,25 @@
+.table-layout {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.table-layout__header {
+  width: 100%;
+}
+
+.table-layout__body {
+  flex-grow: 1;
+  width: 100%;
+  overflow: auto;
+}
+
+.table-layout__footer {
+  width: 100%;
+  margin-top: auto;
+}

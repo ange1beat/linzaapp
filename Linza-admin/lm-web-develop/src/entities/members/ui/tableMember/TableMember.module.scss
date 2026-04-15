@@ -1,0 +1,46 @@
+@import 'src/shared/vars';
+
+.member-table__table {
+  width: 100%;
+  height: 100%;
+
+  table {
+    width: 100%;
+  }
+}
+
+.member-table__header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.member-table__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.member-table__icon {
+  color: $placeholder;
+}
+
+.member-table__email {
+  text-transform: lowercase;
+}
+
+.member-table__column {
+  max-width: 100px;
+}
+
+.member-table__persona {
+  width: 100%;
+  div > div:first-child {
+    flex-shrink: 0;
+  }
+  div {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

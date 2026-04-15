@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UserMenuItem > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="_user-menu-item_b44385"
+    >
+      <img
+        alt="avatar"
+        class="_user-menu-item__img_b44385"
+        src="/src/entities/members/media/defaultMemberAvatar.svg"
+      />
+    </div>
+  </div>
+</body>
+`;

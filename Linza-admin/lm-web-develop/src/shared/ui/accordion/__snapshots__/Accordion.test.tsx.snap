@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Accordion > Default view 1`] = `
+<body>
+  <div>
+    <div
+      class="_accordion_95fd0d"
+    >
+      <div
+        class="_accordion__head_95fd0d"
+      >
+        Header
+        <button
+          class="yc-button yc-button_view_normal yc-button_size_xs yc-button_pin_round-round"
+          type="button"
+        >
+          <span
+            class="yc-button__text"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon _accordion__icon_95fd0d"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M13.03 10.53a.75.75 0 0 1-1.06 0L8 6.56l-3.97 3.97a.75.75 0 1 1-1.06-1.06l4.5-4.5a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1 0 1.06Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        class="_accordion__body_95fd0d"
+      >
+        Folder long name to check how is it will be display in my component
+        <input
+          placeholder="some content"
+        />
+        <button>
+          Button!
+        </button>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aliquid commodi eos fugiat ipsam minima molestias nam omnis quam recusandae repellat, vero! Dicta dolorum illum nulla quae qui quisquam rem! Animi deleniti eligendi id natus ut? Asperiores cumque debitis distinctio esse est eveniet ex inventore maxime neque nesciunt nostrum omnis, perferendis perspiciatis quia, quidem saepe sapiente sint, sit temporibus voluptatum? Aliquam ea eos ex iste nemo nihil odio odit sunt? Culpa eaque earum error eum fuga hic provident quam quisquam sed. Consequatur fuga iste laudantium molestiae odio quisquam, ullam veniam.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;

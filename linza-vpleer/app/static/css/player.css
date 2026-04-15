@@ -11,31 +11,105 @@
 
   .player-container {
     width: 100%; position: relative;
-    background: var(--c-surface); border-radius: var(--r-lg);
-    overflow: hidden; box-shadow: var(--shadow-card);
-    border: 1px solid var(--c-border);
+    background: var(--glass);
+    backdrop-filter: blur(24px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    border-radius: var(--r-lg);
+    overflow: hidden; box-shadow: var(--glass-shadow);
+    border: 1px solid var(--glass-bd);
   }
   video {
     width: 100%; display: block; background: var(--bg-video);
-    max-height: 70vh;
+    max-height: 70vh; cursor: pointer;
+  }
+
+  /* Glass overlay video controls (play/rewind/forward) */
+  .video-overlay-controls {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 6vw, 60px);
+    z-index: 10;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  .player-container:hover .video-overlay-controls,
+  .video-overlay-controls.show { opacity: 1; }
+  .video-overlay-controls.hidden { opacity: 0; }
+
+  .glass-control {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    color: rgba(255,255,255,0.9);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .glass-control:hover {
+    background: rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.3);
+    transform: scale(1.08);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .glass-control:active {
+    transform: scale(0.95);
+  }
+
+  .play-btn {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+  }
+  .rewind-btn, .forward-btn {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+  }
+  .seek-label {
+    position: absolute;
+    bottom: -2px;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* Hide native controls, show custom overlay */
+  video::-webkit-media-controls { display: none !important; }
+
+  @media (max-width: 600px) {
+    .play-btn { width: 60px; height: 60px; }
+    .rewind-btn, .forward-btn { width: 42px; height: 42px; }
+    .play-btn svg { width: 28px; height: 28px; }
+    .rewind-btn svg, .forward-btn svg { width: 20px; height: 20px; }
   }
   .controls {
     padding: 12px 16px; display: flex; gap: 10px;
     align-items: center; flex-wrap: wrap;
-    background: var(--c-surface-2);
-    border-top: 1px solid var(--c-border);
+    background: var(--glass-h);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--glass-bd);
   }
   .controls a, .controls button {
-    background: var(--c-surface); color: var(--c-txt); border: 1px solid var(--c-border);
-    padding: 8px 14px; border-radius: var(--r-md); cursor: pointer;
+    background: var(--glass); color: var(--t); border: 1px solid var(--glass-bd);
+    padding: 8px 14px; border-radius: 100px; cursor: pointer;
     text-decoration: none; font-size: var(--text-base); font-family: inherit;
-    transition: background 0.15s, border-color 0.15s, color 0.15s;
-    box-shadow: var(--shadow-soft);
+    transition: all 0.3s;
+    backdrop-filter: blur(8px);
   }
   .controls a:hover, .controls button:hover {
-    background: var(--c-surface-2);
-    border-color: rgba(59, 130, 246, 0.25);
-    color: var(--c-blue);
+    background: var(--glass-h);
+    border-color: var(--glass-bd-h);
+    color: var(--bl);
+    transform: translateY(-1px);
   }
   .meta {
     width: 100%; margin-top: 16px;
@@ -89,13 +163,17 @@
 
   /* A3: Detections panel */
   .detections-panel {
-    background: var(--c-surface); border-radius: var(--r-lg);
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--c-border);
+    background: var(--glass);
+    backdrop-filter: blur(24px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    border-radius: var(--r-lg);
+    box-shadow: var(--glass-shadow);
+    border: 1px solid var(--glass-bd);
     display: flex; flex-direction: column;
     max-height: calc(70vh + 120px); overflow: hidden;
     min-height: 0;
     width: 100%;
+    position: relative;
   }
   .panel-header {
     padding: 12px 16px; display: flex; align-items: center; gap: 8px;
