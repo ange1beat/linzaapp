@@ -26,6 +26,11 @@ from backend.rate_limit import limiter
 router = APIRouter()
 
 
+def _utcnow():
+    """Return current UTC time, timezone-naive for SQLite compatibility."""
+    return datetime.now(timezone.utc).replace(tzinfo=None)
+
+
 # ---------------------------------------------------------------------------
 # Request / Response schemas
 # ---------------------------------------------------------------------------
@@ -232,7 +237,7 @@ def otp_verify(request: Request, body: OtpVerifyRequest, db: Session = Depends(g
     if challenge.verified:
         raise HTTPException(status_code=400, detail="OTP уже использован")
 
-    if datetime.now(timezone.utc) > challenge.expires_at:
+    if _utcnow() > challenge.expires_at.replace(tzinfo=None):
         raise HTTPException(status_code=400, detail="OTP истёк")
 
     if not verify_password(body.passcode, challenge.otp_code):
@@ -278,7 +283,7 @@ def sign_in(body: CompatSignInBody, db: Session = Depends(get_db)):
     if not challenge:
         raise HTTPException(status_code=400, detail="Неверный или непроверенный state token")
 
-    if datetime.now(timezone.utc) > challenge.expires_at + timedelta(minutes=5):
+    if _utcnow() > challenge.expires_at.replace(tzinfo=None) + timedelta(minutes=5):
         raise HTTPException(status_code=400, detail="State token истёк")
 
     user = db.query(User).filter(User.id == challenge.user_id).first()
@@ -405,3 +410,30 @@ def compat_otp_sms(request: Request, body: CompatOtpChallengeRequest, db: Sessio
     user = db.query(User).filter(User.id == challenge.user_id).first()
     logging.getLogger("linza.auth").info("OTP SMS for %s: %s (dev only)", user.phone_number if user else "?", otp_code)
     return {"detail": "OTP sent"}
+
+
+@router.post("/factors/otp/verify")
+@limiter.limit("10/minute")
+def compat_factors_otp_verify(request: Request, body: CompatOtpVerifyRequest, db: Session = Depends(get_db)):
+    """Compat: POST /api/auth/factors/otp/verify — verify OTP (camelCase stateToken)."""
+    challenge = db.query(OtpChallenge).filter(
+        OtpChallenge.state_token == body.stateToken,
+    ).first()
+
+    if not challenge:
+        raise HTTPException(status_code=401, detail="Неверный state token")
+    if challenge.verified:
+        raise HTTPException(status_code=401, detail="OTP уже использован")
+    if _utcnow() > challenge.expires_at.replace(tzinfo=None):
+        raise HTTPException(status_code=401, detail="OTP истёк")
+    if not verify_password(body.passcode, challenge.otp_code):
+        raise HTTPException(status_code=401, detail="Неверный OTP-код")
+
+    challenge.verified = True
+    db.commit()
+
+    user = db.query(User).filter(User.id == challenge.user_id).first()
+    return CompatOtpVerifyResponse(
+        user={"id": str(user.id), "email": user.email, "phoneNumber": user.phone_number},
+        stateToken=challenge.state_token,
+    )
