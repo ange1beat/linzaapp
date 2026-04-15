@@ -9,10 +9,34 @@ Defines the database schema for all entities:
 - ErrorRecord: centralized error tracking records
 """
 
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import (
+    BigInteger, Boolean, Column, DateTime, ForeignKey, Integer, String, Text,
+    UniqueConstraint,
+)
 from sqlalchemy.sql import func
 
 from backend.database import Base
+
+
+class Tenant(Base):
+    """Organization / company. Top-level entity for multi-tenancy."""
+    __tablename__ = "tenants"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    slug = Column(String, unique=True, nullable=False, index=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class Team(Base):
+    """Team within a tenant (e.g. department, market segment group)."""
+    __tablename__ = "teams"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    tenant_id = Column(Integer, ForeignKey("tenants.id"), nullable=False, index=True)
+    created_by = Column(Integer, ForeignKey("users.id"), nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 
 class User(Base):
@@ -34,6 +58,17 @@ class User(Base):
     portal_roles = Column(Text, nullable=True)
     created_by = Column(Integer, ForeignKey("users.id"), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    # Multi-tenancy: user belongs to a tenant and optionally a team
+    tenant_id = Column(Integer, ForeignKey("tenants.id"), nullable=True, index=True)
+    team_id = Column(Integer, ForeignKey("teams.id"), nullable=True, index=True)
+    # Extended profile fields
+    phone_number = Column(String, nullable=True)
+    telegram_username = Column(String, nullable=True)
+    avatar_url = Column(String, nullable=True)
+    # Storage quota tracking (bytes)
+    storage_quota_bytes = Column(BigInteger, default=0)
+    storage_used_bytes = Column(BigInteger, default=0)
+    last_login_at = Column(DateTime(timezone=True), nullable=True)
 
 
 class YandexOAuthState(Base):
@@ -214,4 +249,115 @@ class ErrorRecord(Base):
     extra = Column(Text, default=None)                             # additional JSON context
     github_issue_url = Column(String, default=None)                # URL of created GitHub Issue (if submitted)
     status = Column(String, default="new")                         # 'new' or 'submitted'
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+# ---------------------------------------------------------------------------
+# Phase 1: Multi-tenancy, teams, projects, sharing, storage quotas, OTP
+# ---------------------------------------------------------------------------
+
+
+class StorageQuota(Base):
+    """Hierarchical storage quotas: tenant > team > user.
+
+    scope_type determines what scope_id refers to:
+      - "tenant" → tenants.id
+      - "team"   → teams.id
+      - "user"   → users.id
+    """
+    __tablename__ = "storage_quotas"
+    __table_args__ = (
+        UniqueConstraint("scope_type", "scope_id", name="uq_storage_quota_scope"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    scope_type = Column(String, nullable=False)   # "tenant" | "team" | "user"
+    scope_id = Column(Integer, nullable=False)
+    quota_bytes = Column(BigInteger, nullable=False)
+    used_bytes = Column(BigInteger, default=0)
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
+class Project(Base):
+    """Project with tenant scope, member management, and sharing."""
+    __tablename__ = "projects"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    tenant_id = Column(Integer, ForeignKey("tenants.id"), nullable=False, index=True)
+    created_by = Column(Integer, ForeignKey("users.id"), nullable=True)
+    avatar_url = Column(String, nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
+class ProjectMember(Base):
+    """User membership in a project with a role."""
+    __tablename__ = "project_members"
+    __table_args__ = (
+        UniqueConstraint("project_id", "user_id", name="uq_project_member"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    project_id = Column(Integer, ForeignKey("projects.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    role = Column(String, nullable=False, default="viewer")  # owner | editor | viewer
+    added_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class ProjectShare(Base):
+    """Polymorphic project sharing: share with user, team, or entire tenant."""
+    __tablename__ = "project_shares"
+    __table_args__ = (
+        UniqueConstraint("project_id", "share_type", "share_target_id", name="uq_project_share"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    project_id = Column(Integer, ForeignKey("projects.id", ondelete="CASCADE"), nullable=False, index=True)
+    share_type = Column(String, nullable=False)       # "user" | "team" | "tenant"
+    share_target_id = Column(Integer, nullable=False)  # user.id | team.id | tenant.id
+    permission = Column(String, nullable=False, default="view")  # "view" | "edit"
+    shared_by = Column(Integer, ForeignKey("users.id"), nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class ReportShare(Base):
+    """Share an analysis report with another user."""
+    __tablename__ = "report_shares"
+    __table_args__ = (
+        UniqueConstraint("report_id", "user_id", name="uq_report_share"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    report_id = Column(Integer, ForeignKey("analysis_reports.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    permission = Column(String, nullable=False, default="view")  # "view" | "comment"
+    shared_by = Column(Integer, ForeignKey("users.id"), nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class UserFavoriteProject(Base):
+    """User's favorite projects."""
+    __tablename__ = "user_favorite_projects"
+    __table_args__ = (
+        UniqueConstraint("user_id", "project_id", name="uq_user_fav_project"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    project_id = Column(Integer, ForeignKey("projects.id", ondelete="CASCADE"), nullable=False, index=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class OtpChallenge(Base):
+    """OTP challenge for multi-factor authentication (linza-admin compatibility)."""
+    __tablename__ = "otp_challenges"
+
+    id = Column(Integer, primary_key=True, index=True)
+    state_token = Column(String, unique=True, nullable=False, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    otp_code = Column(String, nullable=False)  # hashed with bcrypt
+    channel = Column(String, nullable=False)   # "email" | "sms"
+    expires_at = Column(DateTime(timezone=True), nullable=False)
+    verified = Column(Boolean, default=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

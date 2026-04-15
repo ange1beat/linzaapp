@@ -101,6 +101,7 @@ from backend.database import Base, engine, SessionLocal, run_migrations, run_sql
 from backend.auth import seed_superadmin
 from backend.routes import auth, storage, users, reports, access, sources, errors, analysis_queue, detector_fetch, portal
 from backend.routes import storage_import, yandex_oauth, google_oauth
+from backend.routes import tenants, teams, storage_quotas, projects
 
 SERVICE_API_KEY = os.getenv("SERVICE_API_KEY", "")
 
@@ -431,6 +432,10 @@ app.include_router(reports.router, prefix="/api/reports")    # analysis reports
 app.include_router(access.router, prefix="/api/settings/access")    # access credentials
 app.include_router(sources.router, prefix="/api/settings/sources")  # data sources
 app.include_router(errors.router, prefix="/api/errors")      # error tracking
+app.include_router(tenants.router, prefix="/api/tenants")    # multi-tenancy
+app.include_router(teams.router, prefix="/api/teams")        # team management
+app.include_router(storage_quotas.router, prefix="/api/storage")  # storage quotas
+app.include_router(projects.router, prefix="/api/projects")  # projects & sharing
 app.include_router(detector_fetch.router, prefix="/api")
 app.include_router(analysis_queue.router, prefix="/api/analysis-queue")
 app.include_router(yandex_oauth.router, prefix="/api/integrations/yandex")

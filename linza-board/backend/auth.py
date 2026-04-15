@@ -9,7 +9,7 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
-from backend.models import User
+from backend.models import Tenant, User
 
 SECRET_KEY = os.getenv("AUTH_SECRET_KEY", "linza-board-secret-key-change-in-production")
 ALGORITHM = "HS256"
@@ -111,6 +111,20 @@ def resolve_active_role(user: User, token: str | None) -> str | None:
     return pr[0]
 
 
+def build_token_payload(user: User) -> dict:
+    """Build JWT payload with portal roles and tenant/team context."""
+    pr = portal_roles_for_user(user)
+    ar = pick_default_active_role(pr)
+    return {
+        "sub": user.login,
+        "role": user.role,
+        "pr": pr,
+        "ar": ar,
+        "tid": user.tenant_id,
+        "gid": user.team_id,
+    }
+
+
 def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> User:
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
@@ -145,8 +159,38 @@ def require_manager(
     )
 
 
+def require_portal_role(*allowed_roles: str):
+    """Factory: returns a dependency that checks if user has one of the allowed portal roles."""
+    def checker(
+        current_user: User = Depends(get_current_user),
+        token: str = Depends(oauth2_scheme),
+    ) -> User:
+        if current_user.role == "superadmin":
+            return current_user
+        ar = resolve_active_role(current_user, token)
+        if ar in allowed_roles:
+            return current_user
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f"Требуется одна из ролей: {', '.join(allowed_roles)}",
+        )
+    return checker
+
+
+def _ensure_default_tenant(db: Session) -> int:
+    """Ensure the default tenant exists and return its id."""
+    tenant = db.query(Tenant).filter(Tenant.slug == "default").first()
+    if not tenant:
+        tenant = Tenant(name="Default Organization", slug="default")
+        db.add(tenant)
+        db.flush()
+    return tenant.id
+
+
 def seed_superadmin(db: Session):
-    """Create superadmin user if not exists."""
+    """Create superadmin user if not exists. Ensures default tenant."""
+    tenant_id = _ensure_default_tenant(db)
+
     existing = db.query(User).filter(User.login == ADMIN_LOGIN).first()
     if not existing:
         superadmin = User(
@@ -157,6 +201,10 @@ def seed_superadmin(db: Session):
             email=ADMIN_EMAIL,
             role="superadmin",
             created_by=None,
+            tenant_id=tenant_id,
         )
         db.add(superadmin)
-        db.commit()
+    elif existing.tenant_id is None:
+        existing.tenant_id = tenant_id
+
+    db.commit()
