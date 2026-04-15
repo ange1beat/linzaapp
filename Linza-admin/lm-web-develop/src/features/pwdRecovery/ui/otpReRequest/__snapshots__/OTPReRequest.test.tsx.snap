@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OTPReRequest > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="_otp-re-request_6db924"
+    >
+      <button
+        class="yc-button yc-button_view_outlined yc-button_size_xl yc-button_pin_round-round yc-button_disabled yc-button_width_max _main-timer_7d8d84"
+        disabled=""
+        type="button"
+      >
+        <span
+          class="yc-button__text"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+          >
+            request-wait
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</body>
+`;

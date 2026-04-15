@@ -1,0 +1,20 @@
+@import 'src/shared/vars';
+
+.otp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: stretch;
+}
+
+.otp-form__code {
+  margin: 0 auto 10px;
+}
+
+
+.otp-form__buttons {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 10px;
+}

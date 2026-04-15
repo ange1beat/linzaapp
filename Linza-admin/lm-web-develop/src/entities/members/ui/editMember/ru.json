@@ -1,0 +1,11 @@
+{
+  "title": "Редактировать информацию о человеке",
+  "first-name-placeholder": "Имя",
+  "last-name-placeholder": "Фамилия",
+  "telegram-placeholder": "Телеграм",
+  "email-placeholder": "Почта",
+  "phone-placeholder": "Телефон",
+  "auth-title": "Данные авторизации",
+  "button-cancel": "Отменить",
+  "button-apply": "Применить"
+}

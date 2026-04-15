@@ -1,0 +1,25 @@
+@import 'src/shared/vars';
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown__list {
+  position: absolute;
+  z-index: 1;
+  border-radius: 8px;
+  background: $bg;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+.dropdown__list--right {
+  @extend .dropdown__list;
+  top: calc(100% + 7px);
+  right: 0;
+}
+
+.dropdown__list--left {
+  @extend .dropdown__list;
+  top: calc(100% + 7px);
+  left: 0;
+}

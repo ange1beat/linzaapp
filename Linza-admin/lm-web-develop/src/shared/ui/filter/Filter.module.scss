@@ -1,0 +1,60 @@
+@use '@gravity-ui/uikit/styles/themes/index';
+@import 'src/shared/vars';
+
+.groups_format {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter__wrapper {
+  padding: 15px;
+  @extend .groups_format;
+}
+.filter__reset-wrapper {
+  @extend .groups_format;
+}
+.filter__groups {
+  @extend .groups_format;
+}
+
+.wrapper .filter__btn-opened {
+    --yc-button-background-color: rgba(0, 0, 0, .15);
+    --yc-button-background-color-hover: rgba(0, 0, 0, .15);
+    color: $text-primary;
+
+  &[aria-pressed="true"] {
+    color: $text-primary;
+  }
+}
+.filter__dropdown {
+  background: $bg;
+  border-radius: 8px;
+  border: 1px solid $divider;
+  box-shadow: 0 2px 52px 0 rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 140px;
+}
+.filter__dropdown__group-header {
+  padding-top: 10px;
+  display: inline-block;
+}
+.filter__dropdown__checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+}
+.wrapper .filter__dropdown__checkbox > span [aria-hidden="true"] {
+  background-color: $primary;
+  color: $bg;
+  border-radius: 4px;
+}
+.wrapper .filter__dropdown__checkbox > span::before {
+  background-color: transparent;
+}

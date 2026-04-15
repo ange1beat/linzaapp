@@ -1,0 +1,9 @@
+@import 'src/shared/vars';
+
+.loader {
+  :global(.yc-loader__left),
+  :global(.yc-loader__center),
+  :global(.yc-loader__right) {
+    background-color: $primary;
+  }
+}

@@ -1,0 +1,23 @@
+@import 'src/shared/vars';
+
+.user-menu-item {
+  display: flex;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px transparent solid;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.user-menu-item:hover,
+.user-menu-item--selected {
+  border-color: $primary;
+}
+
+.user-menu-item__img {
+  width: 100%;
+  height: 100%;
+}

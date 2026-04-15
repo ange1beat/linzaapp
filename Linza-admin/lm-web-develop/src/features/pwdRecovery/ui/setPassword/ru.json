@@ -1,0 +1,8 @@
+{
+  "alert-error-title": "Ошибка",
+  "title": "Сброс пароля от <strong>Linza</strong>",
+  "password-placeholder": "Пароль",
+  "confirm-password-placeholder": "Подтверждение пароля",
+  "reset-password": "Установить новый пароль",
+  "back-to-login": "Вернуться на страницу логина"
+}

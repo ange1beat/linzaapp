@@ -1,0 +1,42 @@
+@import 'src/shared/vars';
+
+.layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.layout__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  padding: 0 15px 0 0;
+  background-color: transparent;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.layout__content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: $white;
+  border-radius: 8px;
+  flex-direction: column;
+}
+
+.layout__actions {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  flex-direction: row;
+
+  gap: 10px;
+}

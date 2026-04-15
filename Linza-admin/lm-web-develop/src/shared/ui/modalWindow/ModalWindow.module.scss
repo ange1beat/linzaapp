@@ -1,0 +1,13 @@
+@import "src/shared/vars";
+
+.modal-window {
+  position: relative;
+  padding: 26px 32px 28px;
+  width: 480px;
+  box-sizing: border-box;
+}
+.modal-window__title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}

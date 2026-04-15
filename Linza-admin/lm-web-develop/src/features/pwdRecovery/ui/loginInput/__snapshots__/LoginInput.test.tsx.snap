@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LoginInput > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="_login-input_f3e284"
+    >
+      <div
+        class="_window_2d008c _login-input__window_f3e284"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _window__title_2d008c"
+        >
+          title
+        </span>
+        <div
+          class="_window__form_2d008c"
+        >
+           
+          <form
+            class="_login-input__form_f3e284"
+          >
+            <div
+              class="_login-input__fields_f3e284"
+            >
+              <span
+                class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round _input_3058db"
+              >
+                <span
+                  class="yc-text-input__content"
+                >
+                  <input
+                    class="yc-text-input__control yc-text-input__control_type_input"
+                    name="login"
+                    placeholder="login-placeholder"
+                    value=""
+                  />
+                </span>
+              </span>
+            </div>
+            <div
+              class="_login-input__buttons_f3e284"
+            >
+              <button
+                class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round yc-button_width_max _btn--primary_212512"
+                type="submit"
+              >
+                <span
+                  class="yc-button__text"
+                >
+                  send-code-btn-title
+                </span>
+              </button>
+              <a
+                class="_link_c3e603"
+                href="/login"
+                target="_self"
+              >
+                return-to-login
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

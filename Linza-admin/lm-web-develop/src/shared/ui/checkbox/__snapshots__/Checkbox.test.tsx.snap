@@ -1,0 +1,119 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Checkbox > Checked state 1`] = `
+<body>
+  <div>
+    <label
+      class="yc-control-label yc-control-label_size_m yc-checkbox yc-checkbox_size_m yc-checkbox_checked _checkbox_4bb961 _checkbox--checked_4bb961"
+    >
+      <span
+        class="yc-control-label__indicator yc-checkbox__indicator"
+      >
+        <span
+          aria-hidden="true"
+          class="yc-checkbox__icon"
+        >
+          <svg
+            class="yc-checkbox__icon-svg yc-checkbox__icon-svg_type_tick"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 12 10"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M.49 5.385l1.644-1.644 4.385 4.385L4.874 9.77.49 5.385zm4.384 1.096L10.356 1 12 2.644 6.519 8.126 4.874 6.48v.001z"
+            />
+          </svg>
+        </span>
+        <input
+          aria-checked="true"
+          class="yc-checkbox__control"
+          type="checkbox"
+          value=""
+        />
+        <span
+          class="yc-checkbox__outline"
+        />
+      </span>
+    </label>
+  </div>
+</body>
+`;
+
+exports[`Checkbox > Unchecked State 1`] = `
+<body>
+  <div>
+    <label
+      class="yc-control-label yc-control-label_size_m yc-checkbox yc-checkbox_size_m yc-checkbox_checked _checkbox_4bb961 _checkbox--checked_4bb961"
+    >
+      <span
+        class="yc-control-label__indicator yc-checkbox__indicator"
+      >
+        <span
+          aria-hidden="true"
+          class="yc-checkbox__icon"
+        >
+          <svg
+            class="yc-checkbox__icon-svg yc-checkbox__icon-svg_type_tick"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 12 10"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M.49 5.385l1.644-1.644 4.385 4.385L4.874 9.77.49 5.385zm4.384 1.096L10.356 1 12 2.644 6.519 8.126 4.874 6.48v.001z"
+            />
+          </svg>
+        </span>
+        <input
+          aria-checked="true"
+          class="yc-checkbox__control"
+          type="checkbox"
+          value=""
+        />
+        <span
+          class="yc-checkbox__outline"
+        />
+      </span>
+    </label>
+  </div>
+  <div>
+    <label
+      class="yc-control-label yc-control-label_size_m yc-checkbox yc-checkbox_size_m _checkbox_4bb961"
+    >
+      <span
+        class="yc-control-label__indicator yc-checkbox__indicator"
+      >
+        <span
+          aria-hidden="true"
+          class="yc-checkbox__icon"
+        >
+          <svg
+            class="yc-checkbox__icon-svg yc-checkbox__icon-svg_type_tick"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 12 10"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M.49 5.385l1.644-1.644 4.385 4.385L4.874 9.77.49 5.385zm4.384 1.096L10.356 1 12 2.644 6.519 8.126 4.874 6.48v.001z"
+            />
+          </svg>
+        </span>
+        <input
+          aria-checked="false"
+          class="yc-checkbox__control"
+          type="checkbox"
+          value=""
+        />
+        <span
+          class="yc-checkbox__outline"
+        />
+      </span>
+    </label>
+  </div>
+</body>
+`;

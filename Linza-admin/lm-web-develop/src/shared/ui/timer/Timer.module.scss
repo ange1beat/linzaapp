@@ -1,0 +1,11 @@
+@import 'src/shared/vars';
+
+.main-timer {
+  display: block;
+
+  &:disabled {
+    --yc-button-background-color: $bg;
+    border-radius: 10px;
+    border: 1px solid $placeholder;
+  }
+}

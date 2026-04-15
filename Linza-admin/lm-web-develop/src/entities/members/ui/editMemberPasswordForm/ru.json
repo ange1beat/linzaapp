@@ -1,0 +1,13 @@
+{
+  "modal-title": "Редактировать пароль",
+  "form-title": "Новый пароль для пользователя",
+  "new-password-placeholder": "Новый пароль",
+  "confirm-password-placeholder": "Подтвердите пароль",
+  "image-alt": "Аватар участника организации",
+  "buttons": {
+    "cancel": "Отменить",
+    "apply": "Применить"
+  },
+  "error-title": "Ошибка!",
+  "error-message": "При загрузке данных что-то пошло не так! Попробуйте позже"
+}

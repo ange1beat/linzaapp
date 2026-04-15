@@ -1,0 +1,17 @@
+@import 'src/shared/vars';
+
+.checkbox.checkbox--checked {
+  border-radius: 4px;
+
+  :global(.yc-checkbox__indicator::before) {
+    background-color: $primary;
+  }
+
+  :global(.yc-checkbox__icon) {
+    color: $bg;
+  }
+}
+
+.checkbox.checkbox--disabled :global(.yc-checkbox__indicator::before) {
+  background-color: $primary;
+}

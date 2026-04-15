@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lm-project-api
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 120
+  selector:
+    matchLabels:
+        app: lm-project-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: lm-project-api
+    spec:
+      containers:
+        - name: lm-project-api
+          image: '{{ .Values.registryAddress }}/{{ .Values.imageName | default "linza-monitoring/deployment/lm-project-api" }}:{{ .Values.buildNumber }}'
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: local-files-storage
+              mountPath: /app/files
+          env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "Development"
+          - name: ConnectionStrings__PsqlDb
+            value: 'Host={{ .Values.postgresHost }};Port={{ .Values.postgresPort }};Database=projects;Username={{ .Values.postgresUser }};Password={{ .Values.postgresPassword }}'
+          - name: Authentication__JWT__PublicKey
+            value: '{{ .Values.jwtPublicKey }}'
+      volumes:
+        - name: local-files-storage
+          persistentVolumeClaim:
+            claimName: files-pvc
+      imagePullSecrets:
+        - name: '{{ .Values.pullSecretName | default "cr-secret" }}'

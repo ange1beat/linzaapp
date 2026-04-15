@@ -1,0 +1,7 @@
+{
+  "invalid-email": "Почта указана некорректно",
+  "title-success": "Успешно",
+  "message-success": "Приглашение отправлено на почту",
+  "title": "Пригласить нового участника",
+  "email": "example@mail.com"
+}

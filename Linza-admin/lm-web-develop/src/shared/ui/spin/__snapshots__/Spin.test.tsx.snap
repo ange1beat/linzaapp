@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Spin > Default view 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-spin yc-spin_size_m _spin_39e70e"
+    >
+      <div
+        class="yc-spin__inner"
+      />
+    </div>
+  </div>
+</body>
+`;

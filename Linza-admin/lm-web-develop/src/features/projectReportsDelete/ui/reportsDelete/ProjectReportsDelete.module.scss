@@ -1,0 +1,34 @@
+@import 'src/shared/vars';
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  width: 100%;
+  height: fit-content;
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+
+.buttons-wrapper__action-button {
+  background: $danger;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-reports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.project-reports__report > div {
+  max-width: 392px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+}

@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Check window for login form > test window 1`] = `
+<body>
+  <div>
+    <div
+      class="_window_2d008c"
+    >
+      <span
+        class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _window__title_2d008c"
+      >
+        test title
+      </span>
+      <div
+        class="_window__form_2d008c"
+      >
+         
+        <div>
+          here must be some children
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

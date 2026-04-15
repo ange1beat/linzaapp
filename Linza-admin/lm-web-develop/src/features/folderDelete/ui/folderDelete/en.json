@@ -1,0 +1,14 @@
+{
+  "title": "Folder deletion",
+  "content": "Are you sure you want to delete this folder?",
+  "button-action": "Delete permanently",
+  "button-cancel": "Cancel",
+  "success-alert": {
+    "title": "Successfully!",
+    "message": "Folder {{folderName}} has been deleted"
+  },
+  "error-alert": {
+    "title": "Error!",
+    "message": "Something went wrong, the folder was not deleted, try again later or reload the page!"
+  }
+}

@@ -1,0 +1,8 @@
+# Default values for lm-web-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into templates.
+
+buildNumber: latest
+imageName: linza-monitoring/deployment/lm-web
+pullSecretName: cr-secret
+registryAddress: registry.gitlab.rifoxa.ru

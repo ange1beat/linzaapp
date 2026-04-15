@@ -1,0 +1,7 @@
+@import 'src/shared/vars';
+
+.spin {
+  :global(.yc-spin__inner) {
+    border-color: $primary;
+  }
+}

@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TableLayout > default 1`] = `
+<body>
+  <div>
+    <div
+      class="_table-layout_a81e6d"
+    >
+      <div
+        class="_table-layout__header_a81e6d"
+      >
+        search and filters
+      </div>
+      <div
+        class="_table-layout__body_a81e6d"
+      >
+        table
+      </div>
+      <div
+        class="_table-layout__footer_a81e6d"
+      >
+        Pagination
+      </div>
+    </div>
+  </div>
+</body>
+`;

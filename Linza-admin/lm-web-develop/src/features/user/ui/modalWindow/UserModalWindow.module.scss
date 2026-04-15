@@ -1,0 +1,21 @@
+@import "src/shared/vars";
+
+.user-modal-window {
+  color: $text;
+  position: relative;
+  cursor: default;
+}
+
+.user-modal-window--show-window {
+  .user-modal-window__window {
+
+  }
+}
+
+.user-modal-window__window {
+  position: absolute;
+  top: 0;
+  right: -32px;
+  transform: translateX(100%);
+  z-index: 1;
+}

@@ -1,0 +1,16 @@
+.confirmation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+    gap: 25px;
+}
+
+.confirmation-form__button {
+    width: 100%;
+}
+.request-button-wrapper {
+  display: block;
+  width: 100%;
+}

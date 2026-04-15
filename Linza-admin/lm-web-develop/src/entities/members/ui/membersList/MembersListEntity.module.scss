@@ -1,0 +1,31 @@
+@import 'src/shared/vars';
+
+.members-list__list {
+  height: 100%;
+  padding: 10px 0;
+  overflow: hidden;
+}
+
+.members-list__row {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+  gap: 8px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.members-list__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.members-list__row--active {
+  background: $branding-base-selection;
+}

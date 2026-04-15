@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MenuProjectItem > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="_menu-item_7a12f0"
+    >
+      <img
+        alt="project avatar"
+        class="_menu-item__img_7a12f0"
+        src="/src/entities/projects/media/defaultProjectAvatar.svg"
+      />
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MenuProjectItem > View with avatarUrl 1`] = `
+<body>
+  <div>
+    <div
+      class="_menu-item_7a12f0"
+    >
+      <img
+        alt="project avatar"
+        class="_menu-item__img_7a12f0"
+        src="/src/entities/projects/media/defaultProjectAvatar.svg"
+      />
+    </div>
+  </div>
+  <div>
+    <div
+      class="_menu-item_7a12f0"
+    >
+      <img
+        alt="project avatar"
+        class="_menu-item__img_7a12f0"
+        src="/www.example.com/213"
+      />
+    </div>
+  </div>
+</body>
+`;

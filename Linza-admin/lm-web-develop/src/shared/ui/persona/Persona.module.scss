@@ -1,0 +1,71 @@
+@import "src/shared/vars";
+
+.persona:hover {
+  background: none;
+}
+.persona {
+  color: $text;
+  &--xxs {
+    div > div:first-child {
+      width: 20px;
+      height: 20px;
+    }
+    div > div > img  {
+      width: 20px;
+      height: 20px;
+    }
+    div > div:nth-child(2) {
+      font-size: 13px;
+      line-height: 18px;
+    }
+  }
+  &--xs {
+    div > div:first-child  {
+      width: 24px;
+      height: 24px;
+    }
+    div > div > img  {
+      width: 24px;
+      height: 24px;
+    }
+    div > div:nth-child(2) {
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+  &--s {
+    div > div:first-child {
+      width: 28px;
+      height: 28px;
+    }
+    div > div > img  {
+      width: 28px;
+      height: 28px;
+    }
+    div > div:nth-child(2) {
+      font-size: var(--g-text-body-1-font-size);
+      line-height: var(--g-text-body-1-line-height);
+    }
+  }
+  &--n {
+    div > div:first-child {
+      width: 28px;
+      height: 28px;
+    }
+    div > div > img  {
+      width: 28px;
+      height: 28px;
+    }
+    div > div:nth-child(2) {
+      font-size: var(--g-text-body-2-font-size);
+      line-height: var(--g-text-body-2-line-height);
+    }
+  }
+
+
+  &--disabled {
+    cursor: default;
+    pointer-events: none;
+    color: $text-disabled
+  }
+}

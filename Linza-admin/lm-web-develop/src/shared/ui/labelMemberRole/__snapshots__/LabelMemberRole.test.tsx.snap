@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Label > supervisor 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-label yc-label_theme_info yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          Supervisor
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Label > user 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-label yc-label_theme_info yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          Supervisor
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-label yc-label_theme_normal yc-label_size_xs yc-label_type_default"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          User
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

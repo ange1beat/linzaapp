@@ -1,0 +1,5 @@
+{
+  "confirm": "Confirm",
+  "error-contain": "The verification code must contain 6 digits",
+  "error-incorrect": "The code is incorrect or expired."
+}

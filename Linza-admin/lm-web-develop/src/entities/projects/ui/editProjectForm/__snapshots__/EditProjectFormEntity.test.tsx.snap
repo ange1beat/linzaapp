@@ -1,0 +1,137 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EditProjectFormEntity > View default 1`] = `
+<body
+  style="overflow: hidden;"
+>
+  <div />
+  <div
+    class="yc-modal yc-modal_open yc-modal_appear yc-modal_appear_active"
+  >
+    <div
+      class="yc-modal__table"
+    >
+      <div
+        class="yc-modal__cell"
+      >
+        <div
+          aria-modal="true"
+          class="yc-modal__content _modal-window_7c8f2c"
+          role="dialog"
+          tabindex="-1"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78 _modal-window__title_7c8f2c"
+          >
+            modal-title
+          </span>
+          <form
+            class="_edit-project-form_5161ea"
+          >
+            <div
+              class="_final-avatar_80dffb"
+            >
+              <input
+                class="_input-load-file_80dffb"
+                type="file"
+              />
+              <div
+                class="_final-avatar_80dffb"
+              >
+                <img
+                  alt="user avatar"
+                  class="_final-avatar__img_80dffb"
+                  src=""
+                />
+                <button
+                  class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _btn__with-icon_212512 _final-avatar__buttons_80dffb"
+                  type="button"
+                >
+                  <span
+                    class="yc-button__text"
+                  >
+                    <div
+                      class="_btn__wrapper_212512"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="yc-icon"
+                        fill="currentColor"
+                        height="16"
+                        stroke="none"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <svg
+                          fill="none"
+                          viewBox="0 0 16 16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M8 1.75a.75.75 0 0 1 .75.75v4.75h4.75a.75.75 0 0 1 0 1.5H8.75v4.75a.75.75 0 0 1-1.5 0V8.75H2.5a.75.75 0 0 1 0-1.5h4.75V2.5A.75.75 0 0 1 8 1.75Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </svg>
+                      add
+                    </div>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="_edit-project-form__project-name_5161ea"
+            >
+              <span
+                class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+              >
+                project-name-title
+              </span>
+              <span
+                class="yc-text-input yc-text-input_view_normal yc-text-input_size_l yc-text-input_pin_round-round _input_3058db"
+              >
+                <span
+                  class="yc-text-input__content"
+                >
+                  <input
+                    class="yc-text-input__control yc-text-input__control_type_input"
+                    placeholder="project-name-input-placeholder"
+                    value=""
+                  />
+                </span>
+              </span>
+            </div>
+            <div
+              class="_edit-project-form__buttons_5161ea"
+            >
+              <button
+                class="yc-button yc-button_view_normal yc-button_size_l yc-button_pin_round-round"
+                type="button"
+              >
+                <span
+                  class="yc-button__text"
+                >
+                  cancel-btn
+                </span>
+              </button>
+              <button
+                class="yc-button yc-button_view_action yc-button_size_l yc-button_pin_round-round _btn--primary_212512"
+                type="submit"
+              >
+                <span
+                  class="yc-button__text"
+                >
+                  apply-btn
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

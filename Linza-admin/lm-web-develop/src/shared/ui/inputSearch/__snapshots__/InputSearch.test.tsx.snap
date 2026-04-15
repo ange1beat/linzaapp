@@ -1,0 +1,198 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InputSearch > render error input 1`] = `
+<body>
+  <div>
+    <form
+      class="_input-search__form_ad0a15"
+    >
+      <span
+        class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round yc-text-input_has-right-content"
+      >
+        <span
+          class="yc-text-input__content"
+        >
+          <input
+            class="yc-text-input__control yc-text-input__control_type_input"
+            value=""
+          />
+          <div
+            class="yc-text-input__additional-content yc-text-input__additional-content_placement_right"
+          >
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _btn__with-icon_212512 _input-search__button_ad0a15"
+              type="submit"
+            >
+              <span
+                class="yc-button__text"
+              >
+                <div
+                  class="_btn__wrapper_212512"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="yc-icon _input-search__icon_ad0a15"
+                    fill="currentColor"
+                    height="20"
+                    stroke="none"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <svg
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M11.5 7a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-.82 4.74a6 6 0 1 1 1.06-1.06l2.79 2.79a.75.75 0 1 1-1.06 1.06l-2.79-2.79Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </svg>
+                </div>
+              </span>
+            </button>
+          </div>
+        </span>
+      </span>
+    </form>
+  </div>
+  <div>
+    <form
+      class="_input-search__form_ad0a15"
+    >
+      <span
+        class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_state_error yc-text-input_pin_round-round yc-text-input_has-right-content"
+      >
+        <span
+          class="yc-text-input__content"
+        >
+          <input
+            aria-describedby="g-:r4:"
+            aria-invalid="true"
+            class="yc-text-input__control yc-text-input__control_type_input"
+            value=""
+          />
+          <div
+            class="yc-text-input__additional-content yc-text-input__additional-content_placement_right"
+          >
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _btn__with-icon_212512 _input-search__button_ad0a15"
+              type="submit"
+            >
+              <span
+                class="yc-button__text"
+              >
+                <div
+                  class="_btn__wrapper_212512"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="yc-icon _input-search__icon_ad0a15"
+                    fill="currentColor"
+                    height="20"
+                    stroke="none"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <svg
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M11.5 7a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-.82 4.74a6 6 0 1 1 1.06-1.06l2.79 2.79a.75.75 0 1 1-1.06 1.06l-2.79-2.79Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </svg>
+                </div>
+              </span>
+            </button>
+          </div>
+        </span>
+        <div
+          class="yc-outer-additional-content"
+        >
+          <div
+            class="yc-outer-additional-content__error"
+            data-qa="control-error-message-qa"
+            id="g-:r4:"
+          >
+            Error
+          </div>
+        </div>
+      </span>
+    </form>
+  </div>
+</body>
+`;
+
+exports[`InputSearch > view default 1`] = `
+<body>
+  <div>
+    <form
+      class="_input-search__form_ad0a15"
+    >
+      <span
+        class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round yc-text-input_has-right-content"
+      >
+        <span
+          class="yc-text-input__content"
+        >
+          <input
+            class="yc-text-input__control yc-text-input__control_type_input"
+            value=""
+          />
+          <div
+            class="yc-text-input__additional-content yc-text-input__additional-content_placement_right"
+          >
+            <button
+              class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _btn__with-icon_212512 _input-search__button_ad0a15"
+              type="submit"
+            >
+              <span
+                class="yc-button__text"
+              >
+                <div
+                  class="_btn__wrapper_212512"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="yc-icon _input-search__icon_ad0a15"
+                    fill="currentColor"
+                    height="20"
+                    stroke="none"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <svg
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M11.5 7a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-.82 4.74a6 6 0 1 1 1.06-1.06l2.79 2.79a.75.75 0 1 1-1.06 1.06l-2.79-2.79Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </svg>
+                </div>
+              </span>
+            </button>
+          </div>
+        </span>
+      </span>
+    </form>
+  </div>
+</body>
+`;

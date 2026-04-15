@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProjectChangeName > View default 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_pin_round-round _input_3058db"
+    >
+      <span
+        class="yc-text-input__content"
+      >
+        <input
+          class="yc-text-input__control yc-text-input__control_type_input"
+          value="test project"
+        />
+      </span>
+    </span>
+  </div>
+</body>
+`;

@@ -1,0 +1,123 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Table > default 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-table"
+    >
+      <table
+        class="yc-table__table"
+      >
+        <colgroup>
+          <col />
+          <col />
+          <col />
+        </colgroup>
+        <thead
+          class="yc-table__head"
+        >
+          <tr
+            class="yc-table__row"
+          >
+            <th
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              First Name
+            </th>
+            <th
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              Last Name
+            </th>
+            <th
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              Phone
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="yc-table__body"
+        >
+          <tr
+            class="yc-table__row"
+          >
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                0
+              </div>
+            </td>
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                0
+              </div>
+            </td>
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                0
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="yc-table__row"
+          >
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                1
+              </div>
+            </td>
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                1
+              </div>
+            </td>
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                1
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="yc-table__row"
+          >
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                2
+              </div>
+            </td>
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                2
+              </div>
+            </td>
+            <td
+              class="yc-table__cell yc-table__cell_edge-padding"
+            >
+              <div>
+                2
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+`;

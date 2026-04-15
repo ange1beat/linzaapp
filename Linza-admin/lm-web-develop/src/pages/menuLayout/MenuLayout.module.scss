@@ -1,0 +1,15 @@
+.menu-layout {
+  display: flex;
+}
+
+.menu-layout__menu {
+  height: 100vh;
+}
+
+.menu-layout__content {
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}

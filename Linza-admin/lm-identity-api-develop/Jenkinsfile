@@ -1,0 +1,229 @@
+// ++ //
+def clusterHostMap = [
+    'dev': '192.168.70.150',
+    'stag': '',
+    'prod': ''
+]
+
+def sshUserNameMap = [
+    'dev': 'jenkinsuser',
+    'stag': '',
+    'prod': ''
+]
+
+def sshCredentialsMap = [
+    'dev': '2a4c2063-ded7-4710-9247-2db45138d073',
+    'stag': '',
+    'prod': ''
+]
+// ++ //
+def smtpHostMap = [
+    'dev': 'mail.majormail.ru',
+    'stag': '',
+    'prod': ''
+]
+def smtpPortMap = [
+    'dev': '465',
+    'stag': '',
+    'prod': '']
+def smtpCredsMap = [
+    'dev': 'smtp-creds',
+    'stag': '',
+    'prod': ''
+]
+def smsNadoCredsMap = [
+    'dev': 'smsnado-creds',
+    'stag': '',
+    'prod': ''
+]
+def postgresHostMap = [
+    'dev': 'postgres-postgresql',
+    'stag': '',
+    'prod': ''
+]
+def postgresPortMap = [
+    'dev': '5432',
+    'stag': '',
+    'prod': ''
+]
+def postgresCredsMap = [
+    'dev': 'postgres-creds-identity-api-dev',
+    'stag': '',
+    'prod': ''
+]
+def registrationLinkMap = [
+    'dev': '',
+    'stag': '',
+    'prod': ''
+]
+def jwtPrivateKeyMap = [
+    'dev': 'jwtPrivateKey',
+    'stag': '',
+    'prod': ''
+]
+def jwtPublicKeyMap = [
+    'dev': 'jwtPublicKey',
+    'stag': '',
+    'prod': ''
+]
+def appTokenMap = [
+    'dev': 'identity-api-token-dev',
+    'stag': '',
+    'prod': ''
+]
+
+pipeline {
+    environment {
+        appName = 'lm-identity-api'
+        registry = "registry.gitlab.rifoxa.ru"
+        registryCredentials = "rifoxa-registry-credentials"
+        dockerImageName = "$env.registry" + "/linza-monitoring/deployment/" + "$env.appName" + ":" + "$BUILD_NUMBER"
+        kubernetesNamespace = "default"
+    }
+    parameters {
+        choice(name: 'BUILD_ENV', choices: ['dev', 'stag', 'prod'], description: 'Build environment')
+    }
+
+    agent any
+
+    stages {
+        stage('Clone repository') {
+            /* Let's make sure we have the repository cloned to our workspace */
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build image') {
+           /* This builds the actual image; synonymous to
+            * docker build on the command line */
+            steps {
+                script {
+                    echo "Registry for current build: $env.registry"
+                    app = docker.build( dockerImageName )
+                }
+            }
+        }
+
+        stage('Push image') {
+           /* Pushing the image with two tags:
+            * First, the incremental build number from Jenkins
+            * Second, the 'latest' tag.
+            * Pushing multiple tags is cheap, as all the layers are reused. */
+            steps {
+                script {
+                    docker.withRegistry("https://$env.registry", registryCredentials) {
+                        app.push()
+                    }
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Check K8s cluster') {
+            steps {
+                script {
+                    def clusterCheck = "whoami && KUBECONFIG=/home/${sshUserNameMap."$BUILD_ENV"}/.kube/config && \
+                        kubectl get pods && helm list"
+
+                    sshagent(credentials: [sshCredentialsMap."$BUILD_ENV"]) {
+                        sh "ssh -o StrictHostKeyChecking=no ${sshUserNameMap."$BUILD_ENV"}@${clusterHostMap."$BUILD_ENV"} '${clusterCheck}' "
+                    }
+                }
+            }
+        }
+        stage('Copy Helm configs to K8s cluster') {
+            steps {
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: sshCredentialsMap."$BUILD_ENV", keyFileVariable: 'key')]) {
+                        def remote = [:]
+                        remote.name = clusterHostMap."$BUILD_ENV"
+                        remote.host = clusterHostMap."$BUILD_ENV"
+                        remote.user = sshUserNameMap."$BUILD_ENV"
+                        remote.identityFile = key
+                        remote.allowAnyHosts = true
+                        remote.failOnError = true
+
+                        sshPut remote: remote, from: "./helm", into: "/home/${sshUserNameMap."$BUILD_ENV"}/"
+                    }
+                }
+            }
+        }
+        stage('Deploy to K8s') {
+            steps {
+                script {
+                    docker.withRegistry("https://$env.registry", registryCredentials) {
+                        def jwtPrivateKey = jwtPrivateKeyMap."$BUILD_ENV"
+                        def jwtPublicKey = jwtPublicKeyMap."$BUILD_ENV"
+                        withCredentials([string(credentialsId: jwtPrivateKey, variable: 'PRIVATEKEY')]) {
+                            withCredentials([string(credentialsId: jwtPublicKey, variable: 'PUBLICKEY')]) {
+                                withCredentials([string(credentialsId: appTokenMap."$BUILD_ENV", variable: 'appToken')]) {
+                                    withCredentials([usernamePassword(credentialsId: smtpCredsMap."$BUILD_ENV", passwordVariable: 'smtpPassword', usernameVariable: 'smtpLogin')]) {
+                                        withCredentials([usernamePassword(credentialsId: smsNadoCredsMap."$BUILD_ENV", passwordVariable: 'cellularPassword', usernameVariable: 'cellularLogin')]) {
+                                            withCredentials([usernamePassword(credentialsId: postgresCredsMap."$BUILD_ENV", passwordVariable: 'postgresPassword', usernameVariable: 'postgresUser')]) {
+                                                def helmUpgrade = "KUBECONFIG=/home/${sshUserNameMap."$BUILD_ENV"}/.kube/config && \
+                                                    helm upgrade \
+                                                    --set buildNumber=$BUILD_NUMBER \
+                                                    --set registryAddress=$env.registry \
+                                                    --set smtpHost=${smtpHostMap."$BUILD_ENV"} \
+                                                    --set smtpPort=${smtpPortMap."$BUILD_ENV"} \
+                                                    --set smtpLogin=${smtpLogin} \
+                                                    --set smtpPassword=${smtpPassword} \
+                                                    --set cellularLogin=${cellularLogin} \
+                                                    --set cellularPassword=${cellularPassword} \
+                                                    --set postgresHost=${postgresHostMap."$BUILD_ENV"} \
+                                                    --set postgresPort=${postgresPortMap."$BUILD_ENV"} \
+                                                    --set postgresUser=${postgresUser} \
+                                                    --set postgresPassword=${postgresPassword} \
+                                                    --set registrationLink=${registrationLinkMap."$BUILD_ENV"} \
+                                                    --set jwtPrivateKey=\"${PRIVATEKEY}\" \
+                                                    --set jwtPublicKey=\"${PUBLICKEY}\" \
+                                                    --set appToken=${appToken} \
+                                                    $env.appName ./helm/$env.appName-chart --install"
+
+                                                sshagent(credentials: [sshCredentialsMap."$BUILD_ENV"]) {
+                                                    sh "ssh -o StrictHostKeyChecking=no ${sshUserNameMap."$BUILD_ENV"}@${clusterHostMap."$BUILD_ENV"} '${helmUpgrade}' "
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Post-clean') {
+            steps {
+                script {
+                    try{
+                        def kubernetesRollout = "KUBECONFIG=/home/${sshUserNameMap."$BUILD_ENV"}/.kube/config && \
+                            kubectl rollout status deployment $env.appName --namespace=$env.kubernetesNamespace --watch=true"
+
+                        sshagent(credentials: [sshCredentialsMap."$BUILD_ENV"]) {
+                            sh "ssh -o StrictHostKeyChecking=no ${sshUserNameMap."$BUILD_ENV"}@${clusterHostMap."$BUILD_ENV"} '${kubernetesRollout}' "
+                        }
+                    } catch(error) {
+                        echo "!!! Roll out update failed"
+                        echo "!!! Executing rollout undo"
+                        def kubernetesRolloutUndo = "KUBECONFIG=/home/${sshUserNameMap."$BUILD_ENV"}/.kube/config && \
+                            kubectl rollout undo deployments/$env.appName --namespace=$env.kubernetesNamespace"
+
+                        sshagent(credentials: [sshCredentialsMap."$BUILD_ENV"]) {
+                            sh "ssh -o StrictHostKeyChecking=no ${sshUserNameMap."$BUILD_ENV"}@${clusterHostMap."$BUILD_ENV"} '${kubernetesRolloutUndo}' "
+                        }
+                        error "!!! Deployment of latest build failed!"
+                    }
+                    sh "docker image rm $env.dockerImageName"
+                    sh "docker builder prune -f -a"
+                }
+            }
+        }
+    }
+}
+

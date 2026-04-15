@@ -1,0 +1,15 @@
+@import 'src/shared/vars';
+
+.trigger-switcher {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.trigger-switcher__button {
+  display: flex;
+  --yc-button-background-color: $white;
+  --yc-button-padding: 0;
+  --yc-button-height: fit-content;
+  padding: 10px;
+}

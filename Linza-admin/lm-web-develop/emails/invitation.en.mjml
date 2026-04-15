@@ -1,0 +1,28 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-text padding="0" />
+      <mj-class name="big" font-size="20px" />
+      <mj-all font-family="Arial" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>Hello,</p>
+          <br />
+          <p>You've been invited to ${LINZA},</p>
+          <br />
+          <p>The link below will take you to the registration page, where you can create your account.</p>
+          <br />
+          ${LINK}
+          <br />
+          <br />
+          <p>Best regards,</p>
+          <p>Linza.app</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

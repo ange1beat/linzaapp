@@ -1,0 +1,276 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Add members to project > default 1`] = `
+<body>
+  <div>
+    <div
+      class="_project-list__list_047d77"
+    >
+      <div
+        class="_table-layout_a81e6d"
+      >
+        <div
+          class="_table-layout__header_a81e6d"
+        >
+          <form
+            class="_input-search__form_ad0a15"
+          >
+            <span
+              class="yc-text-input yc-text-input_view_normal yc-text-input_size_l yc-text-input_pin_round-round yc-text-input_has-right-content"
+            >
+              <span
+                class="yc-text-input__content"
+              >
+                <input
+                  class="yc-text-input__control yc-text-input__control_type_input"
+                  placeholder="placeholder"
+                  value=""
+                />
+                <div
+                  class="yc-text-input__additional-content yc-text-input__additional-content_placement_right"
+                >
+                  <button
+                    class="yc-button yc-button_view_normal yc-button_size_m yc-button_pin_round-round _btn__with-icon_212512 _input-search__button_ad0a15"
+                    type="submit"
+                  >
+                    <span
+                      class="yc-button__text"
+                    >
+                      <div
+                        class="_btn__wrapper_212512"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="yc-icon _input-search__icon_ad0a15"
+                          fill="currentColor"
+                          height="18"
+                          stroke="none"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <svg
+                            fill="none"
+                            viewBox="0 0 16 16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M11.5 7a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-.82 4.74a6 6 0 1 1 1.06-1.06l2.79 2.79a.75.75 0 1 1-1.06 1.06l-2.79-2.79Z"
+                              fill="currentColor"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </svg>
+                      </div>
+                    </span>
+                  </button>
+                </div>
+              </span>
+            </span>
+          </form>
+        </div>
+        <div
+          class="_table-layout__body_a81e6d"
+        >
+          <div
+            class="_project-list__empty_047d77"
+          >
+            <span
+              class="yc-text yc-text_variant_body-1 _modal-email_f0ca78"
+            >
+              empty-message-search
+            </span>
+          </div>
+        </div>
+        <div
+          class="_table-layout__footer_a81e6d"
+        >
+          <div
+            class="g-pagination _pagination_875abf"
+          >
+            <button
+              class="yc-button yc-button_view_outlined yc-button_size_m yc-button_pin_round-round yc-button_disabled g-pagination__pagination-item"
+              disabled=""
+              title="First"
+              type="button"
+            >
+              <span
+                class="yc-button__icon"
+              >
+                <span
+                  class="yc-button__icon-inner"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="yc-icon"
+                    fill="currentColor"
+                    height="16"
+                    stroke="none"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <svg
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M12.53 5.03a.75.75 0 0 0-1.06-1.06l-3.5 3.5a.75.75 0 0 0 0 1.06l3.5 3.5a.75.75 0 1 0 1.06-1.06L9.56 8l2.97-2.97Zm-5 0a.75.75 0 0 0-1.06-1.06l-3.5 3.5a.75.75 0 0 0 0 1.06l3.5 3.5a.75.75 0 0 0 1.06-1.06L4.56 8l2.97-2.97Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </svg>
+                </span>
+              </span>
+            </button>
+            <button
+              class="yc-button yc-button_view_outlined yc-button_size_m yc-button_pin_round-round yc-button_disabled g-pagination__pagination-item"
+              disabled=""
+              title="Previous"
+              type="button"
+            >
+              <span
+                class="yc-button__icon"
+              >
+                <span
+                  class="yc-button__icon-inner"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="yc-icon"
+                    fill="currentColor"
+                    height="16"
+                    stroke="none"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <svg
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M10.53 2.97a.75.75 0 0 1 0 1.06L6.56 8l3.97 3.97a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 0Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </svg>
+                </span>
+              </span>
+            </button>
+            <div
+              class="g-pagination-page__simple g-pagination-page__simple_size_m g-pagination__pagination-item"
+            >
+              1
+            </div>
+            <button
+              class="yc-button yc-button_view_outlined yc-button_size_m yc-button_pin_round-round yc-button_disabled g-pagination__pagination-item"
+              disabled=""
+              title="Next"
+              type="button"
+            >
+              <span
+                class="yc-button__icon"
+              >
+                <span
+                  class="yc-button__icon-inner"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="yc-icon"
+                    fill="currentColor"
+                    height="16"
+                    stroke="none"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <svg
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M5.47 13.03a.75.75 0 0 1 0-1.06L9.44 8 5.47 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </svg>
+                </span>
+              </span>
+            </button>
+            <span
+              class="yc-text-input yc-text-input_view_normal yc-text-input_size_m yc-text-input_pin_round-round g-pagination-input g-pagination-input_size_m g-pagination__input"
+            >
+              <span
+                class="yc-text-input__content"
+              >
+                <input
+                  class="yc-text-input__control yc-text-input__control_type_input"
+                  placeholder="Page #"
+                  value=""
+                />
+              </span>
+            </span>
+            <div
+              class="g-select g-pagination__page-sizer"
+            >
+              <div
+                class="g-select-control g-select-control_size_m g-select-control_pin_round-round g-select-control_has-value"
+                role="group"
+              >
+                <button
+                  aria-controls="select-popup-g-:r6:"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  class="g-select-control__button g-select-control__button_size_m g-select-control__button_view_normal g-select-control__button_pin_round-round"
+                  role="combobox"
+                  type="button"
+                >
+                  <span
+                    class="g-select-control__option-text"
+                  >
+                    10
+                  </span>
+                </button>
+                <svg
+                  aria-hidden="true"
+                  class="yc-icon g-select-control__chevron-icon"
+                  fill="currentColor"
+                  height="16"
+                  stroke="none"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M2.97 5.47a.75.75 0 0 1 1.06 0L8 9.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 0-1.06Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

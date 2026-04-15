@@ -1,0 +1,11 @@
+{
+  "title": "Edit info about person",
+  "first-name-placeholder": "First Name",
+  "last-name-placeholder": "Last Name",
+  "telegram-placeholder": "Telegram",
+  "email-placeholder": "Email",
+  "phone-placeholder": "Phone",
+  "auth-title": "Authentication information",
+  "button-cancel": "Cancel",
+  "button-apply": "Apply"
+}

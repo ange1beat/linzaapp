@@ -1,0 +1,24 @@
+@import 'src/shared/vars';
+
+.change-name-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: $profile-width;
+  box-sizing: border-box;
+}
+
+.block-settings {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.change-name-form__inputs {
+  @extend .block-settings;
+  gap: 8px;
+}
+.change-name-form__buttons {
+  @extend .block-settings;
+  gap: 10px;
+}

@@ -1,0 +1,58 @@
+{
+  "title": "Error",
+  "required": "Field is required!",
+  "max-length": "The field must be no longer than 50 characters",
+  "password-confirm": "Password and confirm password do not match",
+  "forbidden-error": "Oops! Something goes wrong! Please, try again later.",
+  "server-error": "Oops! Something goes wrong! Please, try again later.",
+  "password": {
+    "required": "Field is required!",
+    "empty": "Enter password",
+    "main": "Password Strength Requirement Not Met.",
+    "uppercase": "Password Strength Requirement Not Met.",
+    "lowercase": "Password Strength Requirement Not Met.",
+    "numbers": "Password Strength Requirement Not Met.",
+    "non-alphanumeric": "Password Strength Requirement Not Met.",
+    "min-length": "Password Strength Requirement Not Met.",
+    "max-length": "The field must be no longer than 50 characters",
+    "confirm-password-different": "Password mismatch",
+    "wrong-data": "Invalid login or password"
+  },
+  "login": {
+    "invalid": "The format is incorrect",
+    "empty": "Field can not be empty",
+    "wrong-data": "Invalid login or password"
+  },
+  "telegram": {
+    "start": "Telegram ID must start with @",
+    "min-length": "The length of the Telegram ID must exceed 5 characters",
+    "max-length": "Telegram ID must be no longer than 32 characters",
+    "symbol": "Invalid character"
+  },
+  "otp": {
+    "length": "The verification code must contain 6 digits",
+    "incorrect": "The code is incorrect or expired"
+  },
+  "email": {
+    "invalid-email": "Invalid email",
+    "required": "Enter email",
+    "already-used": "This email is already used"
+  },
+  "phone": {
+    "invalid-phone": "Invalid phone",
+    "required": "Enter phone"
+  },
+  "project": {
+    "min-length": "Project name is required.",
+    "max-length": "The field must be no longer than 50 characters",
+    "special-characters-only": "Invalid character",
+    "max-fav": "You cannot add more than 10 projects to Favorites",
+    "conflict-project-name-error": "Project name is used already"
+  },
+  "avatar": {
+    "unexpected-error-avatar": "Something went wrong while loading your avatar. Please try again later!"
+  },
+  "user": {
+    "nameless": "Unknown user"
+  }
+}

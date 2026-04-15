@@ -1,0 +1,46 @@
+@use '@gravity-ui/uikit/styles/themes/index';
+@import "src/shared/vars";
+
+.btn__with-icon {
+  :global(.yc-button__text) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.btn--primary {
+  color: $white;
+  background-color: $primary;
+  --yc-button-background-color: transparent;
+  border-radius: var(--g-border-radius-xl);
+  outline: 0;
+
+  &:hover {
+    background-color: $primary-hover;
+    --yc-button-background-color-hover:$primary-hover;
+    color: $white;
+  }
+  &:focus {
+    color: $white;
+  }
+
+  &:disabled {
+    background-color: $primary-disabled;
+    color: $btn-disabled;
+    --yc-button-background-color: transparent;
+  }
+}
+
+.btn--primary.btn--loaded {
+  --yc-button-background-color: transparent;
+  --yc-button-background-color-hover: var(--g-color-base-generic-hover);
+  color: $white;
+  background-color: $primary-loaded;
+}
+
+.btn__wrapper  {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}

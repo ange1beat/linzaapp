@@ -1,0 +1,290 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Edit Member > Test with data 1`] = `
+<body
+  style="overflow: hidden;"
+>
+  <div />
+  <div
+    class="yc-modal yc-modal_open yc-modal_appear yc-modal_appear_active"
+  >
+    <div
+      class="yc-modal__table"
+    >
+      <div
+        class="yc-modal__cell"
+      >
+        <div
+          aria-modal="true"
+          class="yc-modal__content _modal-window_7c8f2c"
+          role="dialog"
+          tabindex="-1"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78 _modal-window__title_7c8f2c"
+          >
+            title
+          </span>
+          <div
+            class="_edit-member_679635 new-class"
+          >
+            <form
+              class="_main-info__form_679635"
+            >
+              <div
+                class="_edit-member__main-info_679635"
+              >
+                <div>
+                  <img
+                    alt="avatar"
+                    class="_main-info__avatar_679635"
+                    src="AvatarUrl"
+                  />
+                </div>
+                <div
+                  class="_main-info__field_679635"
+                >
+                  <span
+                    class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_state_error yc-text-input_pin_round-round _input_3058db"
+                  >
+                    <span
+                      class="yc-text-input__content"
+                    >
+                      <input
+                        aria-describedby="g-:r1:"
+                        aria-invalid="true"
+                        class="yc-text-input__control yc-text-input__control_type_input"
+                        name="firstName"
+                        placeholder="first-name-placeholder"
+                        value="First Name"
+                      />
+                    </span>
+                    <div
+                      class="yc-outer-additional-content"
+                    >
+                      <div
+                        class="yc-outer-additional-content__error"
+                        data-qa="control-error-message-qa"
+                        id="g-:r1:"
+                      >
+                        First Name
+                      </div>
+                    </div>
+                  </span>
+                  <span
+                    class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_state_error yc-text-input_pin_round-round _input_3058db"
+                  >
+                    <span
+                      class="yc-text-input__content"
+                    >
+                      <input
+                        aria-describedby="g-:r4:"
+                        aria-invalid="true"
+                        class="yc-text-input__control yc-text-input__control_type_input"
+                        name="lastName"
+                        placeholder="last-name-placeholder"
+                        value="Last Name"
+                      />
+                    </span>
+                    <div
+                      class="yc-outer-additional-content"
+                    >
+                      <div
+                        class="yc-outer-additional-content__error"
+                        data-qa="control-error-message-qa"
+                        id="g-:r4:"
+                      >
+                        Last Name
+                      </div>
+                    </div>
+                  </span>
+                  <span
+                    class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_state_error yc-text-input_pin_round-round yc-text-input_has-right-content _input_3058db"
+                  >
+                    <span
+                      class="yc-text-input__content"
+                    >
+                      <input
+                        aria-describedby="g-:r7:"
+                        aria-invalid="true"
+                        class="yc-text-input__control yc-text-input__control_type_input"
+                        name="telegramUsername"
+                        placeholder="telegram-placeholder"
+                        value="Telegram"
+                      />
+                      <div
+                        class="yc-text-input__additional-content yc-text-input__additional-content_placement_right"
+                      >
+                        <div
+                          class="_input__right-content_3058db"
+                        >
+                          <svg
+                            fill="none"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M5.254 8.521 9.61 5.86a.75.75 0 0 1 .782 1.28L6.586 9.465 9.77 12.65a1.199 1.199 0 0 0 1.973-.433l2.692-7.308a1.045 1.045 0 0 0-.98-1.408h-.105c-.1 0-.201.013-.298.04L2.022 6.509a.707.707 0 0 0 .046 1.375l3.186.637Zm-3.48.834L5 10l3.71 3.71a2.7 2.7 0 0 0 4.44-.976l2.693-7.308A2.544 2.544 0 0 0 13.454 2h-.104c-.232 0-.464.03-.688.091l-11.03 2.97a2.207 2.207 0 0 0 .142 4.294Z"
+                              fill="currentColor"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </span>
+                    <div
+                      class="yc-outer-additional-content"
+                    >
+                      <div
+                        class="yc-outer-additional-content__error"
+                        data-qa="control-error-message-qa"
+                        id="g-:r7:"
+                      >
+                        Telegram
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="_edit-member__auth-info_679635"
+              >
+                <span
+                  class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+                >
+                  auth-title
+                </span>
+                <span
+                  class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_state_error yc-text-input_pin_round-round yc-text-input_has-right-content _input_3058db"
+                >
+                  <span
+                    class="yc-text-input__content"
+                  >
+                    <input
+                      aria-describedby="g-:ra:"
+                      aria-invalid="true"
+                      class="yc-text-input__control yc-text-input__control_type_input"
+                      name="email"
+                      placeholder="email-placeholder"
+                      value="Email"
+                    />
+                    <div
+                      class="yc-text-input__additional-content yc-text-input__additional-content_placement_right"
+                    >
+                      <div
+                        class="_input__right-content_3058db"
+                      >
+                        <svg
+                          fill="none"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M3.5 4h9c.25 0 .485.06.692.169L8.75 7.5a1.25 1.25 0 0 1-1.5 0L2.808 4.169C3.015 4.06 3.251 4 3.5 4ZM2.001 5.438 2 5.5v5A1.5 1.5 0 0 0 3.5 12h9a1.5 1.5 0 0 0 1.5-1.5v-5l-.001-.062L9.65 8.7a2.75 2.75 0 0 1-3.3 0L2.001 5.438ZM.5 5.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-5Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </span>
+                  <div
+                    class="yc-outer-additional-content"
+                  >
+                    <div
+                      class="yc-outer-additional-content__error"
+                      data-qa="control-error-message-qa"
+                      id="g-:ra:"
+                    >
+                      Email
+                    </div>
+                  </div>
+                </span>
+                <span
+                  class="yc-text-input yc-text-input_view_normal yc-text-input_size_xl yc-text-input_state_error yc-text-input_pin_round-round yc-text-input_has-right-content _input_3058db"
+                >
+                  <span
+                    class="yc-text-input__content"
+                  >
+                    <input
+                      aria-describedby="g-:rd:"
+                      aria-invalid="true"
+                      class="yc-text-input__control yc-text-input__control_type_input"
+                      name="phoneNumber"
+                      placeholder="phone-placeholder"
+                      value="88005553535"
+                    />
+                    <div
+                      class="yc-text-input__additional-content yc-text-input__additional-content_placement_right"
+                    >
+                      <div
+                        class="_input__right-content_3058db"
+                      >
+                        <svg
+                          fill="none"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M12 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 12.5v-9A1.5 1.5 0 0 1 5.5 2h5A1.5 1.5 0 0 1 12 3.5Zm-1.5-3a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h5ZM6.25 11a.75.75 0 0 0 0 1.5h3.5a.75.75 0 0 0 0-1.5h-3.5Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </span>
+                  <div
+                    class="yc-outer-additional-content"
+                  >
+                    <div
+                      class="yc-outer-additional-content__error"
+                      data-qa="control-error-message-qa"
+                      id="g-:rd:"
+                    >
+                      88005553535
+                    </div>
+                  </div>
+                </span>
+                <div
+                  class="_edit-member__buttons_679635"
+                >
+                  <button
+                    class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round _registration-form__button_679635"
+                    type="button"
+                  >
+                    <span
+                      class="yc-button__text"
+                    >
+                      button-cancel
+                    </span>
+                  </button>
+                  <button
+                    class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512 _registration-form__button_679635"
+                    type="submit"
+                  >
+                    <span
+                      class="yc-button__text"
+                    >
+                      button-apply
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

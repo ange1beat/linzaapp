@@ -1,0 +1,2568 @@
+{
+  "uuid": "b34a8ea2-2f1e-4efc-a707-92c2044e7405",
+  "lastMigration": 32,
+  "name": "Linza",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "routes": [
+    {
+      "uuid": "56a00b78-9508-4173-bbc1-f09152911fa4",
+      "type": "http",
+      "documentation": "sendOtpBySms",
+      "method": "post",
+      "endpoint": "auth/factors/otp/challenge/sms",
+      "responses": [
+        {
+          "uuid": "68c27b64-281f-4780-80f3-10eb61cd697b",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "2c2f8363-1d16-4332-8003-df977e1ee5d9",
+      "type": "http",
+      "documentation": "sendOtpByEmail",
+      "method": "post",
+      "endpoint": "auth/factors/otp/challenge/email",
+      "responses": [
+        {
+          "uuid": "a3d9b125-9f58-4f63-a14b-dfe66ea3b3cc",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "default",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "66c94c7e-b0b7-4a91-a5a0-f094b8b6d757",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth",
+      "responses": [
+        {
+          "uuid": "8dff17bc-7cc1-4cf5-9cd8-b59fba9e90bc",
+          "body": "{\n  \"user\": {\n    \"id\": \"101010\",\n    \"email\": \"user@example.com\",\n    \"phoneNumber\": \"81942824922\"\n  },\n  \"stateToken\": \"120302130123\",\n  \"isCompleted\": true,\n  \"factors\": [\"otp\"]\n}",
+          "latency": 300,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "60db92ca-8e4f-44dd-8819-6c9eb1a0cc1b",
+          "body": "{\n  \"error\": \"incorrect login or password\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [
+            {
+              "key": "Retry-After",
+              "value": "Fri, 26 Jan 2024 17:44:18 GMT"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "login",
+              "value": " ",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": " ",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "098d1d56-12f9-41dd-a3c9-9cea8d2eb6df",
+          "body": "{}",
+          "latency": 2000,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "login",
+              "value": "error@mail.com",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b77ef9f7-7f24-4cd3-b6f2-f197a67c99b2",
+          "body": "{\n  \"user\": {\n    \"id\": \"101010\",\n    \"email\": \"user@example.com\",\n    \"phoneNumber\": null\n  },\n  \"stateToken\": \"120302130123\",\n  \"isCompleted\": true,\n  \"factors\": [\n    \"otp\"\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "3214d32b-9605-4574-83f9-f6564dcc739b",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/factors/otp/verify",
+      "responses": [
+        {
+          "uuid": "0223c1e6-f87c-43d9-a67f-e7058c914ad1",
+          "body": "{\n  \"user\": {\n    \"id\": \"101010\",\n    \"email\": \"user@example.com\",\n    \"phoneNumber\": \"81942824922\"\n  },\n  \"stateToken\": \"120302130123\"\n}",
+          "latency": 300,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "773ff9ed-fcb5-47be-ba9a-d86132c511fa",
+          "body": "{\n  error: \"incorrect login or password\"\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "login",
+              "value": " ",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": " ",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "598d0060-d508-4f20-8023-e9e00bf3e9fa",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "781d8abd-f734-4498-a197-2bf5bf26d98f",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/token",
+      "responses": [
+        {
+          "uuid": "70dc93db-f0e6-4ea3-8acd-e81e3e9c8562",
+          "body": "{\n  \"accessToken\": \"some_access_token\"\n}",
+          "latency": 300,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "fd4ddd12-144f-43d5-875e-e7048bf099b4",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects",
+      "responses": [
+        {
+          "uuid": "76f27b03-ace6-4791-b40d-a2181a22e19c",
+          "body": "{\n  \"projects\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Quo Lux\",\n      \"createdBy\": \"1\",\n      \"createdAt\": \"2023-09-21T03:15:34Z\",\n      \"avatarUrl\": null\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Tampflex\",\n      \"createdBy\": \"2\",\n      \"createdAt\": \"2023-07-05T19:05:07Z\",\n      \"avatarUrl\": \"https://robohash.org/optioofficiabeatae.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Veribet\",\n      \"createdBy\": \"3\",\n      \"createdAt\": \"2024-01-17T12:48:36Z\",\n      \"avatarUrl\": \"https://robohash.org/facilisenimin.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"4\",\n      \"name\": \"Ventosanzap\",\n      \"createdBy\": \"4\",\n      \"createdAt\": \"2023-08-29T19:06:24Z\",\n      \"avatarUrl\": \"https://robohash.org/doloretautem.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"5\",\n      \"name\": \"Alpha\",\n      \"createdBy\": \"5\",\n      \"createdAt\": \"2023-11-25T05:45:53Z\",\n      \"avatarUrl\": \"https://robohash.org/doloremquealiquamplaceat.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"6\",\n      \"name\": \"Holdlamis\",\n      \"createdBy\": \"6\",\n      \"createdAt\": \"2023-09-24T01:37:56Z\",\n      \"avatarUrl\": \"https://robohash.org/suscipitetnon.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"7\",\n      \"name\": \"Span\",\n      \"createdBy\": \"7\",\n      \"createdAt\": \"2023-08-13T01:54:56Z\",\n      \"avatarUrl\": \"https://robohash.org/eumtemporeab.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"8\",\n      \"name\": \"Domainer\",\n      \"createdBy\": \"8\",\n      \"createdAt\": \"2023-01-26T18:38:44Z\",\n      \"avatarUrl\": \"https://robohash.org/consequunturmodiofficiis.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"9\",\n      \"name\": \"Wrapsafe\",\n      \"createdBy\": \"9\",\n      \"createdAt\": \"2023-01-10T05:32:57Z\",\n      \"avatarUrl\": \"https://robohash.org/quiaofficiaenim.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"10\",\n      \"name\": \"Flexidy\",\n      \"createdBy\": \"10\",\n      \"createdAt\": \"2023-05-08T18:18:01Z\",\n      \"avatarUrl\": \"https://robohash.org/eossedsapiente.png?size=50x50&set=set1\"\n    }\n  ],\n  \"total\": 20\n}",
+          "latency": 2000,
+          "statusCode": 200,
+          "label": "10",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "PageSize",
+              "value": "10",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a80fadce-8efe-440a-8f61-e391b1bf0438",
+          "body": "{\n  \"projects\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Quo Lux\",\n      \"createdBy\": \"1\",\n      \"createdAt\": \"2023-09-21T03:15:34Z\",\n      \"avatarUrl\": \"https://robohash.org/quasiexplicabolabore.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Tampflex\",\n      \"createdBy\": \"2\",\n      \"createdAt\": \"2023-07-05T19:05:07Z\",\n      \"avatarUrl\": \"https://robohash.org/optioofficiabeatae.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Veribet\",\n      \"createdBy\": \"3\",\n      \"createdAt\": \"2024-01-17T12:48:36Z\",\n      \"avatarUrl\": \"https://robohash.org/facilisenimin.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"4\",\n      \"name\": \"Ventosanzap\",\n      \"createdBy\": \"4\",\n      \"createdAt\": \"2023-08-29T19:06:24Z\",\n      \"avatarUrl\": \"https://robohash.org/doloretautem.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"5\",\n      \"name\": \"Alpha\",\n      \"createdBy\": \"5\",\n      \"createdAt\": \"2023-11-25T05:45:53Z\",\n      \"avatarUrl\": \"https://robohash.org/doloremquealiquamplaceat.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"6\",\n      \"name\": \"Holdlamis\",\n      \"createdBy\": \"6\",\n      \"createdAt\": \"2023-09-24T01:37:56Z\",\n      \"avatarUrl\": \"https://robohash.org/suscipitetnon.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"7\",\n      \"name\": \"Span\",\n      \"createdBy\": \"7\",\n      \"createdAt\": \"2023-08-13T01:54:56Z\",\n      \"avatarUrl\": \"https://robohash.org/eumtemporeab.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"8\",\n      \"name\": \"Domainer\",\n      \"createdBy\": \"8\",\n      \"createdAt\": \"2023-01-26T18:38:44Z\",\n      \"avatarUrl\": \"https://robohash.org/consequunturmodiofficiis.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"9\",\n      \"name\": \"Wrapsafe\",\n      \"createdBy\": \"9\",\n      \"createdAt\": \"2023-01-10T05:32:57Z\",\n      \"avatarUrl\": \"https://robohash.org/quiaofficiaenim.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"10\",\n      \"name\": \"Flexidy\",\n      \"createdBy\": \"10\",\n      \"createdAt\": \"2023-05-08T18:18:01Z\",\n      \"avatarUrl\": \"https://robohash.org/eossedsapiente.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"11\",\n      \"name\": \"Bitwolf\",\n      \"createdBy\": \"11\",\n      \"createdAt\": \"2023-03-18T22:09:48Z\",\n      \"avatarUrl\": \"https://robohash.org/vitaeblanditiisvoluptas.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"12\",\n      \"name\": \"Subin\",\n      \"createdBy\": \"12\",\n      \"createdAt\": \"2023-02-10T03:44:01Z\",\n      \"avatarUrl\": \"https://robohash.org/nobismolestiaemagni.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"13\",\n      \"name\": \"Holdlamis\",\n      \"createdBy\": \"13\",\n      \"createdAt\": \"2024-01-13T07:00:12Z\",\n      \"avatarUrl\": \"https://robohash.org/porrodolorenihil.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"14\",\n      \"name\": \"Bitchip\",\n      \"createdBy\": \"14\",\n      \"createdAt\": \"2023-08-16T02:55:03Z\",\n      \"avatarUrl\": \"https://robohash.org/oditdolorumsint.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"15\",\n      \"name\": \"Aerified\",\n      \"createdBy\": \"15\",\n      \"createdAt\": \"2023-02-15T02:39:40Z\",\n      \"avatarUrl\": \"https://robohash.org/utvoluptatemnesciunt.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"16\",\n      \"name\": \"Quo Lux\",\n      \"createdBy\": \"16\",\n      \"createdAt\": \"2023-12-14T13:03:19Z\",\n      \"avatarUrl\": \"https://robohash.org/eanisisoluta.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"17\",\n      \"name\": \"Stringtough\",\n      \"createdBy\": \"17\",\n      \"createdAt\": \"2023-03-08T12:59:32Z\",\n      \"avatarUrl\": \"https://robohash.org/officianemoquos.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"18\",\n      \"name\": \"Otcom\",\n      \"createdBy\": \"18\",\n      \"createdAt\": \"2023-06-17T08:27:04Z\",\n      \"avatarUrl\": \"https://robohash.org/etestnumquam.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"19\",\n      \"name\": \"Job\",\n      \"createdBy\": \"19\",\n      \"createdAt\": \"2023-07-05T17:32:53Z\",\n      \"avatarUrl\": \"https://robohash.org/reiciendisveldistinctio.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"20\",\n      \"name\": \"Konklux\",\n      \"createdBy\": \"20\",\n      \"createdAt\": \"2023-02-05T17:32:06Z\",\n      \"avatarUrl\": \"https://robohash.org/rationemolestiaemagni.png?size=50x50&set=set1\"\n    }\n  ],\n  \"total\": 20\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "20",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "PageSize",
+              "value": "20",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b8c9abbf-33a3-4a01-b0bb-d8d90895b619",
+          "body": "{\n  \"projects\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Quo Lux\",\n      \"createdBy\": \"1\",\n      \"createdAt\": \"2023-09-21T03:15:34Z\",\n      \"avatarUrl\": \"https://robohash.org/quasiexplicabolabore.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Tampflex\",\n      \"createdBy\": \"2\",\n      \"createdAt\": \"2023-07-05T19:05:07Z\",\n      \"avatarUrl\": \"https://robohash.org/optioofficiabeatae.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Veribet\",\n      \"createdBy\": \"3\",\n      \"createdAt\": \"2024-01-17T12:48:36Z\",\n      \"avatarUrl\": \"https://robohash.org/facilisenimin.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"4\",\n      \"name\": \"Ventosanzap\",\n      \"createdBy\": \"4\",\n      \"createdAt\": \"2023-08-29T19:06:24Z\",\n      \"avatarUrl\": \"https://robohash.org/doloretautem.png?size=50x50&set=set1\"\n    },\n    {\n      \"id\": \"5\",\n      \"name\": \"Alpha\",\n      \"createdBy\": \"5\",\n      \"createdAt\": \"2023-11-25T05:45:53Z\",\n      \"avatarUrl\": \"https://robohash.org/doloremquealiquamplaceat.png?size=50x50&set=set1\"\n    }\n  ],\n  \"total\": 20\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "5",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "PageSize",
+              "value": "5",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "f809f864-a3c3-4b1e-b957-8e262add73cb",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/sign-in",
+      "responses": [
+        {
+          "uuid": "92702d2d-9ac2-415f-b88f-3a76184c251e",
+          "body": "{\n  \"accessToken\": \"some_access_token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "a19d244c-83d7-471f-86e0-ffc51011d81b",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/password",
+      "responses": [
+        {
+          "uuid": "6b61dd71-293c-4042-af97-a73e1d33fbd4",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9f78ec44-a683-4306-8188-ed1a932f4238",
+          "body": "{\n  \"errors\": {\n    \"currentPassword\": [\n      \"invalid_password\"\n    ],\n    \"newPassword\": [\n      \"invalid_password\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f105274d-7623-4ba3-a846-74366ae7fead",
+          "body": "{\n  Unathorized\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "",
+              "value": "",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0413ca46-f937-4f22-b57d-c30cfb5447e3",
+          "body": "{\n  Forbidden\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a93168de-d894-4d18-8371-38f058401a33",
+          "body": "{\n  Internal server error\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "24972487-dc27-4d99-8a73-35f29945ba6e",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/avatar",
+      "responses": [
+        {
+          "uuid": "392a8601-7c3a-4e7e-9501-1664dd379c05",
+          "body": "[\n  {\n    \"id\": \"1\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"email\": \"john@smith.com\",\n    \"phoneNumber\": \"88005553535\",\n    \"telegramUsername\": \"smith_john\",\n    \"avatarId\": \"1\",\n    \"avatarUrl\": \"https://placekitten.com/g/200/200\"\n  },\n  {\n    \"id\": \"2\",\n    \"firstName\": \"Peter\",\n    \"lastName\": \"Green\",\n    \"email\": \"peter@green.com\",\n    \"phoneNumber\": \"89005007020\",\n    \"telegramUsername\": \"peter_pider\",\n    \"avatarId\": \"2\",\n    \"avatarUrl\": \"https://placekitten.com/g/200/200\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "2dcf21b9-5531-4d3f-879b-110303a1c414",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "projects/:projectId/members/:memberId",
+      "responses": [
+        {
+          "uuid": "d72062de-2464-4e4d-b8f9-0702d7f4b9d5",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "0a585719-6770-47e5-8759-5b459f720f2d",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/:userId/password",
+      "responses": [
+        {
+          "uuid": "92c94b8a-da35-4084-94b3-e963c8dc6395",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "d7fc7d25-e607-4785-93da-77a7205184b5",
+          "body": "{\n  \"errors\": {\n    \"newPassword\": [\n      \"invalid_value\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "edd66893-169f-445b-98c0-e6c2d81f6ee0",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "projects/:projectId",
+      "responses": [
+        {
+          "uuid": "29758dbc-9f8f-4827-9bb7-229d188022f3",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "970087bc-7152-49ed-9afd-0f1fb997a6f5",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "ac1eb62f-3c58-4a31-85a7-aab2cc2e4472",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "projects/:projectId/avatar",
+      "responses": [
+        {
+          "uuid": "2dd4f5a0-1323-46d1-9a10-ee00d69733ac",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "508ab1c0-4827-4785-bddb-e2e8c360e5e8",
+          "body": "{\n  \"errors\": {\n    \"file\": [\n      \"ababba\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "projectId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4fedb2c2-0138-4a50-a65c-c6fa5170c05e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "8dc55985-7fee-46ed-90a4-a4266c0c8270",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/:userId",
+      "responses": [
+        {
+          "uuid": "b9c75ce0-48b4-416e-8e2e-54ae8f1e046d",
+          "body": "{\n  \"id\": \"548f48fa-5aca-4776-8dab-a7a9f98f6596\",\n  \"firstName\": \"Aley\",\n  \"lastName\": \"Top\",\n  \"email\": \"kop@sqy.wq\",\n  \"phoneNumber\": \"+78005553535\",\n  \"telegramUsername\": \"alex\",\n  \"roles\": [\n    \"Supervisor\"\n  ],\n  \"tenantId\": \"a183572a-1b05-4706-bd5f-2506a5d3e0c9\",\n  \"avatarUrl\": null\n}",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "userId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b9241068-1414-4a9e-b52b-2fa5e8a19b54",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "94babd24-ad50-4453-a60a-19b804efeebd",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/:userId/projects",
+      "responses": [
+        {
+          "uuid": "cf4dbb01-382a-403e-bf6f-501cea879837",
+          "body": "{\n  \"userId\": \"1\",\n  \"projectIds\": [\"1\", \"2\"]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "de418fe7-c59c-43bd-8f5a-a1114d63e5ab",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/search",
+      "responses": [
+        {
+          "uuid": "5a6e77f5-1fff-42a8-9279-ad18dc7d52b0",
+          "body": "{\r\n    \"users\": [\r\n        {\r\n            \"id\": \"548f48fa-5aca-4776-8dab-a7a9f98f6596\",\r\n            \"firstName\": \"Aley\",\r\n            \"lastName\": \"Top аровыоаррвоыаdsgdfgfdgdfgdfggdfsgdfgdfsgsdfgsdfgsdfgdgsgdsgs12\",\r\n            \"email\": \"kop@sqy.wq3123131233231355588888889999999910\",\r\n            \"phoneNumber\": \"+78005553535\",\r\n            \"telegramUsername\": null,\r\n            \"roles\": [\r\n                \"Supervisor\"\r\n            ],\r\n            \"avatarUrl\": null,\r\n            \"lastLoginDate\": null\r\n        },\r\n        {\r\n            \"id\": \"548f48fa-5aca-4776-8dab-a7a9f98f6596\",\r\n            \"firstName\": \"Aley\",\r\n            \"lastName\": \"Top\",\r\n            \"email\": \"kop@sqy.wq\",\r\n            \"phoneNumber\": \"+78005553535\",\r\n            \"telegramUserName\": null,\r\n            \"roles\": [\r\n                \"Supervisor\"\r\n            ],\r\n            \"avatarUrl\": null,\r\n            \"lastLoginDate\": null\r\n        },\r\n        {\r\n            \"id\": \"548f48fa-5aca-4776-8dab-a7a9f98f6596\",\r\n            \"firstName\": \"Aley\",\r\n            \"lastName\": \"Top\",\r\n            \"email\": \"kop@sqy.wq\",\r\n            \"phoneNumber\": \"+78005553535\",\r\n            \"telegramUserName\": null,\r\n            \"roles\": [\r\n                \"User\"\r\n            ],\r\n            \"avatarUrl\": null,\r\n            \"lastLoginDate\": null\r\n        },\r\n        {\r\n            \"id\": \"548f48fa-5aca-4776-8dab-a7a9f98f6596\",\r\n            \"firstName\": \"Aley\",\r\n            \"lastName\": \"Top\",\r\n            \"email\": \"kop@sqy.wq\",\r\n            \"phoneNumber\": \"+78005553535\",\r\n            \"telegramUserName\": null,\r\n            \"roles\": [\r\n                \"User\"\r\n            ],\r\n            \"avatarUrl\": null,\r\n            \"lastLoginDate\": null\r\n        },\r\n        {\r\n            \"id\": \"548f48fa-5aca-4776-8dab-a7a9f98f6596\",\r\n            \"firstName\": \"Aley\",\r\n            \"lastName\": \"Top\",\r\n            \"email\": \"kop@sqy.wq\",\r\n            \"phoneNumber\": \"+78005553535\",\r\n            \"telegramUserName\": null,\r\n            \"roles\": [\r\n                \"Supervisor\"\r\n            ],\r\n            \"avatarUrl\": null,\r\n            \"lastLoginDate\": null\r\n        }\r\n    ],\r\n    \"total\": 5\r\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "9d1e2cd9-6738-4ecf-b91c-c775e9aeda30",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "tenants/my",
+      "responses": [
+        {
+          "uuid": "02093cbe-8f9f-4df5-b17c-a2aeb1fe841c",
+          "body": "{\n  \"id\": \"a183572a-1b05-4706-bd5f-2506a5d3e0c9\",\n  \"name\": \"Squad Ready IT\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "aa9e4d1a-08d0-4074-8763-b193604a5776",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects/favorites",
+      "responses": [
+        {
+          "uuid": "077cff15-47c9-47aa-826d-3bb0b400b485",
+          "body": "{\n  \"favorites\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Quo Lux\",\n      \"avatarUrl\": \"https://robohash.org/quasiexplicabolabore.png?size=50x50&set=set1\",\n      \"isAvailable\": true\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Veribet\",\n      \"avatarUrl\": \"https://robohash.org/facilisenimin.png?size=50x50&set=set1\",\n      \"isAvailable\": true\n    },\n    {\n      \"id\": \"4\",\n      \"name\": \"Ventosanzap\",\n      \"avatarUrl\": \"https://robohash.org/doloretautem.png?size=50x50&set=set1\",\n      \"isAvailable\": true\n    },\n    {\n      \"id\": \"8\",\n      \"name\": \"Domainer\",\n      \"avatarUrl\": \"https://robohash.org/consequunturmodiofficiis.png?size=50x50&set=set1\",\n      \"isAvailable\": true\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "bdea18ab-a61b-4108-9a77-036fe49c282b",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "projects/:projectId/name",
+      "responses": [
+        {
+          "uuid": "3d6ddd29-3714-4573-a781-8216a3e957dc",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "5117399a-5ecb-452d-b697-4a355269aa18",
+          "body": "{\n  \"errors\": {\n    \"name\": [\"wrong_name\"]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "6cc7b077-be6c-4c71-ab7a-55325f3ec56d",
+          "body": "{\n  \"code\": \"project_name_conflict\",\n  \"message\": \"Project name is already used. Please use a different name.\"\n}",
+          "latency": 0,
+          "statusCode": 409,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "50315b8b-5a41-497e-b4e5-bb27d1751514",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects/:projectId",
+      "responses": [
+        {
+          "uuid": "314dbd47-6770-4bb0-8d01-52a7533ae15e",
+          "body": "{\n  \"id\": \"1\",\n  \"name\": \"Project 1\",\n  \"tenantId\": \"1\",\n  \"createdBy\": \"Bogdan\",\n  \"createdAt\": \"2024-01-12T08:10:03.770Z\",\n  \"avatarUrl\": \"https://placekitten.com/g/200/200\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "37c03fed-a0b7-4236-ba10-2e283d724b04",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects/:projectId/members",
+      "responses": [
+        {
+          "uuid": "80e74dbb-3037-4a56-ab92-317462493337",
+          "body": "{\n  \"userIds\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\"]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "b31c435e-a866-4458-b785-1046e9288c65",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "projects/:projectId/members",
+      "responses": [
+        {
+          "uuid": "2a91234f-fd0c-485c-8b04-1580274d241b",
+          "body": "{\n  \"userIds\": [\"1, 2, 3\"]\n}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e46e3c7d-e5f2-42e9-809c-aaa735a8b197",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "c20b1311-e5dc-4b18-a1d7-4b72543fcb1a",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "importer/dataSourceItems/:sourceId",
+      "responses": [
+        {
+          "uuid": "c7da789b-66cd-4022-8053-2d625f81c509",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4d154f9b-34bc-42f4-b830-6d765998de81",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "f2ed734c-de93-456d-b404-64a8fea3893b",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "importer/dataSourceItems/:dataSourceId",
+      "responses": [
+        {
+          "uuid": "b590cc5d-ddcb-4e89-8dcf-52d3ce64a246",
+          "body": "{\n  \"statusCode\": 200,\n  \"description\": \"Success\",\n  \"data\": {\n    \"title\": \"16 негритят\",\n    \"description\": \"\",\n    \"iconUri\": \"\",\n    \"type\": \"telegram\",\n    \"updateInterval\": 300,\n    \"config\": {\"value\": \"123\"},\n    \"account\": {},\n    \"isAutoCreated\": true,\n    \"isActive\": true,\n    \"timezone\": \"Europe/Moscow\",\n    \"updated\": \"2023-06-09T22:13:04.269979+00:00\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "08a96b75-4bc8-4d38-b3d0-d064a75a4248",
+          "body": "{\n  \"errors\": {\n    \"isActive\": [\n      \"wrong_fields\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "6fdd969c-3191-42a3-bfb4-bdbe65c77a7e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "b2c9597e-940e-45e5-a4fe-6eabbc38bdc0",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/telegram",
+      "responses": [
+        {
+          "uuid": "77e614cd-ef99-4eb6-af5f-557b861dbd2e",
+          "body": "{\n  \"statusCode\": 200,\n  \"description\": \"Success\",\n  \"data\": {\n    \"pageSize\": 10,\n    \"page\": 1,\n    \"count\": 100,\n    \"dataSourceItems\": [\n      {\n        \"id\": \"d921cc8c-9e26-43bf-b548-6698b772678f\",\n        \"created\": \"2023-06-09T22:13:04.269980+00:00\",\n        \"modified\": \"2024-01-18T07:25:44.044035+00:00\",\n        \"title\": \"16 негритят\",\n        \"description\": \"\",\n        \"iconUri\": \"\",\n        \"type\": \"telegram\",\n        \"url\": \"https://t.me/Gubery\",\n        \"updateInterval\": 300,\n        \"isActive\": true,\n        \"isAutoCreated\": true,\n        \"config\": {},\n        \"account\": {},\n        \"timezone\": \"Europe/Moscow\",\n        \"updated\": \"2023-06-09T22:13:04.269979+00:00\",\n        \"lastResult\": \"success\",\n        \"nextLaunch\": 240,\n        \"executionStatus\": \"inprogress\"\n      },\n      {\n        \"id\": \"6d5aeba3-dcd9-425c-9b74-cf0c2dae2347\",\n        \"created\": \"2022-08-06T17:37:26.235028+00:00\",\n        \"modified\": \"2022-08-06T17:37:26.235028+00:00\",\n        \"title\": \"alania_gov\",\n        \"description\": \"\",\n        \"iconUri\": \"\",\n        \"type\": \"ok\",\n        \"url\": \"https://t.me/alania_gov\",\n        \"updateInterval\": 3600,\n        \"isActive\": false,\n        \"isAutoCreated\": true,\n        \"config\": {},\n        \"account\": {},\n        \"timezone\": \"Europe/Moscow\",\n        \"updated\": \"2022-08-06T17:37:26.235026+00:00\",\n        \"lastResult\": \"success\",\n        \"nextLaunch\": 4824,\n        \"executionStatus\": \"notconfigure\"\n      },\n      {\n        \"id\": \"d921cc8c-9e26-43bf-b548-6698b772678f\",\n        \"created\": \"2023-06-09T22:13:04.269980+00:00\",\n        \"modified\": \"2024-01-18T07:25:44.044035+00:00\",\n        \"title\": \"16 негритят\",\n        \"description\": \"\",\n        \"iconUri\": \"\",\n        \"type\": \"vk\",\n        \"url\": \"https://t.me/Gubery\",\n        \"updateInterval\": 300,\n        \"isActive\": true,\n        \"isAutoCreated\": true,\n        \"config\": {},\n        \"account\": {},\n        \"timezone\": \"Europe/Moscow\",\n        \"updated\": \"2023-06-09T22:13:04.269979+00:00\",\n        \"lastResult\": \"success\",\n        \"nextLaunch\": 15840,\n        \"executionStatus\": \"stopped\"\n      },\n      {\n        \"id\": \"d921cc8c-9e26-43bf-b548-6698b772678f\",\n        \"created\": \"2023-06-09T22:13:04.269980+00:00\",\n        \"modified\": \"2024-01-18T07:25:44.044035+00:00\",\n        \"title\": \"16 негритят\",\n        \"description\": \"\",\n        \"iconUri\": \"\",\n        \"type\": \"web\",\n        \"url\": \"https://t.me/Gubery\",\n        \"updateInterval\": 300,\n        \"isActive\": true,\n        \"isAutoCreated\": true,\n        \"config\": {},\n        \"account\": {},\n        \"timezone\": \"Europe/Moscow\",\n        \"updated\": \"2023-06-09T22:13:04.269979+00:00\",\n        \"lastResult\": \"success\",\n        \"nextLaunch\": 100020,\n        \"executionStatus\": \"planned\"\n      },\n      {\n        \"id\": \"d921cc8c-9e26-43bf-b548-6698b772678f\",\n        \"created\": \"2023-06-09T22:13:04.269980+00:00\",\n        \"modified\": \"2024-01-18T07:25:44.044035+00:00\",\n        \"title\": \"16 негритят\",\n        \"description\": \"\",\n        \"iconUri\": \"\",\n        \"type\": \"web\",\n        \"url\": \"https://t.me/Gubery\",\n        \"updateInterval\": 150000,\n        \"isActive\": true,\n        \"isAutoCreated\": true,\n        \"config\": {},\n        \"account\": {},\n        \"timezone\": \"Europe/Moscow\",\n        \"updated\": \"2023-06-09T22:13:04.269979+00:00\",\n        \"lastResult\": \"success\",\n        \"nextLaunch\": 1200,\n        \"executionStatus\": \"stopped\"\n      }\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "58be0a74-9e3d-4e45-a6ab-227d478cb7fa",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me",
+      "responses": [
+        {
+          "uuid": "6b5aebe2-29a4-4263-a4fa-96a425696784",
+          "body": "{\n  \"id\": \"548f48fa-5aca-4776-8dab-a7a9f98f6596\",\n  \"firstName\": \"Aley\",\n  \"lastName\": \"Top\",\n  \"email\": \"kop@sqy.wq\",\n  \"phoneNumber\": \"+78005553535\",\n  \"telegramUsername\": null,\n  \"roles\": [\n    \"Supervisor\"\n  ],\n  \"avatarUrl\": null,\n  \"tenantId\": \"a183572a-1b05-4706-bd5f-2506a5d3e0c9\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "a800ee2b-37d5-473d-b8b9-41c69272029b",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/name",
+      "responses": [
+        {
+          "uuid": "1e0ad860-07bb-452c-b38f-d0ed2c886598",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "eced1f35-1ec8-4386-aef3-7af9a4d7a415",
+          "body": "{\n  \"errors\": {\n    \"firstName\": [\n      \"invalid_name\",\n      \"another\"\n    ],\n    \"lastName\": [\n      \"invalid_name\",\n      \"another\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "48e7faac-3dbb-45b3-86be-d08581df6515",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "875a7883-a4b3-46f3-bd99-9ff477db1a02",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "users/:userId",
+      "responses": [
+        {
+          "uuid": "55d0ad99-0e86-4beb-9775-c8e6020a3356",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7c6d1de0-42ac-490b-8da3-b413be7721ca",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "e3fadb46-efa0-4df5-be57-b0137642d483",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/invitations",
+      "responses": [
+        {
+          "uuid": "8bca0cb6-ae00-4712-b6eb-b40e02f8c5ca",
+          "body": "",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "642973b4-3adb-49fc-98c2-647af11609d0",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "ad18f7f2-e2f9-4a4d-8f80-0b1ac9b19e33",
+          "body": "{\n  \"errors\": {\n    \"email\": [\n      \"wrong_format\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "66f655a1-73f3-4288-bc27-6cb9168b7c42",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/:userId/roles",
+      "responses": [
+        {
+          "uuid": "5fa73c8d-07d2-461f-b9b6-86d5fe366c8a",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "57e603e8-d20f-451f-8a79-abd9eff30edd",
+          "body": "{\n  \"errors\": {\n    \"newPassword\": [\n      \"invalid_value\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "b8b91d12-e5db-417c-ad40-4fddc45a13aa",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "projects/favorites/:projectId",
+      "responses": [
+        {
+          "uuid": "0f371329-b4c5-48df-a638-53d6f9551762",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4abcef27-353d-4973-a217-c771ef6de20d",
+          "body": "{\n  \"code\": \"favorites_max_size_limit\",\n  \"message\": \"Favorites size limit exceeded. Max size = 10\"\n}",
+          "latency": 0,
+          "statusCode": 409,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "1c14ce49-7fb4-4a5e-af83-b8e7bd03dd6d",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "projects/favorites/:projectId",
+      "responses": [
+        {
+          "uuid": "f46119fb-a90f-4d22-92d3-876d24c36bfa",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "be4df704-33de-4a05-a196-d5ccb8889994",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects/membership/:userId",
+      "responses": [
+        {
+          "uuid": "913c5221-e4ce-4229-8744-d6021f6bb93a",
+          "body": "{\n  \"userId\": \"1\",\n  \"projectIds\": [\n    \"1\",\n    \"2\"\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7481b5a8-2aee-4781-8bd0-b227cab70e46",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "40bbf854-323e-4f59-9c6c-563e07aa603b",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "projects/membership/:userId",
+      "responses": [
+        {
+          "uuid": "d62c8aaa-c860-4466-8e88-04af3057b7c6",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "88eebecf-ef9a-44c8-9b54-f847b7491ad8",
+          "body": "{\n  \"errors\": {\n    \"operation\": [\n      \"invalid_operation\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e9c1ce75-74c0-40f4-99f5-047f03269c93",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "fc5f8142-f443-4719-a044-c17eccbaf2ba",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "SquadReadyIT/member/1",
+      "responses": [
+        {
+          "uuid": "c0277d16-7992-4ea2-9094-e0db08dd0283",
+          "body": "{\n  \"id\": \"1\",\n  \"firstName\": \"Aley\",\n  \"lastName\": \"Top\",\n  \"email\": \"kop@sqy.wq\",\n  \"phoneNumber\": \"+78005553535\",\n  \"telegramUsername\": null,\n  \"roles\": [\n    \"Supervisor\"\n  ],\n  \"avatarUrl\": null,\n  \"tenantId\": \"a183572a-1b05-4706-bd5f-2506a5d3e0c9\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "ad622943-6bee-4bd2-8f79-ad4f52abfdbd",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects/:projectId/folders",
+      "responses": [
+        {
+          "uuid": "1ecea821-59a0-4f46-a19a-d885af54ad19",
+          "body": "{\n  \"folders\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Folder 01.01.2024 42423 adwadaw daw daw dad awdawdawdaad\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    },\n    {\n      \"id\": \"4\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    },\n    {\n      \"id\": \"5\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    },\n    {\n      \"id\": \"6\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    },\n    {\n      \"id\": \"7\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    },\n    {\n      \"id\": \"8\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    },\n    {\n      \"id\": \"9\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    },\n    {\n      \"id\": \"10\",\n      \"name\": \"Folder 01.01.2024 42423\"\n    }\n  ],\n  \"total\": 10\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "b9c56a0a-3087-4fcd-93e1-c568f97c5210",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "projects/:projectId/folders/:folderId",
+      "responses": [
+        {
+          "uuid": "c5c09c00-64c7-4fd4-98ca-9d41946fbc9f",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b9b3babe-44cc-429f-afac-72473c06e3cf",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "0a296277-d9e5-406b-b3b5-4f5b73ec76c5",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "projects",
+      "responses": [
+        {
+          "uuid": "3c319bee-d927-4c91-83bb-9a6923c7d2a8",
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"tenantId\": \"string\",\n  \"createdBy\": \"string\",\n  \"createdAt\": \"2024-02-28T11:28:22.095Z\",\n  \"avatarUrl\": \"string\"\n}\n",
+          "latency": 2000,
+          "statusCode": 201,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "4798ed4a-5a3c-4fc9-a3f1-5b210b257878",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/sign-out",
+      "responses": [
+        {
+          "uuid": "51e5e254-d3fe-4842-b5c7-86c520ec4ddb",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "958fd2b9-c58d-4d32-9c5e-c5bbc872cfbb",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/recovery/password/challenge/email",
+      "responses": [
+        {
+          "uuid": "88588988-9b85-49c9-9472-d7af5d54754b",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "24925940-de86-4af8-9637-cf1c58e76b8e",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/recovery/password/challenge/sms",
+      "responses": [
+        {
+          "uuid": "2cd7c2c1-5071-41b9-9d42-196b926925f5",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "f99ced4d-c418-4785-8465-46dbd27c6dc6",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/recovery/password/verify",
+      "responses": [
+        {
+          "uuid": "773e6401-8edc-488c-8ee9-1484fe305b05",
+          "body": "{\n  \"recoveryToken\": \"some_recovery_token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "42a0deb2-9166-4bde-b568-d37d56698d11",
+          "body": "{\n  \"errors\": {\n    \"recoveryToken\": [\n      \"error message\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a20c5745-0025-49ba-a024-9003dcb9832b",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "eb33c549-1975-41da-8d84-a56c049dc177",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/recovery/password/reset",
+      "responses": [
+        {
+          "uuid": "169a65cb-2b45-4d7a-9ef4-053c56082691",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "31462c55-1117-4f26-9c22-acc1b75c179c",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "projects/:projectId/reports",
+      "responses": [
+        {
+          "uuid": "348532c4-9ee0-4c03-843b-b7add43abcc0",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7e25f87c-a748-4a96-a98e-5d471f4cf37a",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "a43fdb99-7148-472a-b7ee-d83d6ea8f8f6",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/reports/telegram",
+      "responses": [
+        {
+          "uuid": "de58a029-2e31-4056-8a63-aab226149c1f",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "07143872-dc80-442d-9628-7343faab19a0",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "e96dc8ac-6c06-49eb-839a-d819133de069",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/reports/email",
+      "responses": [
+        {
+          "uuid": "3ea1e25f-6040-470f-bd0e-9bbd0fad68df",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b930bd51-8ec8-4000-a16d-9ab4e5a5f0c9",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "d334c380-dc18-47a5-8add-7cc842f7e2b3",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "projects/:projectId/reports",
+      "responses": [
+        {
+          "uuid": "122c16b4-081a-45f5-b5e3-89272f99320a",
+          "body": "{\n  \"reports\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Report #1\",\n      \"reportsTemplateName\": \"template #1\",\n      \"content\": {\n        \"contentName\": \"Name #1\"\n      },\n      \"creationDate\": \"2023-09-21T03:15:34Z\"\n    },\n    {\n      \"id\": \"1\",\n      \"name\": \"Report #1\",\n      \"reportsTemplateName\": \"template #1\",\n      \"content\": {\n        \"contentName\": \"Name #1\"\n      },\n      \"creationDate\": \"2023-09-21T03:15:34Z\"\n    },\n    {\n      \"id\": \"1\",\n      \"name\": \"Report #1\",\n      \"reportsTemplateName\": \"template #1\",\n      \"content\": {\n        \"contentName\": \"Name #1\"\n      },\n      \"creationDate\": \"2023-09-21T03:15:34Z\"\n    },\n    {\n      \"id\": \"1\",\n      \"name\": \"Report #1\",\n      \"reportsTemplateName\": \"template #1\",\n      \"content\": {\n        \"contentName\": \"Name #1\"\n      },\n      \"creationDate\": \"2023-09-21T03:15:34Z\"\n    },\n    {\n      \"id\": \"5\",\n      \"name\": \"Report #5\",\n      \"reportsTemplateName\": \"template #5\",\n      \"content\": {\n        \"contentName\": \"Name #5\"\n      },\n      \"creationDate\": \"2023-09-21T03:15:34Z\"\n    }\n  ],\n  \"total\": 5\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "1397ef4f-e543-4b76-a773-343510168a6d",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "50ffc768-8346-4c8c-88dd-3b87150b8f46",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/invitations/:invitationId",
+      "responses": [
+        {
+          "uuid": "e7a1115e-55ce-4f77-b430-8fbb73a7840f",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f4cc6f01-9c5d-41f8-bd4d-339371676fc7",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "dddbfef2-5aa2-4418-abee-ccc2956bdb05",
+          "body": "{\n  \"errors\": {\n    \"email\": [\n      \"wrong_format\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    },
+    {
+      "key": "Access-Control-Expose-Headers",
+      "value": "Retry-After"
+    }
+  ],
+  "proxyReqHeaders": [],
+  "proxyResHeaders": [],
+  "data": [],
+  "folders": [
+    {
+      "uuid": "d05e690a-3382-4cbf-9007-22f2801a8f66",
+      "name": "auth",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "66c94c7e-b0b7-4a91-a5a0-f094b8b6d757"
+        },
+        {
+          "type": "route",
+          "uuid": "2c2f8363-1d16-4332-8003-df977e1ee5d9"
+        },
+        {
+          "type": "route",
+          "uuid": "56a00b78-9508-4173-bbc1-f09152911fa4"
+        },
+        {
+          "type": "route",
+          "uuid": "3214d32b-9605-4574-83f9-f6564dcc739b"
+        },
+        {
+          "type": "route",
+          "uuid": "781d8abd-f734-4498-a197-2bf5bf26d98f"
+        },
+        {
+          "type": "route",
+          "uuid": "f809f864-a3c3-4b1e-b957-8e262add73cb"
+        },
+        {
+          "type": "route",
+          "uuid": "4798ed4a-5a3c-4fc9-a3f1-5b210b257878"
+        }
+      ]
+    },
+    {
+      "uuid": "fe0aba94-3cdc-4d17-8c94-b05b32023874",
+      "name": "Projects",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "aa9e4d1a-08d0-4074-8763-b193604a5776"
+        },
+        {
+          "type": "route",
+          "uuid": "b8b91d12-e5db-417c-ad40-4fddc45a13aa"
+        },
+        {
+          "type": "route",
+          "uuid": "1c14ce49-7fb4-4a5e-af83-b8e7bd03dd6d"
+        },
+        {
+          "type": "route",
+          "uuid": "50315b8b-5a41-497e-b4e5-bb27d1751514"
+        },
+        {
+          "type": "route",
+          "uuid": "fd4ddd12-144f-43d5-875e-e7048bf099b4"
+        },
+        {
+          "type": "route",
+          "uuid": "0a296277-d9e5-406b-b3b5-4f5b73ec76c5"
+        },
+        {
+          "type": "route",
+          "uuid": "2dcf21b9-5531-4d3f-879b-110303a1c414"
+        },
+        {
+          "type": "route",
+          "uuid": "edd66893-169f-445b-98c0-e6c2d81f6ee0"
+        },
+        {
+          "type": "route",
+          "uuid": "ac1eb62f-3c58-4a31-85a7-aab2cc2e4472"
+        },
+        {
+          "type": "route",
+          "uuid": "bdea18ab-a61b-4108-9a77-036fe49c282b"
+        },
+        {
+          "type": "route",
+          "uuid": "37c03fed-a0b7-4236-ba10-2e283d724b04"
+        },
+        {
+          "type": "route",
+          "uuid": "b31c435e-a866-4458-b785-1046e9288c65"
+        },
+        {
+          "type": "route",
+          "uuid": "be4df704-33de-4a05-a196-d5ccb8889994"
+        },
+        {
+          "type": "route",
+          "uuid": "40bbf854-323e-4f59-9c6c-563e07aa603b"
+        },
+        {
+          "type": "route",
+          "uuid": "ad622943-6bee-4bd2-8f79-ad4f52abfdbd"
+        },
+        {
+          "type": "route",
+          "uuid": "b9c56a0a-3087-4fcd-93e1-c568f97c5210"
+        },
+        {
+          "type": "route",
+          "uuid": "31462c55-1117-4f26-9c22-acc1b75c179c"
+        },
+        {
+          "type": "route",
+          "uuid": "d334c380-dc18-47a5-8add-7cc842f7e2b3"
+        }
+      ]
+    },
+    {
+      "uuid": "483c531d-dce1-49aa-8354-baf91acc545c",
+      "name": "Users",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "a19d244c-83d7-471f-86e0-ffc51011d81b"
+        },
+        {
+          "type": "route",
+          "uuid": "58be0a74-9e3d-4e45-a6ab-227d478cb7fa"
+        },
+        {
+          "type": "route",
+          "uuid": "24972487-dc27-4d99-8a73-35f29945ba6e"
+        },
+        {
+          "type": "route",
+          "uuid": "de418fe7-c59c-43bd-8f5a-a1114d63e5ab"
+        },
+        {
+          "type": "route",
+          "uuid": "b2c9597e-940e-45e5-a4fe-6eabbc38bdc0"
+        },
+        {
+          "type": "route",
+          "uuid": "8dc55985-7fee-46ed-90a4-a4266c0c8270"
+        },
+        {
+          "type": "route",
+          "uuid": "94babd24-ad50-4453-a60a-19b804efeebd"
+        },
+        {
+          "type": "route",
+          "uuid": "0a585719-6770-47e5-8759-5b459f720f2d"
+        },
+        {
+          "type": "route",
+          "uuid": "66f655a1-73f3-4288-bc27-6cb9168b7c42"
+        },
+        {
+          "type": "route",
+          "uuid": "a800ee2b-37d5-473d-b8b9-41c69272029b"
+        },
+        {
+          "type": "route",
+          "uuid": "875a7883-a4b3-46f3-bd99-9ff477db1a02"
+        },
+        {
+          "type": "route",
+          "uuid": "e3fadb46-efa0-4df5-be57-b0137642d483"
+        },
+        {
+          "type": "route",
+          "uuid": "50ffc768-8346-4c8c-88dd-3b87150b8f46"
+        },
+        {
+          "type": "route",
+          "uuid": "a43fdb99-7148-472a-b7ee-d83d6ea8f8f6"
+        },
+        {
+          "type": "route",
+          "uuid": "e96dc8ac-6c06-49eb-839a-d819133de069"
+        }
+      ]
+    },
+    {
+      "uuid": "7bf918a3-ed9c-4286-a113-1a1d919a4824",
+      "name": "tenants",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "9d1e2cd9-6738-4ecf-b91c-c775e9aeda30"
+        },
+        {
+          "type": "route",
+          "uuid": "fc5f8142-f443-4719-a044-c17eccbaf2ba"
+        }
+      ]
+    },
+    {
+      "uuid": "0b083988-084b-4442-a2d9-6b9e603337bd",
+      "name": "Sources",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "c20b1311-e5dc-4b18-a1d7-4b72543fcb1a"
+        },
+        {
+          "type": "route",
+          "uuid": "f2ed734c-de93-456d-b404-64a8fea3893b"
+        }
+      ]
+    },
+    {
+      "uuid": "c9d184bd-4fac-4c3f-9d4c-26a539bc2329",
+      "name": "PasswordRecovery",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "958fd2b9-c58d-4d32-9c5e-c5bbc872cfbb"
+        },
+        {
+          "type": "route",
+          "uuid": "24925940-de86-4af8-9637-cf1c58e76b8e"
+        },
+        {
+          "type": "route",
+          "uuid": "f99ced4d-c418-4785-8465-46dbd27c6dc6"
+        },
+        {
+          "type": "route",
+          "uuid": "eb33c549-1975-41da-8d84-a56c049dc177"
+        }
+      ]
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "d05e690a-3382-4cbf-9007-22f2801a8f66"
+    },
+    {
+      "type": "folder",
+      "uuid": "c9d184bd-4fac-4c3f-9d4c-26a539bc2329"
+    },
+    {
+      "type": "folder",
+      "uuid": "fe0aba94-3cdc-4d17-8c94-b05b32023874"
+    },
+    {
+      "type": "folder",
+      "uuid": "483c531d-dce1-49aa-8354-baf91acc545c"
+    },
+    {
+      "type": "folder",
+      "uuid": "7bf918a3-ed9c-4286-a113-1a1d919a4824"
+    },
+    {
+      "type": "folder",
+      "uuid": "0b083988-084b-4442-a2d9-6b9e603337bd"
+    }
+  ],
+  "callbacks": []
+}

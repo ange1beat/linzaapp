@@ -1,0 +1,7 @@
+{
+  "title": "Reset password from <strong>Linza</strong>",
+  "info-message-email": "Confirm that it is you.<br/> Enter the security code sent to you by email.",
+  "info-message-phone": "Confirm that it is you.<br/> Enter the security code sent to you by phone.",
+  "button-back": "Back",
+  "verifyOtpCodeBtnTitle": "Confirm"
+}

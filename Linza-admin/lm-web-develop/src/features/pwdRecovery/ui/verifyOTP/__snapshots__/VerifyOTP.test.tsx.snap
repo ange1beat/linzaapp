@@ -1,0 +1,138 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`VerifyOTP > View default 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        class="_window_2d008c _confirm-code-entity_50299e"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _window__title_2d008c"
+        >
+          title
+        </span>
+        <div
+          class="_window__form_2d008c"
+        >
+           
+          <form
+            class="_confirm-code-entity__form_50299e"
+          >
+            <div
+              class="_confirm-code-entity__container_50299e"
+            >
+              <span
+                class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+              >
+                info-message-email
+              </span>
+              <div
+                class="_key-field-container_1e169f"
+              >
+                <div
+                  class="_key-field-container__inputs_1e169f"
+                >
+                  <input
+                    aria-label="Character 1."
+                    autocomplete="one-time-code"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 2."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 3."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 4."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 5."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                  <input
+                    aria-label="Character 6."
+                    autocomplete="off"
+                    class="_key-field-container__input_1e169f"
+                    inputmode="numeric"
+                    max="9"
+                    maxlength="1"
+                    min="0"
+                    pattern="[0-9]{1}"
+                    type="tel"
+                  />
+                </div>
+              </div>
+              <button>
+                request code again
+              </button>
+              <div
+                class="_confirm-code-entity__buttons_50299e"
+              >
+                <button
+                  class="yc-button yc-button_view_action yc-button_size_xl yc-button_pin_round-round _btn--primary_212512 _confirm-code-entity__button_50299e"
+                  type="submit"
+                >
+                  <span
+                    class="yc-button__text"
+                  >
+                    verifyOtpCodeBtnTitle
+                  </span>
+                </button>
+                <button
+                  class="yc-button yc-button_view_normal yc-button_size_xl yc-button_pin_round-round"
+                  type="button"
+                >
+                  <span
+                    class="yc-button__text"
+                  >
+                    button-back
+                  </span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

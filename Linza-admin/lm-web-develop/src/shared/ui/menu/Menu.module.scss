@@ -1,0 +1,100 @@
+@import 'src/shared/vars';
+
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  width: 60px;
+  height: 100%;
+  max-height: 100vh;
+  background: $bg;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, .05);
+  flex-direction: column;
+}
+
+.menu__main-items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 0;
+  margin: 0;
+  background: $bg;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.menu__second-items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding: 10px 0;
+  margin: 0;
+  overflow: auto;
+  background: $subBG;
+  flex-direction: column;
+
+  gap: 10px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-item--selected {
+  .menu-item__marker {
+    opacity: 1;
+  }
+  .menu-item__button {
+    color: $primary;
+  }
+}
+
+.menu-item--outline {
+  .menu-item__button {
+    overflow: visible;
+    background: transparent;
+  }
+}
+
+.menu-item__marker {
+  position: absolute;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: $primary;
+  border-radius: 0 5px 5px 0;
+  opacity: 0;
+}
+
+.menu-item__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  span {
+    display: flex;
+    padding: 0;
+  }
+}
+
+.menu-item__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 100%;
+  color: inherit;
+}

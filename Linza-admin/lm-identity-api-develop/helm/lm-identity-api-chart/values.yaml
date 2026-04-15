@@ -1,0 +1,22 @@
+# Default values for lm-identity-api-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into templates.
+
+buildNumber: latest
+imageName: linza-monitoring/deployment/lm-identity-api
+pullSecretName: cr-secret
+registryAddress: registry.gitlab.rifoxa.ru
+appToken: appToken
+jwtPrivateKey: jwtPrivateKey
+jwtPublicKey: jwtPublicKey
+smtpHost: smtpHost
+smtpPort: smtpPort
+smtpLogin: smtpLogin
+smtpPassword: smtpPassword
+cellularLogin: cellularLogin
+cellularPassword: cellularPassword
+postgresHost: postgresHost
+postgresPort: postgresPort
+postgresUser: postgresUser
+postgresPassword: postgresPassword
+registrationLink: registrationLink

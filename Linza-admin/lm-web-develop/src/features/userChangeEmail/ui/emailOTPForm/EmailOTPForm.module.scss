@@ -1,0 +1,23 @@
+@import 'src/shared/vars';
+
+.email-otp-form {
+  display: flex;
+  width: $profile-width;
+  box-sizing: border-box;
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+.email-otp-form__subtitle {
+  text-align: center;
+}
+
+
+
+.email-otp-form__otp {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}

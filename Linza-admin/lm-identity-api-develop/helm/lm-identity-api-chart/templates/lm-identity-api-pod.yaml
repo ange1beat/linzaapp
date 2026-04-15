@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lm-identity-api
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 120
+  selector:
+    matchLabels:
+        app: lm-identity-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: lm-identity-api
+    spec:
+      containers:
+        - name: lm-identity-api
+          image: '{{ .Values.registryAddress }}/{{ .Values.imageName | default "linza-monitoring/deployment/lm-identity-api" }}:{{ .Values.buildNumber }}'
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: local-files-storage
+              mountPath: /app/files
+          env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "Development"
+          - name: LOG_LEVEL
+            value: "Debug"
+          - name: REGISTRATION_LINK
+            value: '{{ .Values.registrationLink }}'
+          - name: Smtp__Host
+            value: '{{ .Values.smtpHost }}'
+          - name: Smtp__Port
+            value: '{{ .Values.smtpPort }}'
+          - name: Smtp__Login
+            value: '{{ .Values.smtpLogin }}'
+          - name: Smtp__Password
+            value: '{{ .Values.smtpPassword }}'
+          - name: Cellular__User
+            value: '{{ .Values.cellularLogin }}'
+          - name: Cellular__Password
+            value: '{{ .Values.cellularPassword }}'
+          - name: POSTGRES_HOST
+            value: '{{ .Values.postgresHost }}'
+          - name: POSTGRES_PORT
+            value: '{{ .Values.postgresPort }}'
+          - name: POSTGRES_USER
+            value: '{{ .Values.postgresUser }}'
+          - name: POSTGRES_PASSWORD
+            value: '{{ .Values.postgresPassword }}'
+          - name: POSTGRES_DB
+            value: "identity"
+          - name: Authentication__JWT__PrivateKey
+            value: '{{ .Values.jwtPrivateKey }}'
+          - name: Authentication__JWT__PublicKey
+            value: '{{ .Values.jwtPublicKey }}'
+          - name: ConnectionStrings__IdentityData
+            value: 'Host={{ .Values.postgresHost }};Port={{ .Values.postgresPort }};Database=identity;Username={{ .Values.postgresUser }};Password={{ .Values.postgresPassword }}'
+          - name: Projects__AccessToken
+            value: '{{ .Values.appToken }}'
+      volumes:
+        - name: local-files-storage
+          persistentVolumeClaim:
+            claimName: files-pvc
+      imagePullSecrets:
+        - name: '{{ .Values.pullSecretName | default "cr-secret" }}'

@@ -1,0 +1,21 @@
+@import '../../../../shared/vars';
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  width: 100%;
+  height: fit-content;
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+
+.buttons-wrapper__action-button {
+  background: $danger;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

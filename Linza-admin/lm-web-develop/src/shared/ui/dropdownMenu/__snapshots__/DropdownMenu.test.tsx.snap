@@ -1,0 +1,268 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Dropdown > Double nesting 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-dropdown-menu__switcher-wrapper"
+    >
+      <button
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round yc-dropdown-menu__switcher-button"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon _dropdown-menu__icon_efec80"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M3 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-dropdown-menu__switcher-wrapper"
+    >
+      <button
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round yc-dropdown-menu__switcher-button"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon _dropdown-menu__icon_efec80"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M3 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Dropdown > Triple nesting 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-dropdown-menu__switcher-wrapper"
+    >
+      <button
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round yc-dropdown-menu__switcher-button"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon _dropdown-menu__icon_efec80"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M3 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-dropdown-menu__switcher-wrapper"
+    >
+      <button
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round yc-dropdown-menu__switcher-button"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon _dropdown-menu__icon_efec80"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M3 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-dropdown-menu__switcher-wrapper"
+    >
+      <button
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round yc-dropdown-menu__switcher-button"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon _dropdown-menu__icon_efec80"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M3 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Dropdown > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-dropdown-menu__switcher-wrapper"
+    >
+      <button
+        class="yc-button yc-button_view_flat yc-button_size_m yc-button_pin_round-round yc-dropdown-menu__switcher-button"
+        type="button"
+      >
+        <span
+          class="yc-button__icon"
+        >
+          <span
+            class="yc-button__icon-inner"
+          >
+            <svg
+              aria-hidden="true"
+              class="yc-icon _dropdown-menu__icon_efec80"
+              fill="currentColor"
+              height="16"
+              stroke="none"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <svg
+                fill="none"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M3 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</body>
+`;

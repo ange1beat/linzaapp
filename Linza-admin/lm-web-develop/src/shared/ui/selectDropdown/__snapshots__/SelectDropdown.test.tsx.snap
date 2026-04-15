@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SelectDropdown > default view list 1`] = `
+<body>
+  <div />
+  <div>
+    <div
+      class="_dropdown_0a6a7d"
+    >
+      <div>
+        <div>
+          My custom switcher
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

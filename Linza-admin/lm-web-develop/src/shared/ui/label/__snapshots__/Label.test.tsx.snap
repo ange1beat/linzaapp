@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Label > default 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-label yc-label_theme_danger yc-label_size_xs yc-label_type_default label"
+    >
+      <div
+        class="yc-label__text"
+      >
+        <div
+          class="yc-label__content"
+        >
+          Hello World!
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

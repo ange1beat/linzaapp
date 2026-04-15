@@ -1,0 +1,70 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Link > className work 1`] = `
+<body>
+  <div>
+    <a
+      class="_link_c3e603"
+      href="http://www.facebook.com"
+      target="_self"
+    >
+      Facebook
+    </a>
+  </div>
+  <div>
+    <a
+      class="_link_c3e603"
+      href="/"
+      target="_blank"
+    >
+      Facebook
+    </a>
+  </div>
+  <div>
+    <a
+      class="_link_c3e603 default"
+      href="/"
+      target="_parent"
+    >
+      Main
+    </a>
+  </div>
+</body>
+`;
+
+exports[`Link > href work 1`] = `
+<body>
+  <div>
+    <a
+      class="_link_c3e603"
+      href="http://www.facebook.com"
+      target="_self"
+    >
+      Facebook
+    </a>
+  </div>
+</body>
+`;
+
+exports[`Link > target work 1`] = `
+<body>
+  <div>
+    <a
+      class="_link_c3e603"
+      href="http://www.facebook.com"
+      target="_self"
+    >
+      Facebook
+    </a>
+  </div>
+  <div>
+    <a
+      class="_link_c3e603"
+      href="/"
+      target="_blank"
+    >
+      Facebook
+    </a>
+  </div>
+</body>
+`;

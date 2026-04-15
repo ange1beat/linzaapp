@@ -1,0 +1,8 @@
+{
+  "alert-error-title": "Error",
+  "title": "Reset password from <strong>Linza</strong>",
+  "password-placeholder": "Password",
+  "confirm-password-placeholder": "Confirm password",
+  "reset-password": "Set new password",
+  "back-to-login": "Return to login page"
+}

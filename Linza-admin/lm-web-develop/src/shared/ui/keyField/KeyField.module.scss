@@ -1,0 +1,41 @@
+@import 'src/shared/vars';
+
+.key-field-container {
+  display: flex;
+  width: 340px;
+  flex-direction: column;
+}
+
+.key-field-container--error {
+  .key-field-container__input {
+    border: 1px solid $danger;
+  }
+}
+
+.key-field-container__inputs {
+  display: flex;
+  justify-content: center;
+
+  gap: 8px;
+}
+
+.key-field-container__input {
+  width: 40px;
+  height: 44px;
+  padding: 3px 12px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+  color: $key-field-text-color;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.key-field-container__error-message {
+  width: auto;
+  padding: 10px;
+  color: $danger;
+  text-align: center;
+}

@@ -1,0 +1,119 @@
+@use '@gravity-ui/uikit/styles/themes';
+@import "src/shared/vars";
+
+/*/ Default variants /*/
+
+.body-1 {
+  font-size: var(--g-text-body-1-font-size);
+  line-height: var(--g-text-body-1-line-height);
+}
+.body-2 {
+  font-size: var(--g-text-body-2-font-size);
+  line-height: var(--g-text-body-2-line-height);
+}
+.body-3 {
+  font-size: var(--g-text-body-3-font-size);
+  line-height: var(--g-text-body-3-line-height);
+}
+.body-short {
+  font-size: var(--g-text-body-short-font-size);
+  line-height: var(--g-text-body-short-line-height);
+}
+.caption-1 {
+  font-size: var(--g-text-caption-1-font-size);
+  line-height: var(--g-text-caption-1-line-height);
+}
+.caption-2 {
+  font-size: var(--g-text-caption-2-font-size);
+  line-height: var(--g-text-caption-2-line-height);
+}
+
+.header-1 {
+  font-size: var(--g-text-header-1-font-size);
+  font-weight: 500;
+
+  strong {
+    color: $primary;
+  }
+}
+.header-2 {
+  font-size: var(--g-text-header-2-font-size);
+  line-height: var(--g-text-header-2-line-height);
+}
+.subheader-1 {
+  font-size: var(--g-text-subheader-1-font-size);
+  line-height: var(--g-text-subheader-1-line-height);
+}
+.subheader-2 {
+  font-size: var(--g-text-subheader-2-font-size);
+  line-height: var(--g-text-subheader-2-line-height);
+  font-weight: 500;
+}
+.subheader-3 {
+  font-size: var(--g-text-subheader-3-font-size);
+  line-height: var(--g-text-subheader-3-line-height);
+}
+.display-1 {
+  font-size: var(--g-text-display-1-font-size);
+  line-height: var(--g-text-display-1-line-height);
+}
+.display-2 {
+  font-size: var(--g-text-display-2-font-size);
+  line-height: var(--g-text-display-2-line-height);
+}
+.display-3 {
+  font-size: var(--g-text-display-3-font-size);
+  line-height: var(--g-text-display-3-line-height);
+}
+.display-4 {
+  font-size: var(--g-text-display-4-font-size);
+  line-height: var(--g-text-display-4-line-height);
+}
+.code-1 {
+  font-size: var(--g-text-code-1-font-size);
+  line-height: var(--g-text-code-1-line-height);
+}
+.code-2 {
+  font-size: var(--g-text-code-2-font-size);
+  line-height: var(--g-text-code-2-line-height);
+}
+.code-3 {
+  font-size: var(--g-text-code-3-font-size);
+  line-height: var(--g-text-code-3-line-height);
+}
+.code-inline-1 {
+  font-size: var(--g-text-code-inline-1-font-size);
+  line-height: var(--g-text-code-inline-1-line-height);
+}
+.code-inline-2 {
+  font-size: var(--g-text-code-inline-2-font-size);
+  line-height: var(--g-text-code-inline-2-line-height);
+}
+.code-inline-3 {
+  font-size: var(--g-text-code-inline-3-font-size);
+  line-height: var(--g-text-code-inline-3-line-height);
+}
+
+/*/ Custom variants /*/
+
+.modal-name {
+  color: $text;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.modal-email {
+  color: $placeholder;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+.filter {
+  color: $filter-group-title;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  text-transform: uppercase;
+}

@@ -1,0 +1,23 @@
+@import 'src/shared/vars';
+
+.code-re-request {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.code-re-request__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.code-re-request__button + .code-re-request__button {
+  margin-left: 10px;
+}
+
+.code-re-request__error {
+  margin-top: 5px;
+  color: $danger;
+}

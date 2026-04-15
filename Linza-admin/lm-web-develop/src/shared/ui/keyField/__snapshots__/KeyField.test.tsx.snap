@@ -1,0 +1,488 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Checked KeyField States > default state 1`] = `
+<body>
+  <div>
+    <div
+      class="_key-field-container_1e169f"
+    >
+      <div
+        class="_key-field-container__inputs_1e169f"
+      >
+        <input
+          aria-label="Character 1."
+          autocomplete="one-time-code"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 2."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 3."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 4."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 5."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 6."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Checked KeyField States > disabled 1`] = `
+<body>
+  <div>
+    <div
+      class="_key-field-container_1e169f"
+    >
+      <div
+        class="_key-field-container__inputs_1e169f"
+      >
+        <input
+          aria-label="Character 1."
+          autocomplete="one-time-code"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 2."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 3."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 4."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 5."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 6."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_key-field-container_1e169f _key-field-container--error_1e169f"
+    >
+      <div
+        class="_key-field-container__inputs_1e169f"
+      >
+        <input
+          aria-label="Character 1."
+          autocomplete="one-time-code"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 2."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 3."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 4."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 5."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 6."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+      </div>
+      <span
+        class="_key-field-container__error-message_1e169f"
+      >
+        Error!
+      </span>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_key-field-container_1e169f"
+    >
+      <div
+        class="_key-field-container__inputs_1e169f"
+      >
+        <input
+          aria-label="Character 1."
+          autocomplete="one-time-code"
+          class="_key-field-container__input_1e169f"
+          disabled=""
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 2."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          disabled=""
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 3."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          disabled=""
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 4."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          disabled=""
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 5."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          disabled=""
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 6."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          disabled=""
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Checked KeyField States > state with error 1`] = `
+<body>
+  <div>
+    <div
+      class="_key-field-container_1e169f"
+    >
+      <div
+        class="_key-field-container__inputs_1e169f"
+      >
+        <input
+          aria-label="Character 1."
+          autocomplete="one-time-code"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 2."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 3."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 4."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 5."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 6."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="_key-field-container_1e169f _key-field-container--error_1e169f"
+    >
+      <div
+        class="_key-field-container__inputs_1e169f"
+      >
+        <input
+          aria-label="Character 1."
+          autocomplete="one-time-code"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 2."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 3."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 4."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 5."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+        <input
+          aria-label="Character 6."
+          autocomplete="off"
+          class="_key-field-container__input_1e169f"
+          inputmode="numeric"
+          max="9"
+          maxlength="1"
+          min="0"
+          pattern="[0-9]{1}"
+          type="tel"
+        />
+      </div>
+      <span
+        class="_key-field-container__error-message_1e169f"
+      >
+        Error!
+      </span>
+    </div>
+  </div>
+</body>
+`;

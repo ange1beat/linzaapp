@@ -1,0 +1,6 @@
+{
+  "successAvatarTitle": "Успешно",
+  "successAvatarMessage": "Аватар успешно изменен",
+  "errorAvatarTitle": "Ошибка",
+  "errorAvatarMessage": "Кажется что-то пошло не так, данные не обновились"
+}

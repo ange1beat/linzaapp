@@ -1,0 +1,98 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BreadCrumbs > Multiple 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-breadcrumbs yc-breadcrumbs_calculated_yes"
+    >
+      <div
+        class="yc-breadcrumbs__inner"
+      >
+        <div
+          class="yc-breadcrumbs__item yc-breadcrumbs__item_current"
+          title="First"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+          >
+            First
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="yc-breadcrumbs yc-breadcrumbs_calculated_yes"
+    >
+      <div
+        class="yc-breadcrumbs__inner"
+      >
+        <span
+          class="yc-link yc-link_view_secondary yc-breadcrumbs__item"
+          tabindex="0"
+          title="First"
+        >
+          <a
+            class="_link_c3e603 _breadcrumbs__link_673cf7"
+            href="/"
+            target="_self"
+          >
+            <span
+              class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _breadcrumbs__text_673cf7"
+            >
+              First
+            </span>
+          </a>
+        </span>
+        <div
+          aria-hidden="true"
+          class="yc-breadcrumbs__divider"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _header-1_f0ca78 _breadcrumbs__divider_673cf7"
+          >
+            /
+          </span>
+        </div>
+        <div
+          class="yc-breadcrumbs__item yc-breadcrumbs__item_current"
+          title="Second"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+          >
+            Second
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`BreadCrumbs > View default 1`] = `
+<body>
+  <div>
+    <div
+      class="yc-breadcrumbs yc-breadcrumbs_calculated_yes"
+    >
+      <div
+        class="yc-breadcrumbs__inner"
+      >
+        <div
+          class="yc-breadcrumbs__item yc-breadcrumbs__item_current"
+          title="First"
+        >
+          <span
+            class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+          >
+            First
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

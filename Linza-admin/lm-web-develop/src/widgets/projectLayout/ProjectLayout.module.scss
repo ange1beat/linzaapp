@@ -1,0 +1,11 @@
+@import 'src/shared/vars';
+
+.project-layout .project-layout__tab {
+  &[aria-selected='true'] {
+    border-color: $primary;
+  }
+}
+
+.project-layout__link {
+  text-decoration: none;
+}

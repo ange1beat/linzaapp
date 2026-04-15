@@ -1,0 +1,18 @@
+.folders-list__header {
+  display: flex;
+  gap: 10px;
+}
+
+.folders-list__list {
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.folders-list__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

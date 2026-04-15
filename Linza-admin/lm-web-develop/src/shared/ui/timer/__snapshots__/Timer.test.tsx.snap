@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Timer > with minutes and seconds 1`] = `
+<body>
+  <div>
+    <button
+      class="yc-button yc-button_view_outlined yc-button_size_xl yc-button_pin_round-round yc-button_disabled yc-button_loading yc-button_width_max _btn--loaded_212512 _main-timer_7d8d84"
+      disabled=""
+      type="button"
+    >
+      <span
+        class="yc-button__text"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+        >
+          Request again in 2:05
+        </span>
+      </span>
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Timer > with seconds only 1`] = `
+<body>
+  <div>
+    <button
+      class="yc-button yc-button_view_outlined yc-button_size_xl yc-button_pin_round-round yc-button_disabled yc-button_loading yc-button_width_max _btn--loaded_212512 _main-timer_7d8d84"
+      disabled=""
+      type="button"
+    >
+      <span
+        class="yc-button__text"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+        >
+          Request again in 2:05
+        </span>
+      </span>
+    </button>
+  </div>
+  <div>
+    <button
+      class="yc-button yc-button_view_outlined yc-button_size_xl yc-button_pin_round-round yc-button_disabled yc-button_width_max _main-timer_7d8d84"
+      disabled=""
+      type="button"
+    >
+      <span
+        class="yc-button__text"
+      >
+        <span
+          class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+        >
+          Request again in 0:35
+        </span>
+      </span>
+    </button>
+  </div>
+</body>
+`;

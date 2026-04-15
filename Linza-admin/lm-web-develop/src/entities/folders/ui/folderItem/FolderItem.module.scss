@@ -1,0 +1,58 @@
+@import 'src/shared/vars';
+
+.folder-item {
+  width: 200px;
+  height: 150px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+
+  color: $text;
+
+  &::before {
+    display: none;
+  }
+
+  &:hover {
+    background-color: $default-button;
+    border-radius: 8px;
+
+    & > .folder-item__delete-button {
+      display: flex;
+    }
+  }
+}
+
+.folder-item__delete-button {
+  display: none;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: $bg;
+  box-shadow: 0 5px 6px 0 $base-simple-hover, 0 0 0 1px $base-secondary-hover;
+  cursor: pointer;
+}
+.folder-item__trash {
+  color: $danger;
+}
+.folder-item__folder-img {
+  width: 100px;
+  height: 100px;
+}
+.folder-item__text {
+  display: block;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

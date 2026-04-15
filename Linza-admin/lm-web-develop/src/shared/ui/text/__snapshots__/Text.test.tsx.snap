@@ -1,0 +1,2221 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Text > Another variant text with classname 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-2_f0ca78"
+    >
+      Text with variant code-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-3_f0ca78"
+    >
+      Text with variant code-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-1_f0ca78"
+    >
+      Text with variant code-inline-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-2_f0ca78"
+    >
+      Text with variant code-inline-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-3_f0ca78"
+    >
+      Text with variant code-inline-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _modal-name_f0ca78"
+    >
+      Text with variant modal-name
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _modal-email_f0ca78"
+    >
+      Text with variant modal-email
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78 test-class"
+    >
+      Text with variant header-1 and test-class
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Body-1 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Body-2 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Body-3 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Body-short variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Caption-1 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Caption-2 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Code-1 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Code-2 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-2_f0ca78"
+    >
+      Text with variant code-2
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Code-3 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-2_f0ca78"
+    >
+      Text with variant code-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-3_f0ca78"
+    >
+      Text with variant code-3
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Code-Inline-1 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-2_f0ca78"
+    >
+      Text with variant code-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-3_f0ca78"
+    >
+      Text with variant code-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-1_f0ca78"
+    >
+      Text with variant code-inline-1
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Code-Inline-2 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-2_f0ca78"
+    >
+      Text with variant code-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-3_f0ca78"
+    >
+      Text with variant code-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-1_f0ca78"
+    >
+      Text with variant code-inline-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-2_f0ca78"
+    >
+      Text with variant code-inline-2
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Code-Inline-3 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-2_f0ca78"
+    >
+      Text with variant code-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-3_f0ca78"
+    >
+      Text with variant code-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-1_f0ca78"
+    >
+      Text with variant code-inline-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-2_f0ca78"
+    >
+      Text with variant code-inline-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-3_f0ca78"
+    >
+      Text with variant code-inline-3
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Display-1 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Display-2 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Display-3 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Display-4 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Header-1 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Header-2 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Modal-email variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-2_f0ca78"
+    >
+      Text with variant code-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-3_f0ca78"
+    >
+      Text with variant code-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-1_f0ca78"
+    >
+      Text with variant code-inline-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-2_f0ca78"
+    >
+      Text with variant code-inline-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-3_f0ca78"
+    >
+      Text with variant code-inline-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _modal-name_f0ca78"
+    >
+      Text with variant modal-name
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _modal-email_f0ca78"
+    >
+      Text with variant modal-email
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Modal-name variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-1_f0ca78"
+    >
+      Text with variant display-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-2_f0ca78"
+    >
+      Text with variant display-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-3_f0ca78"
+    >
+      Text with variant display-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _display-4_f0ca78"
+    >
+      Text with variant display-4
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-1_f0ca78"
+    >
+      Text with variant code-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-2_f0ca78"
+    >
+      Text with variant code-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-3_f0ca78"
+    >
+      Text with variant code-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-1_f0ca78"
+    >
+      Text with variant code-inline-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-2_f0ca78"
+    >
+      Text with variant code-inline-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _code-inline-3_f0ca78"
+    >
+      Text with variant code-inline-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _modal-name_f0ca78"
+    >
+      Text with variant modal-name
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > SubHeader-2 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > SubHeader-3 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-2_f0ca78"
+    >
+      Text with variant subheader-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-3_f0ca78"
+    >
+      Text with variant subheader-3
+    </span>
+  </div>
+</body>
+`;
+
+exports[`Text > Subheader-1 variant text 1`] = `
+<body>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-1_f0ca78"
+    >
+      Text with variant body-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-2_f0ca78"
+    >
+      Text with variant body-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-3_f0ca78"
+    >
+      Text with variant body-3
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _body-short_f0ca78"
+    >
+      Text with variant body-short
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _caption-1_f0ca78"
+    >
+      Text with variant caption-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-1_f0ca78"
+    >
+      Text with variant header-1
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _header-2_f0ca78"
+    >
+      Text with variant header-2
+    </span>
+  </div>
+  <div>
+    <span
+      class="yc-text yc-text_variant_body-1 _subheader-1_f0ca78"
+    >
+      Text with variant subheader-1
+    </span>
+  </div>
+</body>
+`;

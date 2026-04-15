@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SourceStatusControlFeature > View default 1`] = `
+<body>
+  <div>
+    <button
+      class="yc-button yc-button_view_action yc-button_size_s yc-button_pin_round-round _btn--primary_212512 _btn__with-icon_212512 _toggle-button_3eccba"
+      type="button"
+    >
+      <span
+        class="yc-button__text"
+      >
+        <div
+          class="_btn__wrapper_212512"
+        >
+          <svg
+            aria-hidden="true"
+            class="yc-icon"
+            fill="currentColor"
+            height="16"
+            stroke="none"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8.75 1.75a.75.75 0 0 0-1.5 0v5.5a.75.75 0 0 0 1.5 0v-5.5ZM4.92 3.442A.75.75 0 1 0 4.08 2.2a7 7 0 1 0 7.841 0 .75.75 0 1 0-.841 1.242 5.5 5.5 0 1 1-6.159 0Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </svg>
+        </div>
+      </span>
+    </button>
+  </div>
+</body>
+`;

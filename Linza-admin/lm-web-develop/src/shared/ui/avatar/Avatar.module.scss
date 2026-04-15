@@ -1,0 +1,74 @@
+@import 'src/shared/vars';
+
+.crop-image {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: fit-content;
+  height: fit-content;
+  padding: 20px;
+  border-radius: 8px;
+  gap: 5px;
+  background: $bg;
+
+}
+
+.crop-image__cropper {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.crop-image__button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+}
+
+.input-load-file {
+  display: none;
+}
+
+.final-avatar {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.final-avatar__img {
+  border-radius:80px;
+  width: 80px;
+  height: 80px;
+  object-fit: fill;
+}
+
+.final-avatar__buttons {
+  width: 120px;
+}
+
+.finale-avatar__loader {
+  display: flex;
+  justify-content: center;
+  background-color: $divider;
+  color: $primary;
+  border-radius:80px;
+  width: 80px;
+  height: 80px;
+}
+
+.finale-avatar__loader > div{
+  background: $primary;
+}
+
+.final-avatar__error {
+  padding-top: 10px;
+  display: flex;
+  color: $danger;
+  width: 100%;
+  justify-content: center;
+}

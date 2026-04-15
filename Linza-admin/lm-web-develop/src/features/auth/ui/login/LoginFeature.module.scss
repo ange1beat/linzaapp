@@ -1,0 +1,29 @@
+.login-widget {
+  margin: auto;
+  width: 420px;
+}
+
+.login-widget__form {
+  width: 100%;
+}
+
+.login-widget__container {
+  width: 100%;
+  text-align: center;
+}
+
+.login-widget__fields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.login-widget__button {
+  margin-top: 25px;
+}
+
+.login-widget__link {
+  margin-top: 25px;
+  display: inline-block;
+}
