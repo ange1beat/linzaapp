@@ -28,6 +28,15 @@ def run_sqlite_migrations():
         "ALTER TABLE analysis_reports ADD COLUMN content_marking VARCHAR(32)",
         "ALTER TABLE analysis_reports ADD COLUMN revision_done BOOLEAN DEFAULT 0",
         "ALTER TABLE analysis_reports ADD COLUMN escalated BOOLEAN DEFAULT 0",
+        # Phase 1: multi-tenancy, teams, storage quotas
+        "ALTER TABLE users ADD COLUMN tenant_id INTEGER REFERENCES tenants(id)",
+        "ALTER TABLE users ADD COLUMN team_id INTEGER REFERENCES teams(id)",
+        "ALTER TABLE users ADD COLUMN phone_number VARCHAR",
+        "ALTER TABLE users ADD COLUMN telegram_username VARCHAR",
+        "ALTER TABLE users ADD COLUMN avatar_url VARCHAR",
+        "ALTER TABLE users ADD COLUMN storage_quota_bytes BIGINT DEFAULT 0",
+        "ALTER TABLE users ADD COLUMN storage_used_bytes BIGINT DEFAULT 0",
+        "ALTER TABLE users ADD COLUMN last_login_at TIMESTAMP",
     ]
     for stmt in alters:
         try:

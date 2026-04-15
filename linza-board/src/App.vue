@@ -299,7 +299,7 @@ onBeforeUnmount(() => {
                     aria-label="Рабочий стол по роли"
                     @click="goHome"
                   >
-                    <img src="./assets/linza-detector-logo.svg" alt="" class="logo-img" width="120" height="40" decoding="async" />
+                    <img src="./assets/linza-detector-logo.svg" alt="" class="logo-img" width="150" height="50" decoding="async" />
                   </NButton>
 
                   <NMenu
@@ -675,7 +675,7 @@ a.bc-home:focus-visible {
   outline-offset: 2px;
 }
 .logo-img {
-  width: min(120px, 42vw);
+  width: min(150px, 52vw);
   height: auto;
   display: block;
   object-fit: contain;
