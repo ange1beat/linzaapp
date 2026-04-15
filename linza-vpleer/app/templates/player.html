@@ -28,9 +28,32 @@
         <div id="transcodeLabel">Подготовка видео...</div>
         <div class="transcode-warnings" id="transcodeWarnings"></div>
       </div>
-      <video id="video" controls preload="metadata">
+      <video id="video" preload="metadata">
         Ваш браузер не поддерживает видео.
       </video>
+      <!-- Glass overlay controls (play/rewind/forward) -->
+      <div class="video-overlay-controls" id="videoOverlay">
+        <button class="glass-control rewind-btn" onclick="seekRelative(-15)" aria-label="Назад 15 секунд">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+          </svg>
+          <span class="seek-label">15</span>
+        </button>
+        <button class="glass-control play-btn" id="playPauseBtn" onclick="togglePlay()" aria-label="Воспроизведение / Пауза">
+          <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+          <svg class="icon-pause" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+            <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        </button>
+        <button class="glass-control forward-btn" onclick="seekRelative(15)" aria-label="Вперёд 15 секунд">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.13-9.36L23 10"/>
+          </svg>
+          <span class="seek-label">15</span>
+        </button>
+      </div>
       <div id="timeline">
         <div class="timeline-track" id="trackVideo" data-source="video"><span class="track-label">&#127916;</span></div>
         <div class="timeline-track" id="trackAudio" data-source="audio"><span class="track-label">&#128266;</span></div>
@@ -43,8 +66,8 @@
         </label>
       </div>
       <div class="controls">
-        <button onclick="document.getElementById('video').currentTime -= 5">-5s</button>
-        <button onclick="document.getElementById('video').currentTime += 5">+5s</button>
+        <button onclick="seekRelative(-5)">-5s</button>
+        <button onclick="seekRelative(5)">+5s</button>
         <div class="speed-controls">
           <button onclick="setSpeed(0.25)">0.25x</button>
           <button onclick="setSpeed(0.5)">0.5x</button>

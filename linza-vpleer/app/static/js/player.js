@@ -1,5 +1,7 @@
 /* global filename — injected by inline <script> in player.html */
 const video = document.getElementById('video');
+const overlay = document.getElementById('videoOverlay');
+const playBtn = document.getElementById('playPauseBtn');
 
 /** Ключи sources/a/b.mp4 → .../sources/a/b.mp4 (без %2F в одном сегменте — стабильнее за прокси). */
 function encodePathSegments(key) {
@@ -7,6 +9,53 @@ function encodePathSegments(key) {
   return String(key).split('/').map(encodeURIComponent).join('/');
 }
 const pathEnc = encodePathSegments(filename);
+
+// ── Glass overlay play/pause + seek controls ──
+function togglePlay() {
+  if (video.paused) { video.play(); } else { video.pause(); }
+}
+
+function seekRelative(seconds) {
+  video.currentTime = Math.max(0, Math.min(video.duration || 0, video.currentTime + seconds));
+}
+
+function updatePlayPauseIcon() {
+  if (!playBtn) return;
+  const iconPlay = playBtn.querySelector('.icon-play');
+  const iconPause = playBtn.querySelector('.icon-pause');
+  if (video.paused) {
+    iconPlay.style.display = '';
+    iconPause.style.display = 'none';
+  } else {
+    iconPlay.style.display = 'none';
+    iconPause.style.display = '';
+  }
+}
+
+video.addEventListener('play', updatePlayPauseIcon);
+video.addEventListener('pause', updatePlayPauseIcon);
+video.addEventListener('click', togglePlay);
+
+// Auto-hide overlay while playing
+let overlayTimer;
+function showOverlay() {
+  if (overlay) { overlay.classList.remove('hidden'); overlay.classList.add('show'); }
+  clearTimeout(overlayTimer);
+  if (!video.paused) {
+    overlayTimer = setTimeout(() => {
+      if (overlay && !video.paused) { overlay.classList.add('hidden'); overlay.classList.remove('show'); }
+    }, 2500);
+  }
+}
+if (overlay) {
+  const container = video.closest('.player-container');
+  if (container) {
+    container.addEventListener('mousemove', showOverlay);
+    container.addEventListener('mouseleave', () => {
+      if (!video.paused && overlay) { overlay.classList.add('hidden'); overlay.classList.remove('show'); }
+    });
+  }
+}
 
 // ── Speed controls ──
 function setSpeed(rate) {

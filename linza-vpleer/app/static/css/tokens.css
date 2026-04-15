@@ -1,20 +1,42 @@
-/* Linza Board–aligned tokens; data-theme = dark | light */
+/* Linza Detector — Design System Tokens
+   Liquid Glass edition (synced with linza-detector-design-system.css)
+   data-theme = dark | light */
 :root,
 [data-theme="dark"] {
-  --c-sidebar: #141c28;
-  --c-bg: #0e131b;
-  --c-surface: #161d2a;
-  --c-surface-2: #1c2534;
-  --c-border: rgba(148, 163, 184, 0.14);
-  --c-blue: #3b82f6;
-  --c-blue-dim: rgba(59, 130, 246, 0.14);
-  --c-blue-hover: #2563eb;
-  --c-txt: #f1f5f9;
-  --c-txt-2: #94a3b8;
-  --c-txt-3: #64748b;
-  --c-err: #f87171;
-  --c-ok: #34d399;
-  --c-warn: #fbbf24;
+  /* New design system tokens */
+  --bg: #050510;
+  --glass: rgba(255,255,255,0.045);
+  --glass-h: rgba(255,255,255,0.08);
+  --glass-bd: rgba(255,255,255,0.08);
+  --glass-bd-h: rgba(255,255,255,0.16);
+  --glass-shine: linear-gradient(135deg,rgba(255,255,255,0.1) 0%,rgba(255,255,255,0.01) 50%,rgba(255,255,255,0.05) 100%);
+  --glass-shadow: 0 8px 40px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);
+  --t: #dce0f4;
+  --t2: #9da3c8;
+  --t3: #6e76a0;
+  --tw: #f4f6ff;
+  --bl: #5a9cf5;
+  --gr: #3ee8b0;
+  --rd: #ff6b8a;
+  --yl: #f0d060;
+  --pp: #a898e0;
+  --cy: #50d8e8;
+
+  /* Bridge: design-system → existing vars */
+  --c-sidebar: var(--glass);
+  --c-bg: var(--bg);
+  --c-surface: var(--glass);
+  --c-surface-2: var(--glass-h);
+  --c-border: var(--glass-bd);
+  --c-blue: var(--bl);
+  --c-blue-dim: rgba(90, 156, 245, 0.14);
+  --c-blue-hover: #3464d8;
+  --c-txt: var(--t);
+  --c-txt-2: var(--t2);
+  --c-txt-3: var(--t3);
+  --c-err: var(--rd);
+  --c-ok: var(--gr);
+  --c-warn: var(--yl);
   --c-modal-overlay: rgba(2, 6, 15, 0.58);
   --r-sm: 12px;
   --r-md: 14px;
@@ -28,28 +50,28 @@
   --text-lg: 1.05rem;
   --text-xl: 1.2rem;
   --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.28);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.32);
+  --shadow-card: var(--glass-shadow);
 
-  /* Legacy aliases (player.css) */
-  --bg-primary: var(--c-bg);
-  --bg-surface: var(--c-surface);
-  --bg-elevated: var(--c-surface-2);
+  /* Legacy aliases */
+  --bg-primary: var(--bg);
+  --bg-surface: var(--glass);
+  --bg-elevated: var(--glass-h);
   --bg-hover: rgba(255, 255, 255, 0.06);
   --bg-active: var(--c-blue-dim);
-  --bg-input: var(--c-surface-2);
-  --bg-input-hover: #252f42;
-  --bg-card: var(--c-surface);
-  --bg-card-hover: var(--c-surface-2);
-  --bg-tooltip: #0a0f18;
-  --bg-video: #05070a;
-  --text-primary: var(--c-txt);
-  --text-secondary: var(--c-txt-2);
-  --text-muted: var(--c-txt-3);
-  --text-accent: var(--c-blue);
+  --bg-input: var(--glass-h);
+  --bg-input-hover: rgba(255,255,255,0.12);
+  --bg-card: var(--glass);
+  --bg-card-hover: var(--glass-h);
+  --bg-tooltip: rgba(5, 5, 16, 0.92);
+  --bg-video: #020208;
+  --text-primary: var(--t);
+  --text-secondary: var(--t2);
+  --text-muted: var(--t3);
+  --text-accent: var(--bl);
   --text-on-accent: #fff;
-  --border: var(--c-border);
-  --border-focus: var(--c-blue);
-  --shadow-md: var(--shadow-card);
+  --border: var(--glass-bd);
+  --border-focus: var(--bl);
+  --shadow-md: var(--glass-shadow);
   --shadow-sm: var(--shadow-soft);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
   --status-active: #e94560;
@@ -67,22 +89,40 @@
 }
 
 [data-theme="light"] {
-  --c-bg: #eef2f7;
-  --c-surface: #ffffff;
-  --c-surface-2: #f5f8fc;
-  --c-border: #e2e8f0;
-  --c-blue: #2563eb;
-  --c-blue-dim: rgba(37, 99, 235, 0.1);
+  --bg: #f0f2f8;
+  --glass: rgba(255,255,255,0.45);
+  --glass-h: rgba(255,255,255,0.65);
+  --glass-bd: rgba(0,0,0,0.08);
+  --glass-bd-h: rgba(0,0,0,0.15);
+  --glass-shine: linear-gradient(135deg,rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.1) 30%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.3) 80%,rgba(255,255,255,0.6) 100%);
+  --glass-shadow: 0 8px 40px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,0.9);
+  --t: #2a2e48;
+  --t2: #4a5070;
+  --t3: #7880a0;
+  --tw: #0a0e20;
+  --bl: #2a6ed8;
+  --gr: #0ca870;
+  --rd: #dc3858;
+  --yl: #b89008;
+  --pp: #6838d0;
+  --cy: #0888ac;
+
+  --c-bg: var(--bg);
+  --c-surface: var(--glass);
+  --c-surface-2: var(--glass-h);
+  --c-border: var(--glass-bd);
+  --c-blue: var(--bl);
+  --c-blue-dim: rgba(42, 110, 216, 0.1);
   --c-blue-hover: #1d4ed8;
-  --c-txt: #0f172a;
-  --c-txt-2: #64748b;
-  --c-txt-3: #94a3b8;
-  --c-err: #dc2626;
-  --c-ok: #059669;
-  --c-warn: #d97706;
+  --c-txt: var(--t);
+  --c-txt-2: var(--t2);
+  --c-txt-3: var(--t3);
+  --c-err: var(--rd);
+  --c-ok: var(--gr);
+  --c-warn: var(--yl);
   --c-modal-overlay: rgba(15, 23, 42, 0.4);
   --shadow-soft: 0 2px 12px rgba(15, 23, 42, 0.06);
-  --shadow-card: 0 8px 30px rgba(15, 23, 42, 0.08);
+  --shadow-card: var(--glass-shadow);
   --cat-prohibited: #dc2626;
   --cat-18: #ea580c;
   --cat-16: #ca8a04;
@@ -102,25 +142,24 @@
   --text-md: 0.95rem;
   --text-lg: 1.05rem;
   --text-xl: 1.2rem;
-
-  --bg-primary: var(--c-bg);
-  --bg-surface: var(--c-surface);
-  --bg-elevated: var(--c-surface-2);
+  --bg-primary: var(--bg);
+  --bg-surface: var(--glass);
+  --bg-elevated: var(--glass-h);
   --bg-hover: rgba(15, 23, 42, 0.06);
   --bg-active: var(--c-blue-dim);
-  --bg-input: #e8ecf0;
-  --bg-input-hover: #dde2e8;
-  --bg-card: #f5f7fa;
-  --bg-card-hover: #ebeef2;
+  --bg-input: rgba(0,0,0,0.04);
+  --bg-input-hover: rgba(0,0,0,0.06);
+  --bg-card: rgba(255,255,255,0.6);
+  --bg-card-hover: rgba(255,255,255,0.8);
   --bg-tooltip: #0f172a;
   --bg-video: #0a0c10;
-  --text-primary: var(--c-txt);
-  --text-secondary: var(--c-txt-2);
-  --text-muted: var(--c-txt-3);
-  --text-accent: var(--c-blue);
-  --border: var(--c-border);
-  --border-focus: var(--c-blue);
-  --shadow-md: var(--shadow-card);
+  --text-primary: var(--t);
+  --text-secondary: var(--t2);
+  --text-muted: var(--t3);
+  --text-accent: var(--bl);
+  --border: var(--glass-bd);
+  --border-focus: var(--bl);
+  --shadow-md: var(--glass-shadow);
   --shadow-sm: var(--shadow-soft);
   --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.12);
 }
@@ -132,9 +171,9 @@
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--c-bg);
-  color: var(--c-txt);
+  font-family: "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--t);
   min-height: 100vh;
   padding: 20px;
   -webkit-font-smoothing: antialiased;
@@ -163,14 +202,14 @@ body {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--c-txt);
+  color: var(--tw);
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 .player-title-row .filename {
-  color: var(--c-txt-2);
+  color: var(--t2);
   font-weight: 500;
 }
 .format-badge {
@@ -179,8 +218,8 @@ body {
   padding: 4px 10px;
   border-radius: var(--r-pill);
   background: var(--c-blue-dim);
-  color: var(--c-blue);
-  border: 1px solid var(--c-border);
+  color: var(--bl);
+  border: 1px solid var(--glass-bd);
 }
 .theme-toggle-btn {
   display: inline-flex;
@@ -189,27 +228,28 @@ body {
   width: 38px;
   height: 38px;
   padding: 0;
-  border: 1px solid var(--c-border);
-  border-radius: var(--r-md);
-  background: var(--c-surface);
-  color: var(--c-txt-2);
+  border: 1px solid var(--glass-bd);
+  border-radius: 50%;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  color: var(--t2);
   cursor: pointer;
   font-size: 1rem;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: all 0.3s;
   box-shadow: var(--shadow-soft);
 }
 .theme-toggle-btn:hover {
-  color: var(--c-blue);
-  border-color: rgba(59, 130, 246, 0.35);
-  background: var(--c-blue-dim);
+  color: var(--tw);
+  border-color: var(--glass-bd-h);
+  transform: rotate(30deg) scale(1.1);
+  box-shadow: 0 0 20px rgba(90, 156, 245, 0.1);
 }
 
-/* index.html и др.: общий back-link вне тулбара плеера */
 .back-link {
-  color: var(--text-muted);
+  color: var(--t3);
   text-decoration: none;
   font-size: var(--text-base);
 }
 .back-link:hover {
-  color: var(--text-accent);
+  color: var(--bl);
 }
