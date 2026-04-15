@@ -651,9 +651,56 @@ async def _proxy_to_vpleer_service(request: Request) -> Response:
     )
 
 
+def _check_storage_quota(request: Request) -> None:
+    """Check if the user has sufficient storage quota before upload.
+
+    Only applies to POST requests (file uploads). Raises HTTPException
+    if quota is exceeded at any level (user, team, tenant).
+    """
+    if request.method != "POST":
+        return
+
+    token = request.headers.get("authorization", "").replace("Bearer ", "")
+    if not token:
+        return
+
+    try:
+        from backend.auth import decode_access_token
+        payload = decode_access_token(token)
+    except Exception:
+        return
+
+    from backend.models import StorageQuota, User
+    db = SessionLocal()
+    try:
+        user = db.query(User).filter(User.login == payload.get("sub")).first()
+        if not user:
+            return
+
+        for scope_type, scope_id in [
+            ("user", user.id),
+            ("team", user.team_id),
+            ("tenant", user.tenant_id),
+        ]:
+            if not scope_id:
+                continue
+            quota = db.query(StorageQuota).filter(
+                StorageQuota.scope_type == scope_type,
+                StorageQuota.scope_id == scope_id,
+            ).first()
+            if quota and quota.quota_bytes > 0 and (quota.used_bytes or 0) >= quota.quota_bytes:
+                raise HTTPException(
+                    status_code=413,
+                    detail=f"Квота хранилища исчерпана ({scope_type})",
+                )
+    finally:
+        db.close()
+
+
 @app.api_route("/api/files", methods=_PROXY_METHODS, include_in_schema=False)
 @app.api_route("/api/files/{rest_path:path}", methods=_PROXY_METHODS, include_in_schema=False)
 async def proxy_storage_files(request: Request):
+    _check_storage_quota(request)
     return await _proxy_to_storage_service(request)
 
 

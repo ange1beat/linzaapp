@@ -95,6 +95,14 @@ export function useAuth() {
     return u.active_role === 'administrator'
   }
 
+  function canManageTeams() {
+    return canManageUsers()
+  }
+
+  function canManageStorage() {
+    return canManageUsers()
+  }
+
   /** Роли портала (переключение контекста в интерфейсе). */
   function portalRoles() {
     return currentUser.value?.portal_roles ?? []
@@ -106,6 +114,21 @@ export function useAuth() {
 
   function hasPortalRole(role) {
     return portalRoles().includes(role)
+  }
+
+  function currentTenantId() {
+    return currentUser.value?.tenant_id ?? null
+  }
+
+  function currentTeamId() {
+    return currentUser.value?.team_id ?? null
+  }
+
+  function storageInfo() {
+    return {
+      quotaBytes: currentUser.value?.storage_quota_bytes ?? 0,
+      usedBytes: currentUser.value?.storage_used_bytes ?? 0,
+    }
   }
 
   return {
@@ -120,8 +143,13 @@ export function useAuth() {
     canManageUsers,
     isSuperAdmin,
     canAccessSettings,
+    canManageTeams,
+    canManageStorage,
     portalRoles,
     activePortalRole,
     hasPortalRole,
+    currentTenantId,
+    currentTeamId,
+    storageInfo,
   }
 }
