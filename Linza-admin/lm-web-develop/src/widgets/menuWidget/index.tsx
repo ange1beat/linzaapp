@@ -1,16 +1,27 @@
 import React from "react";
 
-import { BellDot, Boxes3, ChartMixed, Persons } from "@gravity-ui/icons";
+import {
+  BellDot,
+  Boxes3,
+  ChartMixed,
+  Database,
+  Persons,
+  PersonWorker,
+} from "@gravity-ui/icons";
 import { useMatch } from "react-router";
 
 import { MenuProjectItem, useFavProjectsQuery } from "@/entities/projects";
-import { ROUTES } from "@/shared/config";
+import { useActiveRole } from "@/entities/session";
+import { PORTAL_ROLES, ROUTES } from "@/shared/config";
 
 import { UserModalWindow } from "../../features/user";
 import Menu from "../../shared/ui/menu";
 
 function MenuWidget({ className }: { className?: string }) {
   const { projects } = useFavProjectsQuery();
+  const activeRole = useActiveRole();
+
+  const isAdmin = activeRole === PORTAL_ROLES.Administrator;
 
   return (
     <Menu
@@ -32,6 +43,16 @@ function MenuWidget({ className }: { className?: string }) {
           <Menu.MenuItemLink link={ROUTES.projects} end={true}>
             <Boxes3 />
           </Menu.MenuItemLink>
+          {isAdmin && (
+            <Menu.MenuItemLink link={ROUTES.teams}>
+              <PersonWorker />
+            </Menu.MenuItemLink>
+          )}
+          {isAdmin && (
+            <Menu.MenuItemLink link={ROUTES.storage}>
+              <Database />
+            </Menu.MenuItemLink>
+          )}
         </>
       }
       secondaryItems={

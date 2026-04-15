@@ -5,7 +5,6 @@ import { api } from "@/shared/api";
 
 import {
   memberSchema,
-  membersInProjectSchema,
   membersSchema,
 } from "../models/responses";
 
@@ -16,39 +15,43 @@ export function getMembersInfo(data: {
   includeIds?: string[];
   excludeIds?: string[];
 }): Promise<z.infer<typeof membersSchema>> {
-  return api.post("users/search", { json: data }).json();
+  return api
+    .post("users/search", { json: data })
+    .json()
+    .then(membersSchema.parse);
 }
 
 export function getSelectedMember(
   userId: string,
-): Promise<z.infer<typeof memberSchema>> {
+): Promise<z.output<typeof memberSchema>> {
   return api.get(`users/${userId}`).json().then(memberSchema.parse);
 }
 
-export function getMembersInProject(
-  projectId: string,
-): Promise<z.infer<typeof membersInProjectSchema>> {
+export function getMembersInProject(projectId: string) {
+  // New backend returns array of member objects
   return api
     .get(`projects/${projectId}/members`)
-    .json()
-    .then(membersInProjectSchema.parse);
+    .json<{ id: number; user_id: number; role: string }[]>()
+    .then((members) => ({
+      userIds: members.map((m) => String(m.user_id)),
+    }));
 }
 
 export function addMembersToProject(data: {
   projectId: string;
   userIds: string[];
 }) {
+  // Backend expects user_ids as numbers
   return api
     .post(`projects/${data.projectId}/members`, {
-      json: { userIds: data.userIds },
+      json: { user_ids: data.userIds.map(Number), role: "viewer" },
     })
     .json()
     .catch(async (err) => {
       if (err instanceof HTTPError && err.response.status === 400) {
         return Promise.reject({ status: 400 });
-      } else {
-        return Promise.reject({});
       }
+      return Promise.reject({});
     });
 }
 
