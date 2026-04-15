@@ -1,16 +1,19 @@
 import json
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from pydantic import BaseModel
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from backend.auth import (
     PORTAL_ADMINISTRATOR,
+    get_current_user,
     hash_password,
     oauth2_scheme,
     portal_roles_for_user,
     require_manager,
     resolve_active_role,
+    verify_password,
     VALID_PORTAL_ROLES,
 )
 from backend.database import get_db
@@ -203,3 +206,218 @@ def delete_user(
 
     db.delete(user)
     db.commit()
+
+
+# ---------------------------------------------------------------------------
+# Extended endpoints for linza-admin compatibility
+# ---------------------------------------------------------------------------
+
+
+class UserSearchRequest(BaseModel):
+    searchTerm: str | None = None
+    pageNumber: int = 1
+    pageSize: int = 10
+    includeIds: list[str] | None = None
+    excludeIds: list[str] | None = None
+
+
+class FullUserResponse(BaseModel):
+    id: int
+    first_name: str
+    last_name: str
+    login: str
+    email: str
+    role: str
+    portal_roles: list[str]
+    phone_number: str | None = None
+    telegram_username: str | None = None
+    avatar_url: str | None = None
+    tenant_id: int | None = None
+    team_id: int | None = None
+    last_login_at: str | None = None
+    created_by: int | None = None
+
+
+class UsersSearchResponse(BaseModel):
+    users: list[FullUserResponse]
+    total: int
+
+
+def _full_user_response(u: User) -> FullUserResponse:
+    return FullUserResponse(
+        id=u.id,
+        first_name=u.first_name,
+        last_name=u.last_name,
+        login=u.login,
+        email=u.email,
+        role=u.role,
+        portal_roles=portal_roles_for_user(u),
+        phone_number=u.phone_number,
+        telegram_username=u.telegram_username,
+        avatar_url=u.avatar_url,
+        tenant_id=u.tenant_id,
+        team_id=u.team_id,
+        last_login_at=str(u.last_login_at) if u.last_login_at else None,
+        created_by=u.created_by,
+    )
+
+
+@router.post("/search", response_model=UsersSearchResponse)
+def search_users(
+    body: UserSearchRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Search members with pagination, filtering, include/exclude IDs."""
+    q = db.query(User)
+
+    # Tenant scope
+    if current_user.tenant_id and current_user.role != "superadmin":
+        q = q.filter(User.tenant_id == current_user.tenant_id)
+
+    # Search term
+    if body.searchTerm:
+        term = f"%{body.searchTerm}%"
+        q = q.filter(
+            or_(
+                User.first_name.ilike(term),
+                User.last_name.ilike(term),
+                User.email.ilike(term),
+                User.login.ilike(term),
+            )
+        )
+
+    # Exclude IDs
+    if body.excludeIds:
+        exclude_int = [int(x) for x in body.excludeIds if x.isdigit()]
+        if exclude_int:
+            q = q.filter(~User.id.in_(exclude_int))
+
+    total = q.count()
+
+    # Pagination
+    offset = (body.pageNumber - 1) * body.pageSize
+    users = q.order_by(User.id).offset(offset).limit(body.pageSize).all()
+
+    # Include IDs (force-include users even if filtered out)
+    result = [_full_user_response(u) for u in users]
+    if body.includeIds:
+        include_int = [int(x) for x in body.includeIds if x.isdigit()]
+        existing_ids = {u.id for u in users}
+        for uid in include_int:
+            if uid not in existing_ids:
+                inc_user = db.query(User).filter(User.id == uid).first()
+                if inc_user:
+                    result.append(_full_user_response(inc_user))
+
+    return UsersSearchResponse(users=result, total=total)
+
+
+@router.get("/me", response_model=FullUserResponse)
+def get_current_user_profile(
+    current_user: User = Depends(get_current_user),
+):
+    """Get current user's full profile."""
+    return _full_user_response(current_user)
+
+
+@router.get("/{user_id}", response_model=FullUserResponse)
+def get_user_by_id(
+    user_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Get user by ID with full profile."""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Пользователь не найден")
+    return _full_user_response(user)
+
+
+class UpdateNameRequest(BaseModel):
+    firstName: str
+    lastName: str
+
+
+class UpdatePasswordRequest(BaseModel):
+    currentPassword: str
+    newPassword: str
+
+
+class UpdateTelegramRequest(BaseModel):
+    username: str
+
+
+@router.put("/me/name", response_model=FullUserResponse)
+def update_my_name(
+    body: UpdateNameRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    current_user.first_name = body.firstName.strip()
+    current_user.last_name = body.lastName.strip()
+    db.commit()
+    db.refresh(current_user)
+    return _full_user_response(current_user)
+
+
+@router.put("/me/password")
+def update_my_password(
+    body: UpdatePasswordRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    if not verify_password(body.currentPassword, current_user.password_hash):
+        raise HTTPException(status_code=400, detail="Неверный текущий пароль")
+    if len(body.newPassword) < 8:
+        raise HTTPException(status_code=400, detail="Пароль должен быть не менее 8 символов")
+    current_user.password_hash = hash_password(body.newPassword)
+    db.commit()
+    return {"detail": "Пароль успешно изменён"}
+
+
+@router.put("/me/telegram", response_model=FullUserResponse)
+def update_my_telegram(
+    body: UpdateTelegramRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    current_user.telegram_username = body.username.lstrip("@").strip()
+    db.commit()
+    db.refresh(current_user)
+    return _full_user_response(current_user)
+
+
+@router.put("/me/avatar", response_model=FullUserResponse)
+async def update_my_avatar(
+    file: UploadFile = File(...),
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    # Store avatar as data URL for simplicity; in production use S3
+    content = await file.read()
+    import base64
+    data_url = f"data:{file.content_type};base64,{base64.b64encode(content).decode()}"
+    current_user.avatar_url = data_url
+    db.commit()
+    db.refresh(current_user)
+    return _full_user_response(current_user)
+
+
+@router.patch("/{user_id}/roles")
+def update_user_roles(
+    user_id: int,
+    current_user: User = Depends(require_manager),
+    db: Session = Depends(get_db),
+    isSupervisor: bool = False,
+):
+    """Toggle User/Supervisor role (linza-admin compatibility)."""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Пользователь не найден")
+    if isSupervisor:
+        user.portal_roles = json.dumps(["administrator", "operator"])
+    else:
+        user.portal_roles = json.dumps(["operator"])
+    db.commit()
+    return {"id": user.id, "roles": ["Supervisor"] if isSupervisor else ["User"]}

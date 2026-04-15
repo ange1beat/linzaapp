@@ -163,11 +163,11 @@ def me(current_user: User = Depends(get_current_user), token: str = Depends(oaut
 # ---------------------------------------------------------------------------
 
 
-@router.post("/token", response_model=TokenResponse)
+@router.post("/token")
 def refresh_token(current_user: User = Depends(get_current_user), token: str = Depends(oauth2_scheme)):
-    """Refresh the JWT access token (keeps the same active role)."""
+    """Refresh JWT access token. Returns camelCase for linza-admin compat."""
     ar = resolve_active_role(current_user, token)
-    return TokenResponse(access_token=_issue_token(current_user, ar))
+    return {"accessToken": _issue_token(current_user, ar)}
 
 
 @router.post("/sign-out")
@@ -254,11 +254,24 @@ def otp_verify(request: Request, body: OtpVerifyRequest, db: Session = Depends(g
     )
 
 
-@router.post("/sign-in", response_model=TokenResponse)
-def sign_in(body: SignInRequest, db: Session = Depends(get_db)):
-    """Exchange a verified state token for a JWT access token."""
+class CompatSignInBody(BaseModel):
+    stateToken: str | None = None
+    state_token: str | None = None  # accept both formats
+
+
+@router.post("/sign-in")
+def sign_in(body: CompatSignInBody, db: Session = Depends(get_db)):
+    """Exchange a verified state token for a JWT access token.
+
+    Accepts both camelCase (stateToken) and snake_case (state_token) for compatibility.
+    Returns camelCase accessToken for linza-admin.
+    """
+    token_value = body.stateToken or body.state_token
+    if not token_value:
+        raise HTTPException(status_code=400, detail="stateToken is required")
+
     challenge = db.query(OtpChallenge).filter(
-        OtpChallenge.state_token == body.state_token,
+        OtpChallenge.state_token == token_value,
         OtpChallenge.verified == True,
     ).first()
 
@@ -272,10 +285,123 @@ def sign_in(body: SignInRequest, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=404, detail="Пользователь не найден")
 
-    # Track last login
     user.last_login_at = datetime.now(timezone.utc)
-    # Clean up used challenge
     db.delete(challenge)
     db.commit()
 
-    return TokenResponse(access_token=_issue_token(user))
+    return {"accessToken": _issue_token(user)}
+
+
+# ---------------------------------------------------------------------------
+# Compatibility endpoints for linza-admin (camelCase responses)
+# These endpoints emulate the lm-identity-api format so that
+# the linza-admin frontend works without auth flow changes.
+# ---------------------------------------------------------------------------
+
+
+class CompatLoginRequest(BaseModel):
+    login: str
+    password: str
+
+
+class CompatLoginResponse(BaseModel):
+    user: dict
+    stateToken: str
+
+
+class CompatOtpChallengeRequest(BaseModel):
+    stateToken: str
+    language: str = "ru"
+
+
+class CompatOtpVerifyRequest(BaseModel):
+    stateToken: str
+    passcode: str
+
+
+class CompatOtpVerifyResponse(BaseModel):
+    user: dict
+    stateToken: str
+
+
+class CompatSignInRequest(BaseModel):
+    stateToken: str
+
+
+class CompatTokenResponse(BaseModel):
+    accessToken: str
+
+
+@router.post("", response_model=CompatLoginResponse)
+@limiter.limit("5/minute")
+def compat_login(request: Request, req: CompatLoginRequest, db: Session = Depends(get_db)):
+    """Compat: POST /api/auth — validates credentials, creates OTP challenge, returns stateToken."""
+    user = check_credentials(db, req.login, req.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Неверный логин или пароль",
+        )
+
+    otp_code = f"{secrets.randbelow(10**6):06d}"
+    state_token = secrets.token_urlsafe(32)
+
+    challenge = OtpChallenge(
+        state_token=state_token,
+        user_id=user.id,
+        otp_code=hash_password(otp_code),
+        channel="email",
+        expires_at=datetime.now(timezone.utc) + timedelta(minutes=OTP_EXPIRE_MINUTES),
+    )
+    db.add(challenge)
+    db.commit()
+
+    import logging
+    logging.getLogger("linza.auth").info("OTP for %s: %s (dev only)", user.email, otp_code)
+
+    return CompatLoginResponse(
+        user={"id": str(user.id), "email": user.email, "phoneNumber": user.phone_number},
+        stateToken=state_token,
+    )
+
+
+@router.post("/factors/otp/challenge/email")
+@limiter.limit("5/minute")
+def compat_otp_email(request: Request, body: CompatOtpChallengeRequest, db: Session = Depends(get_db)):
+    """Compat: resend OTP via email."""
+    challenge = db.query(OtpChallenge).filter(OtpChallenge.state_token == body.stateToken).first()
+    if not challenge:
+        raise HTTPException(status_code=400, detail="Неверный state token")
+
+    otp_code = f"{secrets.randbelow(10**6):06d}"
+    challenge.otp_code = hash_password(otp_code)
+    challenge.channel = "email"
+    challenge.expires_at = datetime.now(timezone.utc) + timedelta(minutes=OTP_EXPIRE_MINUTES)
+    challenge.verified = False
+    db.commit()
+
+    import logging
+    user = db.query(User).filter(User.id == challenge.user_id).first()
+    logging.getLogger("linza.auth").info("OTP resend for %s: %s (dev only)", user.email if user else "?", otp_code)
+    return {"detail": "OTP sent"}
+
+
+@router.post("/factors/otp/challenge/sms")
+@limiter.limit("5/minute")
+def compat_otp_sms(request: Request, body: CompatOtpChallengeRequest, db: Session = Depends(get_db)):
+    """Compat: resend OTP via SMS."""
+    challenge = db.query(OtpChallenge).filter(OtpChallenge.state_token == body.stateToken).first()
+    if not challenge:
+        raise HTTPException(status_code=400, detail="Неверный state token")
+
+    otp_code = f"{secrets.randbelow(10**6):06d}"
+    challenge.otp_code = hash_password(otp_code)
+    challenge.channel = "sms"
+    challenge.expires_at = datetime.now(timezone.utc) + timedelta(minutes=OTP_EXPIRE_MINUTES)
+    challenge.verified = False
+    db.commit()
+
+    import logging
+    user = db.query(User).filter(User.id == challenge.user_id).first()
+    logging.getLogger("linza.auth").info("OTP SMS for %s: %s (dev only)", user.phone_number if user else "?", otp_code)
+    return {"detail": "OTP sent"}
