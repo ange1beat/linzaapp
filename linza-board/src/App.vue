@@ -437,63 +437,65 @@ html[data-theme="dark"] {
   --r-xl: 22px;
   --r-2xl: 28px;
   --r-pill: 9999px;
-  --c-sidebar: #141c28;
-  --c-sidebar-hover: #1c2635;
-  --c-sidebar-active: rgba(10, 111, 255, 0.14);
-  --c-sidebar-border: rgba(148, 163, 184, 0.12);
-  --c-bg: #0e131b;
-  --c-surface: #161d2a;
-  --c-surface-2: #1c2534;
-  --c-border: rgba(148, 163, 184, 0.14);
-  --c-blue: #3b82f6;
-  --c-blue-dim: rgba(59, 130, 246, 0.14);
-  --c-blue-hover: #2563eb;
-  --c-teal: #2dd4bf;
-  --c-teal-bg: rgba(45, 212, 191, 0.12);
-  --c-txt: #f1f5f9;
-  --c-txt-2: #94a3b8;
-  --c-txt-3: #64748b;
-  --c-err: #f87171;
-  --c-err-bg: rgba(248, 113, 113, 0.1);
-  --c-ok: #34d399;
-  --c-ok-bg: rgba(52, 211, 153, 0.1);
-  --c-warn: #fbbf24;
-  --c-warn-bg: rgba(251, 191, 36, 0.1);
+
+  /* Bridge: map design-system short tokens → existing --c-* vars */
+  --c-sidebar: var(--glass, rgba(255,255,255,0.045));
+  --c-sidebar-hover: var(--glass-h, rgba(255,255,255,0.08));
+  --c-sidebar-active: rgba(90, 156, 245, 0.14);
+  --c-sidebar-border: var(--glass-bd, rgba(255,255,255,0.08));
+  --c-bg: var(--bg, #050510);
+  --c-surface: var(--glass, rgba(255,255,255,0.045));
+  --c-surface-2: var(--glass-h, rgba(255,255,255,0.08));
+  --c-border: var(--glass-bd, rgba(255,255,255,0.08));
+  --c-blue: var(--bl, #5a9cf5);
+  --c-blue-dim: rgba(90, 156, 245, 0.14);
+  --c-blue-hover: #3464d8;
+  --c-teal: var(--gr, #3ee8b0);
+  --c-teal-bg: rgba(62, 232, 176, 0.12);
+  --c-txt: var(--t, #dce0f4);
+  --c-txt-2: var(--t2, #9da3c8);
+  --c-txt-3: var(--t3, #6e76a0);
+  --c-err: var(--rd, #ff6b8a);
+  --c-err-bg: rgba(255, 107, 138, 0.1);
+  --c-ok: var(--gr, #3ee8b0);
+  --c-ok-bg: rgba(62, 232, 176, 0.1);
+  --c-warn: var(--yl, #f0d060);
+  --c-warn-bg: rgba(240, 208, 96, 0.1);
   --c-row-hover: rgba(255, 255, 255, 0.04);
   --c-modal-overlay: rgba(2, 6, 15, 0.58);
   --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.28);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.32);
-  --shadow-btn-primary: 0 4px 18px rgba(59, 130, 246, 0.4);
+  --shadow-card: var(--glass-shadow, 0 8px 40px rgba(0,0,0,0.45));
+  --shadow-btn-primary: 0 4px 18px rgba(90, 156, 245, 0.4);
 }
 
 html[data-theme="light"] {
-  --c-sidebar: #ffffff;
-  --c-sidebar-hover: #f1f5f9;
-  --c-sidebar-active: rgba(59, 130, 246, 0.12);
-  --c-sidebar-border: #e8edf3;
-  --c-bg: #eef2f7;
-  --c-surface: #ffffff;
-  --c-surface-2: #f5f8fc;
-  --c-border: #e2e8f0;
-  --c-blue: #2563eb;
-  --c-blue-dim: rgba(37, 99, 235, 0.1);
+  --c-sidebar: var(--glass, rgba(255,255,255,0.45));
+  --c-sidebar-hover: var(--glass-h, rgba(255,255,255,0.65));
+  --c-sidebar-active: rgba(42, 110, 216, 0.12);
+  --c-sidebar-border: var(--glass-bd, rgba(0,0,0,0.08));
+  --c-bg: var(--bg, #f0f2f8);
+  --c-surface: var(--glass, rgba(255,255,255,0.45));
+  --c-surface-2: var(--glass-h, rgba(255,255,255,0.65));
+  --c-border: var(--glass-bd, rgba(0,0,0,0.08));
+  --c-blue: var(--bl, #2a6ed8);
+  --c-blue-dim: rgba(42, 110, 216, 0.1);
   --c-blue-hover: #1d4ed8;
-  --c-teal: #0d9488;
-  --c-teal-bg: rgba(13, 148, 136, 0.1);
-  --c-txt: #0f172a;
-  --c-txt-2: #64748b;
-  --c-txt-3: #94a3b8;
-  --c-err: #dc2626;
-  --c-err-bg: rgba(220, 38, 38, 0.08);
-  --c-ok: #059669;
-  --c-ok-bg: rgba(5, 150, 105, 0.1);
-  --c-warn: #d97706;
-  --c-warn-bg: rgba(217, 119, 6, 0.1);
+  --c-teal: var(--gr, #0ca870);
+  --c-teal-bg: rgba(12, 168, 112, 0.1);
+  --c-txt: var(--t, #2a2e48);
+  --c-txt-2: var(--t2, #4a5070);
+  --c-txt-3: var(--t3, #7880a0);
+  --c-err: var(--rd, #dc3858);
+  --c-err-bg: rgba(220, 56, 88, 0.08);
+  --c-ok: var(--gr, #0ca870);
+  --c-ok-bg: rgba(12, 168, 112, 0.1);
+  --c-warn: var(--yl, #b89008);
+  --c-warn-bg: rgba(184, 144, 8, 0.1);
   --c-row-hover: rgba(15, 23, 42, 0.035);
   --c-modal-overlay: rgba(15, 23, 42, 0.4);
   --shadow-soft: 0 2px 12px rgba(15, 23, 42, 0.06);
-  --shadow-card: 0 8px 30px rgba(15, 23, 42, 0.08);
-  --shadow-btn-primary: 0 4px 16px rgba(37, 99, 235, 0.35);
+  --shadow-card: var(--glass-shadow, 0 8px 40px rgba(0,0,0,0.08));
+  --shadow-btn-primary: 0 4px 16px rgba(42, 110, 216, 0.35);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -536,6 +538,8 @@ html[data-theme="dark"] body {
   width: var(--sidebar-w);
   max-width: min(var(--sidebar-w), 88vw);
   background: var(--c-sidebar);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
   border-right: 1px solid var(--c-sidebar-border);
   display: flex;
   flex-direction: column;
@@ -727,7 +731,7 @@ a.bc-home:focus-visible {
   transform: scale(0.94) translateY(14px); opacity: 0;
 }
 .modal-overlay { position: fixed; inset: 0; background: var(--c-modal-overlay); display: flex; align-items: center; justify-content: center; z-index: 5000; }
-.modal { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--r-xl); padding: 28px; width: 520px; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-card); }
+.modal { background: var(--c-surface); backdrop-filter: blur(24px) saturate(1.6); -webkit-backdrop-filter: blur(24px) saturate(1.6); border: 1px solid var(--c-border); border-radius: var(--r-xl); padding: 28px; width: 520px; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-card); position: relative; overflow: hidden; }
 .modal h3 { font-size: 16px; margin-bottom: 20px; }
 .field { margin-bottom: 14px; }
 .field label { display: block; font-size: 12px; color: var(--c-txt-2); margin-bottom: 4px; }
@@ -741,7 +745,7 @@ a.bc-home:focus-visible {
 .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: var(--r-sm); }
 .btn-danger { border-color: rgba(220,38,38,0.3); color: var(--c-err); }
 .btn-danger:hover { background: var(--c-err-bg); }
-.data-table { width: 100%; border-collapse: collapse; background: var(--c-surface); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--c-border); }
+.data-table { width: 100%; border-collapse: collapse; background: var(--c-surface); backdrop-filter: blur(24px) saturate(1.6); -webkit-backdrop-filter: blur(24px) saturate(1.6); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--c-border); }
 .data-table th { padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 500; color: var(--c-txt-2); background: var(--c-surface-2); border-bottom: 1px solid var(--c-border); }
 .data-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--c-border); }
 .data-table tr:last-child td { border-bottom: none; }
